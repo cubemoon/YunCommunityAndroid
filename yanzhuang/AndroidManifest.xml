@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.oldfeel.yanzhuang"
+    package="android.oldfeel.yanzhuang"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,13 +9,13 @@
         android:targetSdkVersion="19" />
 
     <application
-        android:name="cn.oldfeel.yanzhuang.app.MyApplication"
+        android:name="android.oldfeel.yanzhuang.app.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="cn.oldfeel.yanzhuang.Welcome"
+            android:name="android.oldfeel.yanzhuang.Welcome"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cn.oldfeel.yanzhuang.LoginActivity"
+            android:name="android.oldfeel.yanzhuang.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
-        <activity android:name="cn.oldfeel.yanzhuang.MainActivity" >
+        <activity android:name="android.oldfeel.yanzhuang.MainActivity" >
         </activity>
-        <activity android:name="cn.oldfeel.yanzhuang.CollapseActivity" >
+        <activity android:name="android.oldfeel.yanzhuang.CollapseActivity" >
         </activity>
     </application>
 
