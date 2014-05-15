@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -60,5 +61,9 @@ public class BaseFragment extends Fragment {
 
 	public Button getButton(View view, int id) {
 		return ViewUtil.getButton(view, id);
+	}
+
+	public EditText getEditText(View view, int id) {
+		return ViewUtil.getEditText(view, id);
 	}
 }

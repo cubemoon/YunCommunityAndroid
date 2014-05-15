@@ -3,8 +3,6 @@ package android.oldfeel.yanzhuang.base;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
-import android.app.Fragment;
-import android.app.ListFragment;
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.util.DialogUtil;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -12,6 +10,8 @@ import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +82,7 @@ public abstract class BaseListFragment extends ListFragment implements
 		if (adapter.isAddOver()) {
 			return;
 		}
-		netUtil.setPage(page * (int) Constant.PAGE_SIZE);
+		netUtil.setParams("page", page);
 		netUtil.setOnNetFailListener(new OnNetFailListener() {
 
 			@Override

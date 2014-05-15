@@ -1,23 +1,16 @@
 package android.oldfeel.yanzhuang.util;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Iterator;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +21,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
@@ -45,8 +39,7 @@ public class NetUtil extends Handler {
 	/** 超时时间限制 */
 	public static final int TIME_OUT = 30 * 1000;
 	private Activity activity;
-	private Map<String, String> params = new HashMap<String, String>();
-	private String path = "";
+	private JSONObject params = new JSONObject();
 	private ProgressDialog pd;
 	private Thread requestThread;
 	private AlertDialog dialog;
@@ -56,34 +49,27 @@ public class NetUtil extends Handler {
 	 * 
 	 * @param Activity
 	 * 
-	 * @param path
-	 *            这次请求需要调用的url
+	 * @param api
+	 *            这次请求需要调用的api
 	 */
-	public NetUtil(Activity Activity, String path) {
+	public NetUtil(Activity Activity, String api) {
 		this.activity = Activity;
-		this.path = path;
+		setParams("api", api);
 	}
 
 	/**
-	 * 添加参数,用url编码格式
+	 * 添加参数
 	 * 
 	 * @param key
 	 * @param value
 	 */
-	public void addParams(String key, Object value) {
+	public void setParams(String key, Object value) {
 		if (!isEmpty(key) && !isEmpty(value)) {
-			params.put(key.trim(), value.toString().trim());// *.trim(),取消首尾空格
-		}
-	}
-
-	/**
-	 * 补充路径,比如添加 /信息类别id/新闻id
-	 * 
-	 * @param objects
-	 */
-	public void addPath(Object... objects) {
-		for (Object object : objects) {
-			path = path + "/" + getUrlEncode(object);
+			try {
+				params.put(key.trim(), value.toString().trim());// *.trim(),取消首尾空格
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -98,65 +84,6 @@ public class NetUtil extends Handler {
 			return true;
 		else
 			return false;
-	}
-
-	/**
-	 * 获取url编码的字符串
-	 * 
-	 * @param value
-	 * @return
-	 */
-	private String getUrlEncode(Object value) {
-		try {
-			return URLEncoder.encode(value.toString().trim(), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 * get请求,拼接url路径,并对参数进行urlencode
-	 */
-	public String getPath() {
-		if (params.size() == 0) {
-			return path;
-		}
-		StringBuilder sb = new StringBuilder();
-		boolean first = path.indexOf("?") == -1; // 不包含?(first=true)说明是第一次添加参数,包含?说明url中带有参数
-		for (String key : params.keySet()) {
-			if (first) {
-				first = false;
-				sb.append("?");
-			} else {
-				sb.append("&");
-			}
-			sb.append(key + "=" + getUrlEncode(params.get(key)));
-		}
-		return path + sb.toString();
-	}
-
-	/**
-	 * post请求,传入的参数
-	 * 
-	 * @return
-	 */
-	private String postParams() {
-		JSONObject json = new JSONObject();
-		try {
-			for (String string : params.keySet()) {
-				json.put(string, params.get(string));
-			}
-			JSONObject aesJson = new JSONObject();
-			AESCrypt crypt = new AESCrypt();
-			aesJson.put("data", crypt.encrypt(json.toString()));
-			return aesJson.toString();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return json.toString();
 	}
 
 	/**
@@ -212,55 +139,6 @@ public class NetUtil extends Handler {
 			public void run() {
 				try {
 					final String result = postStringResult();
-					if (requestThread.isInterrupted()) {
-						showLog("is interrupted");
-						return;
-					}
-					if (result == null) {
-						netError();
-						return;
-					}
-					post(new Complete() {
-
-						@Override
-						public void run() {
-							super.run();
-							stringListener.onComplete(result);
-						}
-					});
-				} catch (SocketTimeoutException e) {
-					timeOut(text, stringListener);
-					e.printStackTrace();
-				} catch (Exception e) {
-					netError();
-					e.printStackTrace();
-				}
-
-			}
-		};
-		requestThread = new Thread(task);
-		requestThread.start();
-	}
-
-	/**
-	 * 发送一个post请求,返回string对象
-	 * 
-	 * @param text
-	 * @param requestStringListener
-	 */
-	public void getRequest(final String text,
-			final RequestStringListener stringListener) {
-		if (!isNetworkConnect()) {
-			whetherOpenNet();
-			return;
-		}
-		showPd(text);
-		Runnable task = new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					final String result = getStringResult();
 					if (requestThread.isInterrupted()) {
 						showLog("is interrupted");
 						return;
@@ -355,74 +233,61 @@ public class NetUtil extends Handler {
 	 * 
 	 * @param isLoadCache
 	 *            true为加载缓存，false为不加载缓存
+	 * @throws JSONException
 	 * @throws Exception
 	 */
-	public String postStringResult() throws SocketTimeoutException {
-		showLog("path is " + path);
-		AESCrypt crypt = null;
+	public String postStringResult() throws SocketTimeoutException,
+			JSONException {
+		LogUtil.showLog("post " + params);
 		try {
-			crypt = new AESCrypt();
-			JSONObject jsonObject = new JSONObject(postParams());
-			showLog("post is " + crypt.decrypt(jsonObject.getString("data")));
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		HttpPost post = new HttpPost(path);
-		try {
-			StringEntity entity = new StringEntity(postParams(), HTTP.UTF_8);
-			entity.setContentType("application/json");
-			post.setEntity(entity);
-			HttpResponse httpResponse = new DefaultHttpClient().execute(post);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				String result = EntityUtils.toString(httpResponse.getEntity());
-				result = crypt.decrypt(result);
-				return result;
+			URL url = new URL(Constant.ROOT_URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.setRequestMethod("POST");
+			conn.setConnectTimeout(TIME_OUT);
+			conn.setReadTimeout(TIME_OUT);
+			conn.connect();
+
+			configPostParams(new DataOutputStream(conn.getOutputStream()));
+
+			if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				StringBuffer out = new StringBuffer();
+				BufferedReader input = new BufferedReader(
+						new InputStreamReader(conn.getInputStream()));
+				String line = null;
+				while ((line = input.readLine()) != null) {
+					out.append(line);
+				}
+				input.close();
+
+				return out.toString();
 			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (ClientProtocolException e) {
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (ProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	/**
-	 * 发送get请求,获取string对象
+	 * 配置post请求需要的参数
 	 * 
-	 * @return
-	 * @throws IOException
+	 * @param outStream
 	 */
-	protected String getStringResult() throws IOException {
-		String path = getPath();
-		LogUtil.showLog("path is " + path);
-		URL url = new URL(path);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setConnectTimeout(30 * 1000);
-		conn.setReadTimeout(30 * 1000);
-		if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-			StringBuffer out = new StringBuffer();
-			BufferedReader input = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
-			String line = null;
-			while ((line = input.readLine()) != null) {
-				out.append(line);
-			}
-			input.close();
-			String result = out.toString();
+	private void configPostParams(DataOutputStream outStream) {
+		Iterator<?> iterator = params.keys();
+		while (iterator.hasNext()) {
+			String key = iterator.next().toString();
 			try {
-				AESCrypt crypt = new AESCrypt();
-				result = crypt.decrypt(result);
-				return result;
-			} catch (Exception e) {
+				outStream.writeBytes("&" + key + "=" + params.get(key));
+			} catch (IOException | JSONException e) {
 				e.printStackTrace();
 			}
 		}
-		return null;
 	}
 
 	class Complete implements Runnable {
@@ -527,14 +392,6 @@ public class NetUtil extends Handler {
 							}
 						}).setNeutralButton(android.R.string.cancel, null)
 				.show();
-	}
-
-	public void setPage(int page) {
-		params.put("index", String.valueOf(page));
-	}
-
-	public void setPageSize(int pageSize) {
-		params.put("perPage", String.valueOf(pageSize));
 	}
 
 	/**

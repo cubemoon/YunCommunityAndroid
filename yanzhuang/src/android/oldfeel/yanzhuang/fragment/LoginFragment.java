@@ -1,42 +1,40 @@
-package android.oldfeel.yanzhuang;
+package android.oldfeel.yanzhuang.fragment;
 
-import android.oldfeel.yanzhuang.R;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.os.AsyncTask;
+import android.oldfeel.yanzhuang.ForgetPassword;
+import android.oldfeel.yanzhuang.MainActivity;
+import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.base.BaseFragment;
+import android.oldfeel.yanzhuang.util.JSONUtil;
+import android.oldfeel.yanzhuang.util.LogUtil;
+import android.oldfeel.yanzhuang.util.NetUtil;
+import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
+import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- * Activity which displays a login screen to the user, offering registration as
- * well.
+ * 登录
+ * 
+ * @author oldfeel
+ * 
  */
-public class LoginActivity extends Activity {
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
-
-	/**
-	 * The default email to populate the email field with.
-	 */
-	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
-
-	/**
-	 * Keep track of the login task to ensure we can cancel it if requested.
-	 */
-	private UserLoginTask mAuthTask = null;
-
+public class LoginFragment extends BaseFragment {
 	// Values for email and password at the time of the login attempt.
 	private String mEmail;
 	private String mPassword;
@@ -49,17 +47,29 @@ public class LoginActivity extends Activity {
 	private TextView mLoginStatusMessageView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.login_register, null);
+		mEmailView = super.getEditText(view, R.id.email);
+		mPasswordView = super.getEditText(view, R.id.password);
+		mLoginFormView = view.findViewById(R.id.login_form);
+		mLoginStatusView = view.findViewById(R.id.login_status);
+		mLoginStatusMessageView = (TextView) view
+				.findViewById(R.id.login_status_message);
+		view.findViewById(R.id.sign_in_button).setOnClickListener(
+				new OnClickListener() {
 
-		setContentView(R.layout.activity_login);
+					@Override
+					public void onClick(View v) {
+						attemptLogin();
+					}
+				});
+		return view;
+	}
 
-		// Set up the login form.
-		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) findViewById(R.id.email);
-		mEmailView.setText(mEmail);
-
-		mPasswordView = (EditText) findViewById(R.id.password);
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 		mPasswordView
 				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 					@Override
@@ -72,34 +82,35 @@ public class LoginActivity extends Activity {
 						return false;
 					}
 				});
-
-		mLoginFormView = findViewById(R.id.login_form);
-		mLoginStatusView = findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
-
-		findViewById(R.id.sign_in_button).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						attemptLogin();
-					}
-				});
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		getActivity().getMenuInflater().inflate(R.menu.login, menu);
 	}
 
-	/**
-	 * Attempts to sign in or register the account specified by the login form.
-	 * If there are form errors (invalid email, missing fields, etc.), the
-	 * errors are presented and no actual login attempt is made.
-	 */
-	public void attemptLogin() {
-		if (mAuthTask != null) {
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_forgot_password:
+			forgetPassword();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void forgetPassword() {
+		openActivity(ForgetPassword.class);
+	}
+
+	NetUtil netUtil;
+
+	protected void attemptLogin() {
+		if (netUtil != null) {
 			return;
 		}
 
@@ -145,9 +156,49 @@ public class LoginActivity extends Activity {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+			netUtil = new NetUtil(getActivity(), JsonApi.LOGIN);
+			netUtil.setParams("email", mEmail);
+			netUtil.setParams("password", mPassword);
+			netUtil.postRequest("", new RequestStringListener() {
+
+				@Override
+				public void onComplete(String result) {
+					LogUtil.showLog("result is " + result);
+					showProgress(false);
+
+					if (JSONUtil.isSuccess(result)) {
+						openActivity(MainActivity.class);
+						getActivity().finish();
+					} else {
+						netUtil = null;
+						mPasswordView
+								.setError(getString(R.string.error_incorrect_password));
+						mPasswordView.requestFocus();
+					}
+				}
+			});
+			netUtil.setOnNetFailListener(new OnNetFailListener() {
+
+				@Override
+				public void onTimeOut() {
+					netUtil = null;
+					showProgress(false);
+				}
+
+				@Override
+				public void onError() {
+					netUtil = null;
+					showProgress(false);
+				}
+
+				@Override
+				public void cancel() {
+					netUtil = null;
+					showProgress(false);
+				}
+			});
 		}
+
 	}
 
 	/**
@@ -188,52 +239,6 @@ public class LoginActivity extends Activity {
 			// and hide the relevant UI components.
 			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
 			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-		}
-	}
-
-	/**
-	 * Represents an asynchronous login/registration task used to authenticate
-	 * the user.
-	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-		@Override
-		protected Boolean doInBackground(Void... params) {
-
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
-
-			return true;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			showProgress(false);
-
-			if (success) {
-				finish();
-			} else {
-				mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
-			}
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			showProgress(false);
 		}
 	}
 }

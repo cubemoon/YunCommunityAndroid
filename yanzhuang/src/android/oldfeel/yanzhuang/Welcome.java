@@ -17,7 +17,7 @@ public class Welcome extends BaseActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setBackgroundColor(Color.GREEN);
 		setContentView(imageView);
-		openActivity(LoginActivity.class);
+		openActivity(LoginRegisterActivity.class);
 		finish();
 	}
 }

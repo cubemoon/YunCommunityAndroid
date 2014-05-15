@@ -18,16 +18,12 @@ public class JSONUtil {
 	 * @return
 	 */
 	public static boolean isSuccess(String result) {
-		return false;
-	}
-
-	/**
-	 * 判断版本号查询结果
-	 * 
-	 * @param result
-	 * @return
-	 */
-	public static boolean isSuccess_Version(String result) {
+		try {
+			JSONObject json = new JSONObject(result);
+			return json.getBoolean("result");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -41,22 +37,6 @@ public class JSONUtil {
 		try {
 			JSONObject json = new JSONObject(result);
 			return json.getString("message");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 * 获取返回的错误码
-	 * 
-	 * @param result
-	 * @return
-	 */
-	public static String getErrorCode(String result) {
-		try {
-			JSONObject json = new JSONObject(result);
-			return json.getString("errorCode");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

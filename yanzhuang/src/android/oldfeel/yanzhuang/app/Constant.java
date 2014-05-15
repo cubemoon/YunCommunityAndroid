@@ -10,6 +10,8 @@ import android.os.Environment;
  *         Created on: 2014-1-10
  */
 public class Constant {
+	/** 接口根目录 */
+	public static final String ROOT_URL = "http://192.168.1.103:8080/oldfeel_web/json";
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
 			.getExternalStorageDirectory().getAbsolutePath() + "/meow/";

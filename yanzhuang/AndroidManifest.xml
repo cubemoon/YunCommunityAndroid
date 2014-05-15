@@ -8,6 +8,23 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name="android.oldfeel.yanzhuang.app.MyApplication"
         android:allowBackup="true"
@@ -24,13 +41,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="android.oldfeel.yanzhuang.LoginActivity"
-            android:label="@string/title_activity_login"
+            android:name="android.oldfeel.yanzhuang.LoginRegisterActivity"
+            android:label="@string/action_sign_in_short"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.MainActivity" >
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.CollapseActivity" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.ForgetPassword" >
         </activity>
     </application>
 

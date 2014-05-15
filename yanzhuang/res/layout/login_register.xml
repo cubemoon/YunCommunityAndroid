@@ -1,6 +1,7 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="android.oldfeel.yanzhuang.LoginActivity" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
     <!-- Login progress -->
 
@@ -69,8 +70,8 @@
                 android:layout_marginTop="16dp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="@string/action_sign_in_register" />
+                android:text="@string/action_sign_in_short" />
         </LinearLayout>
     </ScrollView>
 
-</merge>
+</FrameLayout>
