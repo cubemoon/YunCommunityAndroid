@@ -51,6 +51,12 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.ForgetPassword" >
         </activity>
+        <activity android:name="android.oldfeel.yanzhuang.ReleaseActivity" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.SearchActivity" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.PersonHomeActivity" >
+        </activity>
     </application>
 
 </manifest>

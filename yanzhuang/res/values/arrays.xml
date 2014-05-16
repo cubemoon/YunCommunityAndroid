@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="drawer_menus">
+        <item>关注</item>
+        <item>活动</item>
+        <item>商家服务</item>
+        <item>个人服务</item>
+        <item>建议反馈</item>
+        <item>设置</item>
+    </string-array>
+
+</resources>

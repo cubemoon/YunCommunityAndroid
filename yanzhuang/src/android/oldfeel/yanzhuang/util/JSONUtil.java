@@ -42,4 +42,14 @@ public class JSONUtil {
 		}
 		return null;
 	}
+
+	public static JSONObject getData(String result) {
+		try {
+			JSONObject json = new JSONObject(result);
+			return json.getJSONObject("data");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

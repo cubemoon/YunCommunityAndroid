@@ -6,7 +6,7 @@ import android.annotation.TargetApi;
 import android.oldfeel.yanzhuang.ForgetPassword;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.AppConfig;
+import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -168,7 +168,7 @@ public class LoginFragment extends BaseFragment {
 					showProgress(false);
 
 					if (JSONUtil.isSuccess(result)) {
-						AppConfig.getInstance(getActivity()).setLoginInfo(
+						PersonInfo.getInstance(getActivity()).setLoginInfo(
 								mEmail, mPassword);
 						openActivity(MainActivity.class);
 						getActivity().finish();
