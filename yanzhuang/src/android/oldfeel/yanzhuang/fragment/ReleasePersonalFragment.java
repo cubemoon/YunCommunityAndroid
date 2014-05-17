@@ -51,7 +51,7 @@ public class ReleasePersonalFragment extends BaseFragment implements
 			etTitle.setError("必填");
 			return;
 		}
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.RELEASE_ACTIVITY);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.RELEASE_PERSONAL);
 		netUtil.setParams("user_id", PersonInfo.getInstance(getActivity())
 				.getId());
 		netUtil.setParams("title", getString(etTitle));

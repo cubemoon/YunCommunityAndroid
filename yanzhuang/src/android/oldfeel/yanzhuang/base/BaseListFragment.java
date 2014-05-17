@@ -10,7 +10,6 @@ import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -41,17 +40,10 @@ public abstract class BaseListFragment extends ListFragment implements
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ViewGroup viewGroup = (ViewGroup) view;
-		// As we're using a ListFragment we create a PullToRefreshLayout
-		// manually
 		mPullToRefreshLayout = new PullToRefreshLayout(viewGroup.getContext());
-		// We can now setup the PullToRefreshLayout
 		ActionBarPullToRefresh
 				.from((ActionBarActivity) getActivity())
-				// We need to insert the PullToRefreshLayout into the Fragment's
-				// ViewGroup
 				.insertLayoutInto(viewGroup)
-				// Here we mark just the ListView and it's Empty View as
-				// pullable
 				.theseChildrenArePullable(android.R.id.list, android.R.id.empty)
 				.listener(this).setup(mPullToRefreshLayout);
 	}
@@ -146,9 +138,6 @@ public abstract class BaseListFragment extends ListFragment implements
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
 		lastVisibleIndex = firstVisibleItem + visibleItemCount - 1;
-		if (listener != null) {
-			listener.scrollTo(firstVisibleItem);
-		}
 	}
 
 	@Override
@@ -164,31 +153,4 @@ public abstract class BaseListFragment extends ListFragment implements
 	public abstract void onItemClick(int position);
 
 	public abstract void initAdapter();
-
-	/**
-	 * 滑动监听
-	 * 
-	 * @author oldfeel
-	 * 
-	 *         Create on: 2014年3月11日
-	 */
-	public interface ScrollListener {
-		public void scrollTo(int position);
-	}
-
-	private ScrollListener listener;
-
-	public void setScrollListener(ScrollListener listener) {
-		this.listener = listener;
-	}
-
-	public interface onCreatedListener {
-		public void created(Fragment fragment);
-	}
-
-	protected onCreatedListener createdListener;
-
-	public void setOnCreatedListener(onCreatedListener createdListener) {
-		this.createdListener = createdListener;
-	}
 }

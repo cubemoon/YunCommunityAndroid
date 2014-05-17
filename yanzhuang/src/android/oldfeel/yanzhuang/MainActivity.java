@@ -4,17 +4,21 @@ import android.content.Intent;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
+import android.oldfeel.yanzhuang.fragment.ActivityFragment;
+import android.oldfeel.yanzhuang.fragment.AttentionFragment;
+import android.oldfeel.yanzhuang.fragment.BusinessFragment;
+import android.oldfeel.yanzhuang.fragment.PersonalFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -36,6 +40,10 @@ public class MainActivity extends BaseActivity {
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ArrayAdapter<String> adapter;
+	private AttentionFragment attentionFragment;
+	private ActivityFragment activityFragment;
+	private BusinessFragment businessFragment;
+	private PersonalFragment personalFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,23 +138,106 @@ public class MainActivity extends BaseActivity {
 				options);
 		tvName.setText(PersonInfo.getInstance(getApplicationContext())
 				.getName());
-		view.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this,
-						PersonHomeActivity.class);
-				intent.putExtra("id",
-						PersonInfo.getInstance(getApplicationContext()).getId());
-				startActivity(intent);
-			}
-		});
 		return view;
 	}
 
 	private void selectItem(int position) {
 		mDrawerList.setSelection(position);
 		mDrawerLayout.closeDrawers();
+		switch (position) {
+		case 0:
+			openPersonHome();
+			break;
+		case 1:
+			openAttention();
+			break;
+		case 2:
+			openActivity();
+			break;
+		case 3:
+			openBusiness();
+			break;
+		case 4:
+			openPersonal();
+			break;
+		case 5:
+			openFeedback();
+			break;
+		case 6:
+			openSettings();
+			break;
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * 设置
+	 */
+	private void openSettings() {
+		openActivity(MySettingsActivity.class);
+	}
+
+	/**
+	 * 建议反馈
+	 */
+	private void openFeedback() {
+		openActivity(FeedbackActivity.class);
+	}
+
+	/**
+	 * 个人服务
+	 */
+	private void openPersonal() {
+		if (personalFragment == null) {
+			personalFragment = PersonalFragment.newInstance();
+		}
+		showFragment(personalFragment);
+	}
+
+	/**
+	 * 商家服务
+	 */
+	private void openBusiness() {
+		if (businessFragment == null) {
+			businessFragment = BusinessFragment.newInstance();
+		}
+		showFragment(businessFragment);
+	}
+
+	/**
+	 * 活动
+	 */
+	private void openActivity() {
+		if (activityFragment == null) {
+			activityFragment = ActivityFragment.newInstance();
+		}
+		showFragment(activityFragment);
+	}
+
+	/**
+	 * 关注
+	 */
+	private void openAttention() {
+		if (attentionFragment == null) {
+			attentionFragment = AttentionFragment.newInstance();
+		}
+		showFragment(attentionFragment);
+	}
+
+	private void showFragment(Fragment fragment) {
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, fragment).commit();
+	}
+
+	/**
+	 * 打开个人首页
+	 */
+	private void openPersonHome() {
+		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
+		intent.putExtra("id", PersonInfo.getInstance(getApplicationContext())
+				.getId());
+		startActivity(intent);
 	}
 
 	@Override

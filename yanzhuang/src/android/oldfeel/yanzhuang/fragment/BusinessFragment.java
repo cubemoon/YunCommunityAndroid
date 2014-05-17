@@ -3,14 +3,14 @@ package android.oldfeel.yanzhuang.fragment;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 
 /**
- * 关注
+ * 商家服务
  * 
  * @author oldfeel
  * 
  */
-public class AttentionFragment extends BaseFragment {
+public class BusinessFragment extends BaseFragment {
 
-	public static AttentionFragment newInstance() {
+	public static BusinessFragment newInstance() {
 		return null;
 	}
 

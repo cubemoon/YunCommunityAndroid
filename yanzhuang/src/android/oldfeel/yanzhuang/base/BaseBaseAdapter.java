@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.util.ViewUtil;
 import android.view.LayoutInflater;
@@ -15,8 +16,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
-import android.oldfeel.yanzhuang.R;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -33,8 +37,8 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 	protected LayoutInflater inflater;
 	protected Context context;
 	protected ArrayList<T> list = new ArrayList<T>();
+	protected JsonArray array = new JsonArray();
 	private boolean isAddOver = false; // 是否加载完成
-	private long pagesize = Constant.PAGE_SIZE;
 
 	public BaseBaseAdapter(Context context) {
 		this(context, -1);
@@ -54,6 +58,11 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 		if (page == 0) {
 			clear();
 		}
+		array = (new Gson().fromJson(result, JsonObject.class))
+				.getAsJsonArray("data");
+		List<T> list = new Gson().fromJson(array, new TypeToken<List<T>>() {
+		}.getType());
+		addAll(list);
 	}
 
 	public void add(T t) {
@@ -62,7 +71,7 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 	}
 
 	public void addAll(List<T> list) {
-		if (list.size() < pagesize) { // 如果加载的数据量小于每页显示的数据,说明加载完成
+		if (list.size() < Constant.PAGE_SIZE) { // 如果加载的数据量小于每页显示的数据,说明加载完成
 			setIsAddOver(true);
 		}
 		this.list.addAll(list);
@@ -127,9 +136,5 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 
 	public boolean isAddOver() {
 		return isAddOver;
-	}
-
-	public void setPageSize(int pagesize) {
-		this.pagesize = pagesize;
 	}
 }

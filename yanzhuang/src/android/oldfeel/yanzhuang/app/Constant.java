@@ -11,26 +11,22 @@ import android.os.Environment;
  */
 public class Constant {
 	/** 接口根目录 */
-	public static final String ROOT_URL = "http://192.168.1.103:8080/oldfeel_web/json";
+	public static final String ROOT_URL = "http://192.168.1.103:8080/oldfeel_web/json";// 我的电脑
+	// public static final String ROOT_URL =
+	// "http://192.168.1.111:8080/oldfeel_web/json";//媳妇的电脑
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
-			.getExternalStorageDirectory().getAbsolutePath() + "/meow/";
+			.getExternalStorageDirectory().getAbsolutePath() + "/yanzhuang/";
 	/** 数据库名字 */
-	public static final String DB_NAME = ROOT_DIR + "meow.db";
+	public static final String DB_NAME = ROOT_DIR + "yanzhuang.db";
 	/** SharedPreferences用到的应用名称 */
-	public static final String APP_NAME = "meow";
+	public static final String APP_NAME = "yanzhuang";
 	/** 拍照后图片的临时文件夹 */
-	public final static String FILE_SAVEPATH = ROOT_DIR + "Portrait";
+	public final static String FILE_SAVEPATH = ROOT_DIR + "image";
 	/** 视频保存目录 */
 	public static final String VIDEO_DIR = ROOT_DIR + "video";
-	/** 系统下载目录 */
-	public static final String SYSTEM_DOWNLOAD_DIR = "meow/download";
 	/** true为正在调试,可以打印log日志等... */
 	public static final boolean IS_DEBUG = true;
-	/** 每页视频数量 */
+	/** 每页信息数量 */
 	public static final long PAGE_SIZE = 10;
-	/** 录制时间,8秒 */
-	public static final int RECORD_TIME = 8 * 1000;
-	/** 评论成功 */
-	public static final String ACTION_COMMENT_SUCCESS = "meow.action.comment.success";
 }
