@@ -93,7 +93,6 @@ public class NetUtil extends Handler {
 	 * @param message
 	 */
 	private void showPd(String message) {
-		showLog("start connect");
 		if (message == null || message.length() == 0) {
 			return;
 		}

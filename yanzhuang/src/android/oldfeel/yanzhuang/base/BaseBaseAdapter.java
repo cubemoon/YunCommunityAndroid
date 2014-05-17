@@ -20,7 +20,6 @@ import android.widget.VideoView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -60,9 +59,6 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 		}
 		array = (new Gson().fromJson(result, JsonObject.class))
 				.getAsJsonArray("data");
-		List<T> list = new Gson().fromJson(array, new TypeToken<List<T>>() {
-		}.getType());
-		addAll(list);
 	}
 
 	public void add(T t) {

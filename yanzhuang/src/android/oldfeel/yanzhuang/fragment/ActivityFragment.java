@@ -33,7 +33,8 @@ public class ActivityFragment extends BaseFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getChildFragmentManager()
+		getActivity()
+				.getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
 						ActivityListFragment.newInstance(getNetUtil()))

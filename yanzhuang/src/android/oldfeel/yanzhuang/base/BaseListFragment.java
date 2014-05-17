@@ -71,7 +71,7 @@ public abstract class BaseListFragment extends ListFragment implements
 
 	public void getData(final int page) {
 		this.page = page;
-		if (adapter.isAddOver()) {
+		if (page != 0 && adapter.isAddOver()) {
 			return;
 		}
 		netUtil.setParams("page", page);

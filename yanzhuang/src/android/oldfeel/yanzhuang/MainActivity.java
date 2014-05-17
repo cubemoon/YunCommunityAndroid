@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity {
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		if (savedInstanceState == null) {
-			selectItem(1);
+			selectItem(2);
 		}
 		if (PersonInfo.getInstance(getApplicationContext()).isAutoLogin()) {
 			autoLogin();
