@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/single_view" >
+
+            <TextView
+                style="@style/form_left"
+                android:text="活动:" />
+
+            <EditText
+                android:id="@+id/release_title"
+                style="@style/form_right"
+                android:hint="请输入活动名称" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/single_view" >
+
+            <TextView
+                style="@style/form_left"
+                android:text="简介:" />
+
+            <EditText
+                android:id="@+id/release_desc"
+                style="@style/form_right"
+                android:gravity="top"
+                android:hint="请简单介绍下你的活动"
+                android:lines="4"
+                android:singleLine="false" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/single_view" >
+
+            <TextView
+                style="@style/form_left"
+                android:text="详细地址:" />
+
+            <EditText
+                android:id="@+id/release_address"
+                style="@style/form_right"
+                android:hint="输入详细地址" />
+
+            <Button
+                android:id="@+id/release_map"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/ic_map" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/single_view" >
+
+            <TextView
+                style="@style/form_left"
+                android:text="电话:" />
+
+            <EditText
+                android:id="@+id/release_phone"
+                style="@style/form_right"
+                android:hint="输入电话" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/single_view" >
+
+            <TextView
+                style="@style/form_left"
+                android:text="标签:" />
+
+            <EditText
+                android:id="@+id/release_tag"
+                style="@style/form_right"
+                android:hint="多个标签用逗号隔开" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/single_view" >
+
+            <Button
+                android:id="@+id/release_add_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加文件" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

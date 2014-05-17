@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
 				GravityCompat.START);
 		String[] menus = getResources().getStringArray(R.array.drawer_menus);
 		adapter = new ArrayAdapter<>(getApplicationContext(),
-				R.layout.single_text, R.id.text, menus);
+				R.layout.single_text_light, R.id.text, menus);
 		mDrawerList.addHeaderView(getHeaderView());
 		mDrawerList.setAdapter(adapter);
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
 		String email = PersonInfo.getInstance(getApplicationContext())
 				.getEmail();
 		String password = PersonInfo.getInstance(getApplicationContext())
-				.getEmail();
+				.getPassword();
 		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("email", email);
 		netUtil.setParams("password", password);
@@ -98,9 +98,21 @@ public class MainActivity extends BaseActivity {
 				if (JSONUtil.isSuccess(result)) {
 					PersonInfo.getInstance(getApplicationContext()).saveInfo(
 							result);
+				} else {
+					showToast("自动登录失败," + JSONUtil.getMessage(result));
+					cancelLogin();
 				}
 			}
 		});
+	}
+
+	/**
+	 * 登出
+	 */
+	protected void cancelLogin() {
+		PersonInfo.getInstance(MainActivity.this).setIsAutoLogin(false);
+		openActivity(LoginRegisterActivity.class);
+		finish();
 	}
 
 	private View getHeaderView() {
@@ -132,7 +144,9 @@ public class MainActivity extends BaseActivity {
 		return view;
 	}
 
-	private void selectItem(int i) {
+	private void selectItem(int position) {
+		mDrawerList.setSelection(position);
+		mDrawerLayout.closeDrawers();
 	}
 
 	@Override
@@ -154,9 +168,7 @@ public class MainActivity extends BaseActivity {
 			openActivity(ReleaseActivity.class);
 			break;
 		case R.id.action_cancel:
-			PersonInfo.getInstance(MainActivity.this).setIsAutoLogin(false);
-			openActivity(LoginRegisterActivity.class);
-			finish();
+			cancelLogin();
 			break;
 		default:
 			break;

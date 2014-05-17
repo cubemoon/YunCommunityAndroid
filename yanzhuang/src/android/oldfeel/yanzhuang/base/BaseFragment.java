@@ -1,6 +1,7 @@
 package android.oldfeel.yanzhuang.base;
 
 import android.content.Intent;
+import android.oldfeel.yanzhuang.util.ETUtil;
 import android.oldfeel.yanzhuang.util.ViewUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,6 +38,10 @@ public class BaseFragment extends Fragment {
 	protected void openActivity(Class<?> className) {
 		Intent intent = new Intent(getActivity(), className);
 		startActivity(intent);
+	}
+
+	public String getString(EditText et) {
+		return ETUtil.getString(et);
 	}
 
 	public GridView getGridView(View view, int id) {

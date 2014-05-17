@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Iterator;
 
 import org.json.JSONException;
@@ -249,8 +250,21 @@ public class NetUtil extends Handler {
 			conn.setReadTimeout(TIME_OUT);
 			conn.connect();
 
-			configPostParams(new DataOutputStream(conn.getOutputStream()));
-
+			DataOutputStream outStream = new DataOutputStream(
+					conn.getOutputStream());
+			Iterator<?> iterator = params.keys();
+			while (iterator.hasNext()) {
+				String key = iterator.next().toString();
+				try {
+					outStream.writeBytes("&"
+							+ URLEncoder.encode(key, "utf-8")
+							+ "="
+							+ URLEncoder.encode(params.get(key).toString(),
+									"utf-8"));
+				} catch (IOException | JSONException e) {
+					e.printStackTrace();
+				}
+			}
 			if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 				StringBuffer out = new StringBuffer();
 				BufferedReader input = new BufferedReader(
@@ -260,7 +274,6 @@ public class NetUtil extends Handler {
 					out.append(line);
 				}
 				input.close();
-
 				return out.toString();
 			}
 		} catch (MalformedURLException e1) {
@@ -271,23 +284,6 @@ public class NetUtil extends Handler {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	/**
-	 * 配置post请求需要的参数
-	 * 
-	 * @param outStream
-	 */
-	private void configPostParams(DataOutputStream outStream) {
-		Iterator<?> iterator = params.keys();
-		while (iterator.hasNext()) {
-			String key = iterator.next().toString();
-			try {
-				outStream.writeBytes("&" + key + "=" + params.get(key));
-			} catch (IOException | JSONException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	class Complete implements Runnable {

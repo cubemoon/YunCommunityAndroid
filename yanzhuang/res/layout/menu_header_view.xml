@@ -11,6 +11,6 @@
         android:layout_height="72dp"
         android:layout_margin="5dp" />
 
-    <include layout="@layout/single_text" />
+    <include layout="@layout/single_text_light" />
 
 </LinearLayout>
