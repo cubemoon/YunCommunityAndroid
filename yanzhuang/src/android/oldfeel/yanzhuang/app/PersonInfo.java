@@ -52,7 +52,7 @@ public class PersonInfo {
 	public void saveInfo(String result) {
 		JSONObject data = JSONUtil.getData(result);
 		try {
-			long id = data.getLong("id");
+			long id = data.getLong("userid");
 			setId(id);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -215,11 +215,11 @@ public class PersonInfo {
 	}
 
 	public void setId(long id) {
-		editor.putLong("id", id);
+		editor.putLong("userid", id);
 		editor.commit();
 	}
 
 	public long getId() {
-		return sp.getLong("id", -1);
+		return sp.getLong("userid", -1);
 	}
 }

@@ -1,6 +1,7 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
@@ -51,13 +52,15 @@ public class ReleasePersonalFragment extends BaseFragment implements
 			etTitle.setError("必填");
 			return;
 		}
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.RELEASE_PERSONAL);
-		netUtil.setParams("user_id", PersonInfo.getInstance(getActivity())
+		NetUtil netUtil = new NetUtil(getActivity(),
+				JsonApi.RELEASE_INFORMATION);
+		netUtil.setParams("infotype", Constant.TYPE_PERSONAL);
+		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getId());
 		netUtil.setParams("title", getString(etTitle));
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("phone", getString(etPhone));
-		netUtil.setParams("tag", getString(etTag));
+		netUtil.setParams("tags", getString(etTag));
 		netUtil.setParams("image", image);
 		netUtil.setParams("voice", voice);
 		netUtil.setParams("video", video);

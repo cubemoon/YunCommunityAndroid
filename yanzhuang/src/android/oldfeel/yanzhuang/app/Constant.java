@@ -29,4 +29,10 @@ public class Constant {
 	public static final boolean IS_DEBUG = true;
 	/** 每页信息数量 */
 	public static final long PAGE_SIZE = 10;
+	/** 活动 */
+	public static final int TYPE_ACTIVITY = 1;
+	/** 商家服务 */
+	public static final int TYPE_BUSINESS = 2;
+	/** 个人服务 */
+	public static final int TYPE_PERSONAL = 3;
 }

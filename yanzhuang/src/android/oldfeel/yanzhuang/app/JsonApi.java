@@ -11,18 +11,18 @@ public class JsonApi {
 	public static final String LOGIN = "login";
 	/** 注册 */
 	public static final String REGISTER = "register";
-	/** 发布活动 */
-	public static final String RELEASE_ACTIVITY = "release_activity";
-	/** 发布商家服务 */
-	public static final String RELEASE_BUSINESS = "release_business";
-	/** 发布个人服务 */
-	public static final String RELEASE_PERSONAL = "release_personal";
+	/** 发布信息 */
+	public static final String RELEASE_INFORMATION = "release_information";
 	/** 根据id查找个人资料 */
 	public static final String QUERY_INFO_BY_ID = "query_info_by_id";
-	/** 活动列表 */
-	public static final String ACTIVITY_LIST = "activity_list";
-	/** 商家服务列表 */
-	public static final String BUSINESS_LIST="business_list";
-	/** 个人服务列表 */
-	public static final String PERSONAL_LIST="personal_list";
+	/** 信息列表 */
+	public static final String INFORMATION_LIST = "information_list";
+	/** 建议反馈 */
+	public static final String FEEDBACK = "feedback";
+	/** 检查版本 */
+	public static final String CHECK_VERSION = "check_version";
+	/** 关注/取消关注 */
+	public static final String ATTENTION = "attention";
+	/** 更新用户信息 */
+	public static final String UPDATE_USER_INFO = "update_user_info";
 }

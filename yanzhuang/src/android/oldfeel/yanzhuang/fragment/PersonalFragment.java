@@ -1,6 +1,7 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.fragment.list.PersonalListFragment;
@@ -42,7 +43,8 @@ public class PersonalFragment extends BaseFragment {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.PERSONAL_LIST);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_LIST);
+		netUtil.setParams("infotype", Constant.TYPE_PERSONAL);
 		return netUtil;
 	}
 }

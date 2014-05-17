@@ -5,7 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
-import android.oldfeel.yanzhuang.item.BusinessListItem;
+import android.oldfeel.yanzhuang.item.InformationListItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +19,7 @@ import com.google.gson.reflect.TypeToken;
  * @author oldfeel
  * 
  */
-public class BusinessListAdapter extends BaseBaseAdapter<BusinessListItem> {
+public class BusinessListAdapter extends BaseBaseAdapter<InformationListItem> {
 
 	public BusinessListAdapter(Context context) {
 		super(context);
@@ -27,7 +27,7 @@ public class BusinessListAdapter extends BaseBaseAdapter<BusinessListItem> {
 
 	@Override
 	public View getView(int position, View view) {
-		BusinessListItem item = getItem(position);
+		InformationListItem item = getItem(position);
 		view = inflater.inflate(R.layout.business_list_item, null);
 		ImageView ivImage = getImageView(view, R.id.business_list_item_image);
 		TextView tvTitle = getTextView(view, R.id.business_list_item_title);
@@ -46,8 +46,8 @@ public class BusinessListAdapter extends BaseBaseAdapter<BusinessListItem> {
 	@Override
 	public void addResult(int page, String result) {
 		super.addResult(page, result);
-		List<BusinessListItem> list = new Gson().fromJson(array,
-				new TypeToken<List<BusinessListItem>>() {
+		List<InformationListItem> list = new Gson().fromJson(array,
+				new TypeToken<List<InformationListItem>>() {
 				}.getType());
 		addAll(list);
 	}
