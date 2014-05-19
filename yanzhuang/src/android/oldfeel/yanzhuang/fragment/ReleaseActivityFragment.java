@@ -60,7 +60,7 @@ public class ReleaseActivityFragment extends BaseFragment implements
 				JsonApi.RELEASE_INFORMATION);
 		netUtil.setParams("infotype", Constant.TYPE_ACTIVITY);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
-				.getId());
+				.getUserid());
 		netUtil.setParams("title", getString(etTitle));
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("address", getString(etAddress));

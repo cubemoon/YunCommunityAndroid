@@ -10,6 +10,7 @@ import android.oldfeel.yanzhuang.fragment.BusinessFragment;
 import android.oldfeel.yanzhuang.fragment.PersonalFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
+import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -84,7 +85,7 @@ public class MainActivity extends BaseActivity {
 			selectItem(2);
 		}
 		if (PersonInfo.getInstance(getApplicationContext()).isAutoLogin()) {
-			autoLogin();
+//			autoLogin();
 		}
 	}
 
@@ -110,6 +111,26 @@ public class MainActivity extends BaseActivity {
 					showToast("自动登录失败," + JSONUtil.getMessage(result));
 					cancelLogin();
 				}
+			}
+		});
+		netUtil.setOnNetFailListener(new OnNetFailListener() {
+
+			@Override
+			public void onTimeOut() {
+				showToast("自动登录失败,网络超时");
+				cancelLogin();
+			}
+
+			@Override
+			public void onError() {
+				showToast("自动登录失败,网络错误");
+				cancelLogin();
+			}
+
+			@Override
+			public void cancel() {
+				showToast("自动登录失败,取消登录");
+				cancelLogin();
 			}
 		});
 	}
@@ -236,7 +257,7 @@ public class MainActivity extends BaseActivity {
 	private void openPersonHome() {
 		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
 		intent.putExtra("id", PersonInfo.getInstance(getApplicationContext())
-				.getId());
+				.getUserid());
 		startActivity(intent);
 	}
 

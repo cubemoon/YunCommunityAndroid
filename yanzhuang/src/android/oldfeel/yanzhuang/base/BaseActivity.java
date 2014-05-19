@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -156,6 +157,10 @@ public abstract class BaseActivity extends ActionBarActivity {
 
 	public VideoView getVideoView(int id) {
 		return (VideoView) findViewById(id);
+	}
+
+	public CheckBox getCheckBox(int id) {
+		return (CheckBox) findViewById(id);
 	}
 
 	public String getString(EditText et) {

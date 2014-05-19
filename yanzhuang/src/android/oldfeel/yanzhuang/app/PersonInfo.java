@@ -3,11 +3,17 @@ package android.oldfeel.yanzhuang.app;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.util.DesUtil;
 import android.oldfeel.yanzhuang.util.JSONUtil;
+import android.oldfeel.yanzhuang.util.LogUtil;
+import android.oldfeel.yanzhuang.util.NetUtil;
+import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
+import android.oldfeel.yanzhuang.util.PreferenceUtil;
 import android.oldfeel.yanzhuang.util.StringUtils;
 
 /**
@@ -37,23 +43,12 @@ public class PersonInfo {
 		editor.commit();
 	}
 
-	/**
-	 * 保存登录信息
-	 * 
-	 * @param email
-	 * @param password
-	 */
-	public void setLoginInfo(String email, String password) {
-		setIsAutoLogin(true);
-		setEmail(email);
-		setPassword(password);
-	}
-
 	public void saveInfo(String result) {
+		setIsAutoLogin(true);
 		JSONObject data = JSONUtil.getData(result);
 		try {
-			long id = data.getLong("userid");
-			setId(id);
+			long userid = data.getLong("userid");
+			setUserid(userid);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -82,8 +77,8 @@ public class PersonInfo {
 			e.printStackTrace();
 		}
 		try {
-			String house_number = data.getString("house_number");
-			setHouseNumber(house_number);
+			String housenumber = data.getString("housenumber");
+			setHouseNumber(housenumber);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -111,9 +106,54 @@ public class PersonInfo {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		try {
+			boolean friendmsg = data.getBoolean("friendmsg");
+			setFriendmsg(friendmsg);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		try {
+			boolean businessmsg = data.getBoolean("businessmsg");
+			setBusinessmsg(businessmsg);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		try {
+			boolean activitymsg = data.getBoolean("activitymsg");
+			setActivitymsg(activitymsg);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void setBackGround(String background) {
+	public boolean getFriendmsg() {
+		return sp.getBoolean("friendmsg", true);
+	}
+
+	public boolean getBusinesssmg() {
+		return sp.getBoolean("businessmsg", true);
+	}
+
+	public boolean getActivitymsg() {
+		return sp.getBoolean("activitymsg", true);
+	}
+
+	public void setFriendmsg(boolean friendmsg) {
+		editor.putBoolean("friendmsg", friendmsg);
+		editor.commit();
+	}
+
+	public void setBusinessmsg(boolean businessmsg) {
+		editor.putBoolean("businessmsg", businessmsg);
+		editor.commit();
+	}
+
+	public void setActivitymsg(boolean activitymsg) {
+		editor.putBoolean("activitymsg", activitymsg);
+		editor.commit();
+	}
+
+	public void setBackGround(String background) {
 		editor.putString("background", background);
 		editor.commit();
 	}
@@ -122,7 +162,7 @@ public class PersonInfo {
 		return sp.getString("background", "");
 	}
 
-	private void setPermission(int permission) {
+	public void setPermission(int permission) {
 		editor.putInt("permission", permission);
 		editor.commit();
 	}
@@ -131,7 +171,7 @@ public class PersonInfo {
 		return sp.getInt("permission", 0);
 	}
 
-	private void setBirthday(String birthday) {
+	public void setBirthday(String birthday) {
 		editor.putString("birthday", birthday);
 		editor.commit();
 	}
@@ -140,7 +180,7 @@ public class PersonInfo {
 		return sp.getString("birthday", "");
 	}
 
-	private void setHouseNumber(String house_number) {
+	public void setHouseNumber(String house_number) {
 		editor.putString("house_number", house_number);
 		editor.commit();
 	}
@@ -149,7 +189,7 @@ public class PersonInfo {
 		return sp.getString("house_number", "");
 	}
 
-	private void setPhone(String phone) {
+	public void setPhone(String phone) {
 		editor.putString("phone", phone);
 		editor.commit();
 	}
@@ -158,7 +198,7 @@ public class PersonInfo {
 		return sp.getString("phone", "");
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		editor.putString("email", email);
 		editor.commit();
 	}
@@ -214,12 +254,47 @@ public class PersonInfo {
 		return sp.getString("avatar", "");
 	}
 
-	public void setId(long id) {
-		editor.putLong("userid", id);
+	public void setUserid(long userid) {
+		editor.putLong("userid", userid);
 		editor.commit();
 	}
 
-	public long getId() {
+	public long getUserid() {
 		return sp.getLong("userid", -1);
+	}
+
+	public static void update(Activity activity) {
+		PersonInfo personInfo = PersonInfo.getInstance(activity);
+		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
+		netUtil.setParams("userid", personInfo.getUserid());
+		netUtil.setParams("name", personInfo.getName());
+		netUtil.setParams("password", personInfo.getPassword());
+		netUtil.setParams("phone", personInfo.getPhone());
+		netUtil.setParams("housenumber", personInfo.getHouseNumber());
+		netUtil.setParams("birthday", personInfo.getBirthday());
+		netUtil.setParams("permission", personInfo.getPermission());
+		netUtil.setParams("background", personInfo.getBackGround());
+		netUtil.setParams("avatar", personInfo.getAvatar());
+		netUtil.setParams("friendmsg",
+				getBoolean(activity, R.string.friend_msg));
+		netUtil.setParams("activitymsg",
+				getBoolean(activity, R.string.activity_msg));
+		netUtil.setParams("businessmsg",
+				getBoolean(activity, R.string.business_msg));
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JSONUtil.isSuccess(result)) {
+					LogUtil.showLog("更新用户信息成功");
+				} else {
+					LogUtil.showLog("更新用户信息失败," + JSONUtil.getMessage(result));
+				}
+			}
+		});
+	}
+
+	public static boolean getBoolean(Activity activity, int keyid) {
+		return PreferenceUtil.getBoolean(activity, keyid);
 	}
 }

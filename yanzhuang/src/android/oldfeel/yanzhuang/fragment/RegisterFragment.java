@@ -6,8 +6,8 @@ import android.annotation.TargetApi;
 import android.oldfeel.yanzhuang.ForgetPassword;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
@@ -168,15 +168,13 @@ public class RegisterFragment extends BaseFragment {
 					showProgress(false);
 
 					if (JSONUtil.isSuccess(result)) {
-						PersonInfo.getInstance(getActivity()).setLoginInfo(
-								mEmail, mPassword);
+						PersonInfo.getInstance(getActivity()).saveInfo(result);
 						openActivity(MainActivity.class);
 						getActivity().finish();
 					} else {
 						netUtil = null;
-						mPasswordView
-								.setError(getString(R.string.error_incorrect_password));
-						mPasswordView.requestFocus();
+						mEmailView.setError(JSONUtil.getMessage(result));
+						mEmailView.requestFocus();
 					}
 				}
 			});
