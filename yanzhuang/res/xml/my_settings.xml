@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/friend_msg"
+        android:title="开启朋友信息提醒" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/activity_msg"
+        android:title="开启活动信息提醒" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/business_msg"
+        android:title="开启商家信息提醒" />
+
+    <Preference
+        android:key="@string/search_history"
+        android:title="清除搜索记录" />
+
+    <CheckBoxPreference
+        android:key="@string/wifi_update"
+        android:title="wifi环境下自动更新" />
+
+    <Preference
+        android:key="@string/check_version"
+        android:title="检查版本" />
+    <Preference
+        android:key="@string/about"
+        android:title="关于我们" />
+
+</PreferenceScreen>
