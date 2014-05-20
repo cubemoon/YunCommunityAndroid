@@ -1,6 +1,7 @@
 package android.oldfeel.yanzhuang;
 
 import android.content.Intent;
+import android.oldfeel.yanzhuang.adapter.DrawerListAdapter;
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
@@ -21,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private ArrayAdapter<String> adapter;
+	private DrawerListAdapter adapter;
 	private AttentionFragment attentionFragment;
 	private InformationFragment activityFragment;
 	private InformationFragment businessFragment;
@@ -55,9 +55,7 @@ public class MainActivity extends BaseActivity {
 
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
-		String[] menus = getResources().getStringArray(R.array.drawer_menus);
-		adapter = new ArrayAdapter<>(getApplicationContext(),
-				R.layout.single_text_light, R.id.text, menus);
+		adapter = new DrawerListAdapter(getApplicationContext());
 		mDrawerList.addHeaderView(getHeaderView());
 		mDrawerList.setAdapter(adapter);
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
@@ -163,7 +161,6 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void selectItem(int position) {
-		mDrawerList.setSelection(position);
 		mDrawerLayout.closeDrawers();
 		switch (position) {
 		case 0:
@@ -211,6 +208,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void openPersonal() {
 		setTitle("个人服务");
+		adapter.setSelected(3);
 		infotype = Constant.TYPE_PERSONAL;
 		if (personalFragment == null) {
 			personalFragment = InformationFragment
@@ -224,6 +222,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void openBusiness() {
 		setTitle("商家服务");
+		adapter.setSelected(2);
 		infotype = Constant.TYPE_BUSINESS;
 		if (businessFragment == null) {
 			businessFragment = InformationFragment
@@ -237,6 +236,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void openActivity() {
 		setTitle("活动");
+		adapter.setSelected(1);
 		infotype = Constant.TYPE_ACTIVITY;
 		if (activityFragment == null) {
 			activityFragment = InformationFragment
@@ -250,6 +250,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void openAttention() {
 		setTitle("关注");
+		adapter.setSelected(0);
 		if (attentionFragment == null) {
 			attentionFragment = AttentionFragment.newInstance();
 		}
