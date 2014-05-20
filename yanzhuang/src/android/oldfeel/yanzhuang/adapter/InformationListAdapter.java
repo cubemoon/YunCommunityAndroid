@@ -14,14 +14,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * 活动列表适配器
+ * 活动/商家服务/个人服务适配器
  * 
  * @author oldfeel
  * 
  */
-public class ActivityListAdapter extends BaseBaseAdapter<InformationListItem> {
+public class InformationListAdapter extends
+		BaseBaseAdapter<InformationListItem> {
 
-	public ActivityListAdapter(Context context) {
+	public InformationListAdapter(Context context) {
 		super(context);
 	}
 

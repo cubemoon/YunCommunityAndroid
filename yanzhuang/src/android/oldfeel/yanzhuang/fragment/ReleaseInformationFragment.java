@@ -1,7 +1,6 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
@@ -18,25 +17,35 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- * 发布个人服务
+ * 发布信息
  * 
  * @author oldfeel
  * 
  */
-public class ReleasePersonalFragment extends BaseFragment implements
+public class ReleaseInformationFragment extends BaseFragment implements
 		OnClickListener {
-	private EditText etTitle, etDesc, etPhone, etTag;
-	private Button btnAddFile;
+	private EditText etTitle, etDesc, etAddress, etPhone, etTag;
+	private Button btnMap, btnAddFile;
+	private double lon, lat;
 	private String image, voice, video;
+	private int infotype;
+
+	public static ReleaseInformationFragment newInstance(int infotype) {
+		ReleaseInformationFragment fragment = new ReleaseInformationFragment();
+		fragment.infotype = infotype;
+		return fragment;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.release_personal, null);
+		View view = inflater.inflate(R.layout.release_information, null);
 		etTitle = getEditText(view, R.id.release_title);
 		etDesc = getEditText(view, R.id.release_desc);
+		etAddress = getEditText(view, R.id.release_address);
 		etPhone = getEditText(view, R.id.release_phone);
 		etTag = getEditText(view, R.id.release_tag);
+		btnMap = getButton(view, R.id.release_map);
 		btnAddFile = getButton(view, R.id.release_add_file);
 		return view;
 	}
@@ -44,6 +53,7 @@ public class ReleasePersonalFragment extends BaseFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		btnMap.setOnClickListener(this);
 		btnAddFile.setOnClickListener(this);
 	}
 
@@ -54,11 +64,14 @@ public class ReleasePersonalFragment extends BaseFragment implements
 		}
 		NetUtil netUtil = new NetUtil(getActivity(),
 				JsonApi.RELEASE_INFORMATION);
-		netUtil.setParams("infotype", Constant.TYPE_PERSONAL);
+		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
 		netUtil.setParams("title", getString(etTitle));
 		netUtil.setParams("description", getString(etDesc));
+		netUtil.setParams("address", getString(etAddress));
+		netUtil.setParams("lon", lon);
+		netUtil.setParams("lat", lat);
 		netUtil.setParams("phone", getString(etPhone));
 		netUtil.setParams("tags", getString(etTag));
 		netUtil.setParams("image", image);
@@ -76,12 +89,14 @@ public class ReleasePersonalFragment extends BaseFragment implements
 				}
 			}
 		});
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.release_map:
+			openMap();
+			break;
 		case R.id.release_add_file:
 			addFile();
 			break;
@@ -95,4 +110,11 @@ public class ReleasePersonalFragment extends BaseFragment implements
 	 */
 	private void addFile() {
 	}
+
+	/**
+	 * 打开地图
+	 */
+	private void openMap() {
+	}
+
 }

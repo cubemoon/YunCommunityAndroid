@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:padding="10dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,12 +13,12 @@
 
             <TextView
                 style="@style/form_left"
-                android:text="活动:" />
+                android:text="标题:" />
 
             <EditText
                 android:id="@+id/release_title"
                 style="@style/form_right"
-                android:hint="请输入活动名称" />
+                android:hint="请输入标题" />
         </LinearLayout>
 
         <LinearLayout style="@style/single_view" >
@@ -29,8 +30,9 @@
             <EditText
                 android:id="@+id/release_desc"
                 style="@style/form_right"
+                android:layout_height="wrap_content"
                 android:gravity="top"
-                android:hint="请简单介绍下你的活动"
+                android:hint="请简单介绍下"
                 android:lines="4"
                 android:singleLine="false" />
         </LinearLayout>

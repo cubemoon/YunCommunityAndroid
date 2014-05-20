@@ -1,10 +1,8 @@
 package android.oldfeel.yanzhuang;
 
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.base.BaseActivity;
-import android.oldfeel.yanzhuang.base.BaseFragment;
-import android.oldfeel.yanzhuang.fragment.ReleaseActivityFragment;
-import android.oldfeel.yanzhuang.fragment.ReleaseBusinessFragment;
-import android.oldfeel.yanzhuang.fragment.ReleasePersonalFragment;
+import android.oldfeel.yanzhuang.fragment.ReleaseInformationFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.OnNavigationListener;
@@ -21,7 +19,7 @@ import android.widget.ArrayAdapter;
 public class ReleaseActivity extends BaseActivity {
 	public static final String[] navList = new String[] { "活动", "商家服务", "个人服务" };
 	private int currentPosition;
-	private BaseFragment fragment;
+	private ReleaseInformationFragment fragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +39,24 @@ public class ReleaseActivity extends BaseActivity {
 						return false;
 					}
 				});
+		getSupportActionBar().setSelectedNavigationItem(
+				getIntent().getIntExtra("infotype", 1) - 1);
 	}
 
 	protected void selectItem(int position) {
 		currentPosition = position;
 		switch (currentPosition) {
 		case 0:
-			fragment = new ReleaseActivityFragment();
+			fragment = ReleaseInformationFragment
+					.newInstance(Constant.TYPE_ACTIVITY);
 			break;
 		case 1:
-			fragment = new ReleaseBusinessFragment();
+			fragment = ReleaseInformationFragment
+					.newInstance(Constant.TYPE_BUSINESS);
 			break;
 		case 2:
-			fragment = new ReleasePersonalFragment();
+			fragment = ReleaseInformationFragment
+					.newInstance(Constant.TYPE_PERSONAL);
 			break;
 		default:
 			break;
@@ -84,13 +87,13 @@ public class ReleaseActivity extends BaseActivity {
 	private void submitRelease() {
 		switch (currentPosition) {
 		case 0:
-			((ReleaseActivityFragment) fragment).submit();
+			fragment.submit();
 			break;
 		case 1:
-			((ReleaseBusinessFragment) fragment).submit();
+			fragment.submit();
 			break;
 		case 2:
-			((ReleasePersonalFragment) fragment).submit();
+			fragment.submit();
 			break;
 		default:
 			break;

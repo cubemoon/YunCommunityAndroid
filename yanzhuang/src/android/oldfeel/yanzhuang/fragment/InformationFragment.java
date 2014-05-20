@@ -1,10 +1,9 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.base.BaseFragment;
-import android.oldfeel.yanzhuang.fragment.list.ActivityListFragment;
+import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,15 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 活动
+ * 活动/商家服务/个人服务
  * 
  * @author oldfeel
  * 
  */
-public class ActivityFragment extends BaseFragment {
+public class InformationFragment extends BaseFragment {
+	private int infotype;
 
-	public static ActivityFragment newInstance() {
-		ActivityFragment fragment = new ActivityFragment();
+	public static InformationFragment newInstance(int infotype) {
+		InformationFragment fragment = new InformationFragment();
+		fragment.infotype = infotype;
 		return fragment;
 	}
 
@@ -38,13 +39,13 @@ public class ActivityFragment extends BaseFragment {
 				.getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						ActivityListFragment.newInstance(getNetUtil()))
+						InformationListFragment.newInstance(getNetUtil()))
 				.commit();
 	}
 
 	private NetUtil getNetUtil() {
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_LIST);
-		netUtil.setParams("infotype", Constant.TYPE_ACTIVITY);
+		netUtil.setParams("infotype", infotype);
 		return netUtil;
 	}
 }

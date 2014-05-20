@@ -1,13 +1,12 @@
 package android.oldfeel.yanzhuang;
 
 import android.content.Intent;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
-import android.oldfeel.yanzhuang.fragment.ActivityFragment;
 import android.oldfeel.yanzhuang.fragment.AttentionFragment;
-import android.oldfeel.yanzhuang.fragment.BusinessFragment;
-import android.oldfeel.yanzhuang.fragment.PersonalFragment;
+import android.oldfeel.yanzhuang.fragment.InformationFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
@@ -42,9 +41,10 @@ public class MainActivity extends BaseActivity {
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ArrayAdapter<String> adapter;
 	private AttentionFragment attentionFragment;
-	private ActivityFragment activityFragment;
-	private BusinessFragment businessFragment;
-	private PersonalFragment personalFragment;
+	private InformationFragment activityFragment;
+	private InformationFragment businessFragment;
+	private InformationFragment personalFragment;
+	private int infotype;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity {
 			selectItem(2);
 		}
 		if (PersonInfo.getInstance(getApplicationContext()).isAutoLogin()) {
-//			autoLogin();
+			// autoLogin();
 		}
 	}
 
@@ -210,8 +210,11 @@ public class MainActivity extends BaseActivity {
 	 * 个人服务
 	 */
 	private void openPersonal() {
+		setTitle("个人服务");
+		infotype = Constant.TYPE_PERSONAL;
 		if (personalFragment == null) {
-			personalFragment = PersonalFragment.newInstance();
+			personalFragment = InformationFragment
+					.newInstance(Constant.TYPE_PERSONAL);
 		}
 		showFragment(personalFragment);
 	}
@@ -220,8 +223,11 @@ public class MainActivity extends BaseActivity {
 	 * 商家服务
 	 */
 	private void openBusiness() {
+		setTitle("商家服务");
+		infotype = Constant.TYPE_BUSINESS;
 		if (businessFragment == null) {
-			businessFragment = BusinessFragment.newInstance();
+			businessFragment = InformationFragment
+					.newInstance(Constant.TYPE_BUSINESS);
 		}
 		showFragment(businessFragment);
 	}
@@ -230,8 +236,11 @@ public class MainActivity extends BaseActivity {
 	 * 活动
 	 */
 	private void openActivity() {
+		setTitle("活动");
+		infotype = Constant.TYPE_ACTIVITY;
 		if (activityFragment == null) {
-			activityFragment = ActivityFragment.newInstance();
+			activityFragment = InformationFragment
+					.newInstance(Constant.TYPE_ACTIVITY);
 		}
 		showFragment(activityFragment);
 	}
@@ -240,6 +249,7 @@ public class MainActivity extends BaseActivity {
 	 * 关注
 	 */
 	private void openAttention() {
+		setTitle("关注");
 		if (attentionFragment == null) {
 			attentionFragment = AttentionFragment.newInstance();
 		}
@@ -277,7 +287,7 @@ public class MainActivity extends BaseActivity {
 			openActivity(SearchActivity.class);
 			break;
 		case R.id.action_release:
-			openActivity(ReleaseActivity.class);
+			releaseInformation();
 			break;
 		case R.id.action_cancel:
 			cancelLogin();
@@ -286,6 +296,12 @@ public class MainActivity extends BaseActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void releaseInformation() {
+		Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
+		intent.putExtra("infotype", infotype);
+		startActivity(intent);
 	}
 
 	@Override

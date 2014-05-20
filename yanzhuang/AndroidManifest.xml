@@ -61,6 +61,8 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.MySettingsActivity" >
         </activity>
+        <activity android:name="android.oldfeel.yanzhuang.InformationDetail" >
+        </activity>
     </application>
 
 </manifest>
