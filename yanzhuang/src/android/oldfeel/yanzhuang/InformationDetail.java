@@ -5,24 +5,35 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
+import android.oldfeel.yanzhuang.fragment.list.CommentListFragment;
 import android.oldfeel.yanzhuang.item.CommentItem;
 import android.oldfeel.yanzhuang.item.InformationItem;
 import android.oldfeel.yanzhuang.item.TagItem;
+import android.oldfeel.yanzhuang.util.DialogUtil;
+import android.oldfeel.yanzhuang.util.ETUtil;
 import android.oldfeel.yanzhuang.util.JSONUtil;
+import android.oldfeel.yanzhuang.util.LogUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
+import android.oldfeel.yanzhuang.util.StringUtils;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -37,12 +48,12 @@ import com.google.gson.reflect.TypeToken;
  */
 public class InformationDetail extends BaseActivity implements OnClickListener {
 	private LinearLayout llTags;
-	private Button btnFollowing, btnMyComment;
-	private ImageButton ibTagMore, ibCall;
+	private Button btnFollowing, btnEvaluation;
+	private ImageButton ibCall;
 	private TextView tvTitle, tvTime, tvDesc, tvScoreCount;
 	private RatingBar rbScore;
-	private ListView lvComments;
 	private InformationItem item;
+	private CommentItem myComment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +69,33 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void initListener() {
 		btnFollowing.setOnClickListener(this);
-		btnMyComment.setOnClickListener(this);
+		btnEvaluation.setOnClickListener(this);
 		ibCall.setOnClickListener(this);
-		ibTagMore.setOnClickListener(this);
 	}
 
 	private void putDataToView() {
 		tvTitle.setText(item.getTitle());
 		tvTime.setText(item.getTime());
 		tvDesc.setText(item.getDescription());
+		if (StringUtils.isEmpty(item.getPhone())
+				|| !StringUtils.isMobileNO(item.getPhone())) {
+			ibCall.setVisibility(View.GONE);
+		}
 	}
 
 	private void getCommentList() {
-//		NetUtil netUtil = new NetUtil(InformationDetail.this,
-//				JsonApi.INFORMATION_COMMENTLIST);
-//		netUtil.setParams("informationid", item.getInformationid());
-//		netUtil.setParams("page", 0);
+		CommentListFragment fragment = CommentListFragment
+				.newInstance(getCommentListNetUtil());
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.information_detail_commentlist, fragment)
+				.commit();
+	}
+
+	private NetUtil getCommentListNetUtil() {
+		NetUtil netUtil = new NetUtil(InformationDetail.this,
+				JsonApi.INFORMATION_COMMENTLIST);
+		netUtil.setParams("informationid", item.getInformationid());
+		return netUtil;
 	}
 
 	private void getDetail() {
@@ -104,25 +126,23 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		String scoreAvg = data.getString("scoreavg");
 		long scoreCount = data.getLong("scorecount");
 		boolean isFollowing = data.getBoolean("isfollowing");
-		CommentItem myComment = new Gson().fromJson(
-				data.getString("mycomment"), CommentItem.class);
+		myComment = new Gson().fromJson(data.getString("mycomment"),
+				CommentItem.class);
 		List<TagItem> list = new Gson().fromJson(data.getString("taglist"),
 				new TypeToken<List<TagItem>>() {
 				}.getType());
 		for (int i = 0; i < list.size(); i++) {
-			if (i >= 3) {
-				break;
-			}
 			llTags.addView(getTagView(list.get(i)));
 		}
 		btnFollowing.setText(isFollowing ? "取消关注" : "关注");
 		rbScore.setRating(Float.valueOf(scoreAvg));
 		tvScoreCount.setText(scoreAvg + "分,共" + scoreCount + "人评价");
-		btnMyComment.setText((myComment == null) ? "评价" : "修改");
+		btnEvaluation.setText((myComment == null) ? "评价" : "修改");
 	}
 
 	private View getTagView(TagItem tagItem) {
 		Button button = new Button(getApplicationContext());
+		button.setSingleLine(true);
 		button.setText(tagItem.getName() + "(" + tagItem.getCount() + ")");
 		return button;
 	}
@@ -130,15 +150,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private void initView() {
 		llTags = getLinearLayout(R.id.information_detail_tags);
 		btnFollowing = getButton(R.id.information_detail_following);
-		btnMyComment = getButton(R.id.information_detail_mycomment);
-		ibTagMore = getImageButton(R.id.information_detail_tagmore);
+		btnEvaluation = getButton(R.id.information_detail_evaluation);
 		ibCall = getImageButton(R.id.information_detail_call);
 		tvTitle = getTextView(R.id.information_detail_title);
 		tvTime = getTextView(R.id.information_detail_time);
 		tvDesc = getTextView(R.id.information_detail_desc);
 		tvScoreCount = getTextView(R.id.information_detail_scorecount);
 		rbScore = (RatingBar) findViewById(R.id.information_detail_scoreavg);
-		lvComments = getListView(R.id.information_detail_comments);
 	}
 
 	@Override
@@ -164,5 +182,149 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.information_detail_call:
+			call();
+			break;
+		case R.id.information_detail_following:
+			following();
+			break;
+		case R.id.information_detail_evaluation:
+			evaluation();
+			break;
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * 评价/修改评价
+	 */
+	private void evaluation() {
+		View view = LayoutInflater.from(InformationDetail.this).inflate(
+				R.layout.evaluation_dialog, null);
+		final RatingBar rbEvaluationScore = (RatingBar) view
+				.findViewById(R.id.evaluation_score);
+		final EditText etEvaluationContent = (EditText) view
+				.findViewById(R.id.evaluation_content);
+		final EditText etEvaluationTag = (EditText) view
+				.findViewById(R.id.evaluation_tag);
+		Builder builder = new AlertDialog.Builder(InformationDetail.this);
+		builder.setView(view);
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				submitEvaluation(rbEvaluationScore, etEvaluationTag,
+						etEvaluationContent);
+				btnEvaluation.setText("修改");
+				if (myComment == null) {
+					myComment = new CommentItem();
+				}
+				myComment.setTags(ETUtil.getString(etEvaluationTag));
+				myComment.setContent(ETUtil.getString(etEvaluationContent));
+				myComment.setScore((int) rbEvaluationScore.getRating());
+			}
+
+		});
+		if (myComment != null) {
+			rbEvaluationScore.setRating(myComment.getScore());
+			etEvaluationTag.setText(myComment.getTags());
+			etEvaluationContent.setText(myComment.getContent());
+			builder.setNegativeButton("删除评论",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							deleteEvaluation();
+							btnEvaluation.setText("评价");
+						}
+					});
+		}
+		builder.create();
+		builder.show();
+	}
+
+	protected void submitEvaluation(RatingBar rbEvaluationScore,
+			EditText etEvaluationTag, EditText etEvaluationContent) {
+		NetUtil netUtil = new NetUtil(InformationDetail.this,
+				JsonApi.INFORMATION_COMMENT);
+		netUtil.setParams("userid",
+				PersonInfo.getInstance(InformationDetail.this).getUserid());
+		netUtil.setParams("informationid", item.getInformationid());
+		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
+		netUtil.setParams("tag", ETUtil.getString(etEvaluationTag));
+		netUtil.setParams("score", rbEvaluationScore.getRating());
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JSONUtil.isSuccess(result)) {
+					myComment = new Gson().fromJson(JSONUtil.getData(result)
+							.toString(), CommentItem.class);
+				} else {
+					showToast(JSONUtil.getMessage(result));
+					btnEvaluation.setText("评价");
+				}
+			}
+		});
+	}
+
+	protected void deleteEvaluation() {
+		NetUtil netUtil = new NetUtil(InformationDetail.this,
+				JsonApi.INFORMATION_COMMENTDELETE);
+		netUtil.setParams("userid", myComment.getUserid());
+		netUtil.setParams("informationid", myComment.getInformationid());
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				LogUtil.showLog(JSONUtil.getMessage(result));
+			}
+		});
+		myComment = null;
+	}
+
+	private void following() {
+		boolean isFollowing;
+		if (btnFollowing.getText().equals("关注")) {
+			isFollowing = true;
+			btnFollowing.setText("取消关注");
+		} else {
+			isFollowing = false;
+			btnFollowing.setText("关注");
+		}
+		NetUtil netUtil = new NetUtil(InformationDetail.this,
+				JsonApi.INFORMATION_FOLLOWING);
+		netUtil.setParams("userid",
+				PersonInfo.getInstance(getApplicationContext()).getUserid());
+		netUtil.setParams("informationid", item.getInformationid());
+		netUtil.setParams("isfollowing", isFollowing);
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JSONUtil.isSuccess(result)) {
+					LogUtil.showLog("关注成功");
+				} else {
+					LogUtil.showLog(JSONUtil.getMessage(result));
+				}
+			}
+		});
+	}
+
+	private void call() {
+		DialogUtil.getInstance().showSimpleDialog(InformationDetail.this,
+				"拨打电话联系?\n" + item.getPhone(),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent intent = new Intent(
+								"android.intent.action.CALL", Uri.parse("tel:"
+										+ item.getPhone()));
+						startActivity(intent);
+					}
+				});
 	}
 }

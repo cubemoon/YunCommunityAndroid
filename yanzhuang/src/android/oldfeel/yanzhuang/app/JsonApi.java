@@ -27,6 +27,8 @@ public class JsonApi {
 	public static final String UPDATE_USER_INFO = "update_user_info";
 	/** 评论 */
 	public static final String INFORMATION_COMMENT = "information_comment";
+	/** 删除评论 */
+	public static final String INFORMATION_COMMENTDELETE = "information_commentdelete";
 	/** 赞 */
 	public static final String COMMENT_APPROVAL = "comment_approval";
 	/** 反对 */

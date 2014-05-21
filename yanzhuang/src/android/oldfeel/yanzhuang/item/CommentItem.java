@@ -16,6 +16,34 @@ public class CommentItem extends BaseItem {
 	private int score;
 	private long opposition;
 	private long apporval;
+	private String avatar;
+	private String name;
+	private String time;
+	private String tags;
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
 	public long getCommentid() {
 		return commentid;
@@ -71,6 +99,14 @@ public class CommentItem extends BaseItem {
 
 	public void setApporval(long apporval) {
 		this.apporval = apporval;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public String getTags() {
+		return tags;
 	}
 
 }
