@@ -22,7 +22,20 @@ public class JsonApi {
 	/** 检查版本 */
 	public static final String CHECK_VERSION = "check_version";
 	/** 关注/取消关注 */
-	public static final String ATTENTION = "attention";
+	public static final String FOLLOWING = "following";
 	/** 更新用户信息 */
 	public static final String UPDATE_USER_INFO = "update_user_info";
+	/** 评论 */
+	public static final String INFORMATION_COMMENT = "information_comment";
+	/** 赞 */
+	public static final String COMMENT_APPROVAL = "comment_approval";
+	/** 反对 */
+	public static final String COMMENT_OPPOSITION = "comment_opposition";
+	/** 活动与用户之间的关注 */
+	public static final String INFORMATION_FOLLOWING = "information_following";
+	/** 活动/商家服务/个人服务详情 */
+	public static final String INFORMATION_DETAIL = "information_detail";
+	/** 评论列表 */
+	public static final String INFORMATION_COMMENTLIST = "information_commentlist";
+
 }

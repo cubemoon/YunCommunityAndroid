@@ -44,6 +44,7 @@ public class PersonInfo {
 	}
 
 	public void saveInfo(String result) {
+		LogUtil.showLog(result);
 		setIsAutoLogin(true);
 		JSONObject data = JSONUtil.getData(result);
 		try {

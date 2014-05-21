@@ -8,7 +8,7 @@ import android.oldfeel.yanzhuang.base.BaseItem;
  * @author oldfeel
  * 
  */
-public class InformationListItem extends BaseItem {
+public class InformationItem extends BaseItem {
 
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -65,7 +65,7 @@ public class InformationListItem extends BaseItem {
 	/**
 	 * Constructor.
 	 */
-	public InformationListItem() {
+	public InformationItem() {
 	}
 
 	/**
@@ -341,7 +341,7 @@ public class InformationListItem extends BaseItem {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		InformationListItem other = (InformationListItem) obj;
+		InformationItem other = (InformationItem) obj;
 		if (informationid == null) {
 			if (other.informationid != null) {
 				return false;

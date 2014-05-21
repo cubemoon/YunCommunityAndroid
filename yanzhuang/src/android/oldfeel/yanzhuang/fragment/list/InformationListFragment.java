@@ -2,9 +2,9 @@ package android.oldfeel.yanzhuang.fragment.list;
 
 import android.content.Intent;
 import android.oldfeel.yanzhuang.InformationDetail;
-import android.oldfeel.yanzhuang.adapter.ActivityListAdapter;
+import android.oldfeel.yanzhuang.adapter.InformationListAdapter;
 import android.oldfeel.yanzhuang.base.BaseListFragment;
-import android.oldfeel.yanzhuang.item.InformationListItem;
+import android.oldfeel.yanzhuang.item.InformationItem;
 import android.oldfeel.yanzhuang.util.NetUtil;
 
 /**
@@ -22,8 +22,7 @@ public class InformationListFragment extends BaseListFragment {
 
 	@Override
 	public void onItemClick(int position) {
-		InformationListItem item = (InformationListItem) adapter
-				.getItem(position);
+		InformationItem item = (InformationItem) adapter.getItem(position);
 		Intent intent = new Intent(getActivity(), InformationDetail.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
@@ -31,7 +30,7 @@ public class InformationListFragment extends BaseListFragment {
 
 	@Override
 	public void initAdapter() {
-		adapter = new ActivityListAdapter(getActivity());
+		adapter = new InformationListAdapter(getActivity());
 	}
 
 }

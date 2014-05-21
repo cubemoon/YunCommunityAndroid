@@ -5,7 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
-import android.oldfeel.yanzhuang.item.InformationListItem;
+import android.oldfeel.yanzhuang.item.InformationItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +20,7 @@ import com.google.gson.reflect.TypeToken;
  * 
  */
 public class InformationListAdapter extends
-		BaseBaseAdapter<InformationListItem> {
+		BaseBaseAdapter<InformationItem> {
 
 	public InformationListAdapter(Context context) {
 		super(context);
@@ -28,7 +28,7 @@ public class InformationListAdapter extends
 
 	@Override
 	public View getView(int position, View view) {
-		InformationListItem item = getItem(position);
+		InformationItem item = getItem(position);
 		view = inflater.inflate(R.layout.information_list_item, null);
 		ImageView ivImage = getImageView(view, R.id.information_list_item_image);
 		TextView tvTitle = getTextView(view, R.id.information__list_item_title);
@@ -47,8 +47,8 @@ public class InformationListAdapter extends
 	@Override
 	public void addResult(int page, String result) {
 		super.addResult(page, result);
-		List<InformationListItem> list = new Gson().fromJson(array,
-				new TypeToken<List<InformationListItem>>() {
+		List<InformationItem> list = new Gson().fromJson(array,
+				new TypeToken<List<InformationItem>>() {
 				}.getType());
 		addAll(list);
 	}
