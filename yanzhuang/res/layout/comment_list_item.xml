@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/comment_list_item_avatar"
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/comment_list_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="oldfeel"
+            android:textSize="18sp" />
+
+        <RatingBar
+            android:id="@+id/comment_list_item_score"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/comment_list_item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comment_list_item_name"
+            android:text="content"
+            android:textColor="@color/gray" />
+
+        <Button
+            android:id="@+id/comment_list_item_approval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comment_list_item_content"
+            android:text="同意" />
+
+        <Button
+            android:id="@+id/comment_list_item_opposition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/comment_list_item_content"
+            android:layout_toRightOf="@+id/comment_list_item_approval"
+            android:text="反对" />
+
+        <TextView
+            android:id="@+id/comment_list_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/comment_list_item_content"
+            android:text="time" />
+    </RelativeLayout>
+
+</LinearLayout>
