@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
+import android.oldfeel.yanzhuang.fragment.InformationMedia;
 import android.oldfeel.yanzhuang.fragment.list.CommentListFragment;
 import android.oldfeel.yanzhuang.item.CommentItem;
 import android.oldfeel.yanzhuang.item.InformationItem;
@@ -60,6 +61,10 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.information_detail);
 		item = (InformationItem) getIntent().getSerializableExtra("item");
+		getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.information_detail_media,
+						InformationMedia.newInstance(item)).commit();
 		initView();
 		initListener();
 		putDataToView();
