@@ -100,6 +100,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
+		netUtil.setParams("userid",
+				PersonInfo.getInstance(getApplicationContext()).getUserid());
 		return netUtil;
 	}
 
@@ -258,12 +260,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				PersonInfo.getInstance(InformationDetail.this).getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
-		netUtil.setParams("tag", ETUtil.getString(etEvaluationTag));
+		netUtil.setParams("tags", ETUtil.getString(etEvaluationTag));
 		netUtil.setParams("score", rbEvaluationScore.getRating());
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
+				LogUtil.showLog(result);
 				if (JSONUtil.isSuccess(result)) {
 					myComment = new Gson().fromJson(JSONUtil.getData(result)
 							.toString(), CommentItem.class);

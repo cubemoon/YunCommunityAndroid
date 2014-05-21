@@ -15,11 +15,29 @@ public class CommentItem extends BaseItem {
 	private String content;
 	private int score;
 	private long opposition;
-	private long apporval;
+	private long approval;
 	private String avatar;
 	private String name;
 	private String time;
 	private String tags;
+	private boolean isOpposition;
+	private boolean isApproval;
+
+	public boolean isOpposition() {
+		return isOpposition;
+	}
+
+	public void setOpposition(boolean isOpposition) {
+		this.isOpposition = isOpposition;
+	}
+
+	public boolean isApproval() {
+		return isApproval;
+	}
+
+	public void setApproval(boolean isApproval) {
+		this.isApproval = isApproval;
+	}
 
 	public String getTime() {
 		return time;
@@ -85,20 +103,20 @@ public class CommentItem extends BaseItem {
 		this.score = score;
 	}
 
-	public long getOpposition() {
+	public long getOppositionCount() {
 		return opposition;
 	}
 
-	public void setOpposition(long opposition) {
+	public void setOppositionCount(long opposition) {
 		this.opposition = opposition;
 	}
 
-	public long getApporval() {
-		return apporval;
+	public long getApprovalCount() {
+		return approval;
 	}
 
-	public void setApporval(long apporval) {
-		this.apporval = apporval;
+	public void setApprovalCount(long approval) {
+		this.approval = approval;
 	}
 
 	public void setTags(String tags) {

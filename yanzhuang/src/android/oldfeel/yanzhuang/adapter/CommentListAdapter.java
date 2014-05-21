@@ -4,9 +4,17 @@ import java.util.List;
 
 import android.content.Context;
 import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.PersonInfo;
+import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
 import android.oldfeel.yanzhuang.item.CommentItem;
+import android.oldfeel.yanzhuang.util.JSONUtil;
+import android.oldfeel.yanzhuang.util.LogUtil;
+import android.oldfeel.yanzhuang.util.NetUtil;
+import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -29,14 +37,15 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 
 	@Override
 	public View getView(int position, View view) {
-		CommentItem item = getItem(position);
+		final CommentItem item = getItem(position);
 		view = inflater.inflate(R.layout.comment_list_item, null);
 		ImageView ivAvatar = getImageView(view, R.id.comment_list_item_avatar);
 		TextView tvName = getTextView(view, R.id.comment_list_item_name);
 		TextView tvContent = getTextView(view, R.id.comment_list_item_content);
 		TextView tvTime = getTextView(view, R.id.comment_list_item_time);
-		Button btnApproval = getButton(view, R.id.comment_list_item_approval);
-		Button btnOpposition = getButton(view,
+		final Button btnApproval = getButton(view,
+				R.id.comment_list_item_approval);
+		final Button btnOpposition = getButton(view,
 				R.id.comment_list_item_opposition);
 		RatingBar rbScore = (RatingBar) view
 				.findViewById(R.id.comment_list_item_score);
@@ -44,10 +53,90 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 		tvName.setText(item.getName());
 		tvContent.setText(item.getContent());
 		tvTime.setText(item.getTime());
-		btnApproval.setText(item.getApporval() + "");
-		btnOpposition.setText(item.getOpposition() + "");
+		btnApproval.setText(item.getApprovalCount() + "");
+		btnOpposition.setText(item.getOppositionCount() + "");
 		rbScore.setRating(item.getScore());
+		btnApproval.setSelected(item.isApproval());
+		btnOpposition.setSelected(item.isOpposition());
+		btnApproval.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (item.isApproval()) {
+					item.setApproval(false);
+					item.setApprovalCount(item.getApprovalCount() - 1);
+					btnApproval.setSelected(false);
+					approval(item, false);
+				} else {
+					item.setApproval(true);
+					btnApproval.setSelected(true);
+					item.setApprovalCount(item.getApprovalCount() + 1);
+					approval(item, true);
+				}
+				btnApproval.setText(item.getApprovalCount() + "");
+			}
+		});
+		btnOpposition.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (item.isOpposition()) {
+					item.setOpposition(false);
+					btnOpposition.setSelected(false);
+					item.setOppositionCount(item.getOppositionCount() - 1);
+					opposition(item, false);
+				} else {
+					item.setOpposition(true);
+					btnOpposition.setSelected(true);
+					item.setOppositionCount(item.getOppositionCount() + 1);
+					opposition(item, true);
+				}
+				btnOpposition.setText(item.getOppositionCount() + "");
+			}
+		});
 		return view;
+	}
+
+	/**
+	 * 反对
+	 * 
+	 * @param item
+	 * @param isOpposition
+	 */
+	protected void opposition(CommentItem item, boolean isOpposition) {
+		NetUtil netUtil = new NetUtil((BaseActivity) context,
+				JsonApi.COMMENT_OPPOSITION);
+		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
+		netUtil.setParams("commentid", item.getCommentid());
+		netUtil.setParams("isopposition", isOpposition);
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				LogUtil.showLog(JSONUtil.getMessage(result));
+			}
+		});
+	}
+
+	/**
+	 * 赞
+	 * 
+	 * @param item
+	 * @param isapproval
+	 */
+	protected void approval(CommentItem item, boolean isapproval) {
+		NetUtil netUtil = new NetUtil((BaseActivity) context,
+				JsonApi.COMMENT_APPROVAL);
+		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
+		netUtil.setParams("commentid", item.getCommentid());
+		netUtil.setParams("isapproval", isapproval);
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				LogUtil.showLog(JSONUtil.getMessage(result));
+			}
+		});
 	}
 
 	@Override

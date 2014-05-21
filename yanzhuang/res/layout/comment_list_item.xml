@@ -40,6 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/comment_list_item_content"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_approval"
             android:text="同意" />
 
         <Button
@@ -48,6 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/comment_list_item_content"
             android:layout_toRightOf="@+id/comment_list_item_approval"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_opposition"
             android:text="反对" />
 
         <TextView
