@@ -152,7 +152,9 @@ public class NetUtil extends Handler {
 						@Override
 						public void run() {
 							super.run();
-							stringListener.onComplete(result);
+							if (stringListener != null) {
+								stringListener.onComplete(result);
+							}
 						}
 					});
 				} catch (SocketTimeoutException e) {
@@ -167,6 +169,13 @@ public class NetUtil extends Handler {
 		};
 		requestThread = new Thread(task);
 		requestThread.start();
+	}
+
+	/**
+	 * 发送一个post请求,不提示,不处理返回数据
+	 */
+	public void postRequest() {
+		this.postRequest(null, null);
 	}
 
 	/**

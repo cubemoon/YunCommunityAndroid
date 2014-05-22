@@ -10,5 +10,13 @@
         android:id="@+id/action_followers"
         android:title="关注者(5)"
         yourapp:showAsAction="always"/>
+    <item
+        android:id="@+id/action_author"
+        android:title="查看作者"
+        yourapp:showAsAction="never"/>
+    <item
+        android:id="@+id/action_report"
+        android:title="举报"
+        yourapp:showAsAction="never"/>
 
 </menu>

@@ -3,7 +3,9 @@ package android.oldfeel.yanzhuang.base;
 import java.lang.reflect.Field;
 
 import android.content.Intent;
+import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.MyApplication;
+import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.util.DialogUtil;
 import android.oldfeel.yanzhuang.util.ETUtil;
 import android.os.Bundle;
@@ -26,6 +28,9 @@ import android.widget.TextView;
 import android.widget.VideoView;
 import android.widget.ZoomControls;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 /**
  * activity基类
  * 
@@ -35,6 +40,8 @@ import android.widget.ZoomControls;
  */
 public abstract class BaseActivity extends ActionBarActivity {
 	private MyApplication myApplication;
+	protected DisplayImageOptions options;
+	protected ImageLoader imageLoader = ImageLoader.getInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,11 @@ public abstract class BaseActivity extends ActionBarActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		myApplication = (MyApplication) getApplication();
 		myApplication.addActivity(this);
+		int id = R.drawable.ic_launcher;
+		if (id > 0)
+			options = new DisplayImageOptions.Builder()
+					.showImageForEmptyUri(id).showImageOnFail(id)
+					.cacheInMemory(true).cacheOnDisc(true).build();
 	}
 
 	@Override
@@ -187,5 +199,9 @@ public abstract class BaseActivity extends ActionBarActivity {
 
 	public void cancelPd() {
 		DialogUtil.getInstance().cancelPd();
+	}
+
+	public long getUserid() {
+		return PersonInfo.getInstance(getApplicationContext()).getUserid();
 	}
 }

@@ -60,6 +60,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.information_detail);
+		setTitle("详情");
 		item = (InformationItem) getIntent().getSerializableExtra("item");
 		getSupportFragmentManager()
 				.beginTransaction()
@@ -169,6 +170,10 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.information_detail, menu);
+		if (item.getUserid() != PersonInfo.getInstance(getApplicationContext())
+				.getUserid()) {
+			menu.findItem(R.id.action_edit).setVisible(false);
+		}
 		return super.onCreateOptionsMenu(menu);
 	}
 
