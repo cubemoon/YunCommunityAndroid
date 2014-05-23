@@ -56,6 +56,9 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 				isFollowing(item, btnFollowing);
 			}
 		});
+		if (item.getUserid() == PersonInfo.getInstance(context).getUserid()) {
+			btnFollowing.setVisibility(View.GONE);
+		}
 		return view;
 	}
 

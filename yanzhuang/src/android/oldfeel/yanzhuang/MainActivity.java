@@ -267,8 +267,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void openPersonHome() {
 		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
-		intent.putExtra("userid",
-				PersonInfo.getInstance(getApplicationContext()).getUserid());
+		intent.putExtra("userid", getUserid());
 		startActivity(intent);
 	}
 

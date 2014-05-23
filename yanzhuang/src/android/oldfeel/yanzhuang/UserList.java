@@ -1,5 +1,6 @@
 package android.oldfeel.yanzhuang;
 
+import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.UserListFragment;
 import android.oldfeel.yanzhuang.util.NetUtil;
@@ -23,11 +24,17 @@ public class UserList extends BaseActivity {
 	}
 
 	private NetUtil getNetUtil() {
-		long userid = getIntent().getLongExtra("userid", -1);
 		String api = getIntent().getStringExtra("api");
 		NetUtil netUtil = new NetUtil(UserList.this, api);
 		netUtil.setParams("userid", getUserid());
-		netUtil.setParams("targetid", userid);
+		if (api.equals(JsonApi.INFORMATION_FOLLOWERS)) {
+			long informationid = getIntent().getLongExtra("informationid", -1);
+			netUtil.setParams("informationid", informationid);
+		} else if (api.equals(JsonApi.USER_FOLLOWINGS)
+				|| api.equals(JsonApi.USER_FANS)) {
+			long targetid = getIntent().getLongExtra("targetid", -1);
+			netUtil.setParams("targetid", targetid);
+		}
 		return netUtil;
 	}
 }

@@ -3,7 +3,6 @@ package android.oldfeel.yanzhuang;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.app.JsonApi;
-import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.item.UserItem;
@@ -14,6 +13,8 @@ import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.oldfeel.yanzhuang.util.StringUtils;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,14 +36,14 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private ImageButton ibBgEdit;
 	private TextView tvName, tvBirthday;
 	private Button btnFollowing, btnMsg, btnFollowings, btnFans, btnServer;
-	private long userid;
+	private long targetid;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.person_home);
-		userid = getIntent().getLongExtra("userid", -1);
-		if (userid == -1) {
+		targetid = getIntent().getLongExtra("targetid", -1);
+		if (targetid == -1) {
 			userNotExists();
 		}
 		initView();
@@ -51,13 +52,34 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		initInformation();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		if (targetid == getUserid()) {
+			getMenuInflater().inflate(R.menu.person_home, menu);
+		}
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_edit:
+			openActivity(EditPersonInfo.class);
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	/**
-	 * 显示最近参与的信息
+	 * 显示提醒
 	 */
 	private void initInformation() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
 				JsonApi.USER_INFORMATION_LIST);
-		netUtil.setParams("userid", userid);
+		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
 				.newInstance(netUtil);
 		getSupportFragmentManager().beginTransaction()
@@ -70,9 +92,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void getPersonInfo() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
 				JsonApi.USER_INFO);
-		netUtil.setParams("userid",
-				PersonInfo.getInstance(getApplicationContext()).getUserid());
-		netUtil.setParams("targetid", userid);
+		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("targetid", targetid);
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override
@@ -123,12 +144,11 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		btnServer = getButton(R.id.person_home_server);
 		int width = getResources().getDisplayMetrics().widthPixels;
 		ivBg.setLayoutParams(new LayoutParams(width, width / 2));
-		if (super.getUserid() == userid) {
+		if (super.getUserid() == targetid) {
 			btnFollowing.setVisibility(View.GONE);
-			btnMsg.setText("最近消息");
+			btnMsg.setVisibility(View.GONE);
 		} else {
 			ibBgEdit.setVisibility(View.GONE);
-			btnMsg.setText("私信");
 		}
 	}
 
@@ -156,7 +176,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 			showFollowings();
 			break;
 		case R.id.person_home_message:
-			showMsg();
+			showMessage();
 			break;
 		case R.id.person_home_fans:
 			showFans();
@@ -186,7 +206,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
 				JsonApi.USER_FOLLOWING);
 		netUtil.setParams("userid", getUserid());
-		netUtil.setParams("targetid", userid);
+		netUtil.setParams("targetid", targetid);
 		netUtil.setParams("isfollowingid", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -202,21 +222,18 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void showFollowings() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
-		intent.putExtra("userid", userid);
+		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
 		startActivity(intent);
 	}
 
 	/**
-	 * 显示自己的消息
+	 * 发送私信/聊天
 	 */
-	private void showMsg() {
+	private void showMessage() {
 		Intent intent = new Intent();
-		if (btnMsg.getText().equals("私信")) {
-			intent.setClass(PersonHomeActivity.this, ChatActivity.class);
-		} else {
-			intent.setClass(PersonHomeActivity.this, MyMessage.class);
-		}
+		intent.setClass(PersonHomeActivity.this, ChatActivity.class);
+		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
 
@@ -225,7 +242,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void showFans() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
-		intent.putExtra("userid", userid);
+		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FANS);
 		startActivity(intent);
 	}
@@ -236,7 +253,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void showServer() {
 		Intent intent = new Intent(PersonHomeActivity.this,
 				UserReleaseList.class);
-		intent.putExtra("userid", userid);
+		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
 }

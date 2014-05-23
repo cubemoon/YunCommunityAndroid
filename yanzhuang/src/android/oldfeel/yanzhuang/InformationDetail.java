@@ -55,6 +55,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private RatingBar rbScore;
 	private InformationItem item;
 	private CommentItem myComment;
+	private long followerCount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,16 +102,14 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
-		netUtil.setParams("userid",
-				PersonInfo.getInstance(getApplicationContext()).getUserid());
+		netUtil.setParams("userid", getUserid());
 		return netUtil;
 	}
 
 	private void getDetail() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_DETAIL);
-		netUtil.setParams("userid",
-				PersonInfo.getInstance(getApplicationContext()).getUserid());
+		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -142,10 +141,12 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		for (int i = 0; i < list.size(); i++) {
 			llTags.addView(getTagView(list.get(i)));
 		}
+		followerCount = data.getLong("followercount");
 		btnFollowing.setText(isFollowing ? "取消关注" : "关注");
 		rbScore.setRating(Float.valueOf(scoreAvg));
 		tvScoreCount.setText(scoreAvg + "分,共" + scoreCount + "人评价");
 		btnEvaluation.setText((myComment == null) ? "评价" : "修改");
+		invalidateOptionsMenu();
 	}
 
 	private View getTagView(TagItem tagItem) {
@@ -178,18 +179,83 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		menu.findItem(R.id.action_followers).setTitle(
+				"关注者(" + followerCount + ")");
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_edit:
-
+			edit();
 			break;
 		case R.id.action_followers:
-
+			seeFollowers();
+			break;
+		case R.id.action_author:
+			seeAuthor();
+			break;
+		case R.id.action_report:
+			isReport();
 			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void edit() {
+		Intent intent = new Intent(InformationDetail.this,
+				ReleaseActivity.class);
+		intent.putExtra("item", item);
+		startActivity(intent);
+	}
+
+	private void seeFollowers() {
+		Intent intent = new Intent(InformationDetail.this, UserList.class);
+		intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
+		intent.putExtra("informationid", item.getInformationid());
+		startActivity(intent);
+	}
+
+	private void seeAuthor() {
+		Intent intent = new Intent(InformationDetail.this,
+				PersonHomeActivity.class);
+		intent.putExtra("targetid", item.getUserid());
+		startActivity(intent);
+	}
+
+	private void isReport() {
+		final EditText etContent = new EditText(getApplicationContext());
+		etContent.setHeight(72);
+		etContent.setHint("说点什么吧");
+		new AlertDialog.Builder(InformationDetail.this).setTitle("举报")
+				.setView(etContent)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						report(getString(etContent));
+					}
+
+				}).setNegativeButton("取消", null).show();
+	}
+
+	protected void report(String string) {
+		NetUtil netUtil = new NetUtil(InformationDetail.this, JsonApi.REPORT);
+		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("informationid", item.getInformationid());
+		netUtil.setParams("content", string);
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				LogUtil.showLog(result);
+			}
+		});
+		showSimpleDialog("非常感谢!");
 	}
 
 	@Override
@@ -261,8 +327,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			EditText etEvaluationTag, EditText etEvaluationContent) {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENT);
-		netUtil.setParams("userid",
-				PersonInfo.getInstance(InformationDetail.this).getUserid());
+		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
 		netUtil.setParams("tags", ETUtil.getString(etEvaluationTag));
@@ -286,7 +351,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	protected void deleteEvaluation() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
-		netUtil.setParams("userid", myComment.getUserid());
+		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", myComment.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -303,14 +368,16 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		if (btnFollowing.getText().equals("关注")) {
 			isFollowing = true;
 			btnFollowing.setText("取消关注");
+			followerCount++;
 		} else {
 			isFollowing = false;
 			btnFollowing.setText("关注");
+			followerCount--;
 		}
+		invalidateOptionsMenu();
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_FOLLOWING);
-		netUtil.setParams("userid",
-				PersonInfo.getInstance(getApplicationContext()).getUserid());
+		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("isfollowing", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {

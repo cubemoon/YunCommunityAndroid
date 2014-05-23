@@ -65,11 +65,11 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.ChatActivity" >
         </activity>
-        <activity android:name="android.oldfeel.yanzhuang.MyMessage" >
-        </activity>
         <activity android:name="android.oldfeel.yanzhuang.UserReleaseList" >
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.UserList" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.EditPersonInfo" >
         </activity>
     </application>
 

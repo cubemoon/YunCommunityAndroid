@@ -54,6 +54,8 @@ public class InformationItem extends BaseItem {
 
 	private double evaluation;
 
+	private float score;
+
 	public double getEvaluation() {
 		return evaluation;
 	}
@@ -352,4 +354,11 @@ public class InformationItem extends BaseItem {
 		return true;
 	}
 
+	public void setScore(float score) {
+		this.score = score;
+	}
+
+	public float getScore() {
+		return score;
+	}
 }

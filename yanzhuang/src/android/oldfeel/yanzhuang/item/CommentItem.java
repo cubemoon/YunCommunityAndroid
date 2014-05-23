@@ -13,7 +13,7 @@ public class CommentItem extends BaseItem {
 	private long userid;
 	private long informationid;
 	private String content;
-	private int score;
+	private float score;
 	private long opposition;
 	private long approval;
 	private String avatar;
@@ -95,7 +95,7 @@ public class CommentItem extends BaseItem {
 		this.content = content;
 	}
 
-	public int getScore() {
+	public float getScore() {
 		return score;
 	}
 

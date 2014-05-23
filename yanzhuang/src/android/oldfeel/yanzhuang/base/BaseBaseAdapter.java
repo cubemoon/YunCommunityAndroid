@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -118,6 +119,10 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 
 	public VideoView getVideoView(View view, int id) {
 		return ViewUtil.getVideoView(view, id);
+	}
+
+	public RatingBar getRatingBar(View view, int id) {
+		return ViewUtil.getRatingBar(view, id);
 	}
 
 	public ImageButton getImageButton(View view, int id) {

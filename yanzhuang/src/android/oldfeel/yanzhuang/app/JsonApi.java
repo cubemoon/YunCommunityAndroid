@@ -25,6 +25,8 @@ public class JsonApi {
 	public static final String INFORMATION_COMMENT = "information_comment";
 	/** 删除评论 */
 	public static final String INFORMATION_COMMENTDELETE = "information_commentdelete";
+	/** 关注该信息的用户列表 */
+	public static final String INFORMATION_FOLLOWERS = "information_followers";
 	/** 赞 */
 	public static final String COMMENT_APPROVAL = "comment_approval";
 	/** 反对 */
@@ -47,4 +49,8 @@ public class JsonApi {
 	public static final String USER_INFORMATION_LIST = "user_information_list";
 	/** 制定用户发布的信息列表 */
 	public static final String USER_RELEASE_LIST = "user_release_list";
+	/** 举报 */
+	public static final String REPORT = "report";
+	/** 聊天记录 */
+	public static final String CHAT_HISTORY = "chat_history";
 }

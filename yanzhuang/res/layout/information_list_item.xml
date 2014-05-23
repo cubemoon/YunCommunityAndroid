@@ -19,6 +19,13 @@
             android:layout_height="wrap_content"
             android:textSize="16sp" />
 
+        <RatingBar
+            android:id="@+id/information_list_item_score"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
         <TextView
             android:id="@+id/information_list_item_desc"
             android:layout_width="wrap_content"

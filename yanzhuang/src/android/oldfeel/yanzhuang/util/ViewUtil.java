@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -51,6 +52,10 @@ public class ViewUtil {
 
 	public static ImageButton getImageButton(View view, int id) {
 		return (ImageButton) view.findViewById(id);
+	}
+
+	public static RatingBar getRatingBar(View view, int id) {
+		return (RatingBar) view.findViewById(id);
 	}
 
 	public static void updateListViewHeight(ListView listView) {
