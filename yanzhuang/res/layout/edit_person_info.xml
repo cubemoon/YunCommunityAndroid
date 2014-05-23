@@ -3,6 +3,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="昵称:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_name"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="简介:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_intro"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="电话:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_phone"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="邮箱:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_email"
+            style="@style/form_right"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="楼号:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_housenumber"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="出生日期:" />
+
+        <EditText
+            android:id="@+id/edit_person_info_birthday"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="权限:" />
+
+        <Spinner
+            android:id="@+id/edit_person_info_permission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:entries="@array/user_permission" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -82,15 +82,13 @@ public class MainActivity extends BaseActivity {
 		if (savedInstanceState == null) {
 			selectItem(2);
 		}
-		if (PersonInfo.getInstance(getApplicationContext()).isAutoLogin()) {
-			// autoLogin();
-		}
+		updatePersonInfo();
 	}
 
 	/**
 	 * 自动登录
 	 */
-	private void autoLogin() {
+	private void updatePersonInfo() {
 		String email = PersonInfo.getInstance(getApplicationContext())
 				.getEmail();
 		String password = PersonInfo.getInstance(getApplicationContext())
@@ -104,7 +102,7 @@ public class MainActivity extends BaseActivity {
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
 					PersonInfo.getInstance(getApplicationContext()).saveInfo(
-							result);
+							JSONUtil.getData(result).toString());
 				} else {
 					showToast("自动登录失败," + JSONUtil.getMessage(result));
 					cancelLogin();
@@ -137,7 +135,7 @@ public class MainActivity extends BaseActivity {
 	 * 登出
 	 */
 	protected void cancelLogin() {
-		PersonInfo.getInstance(MainActivity.this).setIsAutoLogin(false);
+		PersonInfo.getInstance(MainActivity.this).saveInfo("");
 		openActivity(LoginRegisterActivity.class);
 		finish();
 	}

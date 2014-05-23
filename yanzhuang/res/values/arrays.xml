@@ -9,5 +9,11 @@
         <item>建议反馈</item>
         <item>设置</item>
     </string-array>
+    <string-array name="user_permission">
+        <item>公开</item>
+        <item>完全保密</item>
+        <item>对小区认证用户开放</item>
+        <item>仅对关注对象开放</item>
+    </string-array>
 
 </resources>

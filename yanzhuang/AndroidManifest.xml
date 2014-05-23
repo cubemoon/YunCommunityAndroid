@@ -71,6 +71,8 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.EditPersonInfo" >
         </activity>
+        <activity android:name="android.oldfeel.yanzhuang.ChangePassword" >
+        </activity>
     </application>
 
 </manifest>

@@ -66,11 +66,20 @@ public class UserItem implements Serializable {
 	private boolean isFans;
 
 	private String lastActivity;
+	private String introduction;
 
 	/**
 	 * Constructor.
 	 */
 	public UserItem() {
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 
 	/**

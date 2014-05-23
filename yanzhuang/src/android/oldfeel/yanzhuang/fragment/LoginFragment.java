@@ -10,7 +10,6 @@ import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
-import android.oldfeel.yanzhuang.util.LogUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
@@ -164,11 +163,10 @@ public class LoginFragment extends BaseFragment {
 
 				@Override
 				public void onComplete(String result) {
-					LogUtil.showLog("result is " + result);
 					showProgress(false);
-
 					if (JSONUtil.isSuccess(result)) {
-						PersonInfo.getInstance(getActivity()).saveInfo(result);
+						PersonInfo.getInstance(getActivity()).saveInfo(
+								JSONUtil.getData(result).toString());
 						openActivity(MainActivity.class);
 						getActivity().finish();
 					} else {

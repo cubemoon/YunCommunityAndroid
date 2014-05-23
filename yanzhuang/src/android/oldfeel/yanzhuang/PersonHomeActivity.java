@@ -66,7 +66,9 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		case R.id.action_edit:
 			openActivity(EditPersonInfo.class);
 			break;
-
+		case R.id.action_change_password:
+			openActivity(ChangePassword.class);
+			break;
 		default:
 			break;
 		}

@@ -20,7 +20,7 @@ public class WelcomeActivity extends BaseActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setBackgroundColor(Color.GREEN);
 		setContentView(imageView);
-		if (PersonInfo.getInstance(getApplicationContext()).isAutoLogin()) {
+		if (PersonInfo.getInstance(getApplicationContext()).isLogin()) {
 			openActivity(MainActivity.class);
 		} else {
 			openActivity(LoginRegisterActivity.class);

@@ -5,6 +5,10 @@
     <item
         android:id="@+id/action_edit"
         android:title="编辑个人资料"
-        yourapp:showAsAction="always"/>
+        yourapp:showAsAction="never"/>
+    <item
+        android:id="@+id/action_change_password"
+        android:title="修改密码"
+        yourapp:showAsAction="never"/>
 
 </menu>

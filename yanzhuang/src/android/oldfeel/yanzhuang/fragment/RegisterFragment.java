@@ -166,9 +166,9 @@ public class RegisterFragment extends BaseFragment {
 				@Override
 				public void onComplete(String result) {
 					showProgress(false);
-
 					if (JSONUtil.isSuccess(result)) {
-						PersonInfo.getInstance(getActivity()).saveInfo(result);
+						PersonInfo.getInstance(getActivity()).saveInfo(
+								JSONUtil.getData(result).toString());
 						openActivity(MainActivity.class);
 						getActivity().finish();
 					} else {
