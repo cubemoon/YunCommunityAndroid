@@ -23,7 +23,7 @@ public class LoginRegisterActivity extends BaseActivity {
 		setContentView(R.layout.view_pager);
 		pager = (ViewPager) findViewById(R.id.pager);
 		tabsAdapter = new BaseTabsAdapter(LoginRegisterActivity.this, pager);
-		tabsAdapter.addTab("登录", LoginFragment.class);
-		tabsAdapter.addTab("注册", RegisterFragment.class);
+		tabsAdapter.addTab("登录", new LoginFragment());
+		tabsAdapter.addTab("注册", new RegisterFragment());
 	}
 }

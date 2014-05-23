@@ -22,7 +22,7 @@ import android.widget.EditText;
  * @author oldfeel
  * 
  */
-public class ReleaseInformationFragment extends BaseFragment implements
+public class InformationReleaseFragment extends BaseFragment implements
 		OnClickListener {
 	private EditText etTitle, etDesc, etAddress, etPhone, etTag;
 	private Button btnMap, btnAddFile;
@@ -30,8 +30,8 @@ public class ReleaseInformationFragment extends BaseFragment implements
 	private String image, voice, video;
 	private int infotype;
 
-	public static ReleaseInformationFragment newInstance(int infotype) {
-		ReleaseInformationFragment fragment = new ReleaseInformationFragment();
+	public static InformationReleaseFragment newInstance(int infotype) {
+		InformationReleaseFragment fragment = new InformationReleaseFragment();
 		fragment.infotype = infotype;
 		return fragment;
 	}
@@ -39,7 +39,7 @@ public class ReleaseInformationFragment extends BaseFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.release_information, null);
+		View view = inflater.inflate(R.layout.information_release, null);
 		etTitle = getEditText(view, R.id.release_title);
 		etDesc = getEditText(view, R.id.release_desc);
 		etAddress = getEditText(view, R.id.release_address);
@@ -63,7 +63,7 @@ public class ReleaseInformationFragment extends BaseFragment implements
 			return;
 		}
 		NetUtil netUtil = new NetUtil(getActivity(),
-				JsonApi.RELEASE_INFORMATION);
+				JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());

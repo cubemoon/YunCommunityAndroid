@@ -2,8 +2,6 @@ package android.oldfeel.yanzhuang.base;
 
 import java.util.ArrayList;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -21,14 +19,12 @@ import android.support.v7.app.ActionBarActivity;
  */
 public class BaseTabsAdapter extends FragmentPagerAdapter implements
 		ActionBar.TabListener, ViewPager.OnPageChangeListener {
-	private final Context mContext;
 	private final ActionBar mActionBar;
 	private final ViewPager mViewPager;
 	private ArrayList<Fragment> list = new ArrayList<Fragment>();
 
 	public BaseTabsAdapter(ActionBarActivity activity, ViewPager pager) {
 		super(activity.getSupportFragmentManager());
-		mContext = activity;
 		mActionBar = activity.getSupportActionBar();
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		mViewPager = pager;
@@ -36,13 +32,7 @@ public class BaseTabsAdapter extends FragmentPagerAdapter implements
 		mViewPager.setOnPageChangeListener(this);
 	}
 
-	public void addTab(String tabName, Class<?> clss) {
-		addTab(tabName, clss, null);
-	}
-
-	public void addTab(String tabName, Class<?> clss, Bundle args) {
-		Fragment fragment = Fragment
-				.instantiate(mContext, clss.getName(), args);
+	public void addTab(String tabName, Fragment fragment) {
 		ActionBar.Tab tab = mActionBar.newTab().setText(tabName);
 		tab.setTag(fragment);
 		tab.setTabListener(this);

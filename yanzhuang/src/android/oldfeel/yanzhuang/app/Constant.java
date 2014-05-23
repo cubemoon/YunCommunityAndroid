@@ -27,12 +27,21 @@ public class Constant {
 	public static final String VIDEO_DIR = ROOT_DIR + "video";
 	/** true为正在调试,可以打印log日志等... */
 	public static final boolean IS_DEBUG = true;
-	/** 每页信息数量 */
-	public static final long PAGE_SIZE = 10;
+	/** 每页中信息数量 */
+	public static final int PAGE_SIZE = 10;
 	/** 活动 */
 	public static final int TYPE_ACTIVITY = 1;
 	/** 商家服务 */
 	public static final int TYPE_BUSINESS = 2;
 	/** 个人服务 */
 	public static final int TYPE_PERSONAL = 3;
+	/** 关注用户 */
+	public static final int TYPE_FOLLOWING_USER = 4;
+	/** 评论 */
+	public static final int TYPE_COMMENT = 5;
+	/** 赞同评论 */
+	public static final int TYPE_APPROVAL = 6;
+	/** 反对评论 */
+	public static final int TYPE_OPPOSITION = 7;
+
 }

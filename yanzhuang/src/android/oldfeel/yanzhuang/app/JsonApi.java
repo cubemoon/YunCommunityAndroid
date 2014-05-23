@@ -12,7 +12,7 @@ public class JsonApi {
 	/** 注册 */
 	public static final String REGISTER = "register";
 	/** 发布信息 */
-	public static final String RELEASE_INFORMATION = "release_information";
+	public static final String INFORMATION_RELEASE = "information_release";
 	/** 信息列表 */
 	public static final String INFORMATION_LIST = "information_list";
 	/** 建议反馈 */
@@ -51,6 +51,8 @@ public class JsonApi {
 	public static final String USER_RELEASE_LIST = "user_release_list";
 	/** 举报 */
 	public static final String REPORT = "report";
+	/** 获取用户好友的最近动态,关注/评论/赞同/反对 */
+	public static final String USER_FRIEND_DYNAMIC = "user_friend_dynamic";
 	/** 聊天记录 */
 	public static final String CHAT_HISTORY = "chat_history";
 }

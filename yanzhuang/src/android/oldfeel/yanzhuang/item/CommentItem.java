@@ -22,6 +22,18 @@ public class CommentItem extends BaseItem {
 	private String tags;
 	private boolean isOpposition;
 	private boolean isApproval;
+	private Object informationItem;
+
+	public Object getInformationItem() {
+		if (informationItem == null) {
+			return "";
+		}
+		return informationItem;
+	}
+
+	public void setInformationItem(Object informationItem) {
+		this.informationItem = informationItem;
+	}
 
 	public boolean isOpposition() {
 		return isOpposition;
@@ -99,7 +111,7 @@ public class CommentItem extends BaseItem {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(float score) {
 		this.score = score;
 	}
 
