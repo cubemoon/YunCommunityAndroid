@@ -55,4 +55,10 @@ public class JsonApi {
 	public static final String USER_FRIEND_DYNAMIC = "user_friend_dynamic";
 	/** 聊天记录 */
 	public static final String CHAT_HISTORY = "chat_history";
+	/** 产品列表 */
+	public static final String PRODUCT_LIST = "product_list";
+	/** 添加产品 */
+	public static final String PRODUCT_ADD = "product_add";
+	/** 删除产品 */
+	public static final String PRODUCT_DELETE = "product_delete";
 }

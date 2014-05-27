@@ -247,6 +247,7 @@ public class NetUtil extends Handler {
 	 */
 	public String postStringResult() throws SocketTimeoutException,
 			JSONException {
+		LogUtil.showLog("url is " + Constant.ROOT_URL);
 		LogUtil.showLog("post " + params);
 		try {
 			URL url = new URL(Constant.ROOT_URL);

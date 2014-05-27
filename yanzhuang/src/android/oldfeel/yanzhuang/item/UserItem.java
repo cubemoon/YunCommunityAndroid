@@ -35,7 +35,7 @@ public class UserItem implements Serializable {
 	private String birthday;
 
 	/** permission. */
-	private Integer permission;
+	private int permission;
 
 	/** background. */
 	private String background;
@@ -44,13 +44,13 @@ public class UserItem implements Serializable {
 	private String avatar;
 
 	/** friendMsg. */
-	private Boolean friendmsg;
+	private Boolean friendmsg = true;
 
 	/** businessMsg. */
-	private Boolean businessmsg;
+	private Boolean businessmsg = true;
 
 	/** activityMsg. */
-	private Boolean activitymsg;
+	private Boolean activitymsg = true;
 
 	/** time. */
 	private String time;
@@ -233,7 +233,7 @@ public class UserItem implements Serializable {
 	 * 
 	 * @return permission
 	 */
-	public Integer getPermission() {
+	public int getPermission() {
 		return this.permission;
 	}
 

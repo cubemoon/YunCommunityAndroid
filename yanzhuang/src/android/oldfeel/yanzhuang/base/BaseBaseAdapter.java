@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.Constant;
+import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.util.ViewUtil;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,11 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 
 	public void add(T t) {
 		list.add(t);
+		notifyDataSetChanged();
+	}
+
+	public void add(int index, T t) {
+		list.add(index, t);
 		notifyDataSetChanged();
 	}
 
@@ -137,5 +143,9 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 
 	public boolean isAddOver() {
 		return isAddOver;
+	}
+
+	public long getUserid() {
+		return PersonInfo.getInstance(context).getUserid();
 	}
 }

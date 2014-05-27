@@ -3,6 +3,7 @@ package android.oldfeel.yanzhuang.fragment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.oldfeel.yanzhuang.ForgetPassword;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
@@ -169,7 +170,10 @@ public class RegisterFragment extends BaseFragment {
 					if (JSONUtil.isSuccess(result)) {
 						PersonInfo.getInstance(getActivity()).saveInfo(
 								JSONUtil.getData(result).toString());
-						openActivity(MainActivity.class);
+						Intent intent = new Intent(getActivity(),
+								MainActivity.class);
+						intent.putExtra("login", true);
+						startActivity(intent);
 						getActivity().finish();
 					} else {
 						netUtil = null;

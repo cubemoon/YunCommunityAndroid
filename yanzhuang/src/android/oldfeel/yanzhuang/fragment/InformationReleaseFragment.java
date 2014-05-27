@@ -1,5 +1,7 @@
 package android.oldfeel.yanzhuang.fragment;
 
+import android.content.Intent;
+import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
@@ -55,6 +57,7 @@ public class InformationReleaseFragment extends BaseFragment implements
 		super.onActivityCreated(savedInstanceState);
 		btnMap.setOnClickListener(this);
 		btnAddFile.setOnClickListener(this);
+		etPhone.setText(PersonInfo.getInstance(getActivity()).getPhone());
 	}
 
 	public void submit() {
@@ -83,6 +86,11 @@ public class InformationReleaseFragment extends BaseFragment implements
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
 					showToast("发布成功");
+					Intent intent = new Intent(getActivity(),
+							MainActivity.class);
+					intent.putExtra("infotype", infotype);
+					intent.putExtra("result", true);
+					startActivity(intent);
 					getActivity().finish();
 				} else {
 					showToast("发布失败," + JSONUtil.getMessage(result));

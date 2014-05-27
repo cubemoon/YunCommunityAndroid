@@ -35,17 +35,24 @@ public class InformationFragment extends BaseFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getActivity()
-				.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.content_frame,
-						InformationListFragment.newInstance(getNetUtil()))
-				.commit();
+		updateList();
 	}
 
 	private NetUtil getNetUtil() {
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_LIST);
 		netUtil.setParams("infotype", infotype);
 		return netUtil;
+	}
+
+	/**
+	 * 更新列表
+	 */
+	public void updateList() {
+		getActivity()
+				.getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.content_frame,
+						InformationListFragment.newInstance(getNetUtil()))
+				.commit();
 	}
 }

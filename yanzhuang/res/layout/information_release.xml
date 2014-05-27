@@ -64,7 +64,8 @@
             <EditText
                 android:id="@+id/release_phone"
                 style="@style/form_right"
-                android:hint="输入电话" />
+                android:hint="输入电话"
+                android:inputType="phone" />
         </LinearLayout>
 
         <LinearLayout style="@style/single_view" >

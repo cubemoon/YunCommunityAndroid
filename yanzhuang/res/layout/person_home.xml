@@ -60,6 +60,7 @@
                 android:id="@+id/person_home_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1.0" />
 
             <Button

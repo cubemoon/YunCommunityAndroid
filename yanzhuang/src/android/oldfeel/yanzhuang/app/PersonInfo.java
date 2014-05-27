@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.oldfeel.yanzhuang.item.UserItem;
 import android.oldfeel.yanzhuang.util.DesUtil;
-import android.oldfeel.yanzhuang.util.JSONUtil;
-import android.oldfeel.yanzhuang.util.LogUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 
@@ -54,11 +52,13 @@ public class PersonInfo {
 		editor.commit();
 	}
 
-	public static void update(Activity activity) {
+	public static void update(Activity activity, String text,
+			RequestStringListener stringListener) {
 		PersonInfo personInfo = PersonInfo.getInstance(activity);
 		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
 		netUtil.setParams("userid", personInfo.getUserid());
 		netUtil.setParams("name", personInfo.getName());
+		netUtil.setParams("password", personInfo.getPassword());
 		netUtil.setParams("phone", personInfo.getPhone());
 		netUtil.setParams("housenumber", personInfo.getHouseNumber());
 		netUtil.setParams("birthday", personInfo.getBirthday());
@@ -68,73 +68,123 @@ public class PersonInfo {
 		netUtil.setParams("friendmsg", personInfo.getFriendmsg());
 		netUtil.setParams("activitymsg", personInfo.getActivitymsg());
 		netUtil.setParams("businessmsg", personInfo.getBusinesssmg());
-		netUtil.postRequest("", new RequestStringListener() {
+		netUtil.setParams("introduction", personInfo.getIntroduction());
+		netUtil.postRequest(text, stringListener);
+	}
 
-			@Override
-			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					LogUtil.showLog("更新用户信息成功");
-				} else {
-					LogUtil.showLog("更新用户信息失败," + JSONUtil.getMessage(result));
-				}
-			}
-		});
+	public static void update(Activity activity) {
+		update(activity, "", null);
+	}
+
+	public void setAvatar(String avatar) {
+		userItem.setAvatar(avatar);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getAvatar() {
-		return userItem.getAvatar();
+		return (userItem == null) ? "" : userItem.getAvatar();
+	}
+
+	public void setBackGround(String background) {
+		userItem.setBackground(background);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getBackGround() {
-		return userItem.getBackground();
+		return (userItem == null) ? "" : userItem.getBackground();
+	}
+
+	public void setPermission(int permission) {
+		userItem.setPermission(permission);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public int getPermission() {
-		return userItem.getPermission();
+		return (userItem == null) ? 0 : userItem.getPermission();
+	}
+
+	public void setBirthday(String birthday) {
+		userItem.setBirthday(birthday);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getBirthday() {
-		return userItem.getBirthday();
+		return (userItem == null) ? "" : userItem.getBirthday();
+	}
+
+	public void setHouseNumber(String housenumber) {
+		userItem.setHousenumber(housenumber);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getHouseNumber() {
-		return userItem.getHousenumber();
+		return (userItem == null) ? "" : userItem.getHousenumber();
+	}
+
+	public void setPhone(String phone) {
+		userItem.setPhone(phone);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getPhone() {
-		return userItem.getPhone();
+		return (userItem == null) ? "" : userItem.getPhone();
+	}
+
+	public void setName(String name) {
+		userItem.setName(name);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getName() {
-		return userItem.getName();
+		return (userItem == null) ? "" : userItem.getName();
+	}
+
+	public void setUserid(long userid) {
+		userItem.setUserid(userid);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public long getUserid() {
-		return userItem.getUserid();
+		return (userItem == null) ? 0 : userItem.getUserid();
+	}
+
+	public void setEmail(String email) {
+		userItem.setEmail(email);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getEmail() {
-		return userItem.getEmail();
+		return (userItem == null) ? "" : userItem.getEmail();
+	}
+
+	public void setPassword(String password) {
+		userItem.setPassword(password);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public String getPassword() {
-		return userItem.getPassword();
+		return (userItem == null) ? "" : userItem.getPassword();
+	}
+
+	public void setIntroduction(String introduction) {
+		userItem.setIntroduction(introduction);
+		saveInfo(new Gson().toJson(userItem));
 	}
 
 	public CharSequence getIntroduction() {
-		return userItem.getIntroduction();
+		return (userItem == null) ? "" : userItem.getIntroduction();
 	}
 
 	public boolean getBusinesssmg() {
-		return userItem.getBusinessmsg();
+		return (userItem == null) ? true : userItem.getBusinessmsg();
 	}
 
 	public boolean getActivitymsg() {
-		return userItem.getActivitymsg();
+		return (userItem == null) ? true : userItem.getActivitymsg();
 	}
 
 	public boolean getFriendmsg() {
-		return userItem.getFriendmsg();
+		return (userItem == null) ? true : userItem.getFriendmsg();
 	}
 
 	public void setBusinessmsg(Boolean valueOf) {

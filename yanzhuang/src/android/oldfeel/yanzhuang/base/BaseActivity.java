@@ -179,6 +179,10 @@ public abstract class BaseActivity extends ActionBarActivity {
 		return ETUtil.getString(et);
 	}
 
+	public String getString(TextView tv) {
+		return tv.getText().toString().trim();
+	}
+
 	public String getString(Spinner sp) {
 		return sp.getSelectedItem().toString();
 	}

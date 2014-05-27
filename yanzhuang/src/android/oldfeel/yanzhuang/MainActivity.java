@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity {
 	private InformationFragment businessFragment;
 	private InformationFragment personalFragment;
 	private int infotype;
+	private TextView tvName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +86,39 @@ public class MainActivity extends BaseActivity {
 		updatePersonInfo();
 	}
 
+	@Override
+	protected void onNewIntent(Intent intent) {
+		boolean isLogin = intent.getBooleanExtra("login", false);
+		if (isLogin) {
+			tvName.setText(PersonInfo.getInstance(getApplicationContext())
+					.getName());
+		}
+		boolean result = intent.getBooleanExtra("result", false);
+		if (result) { // 发布成功
+			int infotype = intent.getIntExtra("infotype", 0);
+			if (infotype == Constant.TYPE_ACTIVITY
+					&& activityFragment.isVisible()) {
+				activityFragment.updateList();
+			}
+			if (infotype == Constant.TYPE_BUSINESS
+					&& businessFragment.isVisible()) {
+				businessFragment.updateList();
+			}
+			if (infotype == Constant.TYPE_PERSONAL
+					&& personalFragment.isVisible()) {
+				personalFragment.updateList();
+			}
+		}
+		super.onNewIntent(intent);
+	}
+
 	/**
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
+		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
+			return;
+		}
 		String email = PersonInfo.getInstance(getApplicationContext())
 				.getEmail();
 		String password = PersonInfo.getInstance(getApplicationContext())
@@ -144,7 +174,7 @@ public class MainActivity extends BaseActivity {
 		View view = getLayoutInflater()
 				.inflate(R.layout.menu_header_view, null);
 		ImageView ivAvatar = (ImageView) view.findViewById(R.id.avatar);
-		TextView tvName = (TextView) view.findViewById(R.id.text);
+		tvName = (TextView) view.findViewById(R.id.text);
 		int id = R.drawable.ic_launcher;
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
 				.showImageForEmptyUri(id).showImageOnFail(id)
@@ -153,8 +183,12 @@ public class MainActivity extends BaseActivity {
 		imageLoader.displayImage(PersonInfo
 				.getInstance(getApplicationContext()).getAvatar(), ivAvatar,
 				options);
-		tvName.setText(PersonInfo.getInstance(getApplicationContext())
-				.getName());
+		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
+			tvName.setText("登录或注册");
+		} else {
+			tvName.setText(PersonInfo.getInstance(getApplicationContext())
+					.getName());
+		}
 		return view;
 	}
 
@@ -264,6 +298,10 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
+		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
+			openActivity(LoginRegisterActivity.class);
+			return;
+		}
 		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
 		intent.putExtra("targetid", getUserid());
 		startActivity(intent);

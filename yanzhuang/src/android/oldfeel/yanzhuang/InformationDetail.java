@@ -10,6 +10,7 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
@@ -56,6 +57,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private InformationItem item;
 	private CommentItem myComment;
 	private long followerCount;
+	private long productCount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +144,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			llTags.addView(getTagView(list.get(i)));
 		}
 		followerCount = data.getLong("followercount");
+		productCount = data.getLong("productcount");
 		btnFollowing.setText(isFollowing ? "取消关注" : "关注");
 		rbScore.setRating(Float.valueOf(scoreAvg));
 		tvScoreCount.setText(scoreAvg + "分,共" + scoreCount + "人评价");
@@ -175,6 +178,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				.getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
 		}
+		if (item.getInfotype() != Constant.TYPE_BUSINESS) {
+			menu.findItem(R.id.action_product).setVisible(false);
+		}
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -182,6 +188,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.findItem(R.id.action_followers).setTitle(
 				"关注者(" + followerCount + ")");
+		menu.findItem(R.id.action_product).setTitle("产品(" + productCount + ")");
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -200,10 +207,22 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		case R.id.action_report:
 			isReport();
 			break;
+		case R.id.action_product:
+			productList();
+			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * 产品列表
+	 */
+	private void productList() {
+		Intent intent = new Intent(InformationDetail.this, ProductList.class);
+		intent.putExtra("item", item);
+		startActivity(intent);
 	}
 
 	private void edit() {

@@ -1,8 +1,10 @@
 package android.oldfeel.yanzhuang;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.item.UserItem;
@@ -32,6 +34,7 @@ import com.google.gson.Gson;
  * 
  */
 public class PersonHomeActivity extends BaseActivity implements OnClickListener {
+	public static final int EDIT_PERSON_INFO = 1;
 	private ImageView ivBg, ivAvtar;
 	private ImageButton ibBgEdit;
 	private TextView tvName, tvBirthday;
@@ -64,7 +67,9 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_edit:
-			openActivity(EditPersonInfo.class);
+			Intent intent = new Intent(PersonHomeActivity.this,
+					EditPersonInfo.class);
+			startActivityForResult(intent, EDIT_PERSON_INFO);
 			break;
 		case R.id.action_change_password:
 			openActivity(ChangePassword.class);
@@ -116,12 +121,12 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 			imageLoader.displayImage(item.getBackground(), ivBg, options);
 		}
 		imageLoader.displayImage(item.getAvatar(), ivAvtar, options);
-		tvName.setText(item.getName());
+		tvName.setText(item.getName() + "\n" + item.getIntroduction());
 		tvBirthday.setText(item.getHousenumber() + "\n" + item.getBirthday());
 		btnFollowing.setText(item.isFollowing() ? "关注" : "取消关注");
-		btnFollowings.setText(item.getFollowingCount() + "");
-		btnFans.setText(item.getFansCount() + "");
-		btnServer.setText(item.getServerCount() + "");
+		btnFollowings.setText("关注(" + item.getFollowingCount() + ")");
+		btnFans.setText("粉丝(" + item.getFansCount() + ")");
+		btnServer.setText("发布(" + item.getServerCount() + ")");
 	}
 
 	private void initListener() {
@@ -257,5 +262,21 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				UserReleaseList.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == EDIT_PERSON_INFO && resultCode == Activity.RESULT_OK) {
+			updateData(data);
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	private void updateData(Intent data) {
+		PersonInfo personInfo = PersonInfo.getInstance(getApplicationContext());
+		tvName.setText(personInfo.getName() + "\n"
+				+ personInfo.getIntroduction());
+		tvBirthday.setText(personInfo.getHouseNumber() + "\n"
+				+ personInfo.getBirthday());
 	}
 }

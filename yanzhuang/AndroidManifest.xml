@@ -45,7 +45,9 @@
             android:label="@string/action_sign_in_short"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
-        <activity android:name="android.oldfeel.yanzhuang.MainActivity" >
+        <activity
+            android:name="android.oldfeel.yanzhuang.MainActivity"
+            android:launchMode="singleTask" >
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.CollapseActivity" >
         </activity>
@@ -72,6 +74,8 @@
         <activity android:name="android.oldfeel.yanzhuang.EditPersonInfo" >
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.ChangePassword" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.ProductList" >
         </activity>
     </application>
 

@@ -7,6 +7,10 @@
         android:title="编辑"
         yourapp:showAsAction="always"/>
     <item
+        android:id="@+id/action_product"
+        android:title="产品"
+        yourapp:showAsAction="always"/>
+    <item
         android:id="@+id/action_followers"
         android:title="关注者(5)"
         yourapp:showAsAction="always"/>
