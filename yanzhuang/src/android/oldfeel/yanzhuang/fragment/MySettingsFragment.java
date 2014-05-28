@@ -1,5 +1,6 @@
 package android.oldfeel.yanzhuang.fragment;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.oldfeel.yanzhuang.R;
@@ -17,6 +18,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
+import android.webkit.WebView;
 
 /**
  * 设置
@@ -52,6 +54,26 @@ public class MySettingsFragment extends PreferenceFragment {
 	}
 
 	private void initAbout() {
+		Preference preference = getPreferenceManager().findPreference(
+				getString(R.string.about));
+		preference
+				.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+					@Override
+					public boolean onPreferenceClick(Preference preference) {
+						about();
+						return false;
+					}
+				});
+	}
+
+	/**
+	 * 关于我们
+	 */
+	protected void about() {
+		WebView webView = new WebView(getActivity());
+		webView.loadUrl("file:///android_asset/about.html");
+		new AlertDialog.Builder(getActivity()).setView(webView).show();
 	}
 
 	private void initCheckVersion() {
