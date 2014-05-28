@@ -5,9 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -235,26 +232,18 @@ public class HeaderFragment extends BaseFragment {
 		} else {
 			showSimpleDialog("图像不存在，上传失败·");
 		}
-		File headerFile = new File(protraitFile.getParent() + "/"
+		File headerFile = new File(protraitFile.getParent() + "/avatar-"
+				+ System.currentTimeMillis() + "-"
 				+ PersonInfo.getInstance(getActivity()).getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
-		netUtil.setParams("uploadType", "avatar");
-		netUtil.setParams("EndUser", PersonInfo.getInstance(getActivity())
-				.getUserid());
-		netUtil.setParams("key", "avatars/" + protraitFile.getName());
-		netUtil.postRequest("正在获取uptoken...", new RequestStringListener() {
+		netUtil.postRequest("正在上传...", new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
-					try {
-						JSONObject json = new JSONObject(result);
-						startUpload(json.getString("upToken"));
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
+					startUpload(JSONUtil.getMessage(result));
 				} else {
 					showToast("获取uptoken失败");
 				}
@@ -268,22 +257,19 @@ public class HeaderFragment extends BaseFragment {
 	 * @param uptoken
 	 */
 	protected void startUpload(String uptoken) {
-//		NetUtil netUtil = new NetUtil(getActivity(), Urls.UPLOAD);
-//		File file = protraitFile;
-//		String key = "avatars/" + file.getName();
-//		netUtil.postFile("正在上传头像...", file, uptoken, key,
-//				new RequestStringListener() {
-//
-//					@Override
-//					public void onComplete(String result) {
-//						if (JSONUtil.isSuccess(result)) {
-//							showToast("上传成功");
-//							ivHeader.setImageBitmap(protraitBitmap);
-//						} else {
-//							showToast("上传失败" + JSONUtil.getMessage(result));
-//						}
-//					}
-//				});
+		NetUtil netUtil = new NetUtil(getActivity(), "");
+		netUtil.postFile("正在上传头像...", protraitFile.getName(), protraitFile,
+				uptoken, new RequestStringListener() {
+
+					@Override
+					public void onComplete(String result) {
+						showToast("上传成功");
+						ivHeader.setImageBitmap(protraitBitmap);
+						PersonInfo.getInstance(getActivity()).setAvatar(
+								Constant.FILE_URL + protraitFile.getName());
+						PersonInfo.update(getActivity());
+					}
+				});
 	}
 
 	@Override

@@ -12,9 +12,11 @@ import android.os.Environment;
 public class Constant {
 	/** 接口根目录 */
 	// public static final String ROOT_URL = "http://182.92.82.150/json";// 服务器
-	public static final String ROOT_URL = "http://192.168.1.103:8080/oldfeel_web/json";// 我的电脑
+	public static final String ROOT_URL = "http://192.168.1.103:8080/yanzhuang/json";// 我的电脑
 	// public static final String ROOT_URL =
-	// "http://192.168.1.111:8080/oldfeel_web/json";//媳妇的电脑
+	// "http://192.168.1.111:8080/yanzhuang/json";//媳妇的电脑
+	/** 文件存储地址 */
+	public static final String FILE_URL = "http://yanzhuang.qiniudn.com/";
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
 			.getExternalStorageDirectory().getAbsolutePath() + "/yanzhuang/";
