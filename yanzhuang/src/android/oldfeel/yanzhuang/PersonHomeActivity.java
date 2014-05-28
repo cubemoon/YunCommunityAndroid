@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
+import android.oldfeel.yanzhuang.fragment.HeaderFragment;
 import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.item.UserItem;
 import android.oldfeel.yanzhuang.util.DialogUtil;
@@ -13,7 +14,7 @@ import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.LogUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
-import android.oldfeel.yanzhuang.util.StringUtils;
+import android.oldfeel.yanzhuang.util.StringUtil;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +36,7 @@ import com.google.gson.Gson;
  */
 public class PersonHomeActivity extends BaseActivity implements OnClickListener {
 	public static final int EDIT_PERSON_INFO = 1;
-	private ImageView ivBg, ivAvtar;
+	private ImageView ivBg;
 	private ImageButton ibBgEdit;
 	private TextView tvName, tvBirthday;
 	private Button btnFollowing, btnMsg, btnFollowings, btnFans, btnServer;
@@ -117,10 +118,15 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	protected void parseInfo(String result) {
 		UserItem item = new Gson().fromJson(
 				JSONUtil.getData(result).toString(), UserItem.class);
-		if (!StringUtils.isEmpty(item.getBackground())) {
+		if (!StringUtil.isEmpty(item.getBackground())) {
 			imageLoader.displayImage(item.getBackground(), ivBg, options);
 		}
-		imageLoader.displayImage(item.getAvatar(), ivAvtar, options);
+		getSupportFragmentManager()
+				.beginTransaction()
+				.replace(
+						R.id.person_home_header,
+						HeaderFragment.newInstance(item.getAvatar(),
+								getUserid() == targetid)).commit();
 		tvName.setText(item.getName() + "\n" + item.getIntroduction());
 		tvBirthday.setText(item.getHousenumber() + "\n" + item.getBirthday());
 		btnFollowing.setText(item.isFollowing() ? "关注" : "取消关注");
@@ -140,7 +146,6 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	private void initView() {
 		ivBg = getImageView(R.id.person_home_bg);
-		ivAvtar = getImageView(R.id.person_home_avtar);
 		ibBgEdit = getImageButton(R.id.person_home_bg_edit);
 		tvName = getTextView(R.id.person_home_name);
 		tvBirthday = getTextView(R.id.person_home_birthday);

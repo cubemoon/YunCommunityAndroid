@@ -25,7 +25,7 @@ import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.LogUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
-import android.oldfeel.yanzhuang.util.StringUtils;
+import android.oldfeel.yanzhuang.util.StringUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -86,8 +86,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		tvTitle.setText(item.getTitle());
 		tvTime.setText(item.getTime());
 		tvDesc.setText(item.getDescription());
-		if (StringUtils.isEmpty(item.getPhone())
-				|| !StringUtils.isMobileNO(item.getPhone())) {
+		if (StringUtil.isEmpty(item.getPhone())
+				|| !StringUtil.isMobileNO(item.getPhone())) {
 			ibCall.setVisibility(View.GONE);
 		}
 	}

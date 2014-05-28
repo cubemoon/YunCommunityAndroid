@@ -82,11 +82,20 @@
 
         <LinearLayout style="@style/single_view" >
 
-            <Button
-                android:id="@+id/release_add_file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="添加文件" />
+            <ImageView
+                android:id="@+id/release_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/release_voice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/release_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 

@@ -29,23 +29,22 @@
                 android:background="@color/transparent"
                 android:src="@drawable/ic_edit" />
 
-            <ImageView
-                android:id="@+id/person_home_avtar"
+            <FrameLayout
+                android:id="@+id/person_home_header"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_alignBottom="@+id/person_home_bg"
                 android:layout_marginBottom="-36dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_launcher" />
+                android:layout_marginRight="10dp" >
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/person_home_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/person_home_avtar"
-                android:layout_toRightOf="@+id/person_home_avtar"
+                android:layout_alignBottom="@+id/person_home_header"
+                android:layout_toRightOf="@+id/person_home_header"
                 android:paddingBottom="5dp"
                 android:text="name" />
         </RelativeLayout>

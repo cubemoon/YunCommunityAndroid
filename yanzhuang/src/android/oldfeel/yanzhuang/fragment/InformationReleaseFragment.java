@@ -1,5 +1,7 @@
 package android.oldfeel.yanzhuang.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
@@ -17,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 /**
  * 发布信息
@@ -27,7 +30,8 @@ import android.widget.EditText;
 public class InformationReleaseFragment extends BaseFragment implements
 		OnClickListener {
 	private EditText etTitle, etDesc, etAddress, etPhone, etTag;
-	private Button btnMap, btnAddFile;
+	private ImageView ivImage, ivVoice, ivVideo;
+	private Button btnMap;
 	private double lon, lat;
 	private String image, voice, video;
 	private int infotype;
@@ -48,7 +52,9 @@ public class InformationReleaseFragment extends BaseFragment implements
 		etPhone = getEditText(view, R.id.release_phone);
 		etTag = getEditText(view, R.id.release_tag);
 		btnMap = getButton(view, R.id.release_map);
-		btnAddFile = getButton(view, R.id.release_add_file);
+		ivImage = getImageView(view, R.id.release_image);
+		ivVoice = getImageView(view, R.id.release_voice);
+		ivVideo = getImageView(view, R.id.release_video);
 		return view;
 	}
 
@@ -56,7 +62,9 @@ public class InformationReleaseFragment extends BaseFragment implements
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		btnMap.setOnClickListener(this);
-		btnAddFile.setOnClickListener(this);
+		ivImage.setOnClickListener(this);
+		ivVideo.setOnClickListener(this);
+		ivVoice.setOnClickListener(this);
 		etPhone.setText(PersonInfo.getInstance(getActivity()).getPhone());
 	}
 
@@ -105,18 +113,38 @@ public class InformationReleaseFragment extends BaseFragment implements
 		case R.id.release_map:
 			openMap();
 			break;
-		case R.id.release_add_file:
-			addFile();
+		case R.id.release_image:
+			image();
+			break;
+		case R.id.release_voice:
+			voice();
+			break;
+		case R.id.release_video:
+			video();
 			break;
 		default:
 			break;
 		}
 	}
 
-	/**
-	 * 添加文件,可以是图片/语音/视频
-	 */
-	private void addFile() {
+	private void image() {
+		String[] items = new String[] { "查看大图", "从手机中选择", "拍照" };
+		if (image == null) {
+			items = new String[] { "从手机中选择", "拍照" };
+		}
+		new AlertDialog.Builder(getActivity()).setItems(items,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				}).show();
+	}
+
+	private void voice() {
+	}
+
+	private void video() {
 	}
 
 	/**

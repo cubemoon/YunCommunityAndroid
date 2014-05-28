@@ -15,5 +15,16 @@
         <item>对小区认证用户开放</item>
         <item>仅对关注对象开放</item>
     </string-array>
+    <string-array name="add_image_type">
+        <item>手机拍照</item>
+        <item>从相册选择</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="change_image_type">
+        <item>查看大图</item>
+        <item>手机拍照</item>
+        <item>从相册选择</item>
+        <item>取消</item>
+    </string-array>
 
 </resources>

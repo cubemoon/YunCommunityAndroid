@@ -46,7 +46,7 @@ import android.util.DisplayMetrics;
  * @version 1.0
  * @created 2012-3-21
  */
-public class ImageUtils {
+public class ImageUtil {
 
 	public final static String SDCARD_MNT = "/mnt/sdcard";
 	public final static String SDCARD = "/sdcard";

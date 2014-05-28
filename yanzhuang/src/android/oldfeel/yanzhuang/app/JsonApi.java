@@ -61,4 +61,6 @@ public class JsonApi {
 	public static final String PRODUCT_ADD = "product_add";
 	/** 删除产品 */
 	public static final String PRODUCT_DELETE = "product_delete";
+	/** 获取上传文件需要的uptoken */
+	public static final String UPTOKEN = "uptoken";
 }

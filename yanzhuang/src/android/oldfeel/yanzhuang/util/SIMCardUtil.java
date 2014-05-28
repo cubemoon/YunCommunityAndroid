@@ -38,7 +38,7 @@ public class SIMCardUtil {
 	public String getNativePhoneNumber() {
 		String NativePhoneNumber = null;
 		NativePhoneNumber = telephonyManager.getLine1Number();
-		if (StringUtils.isEmpty(NativePhoneNumber)) {
+		if (StringUtil.isEmpty(NativePhoneNumber)) {
 			return "";
 		}
 		return NativePhoneNumber.substring(3);
