@@ -279,19 +279,6 @@ public class StringUtil {
 	}
 
 	/**
-	 * 确认字符串是否为昵称
-	 * 
-	 * @param strEmail
-	 * @return
-	 */
-	public static boolean isNickName(String strEmail) {
-		String strPattern = "^[a-zA-Z][a-zA-Z0-9-_]{1,7}$";
-		Pattern p = Pattern.compile(strPattern);
-		Matcher m = p.matcher(strEmail);
-		return m.matches();
-	}
-
-	/**
 	 * 获取当前日期,yyyy-MM-dd格式
 	 * 
 	 * @return
@@ -398,5 +385,15 @@ public class StringUtil {
 	public static String getFileUrl(String name) {
 		return "http://" + Constant.APP_NAME + ".oss-cn-hangzhou.aliyuncs.com/"
 				+ name;
+	}
+
+	/**
+	 * 获取时间戳
+	 * 
+	 * @return
+	 */
+	public static String getTimeStamp() {
+		return new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
+				.format(new Date());
 	}
 }

@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
  * @author oldfeel
  * 
  */
-public class ReleaseActivity extends BaseActivity {
+public class InformationReleaseActivity extends BaseActivity {
 	public static final String[] navList = new String[] { "活动", "商家服务", "个人服务" };
 	private int currentPosition;
 	private InformationReleaseFragment fragment;
@@ -75,28 +75,12 @@ public class ReleaseActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_complete:
-			submitRelease();
+			fragment.submit();
 			break;
 
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	private void submitRelease() {
-		switch (currentPosition) {
-		case 0:
-			fragment.submit();
-			break;
-		case 1:
-			fragment.submit();
-			break;
-		case 2:
-			fragment.submit();
-			break;
-		default:
-			break;
-		}
 	}
 }

@@ -15,8 +15,6 @@ public class Constant {
 	public static final String ROOT_URL = "http://192.168.1.103:8080/yanzhuang/json";// 我的电脑
 	// public static final String ROOT_URL =
 	// "http://192.168.1.111:8080/yanzhuang/json";//媳妇的电脑
-	/** 文件存储地址 */
-	public static final String FILE_URL = "http://yanzhuang.qiniudn.com/";
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
 			.getExternalStorageDirectory().getAbsolutePath() + "/yanzhuang/";
@@ -25,9 +23,7 @@ public class Constant {
 	/** SharedPreferences用到的应用名称 */
 	public static final String APP_NAME = "yanzhuang";
 	/** 拍照后图片的临时文件夹 */
-	public final static String FILE_SAVEPATH = ROOT_DIR + "image";
-	/** 视频保存目录 */
-	public static final String VIDEO_DIR = ROOT_DIR + "video";
+	public final static String FILE_SAVEPATH = ROOT_DIR + "media";
 	/** true为正在调试,可以打印log日志等... */
 	public static final boolean IS_DEBUG = true;
 	/** 每页中信息数量 */

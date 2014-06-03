@@ -213,7 +213,7 @@ public class HeaderFragment extends BaseFragment {
 		String ext = FileUtil.getFileFormat(thePath);
 		ext = StringUtil.isEmpty(ext) ? "jpg" : ext;
 		// 照片命名
-		String cropFileName = "meow_" + timeStamp + "." + ext;
+		String cropFileName = "yanzhuang_" + timeStamp + "." + ext;
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -266,7 +266,7 @@ public class HeaderFragment extends BaseFragment {
 						showToast("上传成功");
 						ivHeader.setImageBitmap(protraitBitmap);
 						PersonInfo.getInstance(getActivity()).setAvatar(
-								Constant.FILE_URL + protraitFile.getName());
+								protraitFile.getName());
 						PersonInfo.update(getActivity());
 					}
 				});

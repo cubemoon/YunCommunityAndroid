@@ -22,8 +22,26 @@
     </string-array>
     <string-array name="change_image_type">
         <item>查看大图</item>
-        <item>手机拍照</item>
-        <item>从相册选择</item>
+        <item>手机拍照替换</item>
+        <item>从相册选择替换</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="add_voice_type">
+        <item>录音</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="change_voice_type">
+        <item>播放录音</item>
+        <item>替换录音</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="add_video_type">
+        <item>录制视频</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="change_video_type">
+        <item>播放视频</item>
+        <item>替换视频</item>
         <item>取消</item>
     </string-array>
 

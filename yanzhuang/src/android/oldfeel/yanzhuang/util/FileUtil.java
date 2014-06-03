@@ -697,4 +697,17 @@ public class FileUtil {
 		}
 	}
 
+	/**
+	 * 获取文件名
+	 * 
+	 * @param filePath
+	 * @return
+	 */
+	public static String getName(String filePath) {
+		if (StringUtil.isEmpty(filePath) || !filePath.contains("/")) {
+			return "";
+		}
+		return filePath.substring(filePath.lastIndexOf("/") + 1);
+	}
+
 }

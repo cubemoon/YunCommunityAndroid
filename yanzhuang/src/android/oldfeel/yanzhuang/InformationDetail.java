@@ -227,7 +227,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void edit() {
 		Intent intent = new Intent(InformationDetail.this,
-				ReleaseActivity.class);
+				InformationReleaseActivity.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}

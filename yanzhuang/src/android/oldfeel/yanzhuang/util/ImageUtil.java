@@ -50,6 +50,7 @@ public class ImageUtil {
 
 	public final static String SDCARD_MNT = "/mnt/sdcard";
 	public final static String SDCARD = "/sdcard";
+	private static final String SDCARD_STORAGE = "/storage/sdcard0";
 
 	/** 请求相册 */
 	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;
@@ -256,6 +257,7 @@ public class ImageUtil {
 
 		String pre1 = "file://" + SDCARD + File.separator;
 		String pre2 = "file://" + SDCARD_MNT + File.separator;
+		String pre3 = "file://" + SDCARD_STORAGE + File.separator;
 
 		if (mUriString.startsWith(pre1)) {
 			filePath = Environment.getExternalStorageDirectory().getPath()
@@ -263,6 +265,9 @@ public class ImageUtil {
 		} else if (mUriString.startsWith(pre2)) {
 			filePath = Environment.getExternalStorageDirectory().getPath()
 					+ File.separator + mUriString.substring(pre2.length());
+		} else if (mUriString.startsWith(pre3)) {
+			filePath = Environment.getExternalStorageDirectory().getPath()
+					+ File.separator + mUriString.substring(pre3.length());
 		}
 		return filePath;
 	}

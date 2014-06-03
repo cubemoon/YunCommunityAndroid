@@ -444,8 +444,8 @@ public class NetUtil extends Handler {
 			final RequestStringListener requestStringListener) {
 		showPd(text);
 		PutExtra extra = new PutExtra();
-		IO.putFile(getActivity(), uptoken, key,
-				Uri.parse(file.getAbsolutePath()), extra, new JSONObjectRet() {
+		IO.putFile(getActivity(), uptoken, key, Uri.fromFile(file), extra,
+				new JSONObjectRet() {
 					@Override
 					public void onProcess(long current, long total) {
 					}

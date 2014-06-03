@@ -10,7 +10,6 @@ import android.oldfeel.yanzhuang.fragment.AttentionFragment;
 import android.oldfeel.yanzhuang.fragment.InformationFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
-import android.oldfeel.yanzhuang.util.NetUtil.OnNetFailListener;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -137,26 +136,6 @@ public class MainActivity extends BaseActivity {
 					showToast("自动登录失败," + JSONUtil.getMessage(result));
 					cancelLogin();
 				}
-			}
-		});
-		netUtil.setOnNetFailListener(new OnNetFailListener() {
-
-			@Override
-			public void onTimeOut() {
-				showToast("自动登录失败,网络超时");
-				cancelLogin();
-			}
-
-			@Override
-			public void onError() {
-				showToast("自动登录失败,网络错误");
-				cancelLogin();
-			}
-
-			@Override
-			public void cancel() {
-				showToast("自动登录失败,取消登录");
-				cancelLogin();
 			}
 		});
 	}
@@ -335,7 +314,8 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void releaseInformation() {
-		Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
+		Intent intent = new Intent(MainActivity.this,
+				InformationReleaseActivity.class);
 		intent.putExtra("infotype", infotype);
 		startActivity(intent);
 	}

@@ -70,4 +70,11 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
+    <style name="media">
+        <item name="android:layout_width">83dp</item>
+        <item name="android:layout_height">83dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
 </resources>

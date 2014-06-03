@@ -84,18 +84,18 @@
 
             <ImageView
                 android:id="@+id/release_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/media"
+                android:background="@drawable/ic_image" />
 
             <ImageView
                 android:id="@+id/release_voice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/media"
+                android:background="@drawable/ic_voice" />
 
             <ImageView
                 android:id="@+id/release_video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/media"
+                android:background="@drawable/ic_video" />
         </LinearLayout>
     </LinearLayout>
 
