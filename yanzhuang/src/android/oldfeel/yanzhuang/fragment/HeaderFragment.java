@@ -78,12 +78,7 @@ public class HeaderFragment extends BaseFragment {
 		options = new DisplayImageOptions.Builder().showImageForEmptyUri(id)
 				.showImageOnFail(id).cacheInMemory(true).cacheOnDisc(true)
 				.build();
-		if (imageUrl != null) {
-			imageLoader.displayImage(imageUrl, ivHeader, options);
-		} else {
-			imageLoader.displayImage(PersonInfo.getInstance(getActivity())
-					.getAvatar(), ivHeader, options);
-		}
+		imageLoader.displayImage(imageUrl, ivHeader, options);
 		ivHeader.setOnClickListener(new OnClickListener() {
 
 			@Override

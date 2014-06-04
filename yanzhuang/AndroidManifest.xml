@@ -77,6 +77,10 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.ProductList" >
         </activity>
+        <activity android:name="android.oldfeel.yanzhuang.CommunityIntroduction" >
+        </activity>
+        <activity android:name="android.oldfeel.yanzhuang.CommunityMap" >
+        </activity>
     </application>
 
 </manifest>

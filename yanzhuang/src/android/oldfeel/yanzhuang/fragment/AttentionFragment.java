@@ -13,6 +13,7 @@ import android.oldfeel.yanzhuang.util.NetUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,5 +66,14 @@ public class AttentionFragment extends BaseFragment {
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
 		return netUtil;
+	}
+
+	@Override
+	public void onStop() {
+		ActionBar actionBar = ((BaseActivity) getActivity())
+				.getSupportActionBar();
+		actionBar.removeAllTabs();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		super.onStop();
 	}
 }

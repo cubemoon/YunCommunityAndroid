@@ -190,14 +190,24 @@ public class MainActivity extends BaseActivity {
 			openPersonal();
 			break;
 		case 5:
-			openFeedback();
+			openIntroduction();
 			break;
 		case 6:
+			openFeedback();
+			break;
+		case 7:
 			openSettings();
 			break;
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * 小区简介
+	 */
+	private void openIntroduction() {
+		openActivity(CommunityIntroduction.class);
 	}
 
 	/**

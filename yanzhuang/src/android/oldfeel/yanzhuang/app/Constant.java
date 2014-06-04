@@ -18,6 +18,10 @@ public class Constant {
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
 			.getExternalStorageDirectory().getAbsolutePath() + "/yanzhuang/";
+	/** 小区id */
+	public static long COMMUNITY_ID = 1;
+	/** 小区管理员id */
+	public static long COMMUNITY_ADMIN_ID = 1;
 	/** 数据库名字 */
 	public static final String DB_NAME = ROOT_DIR + "yanzhuang.db";
 	/** SharedPreferences用到的应用名称 */
