@@ -64,5 +64,5 @@ public class JsonApi {
 	/** 获取上传文件需要的uptoken */
 	public static final String UPTOKEN = "uptoken";
 	/** 小区简介 */
-	public static final String INTRODUCTION = "introduction";
+	public static final String COMMUNITY_INTRODUCTION = "community_introduction";
 }

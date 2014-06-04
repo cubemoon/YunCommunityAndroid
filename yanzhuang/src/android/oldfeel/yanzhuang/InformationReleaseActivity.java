@@ -2,7 +2,7 @@ package android.oldfeel.yanzhuang;
 
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.base.BaseActivity;
-import android.oldfeel.yanzhuang.fragment.InformationReleaseFragment;
+import android.oldfeel.yanzhuang.fragment.InformationRelease;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.OnNavigationListener;
@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 public class InformationReleaseActivity extends BaseActivity {
 	public static final String[] navList = new String[] { "活动", "商家服务", "个人服务" };
 	private int currentPosition;
-	private InformationReleaseFragment fragment;
+	private InformationRelease fragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +47,15 @@ public class InformationReleaseActivity extends BaseActivity {
 		currentPosition = position;
 		switch (currentPosition) {
 		case 0:
-			fragment = InformationReleaseFragment
+			fragment = InformationRelease
 					.newInstance(Constant.TYPE_ACTIVITY);
 			break;
 		case 1:
-			fragment = InformationReleaseFragment
+			fragment = InformationRelease
 					.newInstance(Constant.TYPE_BUSINESS);
 			break;
 		case 2:
-			fragment = InformationReleaseFragment
+			fragment = InformationRelease
 					.newInstance(Constant.TYPE_PERSONAL);
 			break;
 		default:

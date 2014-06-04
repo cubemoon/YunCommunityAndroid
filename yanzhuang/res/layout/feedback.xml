@@ -14,11 +14,12 @@
 
         <EditText
             android:id="@+id/feedback_content"
-            style="@style/form_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
             android:gravity="top"
             android:hint="输入反馈内容"
-            android:lines="4"
-            android:singleLine="false" />
+            android:lines="4" />
     </LinearLayout>
 
     <LinearLayout style="@style/single_view" >

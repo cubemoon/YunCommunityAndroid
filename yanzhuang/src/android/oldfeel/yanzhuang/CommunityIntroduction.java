@@ -38,7 +38,7 @@ public class CommunityIntroduction extends BaseActivity {
 
 	private void getData() {
 		NetUtil netUtil = new NetUtil(CommunityIntroduction.this,
-				JsonApi.INTRODUCTION);
+				JsonApi.COMMUNITY_INTRODUCTION);
 		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 		netUtil.postRequest("", new RequestStringListener() {
 

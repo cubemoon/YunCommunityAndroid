@@ -38,7 +38,7 @@ import android.widget.ImageView;
  * @author oldfeel
  * 
  */
-public class InformationReleaseFragment extends BaseFragment implements
+public class InformationRelease extends BaseFragment implements
 		OnClickListener {
 	private static final int REQUEST_CAPTURE_RECORDER_SOUND = 11;
 	private static final int REQUEST_CODE_TAKE_VIDEO = 12;
@@ -55,8 +55,8 @@ public class InformationReleaseFragment extends BaseFragment implements
 	private File protraitFile;
 	private Uri cropUri;
 
-	public static InformationReleaseFragment newInstance(int infotype) {
-		InformationReleaseFragment fragment = new InformationReleaseFragment();
+	public static InformationRelease newInstance(int infotype) {
+		InformationRelease fragment = new InformationRelease();
 		fragment.infotype = infotype;
 		return fragment;
 	}
@@ -334,20 +334,6 @@ public class InformationReleaseFragment extends BaseFragment implements
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setDataAndType(Uri.fromFile(new File(video)), "video/mp4");
 		startActivity(intent);
-	}
-
-	/**
-	 * 播放网络多媒体文件
-	 * 
-	 * @param url
-	 */
-	private void playNetMedia(String url) {
-		String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-		String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-				extension);
-		Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
-		mediaIntent.setDataAndType(Uri.parse(url), mimeType);
-		startActivity(mediaIntent);
 	}
 
 	/**
