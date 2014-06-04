@@ -8,6 +8,7 @@ import android.oldfeel.yanzhuang.item.UserItem;
 import android.oldfeel.yanzhuang.util.DesUtil;
 import android.oldfeel.yanzhuang.util.NetUtil;
 import android.oldfeel.yanzhuang.util.NetUtil.RequestStringListener;
+import android.oldfeel.yanzhuang.util.StringUtil;
 
 import com.google.gson.Gson;
 
@@ -63,8 +64,10 @@ public class PersonInfo {
 		netUtil.setParams("housenumber", personInfo.getHouseNumber());
 		netUtil.setParams("birthday", personInfo.getBirthday());
 		netUtil.setParams("permission", personInfo.getPermission());
-		netUtil.setParams("background", personInfo.getBackGround());
-		netUtil.setParams("avatar", personInfo.getAvatar());
+		netUtil.setParams("background",
+				StringUtil.getFileName(personInfo.getBackGround()));
+		netUtil.setParams("avatar",
+				StringUtil.getFileName(personInfo.getAvatar()));
 		netUtil.setParams("friendmsg", personInfo.getFriendmsg());
 		netUtil.setParams("activitymsg", personInfo.getActivitymsg());
 		netUtil.setParams("businessmsg", personInfo.getBusinesssmg());

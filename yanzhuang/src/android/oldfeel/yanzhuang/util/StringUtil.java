@@ -12,8 +12,6 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.oldfeel.yanzhuang.app.Constant;
-
 /**
  * 字符串操作工具包
  * 
@@ -377,17 +375,6 @@ public class StringUtil {
 	}
 
 	/**
-	 * 获取文件的网址
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public static String getFileUrl(String name) {
-		return "http://" + Constant.APP_NAME + ".oss-cn-hangzhou.aliyuncs.com/"
-				+ name;
-	}
-
-	/**
 	 * 获取时间戳
 	 * 
 	 * @return
@@ -395,5 +382,12 @@ public class StringUtil {
 	public static String getTimeStamp() {
 		return new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
 				.format(new Date());
+	}
+
+	public static String getFileName(String url) {
+		if (StringUtil.isEmpty(url) || !url.contains("/")) {
+			return "";
+		}
+		return url.substring(url.lastIndexOf("/") + 1);
 	}
 }

@@ -1,5 +1,7 @@
 package android.oldfeel.yanzhuang;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.adapter.DrawerListAdapter;
 import android.oldfeel.yanzhuang.app.Constant;
@@ -324,6 +326,21 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void releaseInformation() {
+		if (getUserid() == 0) {
+			new AlertDialog.Builder(MainActivity.this)
+					.setTitle("只有登录后才能发布信息")
+					.setPositiveButton("登录/注册",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									openActivity(LoginRegisterActivity.class);
+								}
+
+							}).setNegativeButton("取消", null).show();
+			return;
+		}
 		Intent intent = new Intent(MainActivity.this,
 				InformationReleaseActivity.class);
 		intent.putExtra("infotype", infotype);

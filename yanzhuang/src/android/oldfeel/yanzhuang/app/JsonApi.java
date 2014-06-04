@@ -65,4 +65,6 @@ public class JsonApi {
 	public static final String UPTOKEN = "uptoken";
 	/** 小区简介 */
 	public static final String COMMUNITY_INTRODUCTION = "community_introduction";
+	/** 编辑小区介绍 */
+	public static final String COMMUNITY_EDIT = "community_edit";
 }

@@ -81,6 +81,8 @@
         </activity>
         <activity android:name="android.oldfeel.yanzhuang.CommunityMap" >
         </activity>
+        <activity android:name="android.oldfeel.yanzhuang.CommunityEdit" >
+        </activity>
     </application>
 
 </manifest>

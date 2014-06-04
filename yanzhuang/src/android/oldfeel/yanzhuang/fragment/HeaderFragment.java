@@ -1,9 +1,6 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -138,10 +135,9 @@ public class HeaderFragment extends BaseFragment {
 			showToast("无法保存上传的头像，请检查SD卡是否挂载");
 			return null;
 		}
-		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss",
-				Locale.getDefault()).format(new Date());
+		String timeStamp = StringUtil.getTimeStamp();
 		// 照片命名
-		String cropFileName = "meow_" + timeStamp + ".jpg";
+		String cropFileName = "yanzhuang_" + timeStamp + ".jpg";
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -197,8 +193,7 @@ public class HeaderFragment extends BaseFragment {
 			showToast("无法保存上传的头像，请检查SD卡是否挂载");
 			return null;
 		}
-		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss",
-				Locale.getDefault()).format(new Date());
+		String timeStamp = StringUtil.getTimeStamp();
 		String thePath = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
 
 		// 如果是标准Uri

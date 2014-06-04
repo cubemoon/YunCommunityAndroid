@@ -1,5 +1,6 @@
 package android.oldfeel.yanzhuang;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
@@ -23,6 +24,7 @@ import com.google.gson.Gson;
  * 
  */
 public class CommunityIntroduction extends BaseActivity {
+	private static final int REQUEST_EDIT = 0;
 	private ImageView ivImage;
 	private TextView tvDesc;
 	private CommunityItem item;
@@ -99,7 +101,14 @@ public class CommunityIntroduction extends BaseActivity {
 	 * 编辑小区信息
 	 */
 	private void editCommunity() {
-		
+		if (item == null) {
+			showToast("小区信息加载失败,请确认网络连接正常后重试");
+			return;
+		}
+		Intent intent = new Intent(CommunityIntroduction.this,
+				CommunityEdit.class);
+		intent.putExtra("item", item);
+		startActivityForResult(intent, REQUEST_EDIT);
 	}
 
 	/**
@@ -128,5 +137,21 @@ public class CommunityIntroduction extends BaseActivity {
 				PersonHomeActivity.class);
 		intent.putExtra("targetid", this.item.getUserid());
 		startActivity(intent);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != Activity.RESULT_OK) {
+			return;
+		}
+		switch (requestCode) {
+		case REQUEST_EDIT:
+			getData();
+			break;
+
+		default:
+			break;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }
