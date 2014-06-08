@@ -46,7 +46,8 @@
             <EditText
                 android:id="@+id/release_address"
                 style="@style/form_right"
-                android:hint="输入详细地址" />
+                android:enabled="false"
+                android:hint="点击右侧图标选择地址" />
 
             <Button
                 android:id="@+id/release_map"

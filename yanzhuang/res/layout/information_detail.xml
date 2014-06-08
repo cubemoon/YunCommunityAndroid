@@ -69,11 +69,21 @@
             android:layout_height="wrap_content" >
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/information_detail_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="服务简介" />
+        <LinearLayout style="@style/single_view_nomargin" >
+
+            <TextView
+                android:id="@+id/information_detail_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="服务简介" />
+
+            <ImageButton
+                android:id="@+id/information_detail_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_map" />
+        </LinearLayout>
 
         <LinearLayout style="@style/single_view_nomargin" >
 

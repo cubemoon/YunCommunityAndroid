@@ -51,7 +51,7 @@ import com.google.gson.reflect.TypeToken;
 public class InformationDetail extends BaseActivity implements OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;
-	private ImageButton ibCall;
+	private ImageButton ibCall, ibMap;
 	private TextView tvTitle, tvTime, tvDesc, tvScoreCount;
 	private RatingBar rbScore;
 	private InformationItem item;
@@ -80,6 +80,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		btnFollowing.setOnClickListener(this);
 		btnEvaluation.setOnClickListener(this);
 		ibCall.setOnClickListener(this);
+		ibMap.setOnClickListener(this);
 	}
 
 	private void putDataToView() {
@@ -164,6 +165,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		btnFollowing = getButton(R.id.information_detail_following);
 		btnEvaluation = getButton(R.id.information_detail_evaluation);
 		ibCall = getImageButton(R.id.information_detail_call);
+		ibMap = getImageButton(R.id.information_detail_map);
 		tvTitle = getTextView(R.id.information_detail_title);
 		tvTime = getTextView(R.id.information_detail_time);
 		tvDesc = getTextView(R.id.information_detail_desc);
@@ -289,9 +291,16 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		case R.id.information_detail_evaluation:
 			evaluation();
 			break;
+		case R.id.information_detail_map:
+			showMap();
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void showMap() {
+		
 	}
 
 	/**

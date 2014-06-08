@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.SelectAddress;
 import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
@@ -27,7 +28,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,10 +38,10 @@ import android.widget.ImageView;
  * @author oldfeel
  * 
  */
-public class InformationRelease extends BaseFragment implements
-		OnClickListener {
+public class InformationRelease extends BaseFragment implements OnClickListener {
 	private static final int REQUEST_CAPTURE_RECORDER_SOUND = 11;
 	private static final int REQUEST_CODE_TAKE_VIDEO = 12;
+	private static final int REQUEST_SELECT_ADDRESS = 13;
 	private static final String JPG = ".jpg";
 	private static final String GPP = ".3gpp";
 	private static final String MP4 = ".mp4";
@@ -168,7 +168,7 @@ public class InformationRelease extends BaseFragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.release_map:
-			openMap();
+			selectAddress();
 			break;
 		case R.id.release_image:
 			image();
@@ -337,9 +337,11 @@ public class InformationRelease extends BaseFragment implements
 	}
 
 	/**
-	 * 打开地图
+	 * 打开地图,选择地址
 	 */
-	private void openMap() {
+	private void selectAddress() {
+		Intent intent = new Intent(getActivity(), SelectAddress.class);
+		startActivityForResult(intent, REQUEST_SELECT_ADDRESS);
 	}
 
 	@Override
@@ -364,6 +366,12 @@ public class InformationRelease extends BaseFragment implements
 		case REQUEST_CAPTURE_RECORDER_SOUND:
 			voice = getTempFile(GPP);
 			FileUtil.reNamePath(getPathByUri(data.getData()), voice);
+			break;
+		case REQUEST_SELECT_ADDRESS:
+			lon = data.getDoubleExtra("lon", 0);
+			lat = data.getDoubleExtra("lat", 0);
+			etAddress.setText(data.getStringExtra("address"));
+			etAddress.setEnabled(true);
 			break;
 		default:
 			break;

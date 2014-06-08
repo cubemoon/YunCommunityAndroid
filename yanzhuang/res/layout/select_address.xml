@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapsView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+
+    <LinearLayout
+        style="@style/single_view"
+        android:background="@color/gray" >
+
+        <EditText
+            android:id="@+id/select_address_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="地址" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/select_address_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="104dp"
+        android:text="右" />
+
+    <Button
+        android:id="@+id/select_address_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/select_address_left"
+        android:layout_marginRight="46dp"
+        android:text="下" />
+
+    <Button
+        android:id="@+id/select_address_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/select_address_right"
+        android:layout_alignLeft="@+id/select_address_down"
+        android:text="上" />
+
+    <Button
+        android:id="@+id/select_address_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/select_address_right"
+        android:layout_alignBottom="@+id/select_address_right"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@+id/select_address_right"
+        android:text="左" />
+
+</RelativeLayout>

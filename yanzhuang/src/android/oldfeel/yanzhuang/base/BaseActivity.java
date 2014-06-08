@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 import android.widget.ZoomControls;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -46,6 +47,7 @@ public abstract class BaseActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SDKInitializer.initialize(getApplicationContext());
 		try {
 			ViewConfiguration mconfig = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
