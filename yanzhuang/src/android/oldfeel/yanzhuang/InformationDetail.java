@@ -300,7 +300,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void showMap() {
-		
+		Intent intent = new Intent(InformationDetail.this, InformationMap.class);
+		intent.putExtra("item", item);
+		startActivity(intent);
 	}
 
 	/**

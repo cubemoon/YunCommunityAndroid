@@ -16,6 +16,15 @@ public class CommunityItem extends BaseItem {
 	private String image;
 	private String description;
 	private String time;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public long getCommunityid() {
 		return communityid;
