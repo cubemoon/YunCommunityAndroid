@@ -48,4 +48,19 @@ android {
     lintOptions {
         abortOnError false
     }
+    
+    signingConfigs {
+        myConfig {
+            storeFile file("key")
+            storePassword "yuncommunity"
+            keyAlias "yuncommunity"
+            keyPassword "yuncommunity"
+        }
+    }
+        
+    buildTypes{
+        release {
+            signingConfig  signingConfigs.myConfig
+        } 
+    }
 }
