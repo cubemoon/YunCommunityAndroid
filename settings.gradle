@@ -1,0 +1,7 @@
+include ':yanzhuang'
+include ':extra_actionbarcompat'
+include ':libiary_smoothprogressbar'
+include ':library_swipebacklayout'
+include ':library_actionbar'
+include ':library-preferencefragment'
+include ':library_actionbar_pulltorefresh'

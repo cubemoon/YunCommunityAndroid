@@ -2,7 +2,6 @@ apply plugin: 'android-library'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':library_actionbar_pulltorefresh')
     compile project(':library_actionbar')
 }
 
