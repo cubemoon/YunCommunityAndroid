@@ -3,22 +3,4 @@
 
     <string name="app_name">燕庄新区</string>
 
-    <string name="feedback_anonymous">感谢您的反馈,我们不会打扰您</string>
-
-    <string name="feedback_not_anonymous">感谢您的反馈,我们可能会通过您填写的联系方式向您咨询</string>
-
-    <string name="about">about</string>
-
-    <string name="check_version">check_version</string>
-
-    <string name="wifi_update">wifi_update</string>
-
-    <string name="search_history">search_history</string>
-
-    <string name="business_msg">business_msg</string>
-
-    <string name="activity_msg">activity_msg</string>
-
-    <string name="friend_msg">friend_msg</string>
-
 </resources>
