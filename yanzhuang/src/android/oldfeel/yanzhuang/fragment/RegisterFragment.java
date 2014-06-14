@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.oldfeel.yanzhuang.ForgetPassword;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.JsonApi;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
@@ -162,6 +163,7 @@ public class RegisterFragment extends BaseFragment {
 			netUtil = new NetUtil(getActivity(), JsonApi.REGISTER);
 			netUtil.setParams("email", mEmail);
 			netUtil.setParams("password", mPassword);
+			netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 			netUtil.postRequest("", new RequestStringListener() {
 
 				@Override
