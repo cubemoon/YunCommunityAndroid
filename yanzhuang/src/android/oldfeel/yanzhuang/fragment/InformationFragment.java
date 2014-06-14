@@ -1,7 +1,7 @@
 package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.util.NetUtil;
@@ -39,7 +39,7 @@ public class InformationFragment extends BaseFragment {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_LIST);
+		NetUtil netUtil = new NetUtil(getActivity(), Api.INFORMATION_LIST);
 		netUtil.setParams("infotype", infotype);
 		return netUtil;
 	}

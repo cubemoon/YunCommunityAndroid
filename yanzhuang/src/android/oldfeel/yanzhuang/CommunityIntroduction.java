@@ -3,7 +3,7 @@ package android.oldfeel.yanzhuang;
 import android.app.Activity;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.item.CommunityItem;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -40,7 +40,7 @@ public class CommunityIntroduction extends BaseActivity {
 
 	private void getData() {
 		NetUtil netUtil = new NetUtil(CommunityIntroduction.this,
-				JsonApi.COMMUNITY_INTRODUCTION);
+				Api.COMMUNITY_INTRODUCTION);
 		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 		netUtil.postRequest("", new RequestStringListener() {
 

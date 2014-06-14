@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.HeaderFragment;
@@ -105,7 +105,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void initInformation() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
-				JsonApi.USER_INFORMATION_LIST);
+				Api.USER_INFORMATION_LIST);
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
 				.newInstance(netUtil);
@@ -118,7 +118,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void getPersonInfo() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
-				JsonApi.USER_INFO);
+				Api.USER_INFO);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -357,7 +357,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 			isFollowing = true;
 		}
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
-				JsonApi.USER_FOLLOWING);
+				Api.USER_FOLLOWING);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		netUtil.setParams("isfollowingid", isFollowing);
@@ -376,7 +376,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void showFollowings() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
 		intent.putExtra("targetid", targetid);
-		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
+		intent.putExtra("api", Api.USER_FOLLOWINGS);
 		startActivity(intent);
 	}
 
@@ -396,7 +396,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void showFans() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
 		intent.putExtra("targetid", targetid);
-		intent.putExtra("api", JsonApi.USER_FANS);
+		intent.putExtra("api", Api.USER_FANS);
 		startActivity(intent);
 	}
 
@@ -448,7 +448,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				+ System.currentTimeMillis() + "-" + getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, Api.UPTOKEN);
 		netUtil.postRequest("正在上传...", new RequestStringListener() {
 
 			@Override

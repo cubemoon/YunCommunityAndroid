@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.oldfeel.yanzhuang.ForgetPassword;
 import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -157,7 +157,7 @@ public class LoginFragment extends BaseFragment {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			netUtil = new NetUtil(getActivity(), JsonApi.LOGIN);
+			netUtil = new NetUtil(getActivity(), Api.LOGIN);
 			netUtil.setParams("email", mEmail);
 			netUtil.setParams("password", mPassword);
 			netUtil.postRequest("", new RequestStringListener() {

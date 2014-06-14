@@ -4,7 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
+import android.oldfeel.yanzhuang.app.Constant;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.util.DialogUtil;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -95,7 +96,8 @@ public class MySettingsFragment extends PreferenceFragment {
 	 * 检查版本
 	 */
 	protected void checkVersion() {
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.CHECK_VERSION);
+		NetUtil netUtil = new NetUtil(getActivity(), Api.CHECK_VERSION);
+		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 		netUtil.postRequest("正在检查版本", new RequestStringListener() {
 
 			@Override

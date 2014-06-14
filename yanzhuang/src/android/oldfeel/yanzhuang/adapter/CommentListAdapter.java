@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
@@ -105,7 +105,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	 */
 	protected void opposition(CommentItem item, boolean isOpposition) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				JsonApi.COMMENT_OPPOSITION);
+				Api.COMMENT_OPPOSITION);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isopposition", isOpposition);
@@ -126,7 +126,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	 */
 	protected void approval(CommentItem item, boolean isapproval) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				JsonApi.COMMENT_APPROVAL);
+				Api.COMMENT_APPROVAL);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isapproval", isapproval);

@@ -6,7 +6,7 @@ package android.oldfeel.yanzhuang.app;
  * @author oldfeel
  * 
  */
-public class JsonApi {
+public class Api {
 	/** 登录 */
 	public static final String LOGIN = "login";
 	/** 注册 */

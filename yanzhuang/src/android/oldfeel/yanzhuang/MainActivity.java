@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.oldfeel.yanzhuang.adapter.DrawerListAdapter;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.AttentionFragment;
@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity {
 				.getEmail();
 		String password = PersonInfo.getInstance(getApplicationContext())
 				.getPassword();
-		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
+		NetUtil netUtil = new NetUtil(MainActivity.this, Api.LOGIN);
 		netUtil.setParams("email", email);
 		netUtil.setParams("password", password);
 		netUtil.postRequest("", new RequestStringListener() {

@@ -1,6 +1,6 @@
 package android.oldfeel.yanzhuang;
 
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.ChatListFragment;
 import android.oldfeel.yanzhuang.util.NetUtil;
@@ -25,7 +25,7 @@ public class ChatActivity extends BaseActivity {
 
 	private NetUtil getNetUtil() {
 		long targetid = getIntent().getLongExtra("targetid", -1);
-		NetUtil netUtil = new NetUtil(ChatActivity.this, JsonApi.CHAT_HISTORY);
+		NetUtil netUtil = new NetUtil(ChatActivity.this, Api.CHAT_HISTORY);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		return netUtil;

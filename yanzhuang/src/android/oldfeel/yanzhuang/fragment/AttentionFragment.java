@@ -2,7 +2,7 @@ package android.oldfeel.yanzhuang.fragment;
 
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.base.BaseFragment;
@@ -53,7 +53,7 @@ public class AttentionFragment extends BaseFragment {
 
 	private Fragment getInformationList(int infotype) {
 		NetUtil netUtil = new NetUtil(getActivity(),
-				JsonApi.USER_INFORMATION_LIST);
+				Api.USER_INFORMATION_LIST);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
 		netUtil.setParams("infotype", infotype);
@@ -62,7 +62,7 @@ public class AttentionFragment extends BaseFragment {
 
 	private NetUtil getFriendNetUtil() {
 		NetUtil netUtil = new NetUtil(getActivity(),
-				JsonApi.USER_FRIEND_DYNAMIC);
+				Api.USER_FRIEND_DYNAMIC);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
 		return netUtil;

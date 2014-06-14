@@ -1,6 +1,6 @@
 package android.oldfeel.yanzhuang;
 
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.InformationListFragment;
 import android.oldfeel.yanzhuang.util.NetUtil;
@@ -27,7 +27,7 @@ public class UserReleaseList extends BaseActivity {
 	private NetUtil getNetUtil() {
 		long userid = getIntent().getLongExtra("userid", -1);
 		NetUtil netUtil = new NetUtil(UserReleaseList.this,
-				JsonApi.USER_RELEASE_LIST);
+				Api.USER_RELEASE_LIST);
 		netUtil.setParams("userid", userid);
 		return netUtil;
 	}

@@ -7,7 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
 import android.oldfeel.yanzhuang.item.ProductItem;
 import android.oldfeel.yanzhuang.util.DialogUtil;
@@ -73,7 +73,7 @@ public class ProductListAdapter extends BaseBaseAdapter<ProductItem> {
 
 	protected void delete(final ProductItem item) {
 		NetUtil netUtil = new NetUtil((Activity) context,
-				JsonApi.PRODUCT_DELETE);
+				Api.PRODUCT_DELETE);
 		netUtil.setParams("userid", super.getUserid());
 		netUtil.setParams("productid", item.getProductid());
 		netUtil.postRequest("正在删除", new RequestStringListener() {

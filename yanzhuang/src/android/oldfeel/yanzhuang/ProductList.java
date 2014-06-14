@@ -2,7 +2,7 @@ package android.oldfeel.yanzhuang;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.fragment.list.ProductListFragment;
 import android.oldfeel.yanzhuang.item.InformationItem;
@@ -41,7 +41,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_LIST);
+		NetUtil netUtil = new NetUtil(ProductList.this, Api.PRODUCT_LIST);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		return netUtil;
@@ -89,7 +89,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	protected void submitAdd(EditText etName, EditText etDesc) {
-		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_ADD);
+		NetUtil netUtil = new NetUtil(ProductList.this, Api.PRODUCT_ADD);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("name", getString(etName));
 		netUtil.setParams("description", getString(etDesc));

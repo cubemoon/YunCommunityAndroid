@@ -56,7 +56,7 @@ public class PersonInfo {
 	public static void update(Activity activity, String text,
 			RequestStringListener stringListener) {
 		PersonInfo personInfo = PersonInfo.getInstance(activity);
-		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
+		NetUtil netUtil = new NetUtil(activity, Api.UPDATE_USER_INFO);
 		netUtil.setParams("userid", personInfo.getUserid());
 		netUtil.setParams("name", personInfo.getName());
 		netUtil.setParams("password", personInfo.getPassword());

@@ -2,7 +2,7 @@ package android.oldfeel.yanzhuang;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.util.DialogUtil;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -76,7 +76,7 @@ public class FeedbackActivity extends BaseActivity {
 			etContent.setError("必填");
 			return;
 		}
-		NetUtil netUtil = new NetUtil(FeedbackActivity.this, JsonApi.FEEDBACK);
+		NetUtil netUtil = new NetUtil(FeedbackActivity.this, Api.FEEDBACK);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("content", getString(etContent));
 		netUtil.setParams("anonymous", cbIsAnonymous.isChecked());

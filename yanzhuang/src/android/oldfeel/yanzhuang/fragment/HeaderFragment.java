@@ -10,7 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.FileUtil;
@@ -227,7 +227,7 @@ public class HeaderFragment extends BaseFragment {
 				+ PersonInfo.getInstance(getActivity()).getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(getActivity(), Api.UPTOKEN);
 		netUtil.postRequest("正在上传...", new RequestStringListener() {
 
 			@Override

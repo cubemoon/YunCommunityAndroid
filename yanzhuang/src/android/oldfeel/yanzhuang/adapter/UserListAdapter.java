@@ -6,7 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.oldfeel.yanzhuang.R;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.base.BaseBaseAdapter;
@@ -114,7 +114,7 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 	private void following(UserItem item, Button btnFollowing,
 			boolean isFollowing) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				JsonApi.USER_FOLLOWING);
+				Api.USER_FOLLOWING);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("targetid", item.getUserid());
 		netUtil.setParams("isfollowing", isFollowing);

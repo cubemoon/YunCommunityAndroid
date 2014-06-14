@@ -11,7 +11,7 @@ import android.oldfeel.yanzhuang.MainActivity;
 import android.oldfeel.yanzhuang.R;
 import android.oldfeel.yanzhuang.SelectAddress;
 import android.oldfeel.yanzhuang.app.Constant;
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.app.PersonInfo;
 import android.oldfeel.yanzhuang.base.BaseFragment;
 import android.oldfeel.yanzhuang.util.ETUtil;
@@ -96,7 +96,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 			getUptoken();
 		}
 		NetUtil netUtil = new NetUtil(getActivity(),
-				JsonApi.INFORMATION_RELEASE);
+				Api.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
@@ -130,7 +130,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 	}
 
 	private void getUptoken() {
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(getActivity(), Api.UPTOKEN);
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override

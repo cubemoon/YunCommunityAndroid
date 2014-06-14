@@ -1,6 +1,6 @@
 package android.oldfeel.yanzhuang;
 
-import android.oldfeel.yanzhuang.app.JsonApi;
+import android.oldfeel.yanzhuang.app.Api;
 import android.oldfeel.yanzhuang.base.BaseActivity;
 import android.oldfeel.yanzhuang.item.CommunityItem;
 import android.oldfeel.yanzhuang.util.JSONUtil;
@@ -61,7 +61,7 @@ public class CommunityEdit extends BaseActivity {
 	 */
 	private void complete() {
 		NetUtil netUtil = new NetUtil(CommunityEdit.this,
-				JsonApi.COMMUNITY_EDIT);
+				Api.COMMUNITY_EDIT);
 		netUtil.setParams("communityid", item.getCommunityid());
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("image", StringUtil.getFileName(item.getImage()));
