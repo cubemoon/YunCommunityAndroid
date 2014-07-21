@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuncommunity"
+    android:versionCode="1"
+    android:versionName="1.0.1" >
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
+    </uses-permission>
+
+    <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
+    </permission>
+
+    <application
+        android:name="com.yuncommunity.app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.yuncommunity.WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yuncommunity.LoginRegisterActivity"
+            android:label="@string/action_sign_in_short"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.yuncommunity.MainActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.yuncommunity.CollapseActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.ForgetPassword" >
+        </activity>
+        <activity android:name="com.yuncommunity.InformationReleaseActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.SearchActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.PersonHomeActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.FeedbackActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.MySettingsActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.InformationDetail" >
+        </activity>
+        <activity android:name="com.yuncommunity.ChatActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.UserReleaseList" >
+        </activity>
+        <activity android:name="com.yuncommunity.UserList" >
+        </activity>
+        <activity android:name="com.yuncommunity.EditPersonInfo" >
+        </activity>
+        <activity android:name="com.yuncommunity.ChangePassword" >
+        </activity>
+        <activity android:name="com.yuncommunity.ProductList" >
+        </activity>
+        <activity android:name="com.yuncommunity.CommunityIntroduction" >
+        </activity>
+        <activity android:name="com.yuncommunity.CommunityMap" >
+        </activity>
+        <activity android:name="com.yuncommunity.CommunityEdit" >
+        </activity>
+        <activity android:name="com.yuncommunity.SelectAddress" >
+        </activity>
+        <activity android:name="com.yuncommunity.InformationMap" >
+        </activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="F6j64Qn5NZ9UPGpGfdbKyycA" >
+        </meta-data>
+    </application>
+
+</manifest>

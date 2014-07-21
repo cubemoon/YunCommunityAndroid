@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="single_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="single_view_nomargin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="form_right">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="form_left">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="form_left_et">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="form_right_ib">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="media">
+        <item name="android:layout_width">83dp</item>
+        <item name="android:layout_height">83dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+</resources>
