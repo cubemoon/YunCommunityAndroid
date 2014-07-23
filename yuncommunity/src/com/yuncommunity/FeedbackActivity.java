@@ -11,7 +11,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.JSONUtil;
@@ -77,7 +77,7 @@ public class FeedbackActivity extends BaseActivity {
 			etContent.setError("必填");
 			return;
 		}
-		NetUtil netUtil = new NetUtil(FeedbackActivity.this, Api.FEEDBACK);
+		NetUtil netUtil = new NetUtil(FeedbackActivity.this, JsonApi.FEEDBACK);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("content", getString(etContent));
 		netUtil.setParams("anonymous", cbIsAnonymous.isChecked());

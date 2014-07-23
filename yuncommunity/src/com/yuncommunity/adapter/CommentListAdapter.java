@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.base.BaseBaseAdapter;
@@ -105,7 +105,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	 */
 	protected void opposition(CommentItem item, boolean isOpposition) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				Api.COMMENT_OPPOSITION);
+				JsonApi.COMMENT_OPPOSITION);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isopposition", isOpposition);
@@ -126,7 +126,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	 */
 	protected void approval(CommentItem item, boolean isapproval) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				Api.COMMENT_APPROVAL);
+				JsonApi.COMMENT_APPROVAL);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isapproval", isapproval);

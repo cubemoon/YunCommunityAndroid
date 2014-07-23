@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.item.CommunityItem;
@@ -40,7 +40,7 @@ public class CommunityIntroduction extends BaseActivity {
 
 	private void getData() {
 		NetUtil netUtil = new NetUtil(CommunityIntroduction.this,
-				Api.COMMUNITY_INTRODUCTION);
+				JsonApi.COMMUNITY_INTRODUCTION);
 		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 		netUtil.postRequest("", new RequestStringListener() {
 

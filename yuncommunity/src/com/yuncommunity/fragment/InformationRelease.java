@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
 import com.yuncommunity.SelectAddress;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseFragment;
@@ -96,7 +96,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		if (image != null || voice != null || video != null) {
 			getUptoken();
 		}
-		NetUtil netUtil = new NetUtil(getActivity(), Api.INFORMATION_RELEASE);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
 				.getUserid());
@@ -130,7 +130,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 	}
 
 	private void getUptoken() {
-		NetUtil netUtil = new NetUtil(getActivity(), Api.UPTOKEN);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override

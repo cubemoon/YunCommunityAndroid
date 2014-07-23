@@ -25,13 +25,13 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.HeaderFragment;
-import com.yuncommunity.fragment.list.InformationListFragment;
 import com.yuncommunity.item.UserItem;
+import com.yuncommunity.list.InformationListFragment;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.FileUtil;
 import com.yuncommunity.util.ImageUtil;
@@ -105,7 +105,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void initInformation() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
-				Api.USER_INFORMATION_LIST);
+				JsonApi.USER_INFORMATION_LIST);
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
 				.newInstance(netUtil);
@@ -117,7 +117,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 获取个人信息
 	 */
 	private void getPersonInfo() {
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, Api.USER_INFO);
+		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.USER_INFO);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -356,7 +356,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 			isFollowing = true;
 		}
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
-				Api.USER_FOLLOWING);
+				JsonApi.USER_FOLLOWING);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		netUtil.setParams("isfollowingid", isFollowing);
@@ -375,7 +375,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void showFollowings() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
 		intent.putExtra("targetid", targetid);
-		intent.putExtra("api", Api.USER_FOLLOWINGS);
+		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
 		startActivity(intent);
 	}
 
@@ -395,7 +395,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void showFans() {
 		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
 		intent.putExtra("targetid", targetid);
-		intent.putExtra("api", Api.USER_FANS);
+		intent.putExtra("api", JsonApi.USER_FANS);
 		startActivity(intent);
 	}
 
@@ -447,7 +447,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				+ System.currentTimeMillis() + "-" + getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, Api.UPTOKEN);
+		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);
 		netUtil.postRequest("正在上传...", new RequestStringListener() {
 
 			@Override

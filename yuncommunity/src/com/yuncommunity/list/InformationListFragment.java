@@ -1,4 +1,4 @@
-package com.yuncommunity.fragment.list;
+package com.yuncommunity.list;
 
 import com.yuncommunity.InformationDetail;
 import com.yuncommunity.adapter.InformationListAdapter;

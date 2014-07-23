@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.adapter.DrawerListAdapter;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseActivity;
@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity {
 				.getEmail();
 		String password = PersonInfo.getInstance(getApplicationContext())
 				.getPassword();
-		NetUtil netUtil = new NetUtil(MainActivity.this, Api.LOGIN);
+		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("email", email);
 		netUtil.setParams("password", password);
 		netUtil.postRequest("", new RequestStringListener() {

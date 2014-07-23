@@ -6,7 +6,7 @@ package com.yuncommunity.app;
  * @author oldfeel
  * 
  */
-public class Api {
+public class JsonApi {
 	/** 登录 */
 	public static final String LOGIN = "login";
 	/** 注册 */

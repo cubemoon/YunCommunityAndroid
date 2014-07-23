@@ -25,15 +25,15 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.InformationMedia;
-import com.yuncommunity.fragment.list.CommentListFragment;
 import com.yuncommunity.item.CommentItem;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
+import com.yuncommunity.list.CommentListFragment;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.ETUtil;
 import com.yuncommunity.util.JSONUtil;
@@ -103,7 +103,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private NetUtil getCommentListNetUtil() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				Api.INFORMATION_COMMENTLIST);
+				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("userid", getUserid());
 		return netUtil;
@@ -111,7 +111,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void getDetail() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				Api.INFORMATION_DETAIL);
+				JsonApi.INFORMATION_DETAIL);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
@@ -236,7 +236,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void seeFollowers() {
 		Intent intent = new Intent(InformationDetail.this, UserList.class);
-		intent.putExtra("api", Api.INFORMATION_FOLLOWERS);
+		intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
 		intent.putExtra("informationid", item.getInformationid());
 		startActivity(intent);
 	}
@@ -265,7 +265,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	protected void report(String string) {
-		NetUtil netUtil = new NetUtil(InformationDetail.this, Api.REPORT);
+		NetUtil netUtil = new NetUtil(InformationDetail.this, JsonApi.REPORT);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", string);
@@ -356,7 +356,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	protected void submitEvaluation(RatingBar rbEvaluationScore,
 			EditText etEvaluationTag, EditText etEvaluationContent) {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				Api.INFORMATION_COMMENT);
+				JsonApi.INFORMATION_COMMENT);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
@@ -380,7 +380,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	protected void deleteEvaluation() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				Api.INFORMATION_COMMENTDELETE);
+				JsonApi.INFORMATION_COMMENTDELETE);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", myComment.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
@@ -406,7 +406,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		}
 		supportInvalidateOptionsMenu();
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				Api.INFORMATION_FOLLOWING);
+				JsonApi.INFORMATION_FOLLOWING);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("isfollowing", isFollowing);

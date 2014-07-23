@@ -13,7 +13,7 @@ import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.util.DialogUtil;
@@ -97,7 +97,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	 * 检查版本
 	 */
 	protected void checkVersion() {
-		NetUtil netUtil = new NetUtil(getActivity(), Api.CHECK_VERSION);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.CHECK_VERSION);
 		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
 		netUtil.postRequest("正在检查版本", new RequestStringListener() {
 

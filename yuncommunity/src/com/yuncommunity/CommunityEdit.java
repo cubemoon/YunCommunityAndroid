@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.util.JSONUtil;
@@ -61,7 +61,7 @@ public class CommunityEdit extends BaseActivity {
 	 * 完成编辑
 	 */
 	private void complete() {
-		NetUtil netUtil = new NetUtil(CommunityEdit.this, Api.COMMUNITY_EDIT);
+		NetUtil netUtil = new NetUtil(CommunityEdit.this, JsonApi.COMMUNITY_EDIT);
 		netUtil.setParams("communityid", item.getCommunityid());
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("image", StringUtil.getFileName(item.getImage()));

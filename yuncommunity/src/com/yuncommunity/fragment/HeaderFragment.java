@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseFragment;
@@ -227,7 +227,7 @@ public class HeaderFragment extends BaseFragment {
 				+ PersonInfo.getInstance(getActivity()).getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(getActivity(), Api.UPTOKEN);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
 		netUtil.postRequest("正在上传...", new RequestStringListener() {
 
 			@Override

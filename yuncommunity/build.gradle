@@ -2,25 +2,12 @@ apply plugin: 'android'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':extra_actionbarcompat')
     compile project(':library_actionbar')
-    compile project(':libiary_smoothprogressbar')
     compile project(':library_actionbar_pulltorefresh')
     compile project(':library_swipebacklayout')
     compile project(':library-preferencefragment')
-}
-
-task copyNativeLibs(type: Copy) {
-    from fileTree(dir: 'libs', include: 'armeabi/*.so' )  into  'build/lib'
-}
-tasks.withType(Compile) {
-    compileTask -> compileTask.dependsOn copyNativeLibs
-}
-
-clean.dependsOn 'cleanCopyNativeLibs'
-
-tasks.withType(com.android.build.gradle.tasks.PackageApplication) { pkgTask ->
-    pkgTask.jniFolders = [new File(buildDir, 'lib')]
+    compile project(':library_extra_actionbarcompat')
+    compile project(':library_smoothprogressbar')
 }
 
 android {
@@ -47,33 +34,12 @@ android {
         instrumentTest.setRoot('tests')
 
         // Move the build types to build-types/<type>
-        // For instance, build-types/debug/java,
-		// build-types/debug/AndroidManifest.xml, ...
-        // This moves them out of them default location under src/<type>/...
-		// which would
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
         // conflict with src/ being used by the main source set.
         // Adding new build types or product flavors should be accompanied
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
-    }
-    
-    lintOptions {
-        abortOnError false
-    }
-    
-    signingConfigs {
-        myConfig {
-            storeFile file("key")
-            storePassword "yuncommunity"
-            keyAlias "yuncommunity"
-            keyPassword "yuncommunity"
-        }
-    }
-        
-    buildTypes{
-        release {
-            signingConfig  signingConfigs.myConfig
-        } 
     }
 }

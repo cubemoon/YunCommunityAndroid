@@ -1,4 +1,4 @@
-package com.yuncommunity.fragment.list;
+package com.yuncommunity.list;
 
 import com.yuncommunity.adapter.CommentListAdapter;
 import com.yuncommunity.base.BaseListFragment;

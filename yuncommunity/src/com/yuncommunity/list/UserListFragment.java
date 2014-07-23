@@ -1,4 +1,4 @@
-package com.yuncommunity.fragment.list;
+package com.yuncommunity.list;
 
 import com.yuncommunity.PersonHomeActivity;
 import com.yuncommunity.adapter.UserListAdapter;

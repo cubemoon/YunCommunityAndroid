@@ -2,9 +2,9 @@ package com.yuncommunity;
 
 import android.os.Bundle;
 
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.fragment.list.UserListFragment;
+import com.yuncommunity.list.UserListFragment;
 import com.yuncommunity.util.NetUtil;
 
 /**
@@ -28,10 +28,10 @@ public class UserList extends BaseActivity {
 		String api = getIntent().getStringExtra("api");
 		NetUtil netUtil = new NetUtil(UserList.this, api);
 		netUtil.setParams("userid", getUserid());
-		if (api.equals(Api.INFORMATION_FOLLOWERS)) {
+		if (api.equals(JsonApi.INFORMATION_FOLLOWERS)) {
 			long informationid = getIntent().getLongExtra("informationid", -1);
 			netUtil.setParams("informationid", informationid);
-		} else if (api.equals(Api.USER_FOLLOWINGS) || api.equals(Api.USER_FANS)) {
+		} else if (api.equals(JsonApi.USER_FOLLOWINGS) || api.equals(JsonApi.USER_FANS)) {
 			long targetid = getIntent().getLongExtra("targetid", -1);
 			netUtil.setParams("targetid", targetid);
 		}

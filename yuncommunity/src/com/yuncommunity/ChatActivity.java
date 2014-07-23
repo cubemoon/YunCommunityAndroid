@@ -2,9 +2,9 @@ package com.yuncommunity;
 
 import android.os.Bundle;
 
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.fragment.list.ChatListFragment;
+import com.yuncommunity.list.ChatListFragment;
 import com.yuncommunity.util.NetUtil;
 
 /**
@@ -26,7 +26,7 @@ public class ChatActivity extends BaseActivity {
 
 	private NetUtil getNetUtil() {
 		long targetid = getIntent().getLongExtra("targetid", -1);
-		NetUtil netUtil = new NetUtil(ChatActivity.this, Api.CHAT_HISTORY);
+		NetUtil netUtil = new NetUtil(ChatActivity.this, JsonApi.CHAT_HISTORY);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		return netUtil;

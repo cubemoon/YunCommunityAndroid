@@ -1,20 +1,21 @@
-package com.yuncommunity.fragment.list;
+package com.yuncommunity.list;
 
+import com.yuncommunity.adapter.FriendDynamicListAdapter;
 import com.yuncommunity.base.BaseListFragment;
 import com.yuncommunity.util.NetUtil;
 
 import android.support.v4.app.Fragment;
 
 /**
- * 聊天界面
+ * 朋友的动态信息
  * 
  * @author oldfeel
  * 
  */
-public class ChatListFragment extends BaseListFragment {
+public class FriendDynamicList extends BaseListFragment {
 
 	public static Fragment newInstance(NetUtil netUtil) {
-		ChatListFragment fragment = new ChatListFragment();
+		FriendDynamicList fragment = new FriendDynamicList();
 		fragment.netUtil = netUtil;
 		return fragment;
 	}
@@ -25,6 +26,7 @@ public class ChatListFragment extends BaseListFragment {
 
 	@Override
 	public void initAdapter() {
+		adapter = new FriendDynamicListAdapter(getActivity());
 	}
 
 }

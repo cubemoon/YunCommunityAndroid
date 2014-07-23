@@ -11,11 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.fragment.list.ProductListFragment;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.ProductItem;
+import com.yuncommunity.list.ProductListFragment;
 import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
@@ -41,7 +41,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(ProductList.this, Api.PRODUCT_LIST);
+		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_LIST);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		return netUtil;
@@ -89,7 +89,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	protected void submitAdd(EditText etName, EditText etDesc) {
-		NetUtil netUtil = new NetUtil(ProductList.this, Api.PRODUCT_ADD);
+		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_ADD);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("name", getString(etName));
 		netUtil.setParams("description", getString(etDesc));

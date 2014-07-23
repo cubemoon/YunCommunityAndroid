@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.yuncommunity.ForgetPassword;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.util.JSONUtil;
@@ -158,7 +158,7 @@ public class LoginFragment extends BaseFragment {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
-			netUtil = new NetUtil(getActivity(), Api.LOGIN);
+			netUtil = new NetUtil(getActivity(), JsonApi.LOGIN);
 			netUtil.setParams("email", mEmail);
 			netUtil.setParams("password", mPassword);
 			netUtil.postRequest("", new RequestStringListener() {

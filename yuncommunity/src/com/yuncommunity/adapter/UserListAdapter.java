@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.PersonInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.base.BaseBaseAdapter;
@@ -114,7 +114,7 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 	private void following(UserItem item, Button btnFollowing,
 			boolean isFollowing) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
-				Api.USER_FOLLOWING);
+				JsonApi.USER_FOLLOWING);
 		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
 		netUtil.setParams("targetid", item.getUserid());
 		netUtil.setParams("isfollowing", isFollowing);

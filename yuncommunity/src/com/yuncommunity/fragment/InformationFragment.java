@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yuncommunity.R;
-import com.yuncommunity.app.Api;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseFragment;
-import com.yuncommunity.fragment.list.InformationListFragment;
+import com.yuncommunity.list.InformationListFragment;
 import com.yuncommunity.util.NetUtil;
 
 /**
@@ -40,7 +40,7 @@ public class InformationFragment extends BaseFragment {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(getActivity(), Api.INFORMATION_LIST);
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_LIST);
 		netUtil.setParams("infotype", infotype);
 		return netUtil;
 	}
