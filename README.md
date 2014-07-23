@@ -1,3 +1,285 @@
-#云社区
+云社区 android 客户端
+=====================
+
+## 简介 ##
 
 创建一个共用的数据库,让小区周围的所有商家都可以在此基础上提供特色服务.达到-->小区周边的所有线下交易可以在线上管理.
+
+[目录](#目录)
+
+## 修改记录 ##
+
+## 目录 ##
+
+[TOC]
+
+## 编码规范 ##
+
+  - 所有类名/变量名不能用中文拼音
+  - 资源文件id用小写英文字母表示,多个单词用\_分割,例如 home_search
+  - 变量/方法命名规则符合驼峰命名法,首字母小写,后续单词首字母大写,例如homeSearch
+  - view变量名以view单词首字母缩写开头,功能名做后缀,例如ivSearch(是个ImageView),lvQuestion(是个ListView)
+  - activity首字母大写,后面符合驼峰命名法.
+  - 每个类要添加注释,简单介绍下这个类的作用.
+  - *.xml图片要让如/res/drawable文件夹下.
+
+## 项目包结构 ##
+
+  - com.yuncommunity
+    - 应用的包名,activity都放在这个位置.
+  - com.yuncommunity.adapter
+    - 列表适配器
+  - com.yuncommunity.app
+    - 应用的配置及管理文件
+  - com.yuncommunity.base
+    - 封装的一些基类
+  - com.yuncommunity.db
+    - 数据库帮助类
+  - com.yuncommunity.fragment
+    - fragment
+  - com.yuncommunity.item
+    - 列表中的item对象
+  - com.yuncommunity.list
+    - 列表
+  - com.yuncommunity.receiver
+    - 广播接收器
+  - com.yuncommunity.service
+    - 应用后台运行的service
+  - com.yuncommunity.util
+    - 用来的一些工具类
+  - com.yuncommunity.view
+    - 自定义的view
+
+## 接口规范 ##
+
+  - 成功时返回result:true和data:{}或者data:[]
+    {
+    "result": true, 
+    "data": { }
+    }
+    {
+    "result": true, 
+    "data": [ ]
+    }
+  - 失败时返回result:false和message:(错误原因)
+    {
+    "result": false, 
+    "message": "帐号或密码错误"
+    }
+
+
+### 登录 ###
+
+  - 请求方法    login
+  - 发送参数
+    - email                         用户邮箱
+    - password                      用户密码
+  - 返回结果
+
+### 注册 ###
+
+  - 请求方法    register
+  - 发送参数
+    - email                         用户邮箱
+    - password                      用户密码
+    - communityid                   社区id
+  - 返回结果
+
+### 发布信息 ###
+
+  - 请求方法    information_release
+  - 发送参数
+    - userid                        用户id
+    - title                         标题
+    - description                   描述
+    - address                       地址
+    - lon                           经度
+    - lat                           纬度
+    - phone                         电话
+    - tags                          标签(多个标签用逗号隔开)
+    - image                         图片
+    - voice                         录音
+    - video                         视频
+    - infotype                      信息类型,1为活动,2为商家服务,3为个人服务
+  - 返回结果
+
+### 信息列表 ###
+
+  - 请求方法    information_list
+  - 发送参数
+    - page                          页码
+    - infotype                      信息类型
+  - 返回结果
+
+### 建议反馈 ###
+
+  - 请求方法    feedback
+  - 发送参数
+    - userid                        用户id
+    - content                       反馈内容
+    - anonymous                     true为匿名,false为不匿名
+  - 返回结果
+
+### 检查版本 ###
+
+  - 请求方法    check_version
+  - 发送参数
+    - communityid                   社区id
+  - 返回结果
+
+### 更新用户信息 ###
+
+  - 请求方法    update_user_info
+  - 发送参数
+    - userid                        用户id
+    - name                          用户名
+    - password                      用户密码
+    - phone                         用户电话
+    - housenumber                   房间号码
+    - birthday                      生日
+    - permission                    权限()
+    - background
+    - avatar
+    - friendmsg
+    - activitymsg
+    - businessmsg
+    - introduction
+  - 返回结果
+
+### 评论 ###
+
+  - 请求方法    information_comment
+  - 发送参数
+  - 返回结果
+
+### 删除评论 ###
+
+  - 请求方法    information_commentdelete
+  - 发送参数
+  - 返回结果
+
+### 关注该信息的用户列表 ###
+
+  - 请求方法    information_followers
+  - 发送参数
+  - 返回结果
+
+### 赞 ###
+
+  - 请求方法    comment_approval
+  - 发送参数
+  - 返回结果
+
+### 反对 ###
+
+  - 请求方法    comment_opposition
+  - 发送参数
+  - 返回结果
+
+### 活动与用户之间的关注 ###
+
+  - 请求方法    information_following
+  - 发送参数
+  - 返回结果
+
+### 活动/商家服务/个人服务详情 ###
+
+  - 请求方法    information_detail
+  - 发送参数
+  - 返回结果
+
+### 评论列表 ###
+
+  - 请求方法    information_commentlist
+  - 发送参数
+  - 返回结果
+
+### 获取个人资料 ###
+
+  - 请求方法    user_info
+  - 发送参数
+  - 返回结果
+
+### 关注/取消关注 ###
+
+  - 请求方法    user_following
+  - 发送参数
+  - 返回结果
+
+### 用户的粉丝 ###
+
+  - 请求方法    user_fans
+  - 发送参数
+  - 返回结果
+
+### 用户关注的用户 ###
+
+  - 请求方法    user_followings
+  - 发送参数
+  - 返回结果
+
+### 指定用户参与的信息列表 ###
+
+  - 请求方法    user_information_list
+  - 发送参数
+  - 返回结果
+
+### 指定用户发布的信息列表 ###
+
+  - 请求方法    user_release_list
+  - 发送参数
+  - 返回结果
+
+### 举报 ###
+
+  - 请求方法    report
+  - 发送参数
+  - 返回结果
+
+### 获取用户好友的最近动态,关注/评论/赞同/反对 ###
+
+  - 请求方法    user_friend_dynamic
+  - 发送参数
+  - 返回结果
+
+### 聊天记录 ###
+
+  - 请求方法    chat_history
+  - 发送参数
+  - 返回结果
+
+### 产品列表 ###
+
+  - 请求方法    product_list
+  - 发送参数
+  - 返回结果
+
+### 添加产品 ###
+
+  - 请求方法    product_add
+  - 发送参数
+  - 返回结果
+
+### 删除产品 ###
+
+  - 请求方法    product_delete
+  - 发送参数
+  - 返回结果
+
+### 获取上传文件需要的uptoken ###
+
+  - 请求方法    uptoken
+  - 发送参数
+  - 返回结果
+
+### 小区简介 ###
+
+  - 请求方法    community_introduction
+  - 发送参数
+  - 返回结果
+
+### 编辑小区介绍 ###
+
+  - 请求方法    community_edit
+  - 发送参数
+  - 返回结果
