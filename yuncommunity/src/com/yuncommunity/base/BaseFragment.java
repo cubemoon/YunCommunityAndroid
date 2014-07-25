@@ -1,5 +1,6 @@
 package com.yuncommunity.base;
 
+import com.baidu.mobstat.StatService;
 import com.yuncommunity.util.ETUtil;
 import com.yuncommunity.util.ViewUtil;
 
@@ -71,5 +72,17 @@ public class BaseFragment extends Fragment {
 
 	public EditText getEditText(View view, int id) {
 		return ViewUtil.getEditText(view, id);
+	}
+
+	@Override
+	public void onPause() {
+		StatService.onPause(this);
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		StatService.onResume(this);
+		super.onResume();
 	}
 }

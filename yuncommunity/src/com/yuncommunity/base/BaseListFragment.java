@@ -1,5 +1,6 @@
 package com.yuncommunity.base;
 
+import com.baidu.mobstat.StatService;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.JSONUtil;
@@ -154,4 +155,16 @@ public abstract class BaseListFragment extends ListFragment implements
 	public abstract void onItemClick(int position);
 
 	public abstract void initAdapter();
+
+	@Override
+	public void onPause() {
+		StatService.onPause(this);
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		StatService.onResume(this);
+		super.onResume();
+	}
 }

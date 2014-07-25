@@ -10,6 +10,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.baidu.mobstat.StatService;
 import com.yuncommunity.R;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.ETUtil;
@@ -89,5 +90,17 @@ public class BaseDialogFragment extends DialogFragment {
 
 	public String getString(EditText et) {
 		return ETUtil.getString(et);
+	}
+
+	@Override
+	public void onPause() {
+		StatService.onPause(this);
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		StatService.onResume(this);
+		super.onResume();
 	}
 }

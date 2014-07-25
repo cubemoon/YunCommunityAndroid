@@ -2,9 +2,9 @@ package com.yuncommunity.base;
 
 import java.lang.reflect.Field;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.widget.Button;
@@ -24,6 +24,7 @@ import android.widget.VideoView;
 import android.widget.ZoomControls;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
@@ -39,7 +40,7 @@ import com.yuncommunity.util.ETUtil;
  * 
  *         Created on: 2014-1-10
  */
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends SwipeBackActivity {
 	private MyApplication myApplication;
 	protected DisplayImageOptions options;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
@@ -209,5 +210,29 @@ public abstract class BaseActivity extends ActionBarActivity {
 
 	public long getUserid() {
 		return PersonInfo.getInstance(getApplicationContext()).getUserid();
+	}
+
+	@Override
+	protected void onResume() {
+		StatService.onResume(this);
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		StatService.onPause(this);
+		super.onPause();
+	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	}
 }
