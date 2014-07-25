@@ -18,7 +18,7 @@ import com.yuncommunity.fragment.InformationRelease;
  * 
  */
 public class InformationReleaseActivity extends BaseActivity {
-	public static final String[] navList = new String[] { "活动", "商家服务", "个人服务" };
+	public String[] navList;
 	private int currentPosition;
 	private InformationRelease fragment;
 
@@ -26,7 +26,10 @@ public class InformationReleaseActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_frame);
-		setTitle("发布");
+		navList = new String[] { String.valueOf(getText(R.string.activity)),
+				String.valueOf(getText(R.string.business_service)),
+				String.valueOf(getText(R.string.personal_service)) };
+		setTitle(getText(R.string.publish));
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		getSupportActionBar().setListNavigationCallbacks(
 				new ArrayAdapter<String>(getApplicationContext(),

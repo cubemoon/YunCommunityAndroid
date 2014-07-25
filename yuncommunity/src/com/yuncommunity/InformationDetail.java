@@ -149,7 +149,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		btnFollowing.setText(isFollowing ? getText(R.string.follow_cancel) : getText(R.string.follow));
 		rbScore.setRating(Float.valueOf(scoreAvg));
 		tvScoreCount.setText(scoreAvg + getText(R.string.score_total) + scoreCount + getText(R.string.people_feedback));
-		btnEvaluation.setText((myComment == null) ? "评价" : "修改");
+		btnEvaluation.setText((myComment == null) ? getText(R.string.feedback) : getText(R.string.modify));
 		supportInvalidateOptionsMenu();
 	}
 
@@ -189,8 +189,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.findItem(R.id.action_followers).setTitle(
-				"关注者(" + followerCount + ")");
-		menu.findItem(R.id.action_product).setTitle("产品(" + productCount + ")");
+				getText(R.string.follower)+"(" + followerCount + ")");
+		menu.findItem(R.id.action_product).setTitle(getText(R.string.product)+"(" + productCount + ")");
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -251,17 +251,17 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private void isReport() {
 		final EditText etContent = new EditText(getApplicationContext());
 		etContent.setHeight(72);
-		etContent.setHint("说点什么吧");
-		new AlertDialog.Builder(InformationDetail.this).setTitle("举报")
+		etContent.setHint(getText(R.string.say_something));
+		new AlertDialog.Builder(InformationDetail.this).setTitle(getText(R.string.report))
 				.setView(etContent)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				.setPositiveButton(getText(R.string.confirm), new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						report(getString(etContent));
 					}
 
-				}).setNegativeButton("取消", null).show();
+				}).setNegativeButton(getText(R.string.cancel), null).show();
 	}
 
 	protected void report(String string) {
@@ -276,7 +276,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				LogUtil.showLog(result);
 			}
 		});
-		showSimpleDialog("非常感谢!");
+		showSimpleDialog(String.valueOf(getText(R.string.thanks)));
 	}
 
 	@Override
@@ -319,13 +319,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				.findViewById(R.id.evaluation_tag);
 		Builder builder = new AlertDialog.Builder(InformationDetail.this);
 		builder.setView(view);
-		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(getText(R.string.confirm), new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				submitEvaluation(rbEvaluationScore, etEvaluationTag,
 						etEvaluationContent);
-				btnEvaluation.setText("修改");
+				btnEvaluation.setText(getText(R.string.modify));
 				if (myComment == null) {
 					myComment = new CommentItem();
 				}
@@ -339,13 +339,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			rbEvaluationScore.setRating(myComment.getScore());
 			etEvaluationTag.setText(myComment.getTags());
 			etEvaluationContent.setText(myComment.getContent());
-			builder.setNegativeButton("删除评论",
+			builder.setNegativeButton(getText(R.string.delete_comment),
 					new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							deleteEvaluation();
-							btnEvaluation.setText("评价");
+							btnEvaluation.setText(getText(R.string.comment));
 						}
 					});
 		}
@@ -372,7 +372,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 							.toString(), CommentItem.class);
 				} else {
 					showToast(JSONUtil.getMessage(result));
-					btnEvaluation.setText("评价");
+					btnEvaluation.setText(getText(R.string.comment));
 				}
 			}
 		});
@@ -395,13 +395,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void following() {
 		boolean isFollowing;
-		if (btnFollowing.getText().equals("关注")) {
+		if (btnFollowing.getText().equals(getText(R.string.follow))) {
 			isFollowing = true;
-			btnFollowing.setText("取消关注");
+			btnFollowing.setText(getText(R.string.follow_cancel));
 			followerCount++;
 		} else {
 			isFollowing = false;
-			btnFollowing.setText("关注");
+			btnFollowing.setText(getText(R.string.follow));
 			followerCount--;
 		}
 		supportInvalidateOptionsMenu();
@@ -415,7 +415,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
-					LogUtil.showLog("关注成功");
+					LogUtil.showLog(String.valueOf(getText(R.string.followed)));
 				} else {
 					LogUtil.showLog(JSONUtil.getMessage(result));
 				}
@@ -425,7 +425,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void call() {
 		DialogUtil.getInstance().showSimpleDialog(InformationDetail.this,
-				"拨打电话联系?\n" + item.getPhone(),
+				getText(R.string.call)+"?\n" + item.getPhone(),
 				new DialogInterface.OnClickListener() {
 
 					@Override

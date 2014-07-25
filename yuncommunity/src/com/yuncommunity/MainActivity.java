@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity {
 					PersonInfo.getInstance(getApplicationContext()).saveInfo(
 							JSONUtil.getData(result).toString());
 				} else {
-					showToast("自动登录失败," + JSONUtil.getMessage(result));
+					showToast(getText(R.string.auto_login_failed)+"," + JSONUtil.getMessage(result));
 					cancelLogin();
 				}
 			}
@@ -165,7 +165,7 @@ public class MainActivity extends BaseActivity {
 				.getInstance(getApplicationContext()).getAvatar(), ivAvatar,
 				options);
 		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
-			tvName.setText("登录或注册");
+			tvName.setText(getText(R.string.login_or_register));
 		} else {
 			tvName.setText(PersonInfo.getInstance(getApplicationContext())
 					.getName());
@@ -230,7 +230,7 @@ public class MainActivity extends BaseActivity {
 	 * 个人服务
 	 */
 	private void openPersonal() {
-		setTitle("个人服务");
+		setTitle(getText(R.string.personal_service));
 		adapter.setSelected(3);
 		infotype = Constant.TYPE_PERSONAL;
 		if (personalFragment == null) {
@@ -244,7 +244,7 @@ public class MainActivity extends BaseActivity {
 	 * 商家服务
 	 */
 	private void openBusiness() {
-		setTitle("商家服务");
+		setTitle(getText(R.string.business_service));
 		adapter.setSelected(2);
 		infotype = Constant.TYPE_BUSINESS;
 		if (businessFragment == null) {
@@ -258,7 +258,7 @@ public class MainActivity extends BaseActivity {
 	 * 活动
 	 */
 	private void openActivity() {
-		setTitle("活动");
+		setTitle(getText(R.string.activity));
 		adapter.setSelected(1);
 		infotype = Constant.TYPE_ACTIVITY;
 		if (activityFragment == null) {
@@ -272,7 +272,7 @@ public class MainActivity extends BaseActivity {
 	 * 关注
 	 */
 	private void openAttention() {
-		setTitle("关注");
+		setTitle(getText(R.string.follow));
 		adapter.setSelected(0);
 		if (attentionFragment == null) {
 			attentionFragment = AttentionFragment.newInstance();
@@ -328,8 +328,8 @@ public class MainActivity extends BaseActivity {
 	private void releaseInformation() {
 		if (getUserid() == 0) {
 			new AlertDialog.Builder(MainActivity.this)
-					.setTitle("只有登录后才能发布信息")
-					.setPositiveButton("登录/注册",
+					.setTitle(getText(R.string.login_before_publish))
+					.setPositiveButton(getText(R.string.login_or_register),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -338,7 +338,7 @@ public class MainActivity extends BaseActivity {
 									openActivity(LoginRegisterActivity.class);
 								}
 
-							}).setNegativeButton("取消", null).show();
+							}).setNegativeButton(R.string.cancel, null).show();
 			return;
 		}
 		Intent intent = new Intent(MainActivity.this,
