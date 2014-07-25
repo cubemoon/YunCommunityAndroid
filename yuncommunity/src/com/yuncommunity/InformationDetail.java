@@ -63,7 +63,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.information_detail);
-		setTitle("详情");
+		setTitle(getText(R.string.details));
 		item = (InformationItem) getIntent().getSerializableExtra("item");
 		getSupportFragmentManager()
 				.beginTransaction()
@@ -146,9 +146,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		}
 		followerCount = data.getLong("followercount");
 		productCount = data.getLong("productcount");
-		btnFollowing.setText(isFollowing ? "取消关注" : "关注");
+		btnFollowing.setText(isFollowing ? getText(R.string.follow_cancel) : getText(R.string.follow));
 		rbScore.setRating(Float.valueOf(scoreAvg));
-		tvScoreCount.setText(scoreAvg + "分,共" + scoreCount + "人评价");
+		tvScoreCount.setText(scoreAvg + getText(R.string.score_total) + scoreCount + getText(R.string.people_feedback));
 		btnEvaluation.setText((myComment == null) ? "评价" : "修改");
 		supportInvalidateOptionsMenu();
 	}

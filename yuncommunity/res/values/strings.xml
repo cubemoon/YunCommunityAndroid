@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">云社区</string>
+    <string name="app_name">Cloud Community</string>
+    <string name="change_password">Change Password</string>
+    <string name="not_optional">必填</string>
 
 </resources>

@@ -24,7 +24,7 @@ public class CollapseActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.collapse_activity);
 		LogUtil.showLog("collapse oncreate");
-		setTitle("八喵系统崩溃了");
+		setTitle(getText(R.string.system_crash));
 		btnRestart = (Button) findViewById(R.id.collapse_restart);
 		btnExit = (Button) findViewById(R.id.collapse_exit);
 		btnRestart.setOnClickListener(new OnClickListener() {

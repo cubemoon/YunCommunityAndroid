@@ -67,12 +67,12 @@ public class CommunityEdit extends BaseActivity {
 		netUtil.setParams("image", StringUtil.getFileName(item.getImage()));
 		netUtil.setParams("lat", item.getLat());
 		netUtil.setParams("lon", item.getLon());
-		netUtil.postRequest("上传中...", new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.uploading)), new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
-					showToast("编辑完成");
+					showToast(String.valueOf(getText(R.string.edit_finished)));
 					finish();
 				} else {
 					showToast(JSONUtil.getMessage(result));

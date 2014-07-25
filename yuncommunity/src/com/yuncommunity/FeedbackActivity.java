@@ -74,20 +74,20 @@ public class FeedbackActivity extends BaseActivity {
 	 */
 	private void submitFeedback() {
 		if (isEmpty(etContent)) {
-			etContent.setError("必填");
+			etContent.setError(getText(R.string.not_optional));
 			return;
 		}
 		NetUtil netUtil = new NetUtil(FeedbackActivity.this, JsonApi.FEEDBACK);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("content", getString(etContent));
 		netUtil.setParams("anonymous", cbIsAnonymous.isChecked());
-		netUtil.postRequest("正在提交反馈", new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.submiting_feedback)), new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
 					DialogUtil.getInstance().showSimpleDialog(
-							FeedbackActivity.this, "提交成功,感谢您的反馈",
+							FeedbackActivity.this, String.valueOf(getText(R.string.submitted_feedback)),
 							new OnClickListener() {
 
 								@Override
@@ -97,7 +97,7 @@ public class FeedbackActivity extends BaseActivity {
 								}
 							});
 				} else {
-					showToast("提交失败," + JSONUtil.getMessage(result));
+					showToast(getText(R.string.failed_submit_feedback)+"," + JSONUtil.getMessage(result));
 				}
 			}
 		});

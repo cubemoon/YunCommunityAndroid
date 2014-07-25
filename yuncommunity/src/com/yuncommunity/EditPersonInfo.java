@@ -91,17 +91,17 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 		personInfo.setHouseNumber(getString(etHouseNumber));
 		personInfo.setBirthday(super.getString(tvBirthday));
 		personInfo.setPermission(spPermission.getSelectedItemPosition());
-		PersonInfo.update(EditPersonInfo.this, "正在更新个人资料",
+		PersonInfo.update(EditPersonInfo.this, String.valueOf(getText(R.string.updating_personal_details)),
 				new RequestStringListener() {
 
 					@Override
 					public void onComplete(String result) {
 						if (JSONUtil.isSuccess(result)) {
-							showToast("更新用户信息成功");
+							showToast(String.valueOf(getText(R.string.updated_personal_details)));
 							setResult(PersonHomeActivity.EDIT_PERSON_INFO);
 							finish();
 						} else {
-							showToast("更新用户信息失败," + JSONUtil.getMessage(result));
+							showToast(getText(R.string.failed_update_personal_details)+"," + JSONUtil.getMessage(result));
 						}
 					}
 				});

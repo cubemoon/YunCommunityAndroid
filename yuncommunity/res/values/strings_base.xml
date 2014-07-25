@@ -10,7 +10,7 @@
     <string name="error_incorrect_password">Username or password is not correct</string>
     <string name="error_field_required">Not optional</string>
 
-    <string name="feedback_anonymous">Thank you for your feedback, we don't bother you anymore</string>
+    <string name="feedback_anonymous">Thank you for your feedback, we do not bother you anymore</string>
 
     <string name="feedback_not_anonymous">Thank you for your feedback, we will contact you shortly</string>
 

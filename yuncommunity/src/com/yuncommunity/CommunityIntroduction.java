@@ -102,7 +102,7 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void editCommunity() {
 		if (item == null) {
-			showToast("小区信息加载失败,请确认网络连接正常后重试");
+			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
 		Intent intent = new Intent(CommunityIntroduction.this,
@@ -116,7 +116,7 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void lookMap() {
 		if (item == null) {
-			showToast("小区信息加载失败,请确认网络连接正常后重试");
+			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
 		Intent intent = new Intent(CommunityIntroduction.this,
@@ -130,7 +130,7 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void lookAdmin() {
 		if (item == null) {
-			showToast("小区信息加载失败,请确认网络连接正常后重试");
+			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
 		Intent intent = new Intent(CommunityIntroduction.this,

@@ -26,7 +26,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.change_password);
-		setTitle("修改密码");
+		setTitle(getText(R.string.change_password));
 		initView();
 		initListener();
 	}
@@ -55,38 +55,38 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 
 	private void submit() {
 		if (isEmpty(etPassword)) {
-			etPassword.setError("必填");
+			etPassword.setError(getText(R.string.not_optional));
 			return;
 		}
 		if (isEmpty(etPassword1)) {
-			etPassword1.setError("必填");
+			etPassword1.setError(getText(R.string.not_optional));
 			return;
 		}
 		if (isEmpty(etPassword2)) {
-			etPassword2.setError("必填");
+			etPassword2.setError(getText(R.string.not_optional));
 			return;
 		}
 		if (!ETUtil.isEquals(etPassword1, etPassword2)) {
-			etPassword2.setError("两次密码不同");
+			etPassword2.setError(getText(R.string.two_password_not_match));
 			return;
 		}
 		if (!PersonInfo.getInstance(getApplicationContext()).getPassword()
 				.equals(getString(etPassword))) {
-			etPassword.setError("密码错误");
+			etPassword.setError(getText(R.string.wrong_password));
 			return;
 		}
 		PersonInfo.getInstance(getApplicationContext()).setPassword(
 				getString(etPassword1));
-		PersonInfo.update(ChangePassword.this, "正在修改密码",
+		PersonInfo.update(ChangePassword.this, String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {
 
 					@Override
 					public void onComplete(String result) {
 						if (JSONUtil.isSuccess(result)) {
-							showToast("修改成功");
+							showToast(String.valueOf(getText(R.string.changed_successfully)));
 							finish();
 						} else {
-							showToast("修改失败," + JSONUtil.getMessage(result));
+							showToast(getText(R.string.changed_failed)+"," + JSONUtil.getMessage(result));
 						}
 					}
 				});
