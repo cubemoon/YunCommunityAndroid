@@ -16,7 +16,7 @@ public class MySettingsActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_frame);
-		setTitle("设置");
+		setTitle(getText(R.string.setting));
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, MySettingsFragment.newInstance())
 				.commit();

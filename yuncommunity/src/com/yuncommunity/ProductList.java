@@ -79,13 +79,13 @@ public class ProductList extends BaseActivity {
 		ImageView ivImage = (ImageView) view
 				.findViewById(R.id.product_add_image);
 		new AlertDialog.Builder(ProductList.this).setView(view)
-				.setTitle("添加产品")
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				.setTitle(getText(R.string.add_product))
+				.setPositiveButton(getText(R.string.confirm), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						submitAdd(etName, etDesc);
 					}
-				}).setNegativeButton("取消", null).show();
+				}).setNegativeButton(getText(R.string.cancel), null).show();
 	}
 
 	protected void submitAdd(EditText etName, EditText etDesc) {
@@ -94,16 +94,16 @@ public class ProductList extends BaseActivity {
 		netUtil.setParams("name", getString(etName));
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("image", "");
-		netUtil.postRequest("正在添加产品", new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.adding_product)), new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
-					showToast("添加成功");
+					showToast(String.valueOf(getText(R.string.added_successfully)));
 					fragment.add(new Gson().fromJson(JSONUtil.getData(result)
 							.toString(), ProductItem.class));
 				} else {
-					showToast("添加失败");
+					showToast(String.valueOf(getText(R.string.added_failed)));
 				}
 			}
 		});

@@ -147,10 +147,10 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 								getUserid() == targetid)).commit();
 		tvName.setText(item.getName() + "\n" + item.getIntroduction());
 		tvBirthday.setText(item.getHousenumber() + "\n" + item.getBirthday());
-		btnFollowing.setText(item.isFollowing() ? "关注" : "取消关注");
-		btnFollowings.setText("关注(" + item.getFollowingCount() + ")");
-		btnFans.setText("粉丝(" + item.getFansCount() + ")");
-		btnServer.setText("发布(" + item.getServerCount() + ")");
+		btnFollowing.setText(item.isFollowing() ? getText(R.string.follow) : getText(R.string.follow_cancel));
+		btnFollowings.setText(getText(R.string.follow)+"(" + item.getFollowingCount() + ")");
+		btnFans.setText(getText(R.string.fan)+"(" + item.getFansCount() + ")");
+		btnServer.setText(getText(R.string.publish)+"(" + item.getServerCount() + ")");
 	}
 
 	private void initListener() {
@@ -184,7 +184,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	private void userNotExists() {
 		DialogUtil.getInstance().showSimpleDialog(PersonHomeActivity.this,
-				"用户不存在", new DialogInterface.OnClickListener() {
+				String.valueOf(getText(R.string.user_not_exist)), new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -224,7 +224,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void bgEdit() {
 		new AlertDialog.Builder(PersonHomeActivity.this)
-				.setTitle("上传背景(建议分辨率800 * 400)")
+				.setTitle(getText(R.string.upload_background))
 				.setItems(R.array.add_image_type,
 						new DialogInterface.OnClickListener() {
 
@@ -265,7 +265,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		intent.setType("image/*");
-		startActivityForResult(Intent.createChooser(intent, "选择图片"),
+		startActivityForResult(Intent.createChooser(intent, getText(R.string.choose_photo)),
 				ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP);
 	}
 
@@ -278,7 +278,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				savedir.mkdirs();
 			}
 		} else {
-			showToast("无法保存上传的头像，请检查SD卡是否挂载");
+			showToast(String.valueOf(getText(R.string.failed_save_uploaded_photo)));
 			return null;
 		}
 		String timeStamp = StringUtil.getTimeStamp();
@@ -323,7 +323,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				savedir.mkdirs();
 			}
 		} else {
-			showToast("无法保存上传的头像，请检查SD卡是否挂载");
+			showToast(String.valueOf(getText(R.string.failed_save_uploaded_photo)));
 			return null;
 		}
 		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss",
@@ -352,7 +352,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void following() {
 		boolean isFollowing = false;
-		if (btnFollowing.getText().equals("关注")) {
+		if (btnFollowing.getText().equals(getText(R.string.follow))) {
 			isFollowing = true;
 		}
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
@@ -441,21 +441,21 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		if (!StringUtil.isEmpty(protraitPath) && protraitFile.exists()) {
 			protraitBitmap = ImageUtil.loadImgThumbnail(protraitPath, 800, 400);
 		} else {
-			showSimpleDialog("图像不存在，上传失败·");
+			showSimpleDialog(String.valueOf(getText(R.string.failed_upload_not_exist_photo)));
 		}
 		File headerFile = new File(protraitFile.getParent() + "/bg-"
 				+ System.currentTimeMillis() + "-" + getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);
-		netUtil.postRequest("正在上传...", new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.uploading)), new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
 					startUpload(JSONUtil.getMessage(result));
 				} else {
-					showToast("获取uptoken失败");
+					showToast(String.valueOf(getText(R.string.failed_to_get_uptoken)));
 				}
 			}
 		});

@@ -73,7 +73,7 @@ public class SelectAddress extends BaseMapActivity implements OnClickListener {
 			public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
 				if (result == null
 						|| result.error != SearchResult.ERRORNO.NO_ERROR) {
-					showToast("抱歉,未能找到结果");
+					showToast(String.valueOf(getText(R.string.cannot_find)));
 				} else {
 					showToast(result.getAddress());
 					etContent.setText(result.getAddress());
@@ -133,7 +133,7 @@ public class SelectAddress extends BaseMapActivity implements OnClickListener {
 
 	private void complete() {
 		if (clickedLatLng == null) {
-			showToast("请先在地图上选择地址");
+			showToast(String.valueOf(getText(R.string.select_address_on_map)));
 			return;
 		}
 		onBackPressed();
@@ -143,15 +143,15 @@ public class SelectAddress extends BaseMapActivity implements OnClickListener {
 	 * 显示帮助
 	 */
 	private void showHelp() {
-		new AlertDialog.Builder(SelectAddress.this).setTitle("帮助")
-				.setMessage("点击地图选择位置,点击上,下,左,右做个按钮进行微调.")
-				.setPositiveButton("确定", null).show();
+		new AlertDialog.Builder(SelectAddress.this).setTitle(String.valueOf(getText(R.string.help)))
+				.setMessage(getText(R.string.map_help_details))
+				.setPositiveButton(getText(R.string.confirm), null).show();
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (clickedPoint == null) {
-			showToast("请先点击地图选择位置");
+			showToast(String.valueOf(getText(R.string.click_map_first)));
 			return;
 		}
 		switch (v.getId()) {

@@ -3,6 +3,7 @@
 
     <string name="app_name">云社区</string>
     <string name="change_password">修改密码</string>
+    <string name="not_optional">必填</string>
     <string name="two_password_not_match">两次密码不同</string>
     <string name="wrong_password">密码错误</string>
     <string name="changing_password">正在修改密码</string>
@@ -45,4 +46,21 @@
 	<string name="auto_login_failed">自动登录失败</string>
 	<string name="login_or_register">登录或注册</string>
 	<string name="login_before_publish">只有登录后才能发布信息</string>
+	<string name="setting">设置</string>
+	<string name="fan">粉丝</string>
+	<string name="user_not_exist">用户不存在</string>
+	<string name="upload_background">上传背景(建议分辨率800 * 400)</string>
+	<string name="choose_photo">选择图片</string>
+	<string name="failed_save_uploaded_photo">无法保存上传的头像，请检查SD卡是否挂载</string>
+	<string name="failed_upload_not_exist_photo">图像不存在，上传失败·</string>
+	<string name="failed_to_get_uptoken">获取uptoken失败</string>
+	<string name="add_product">添加产品</string>
+	<string name="adding_product">正在添加产品</string>
+	<string name="added_successfully">添加成功</string>
+	<string name="added_failed">添加失败</string>
+	<string name="cannot_find">抱歉,未能找到结果</string>
+	<string name="select_address_on_map">请先在地图上选择地址</string>
+	<string name="help">帮助</string>
+	<string name="map_help_details">点击地图选择位置,点击上,下,左,右做个按钮进行微调.</string>
+	<string name="click_map_first">请先点击地图选择位置</string>
 </resources>
