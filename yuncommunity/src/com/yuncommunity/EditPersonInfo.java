@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
@@ -54,12 +54,12 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 	}
 
 	private void putDataToView() {
-		PersonInfo personInfo = PersonInfo.getInstance(getApplicationContext());
+		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
 		etName.setText(personInfo.getName());
 		etIntro.setText(personInfo.getIntroduction());
 		etPhone.setText(personInfo.getPhone());
 		etEmail.setText(personInfo.getEmail());
-		etHouseNumber.setText(personInfo.getHouseNumber());
+		etHouseNumber.setText(personInfo.getHousenumber());
 		tvBirthday.setText(personInfo.getBirthday());
 		spPermission.setSelection(personInfo.getPermission());
 	}
@@ -84,24 +84,27 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 	}
 
 	private void complete() {
-		PersonInfo personInfo = PersonInfo.getInstance(getApplicationContext());
+		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
 		personInfo.setName(getString(etName));
 		personInfo.setIntroduction(getString(etIntro));
 		personInfo.setPhone(getString(etPhone));
-		personInfo.setHouseNumber(getString(etHouseNumber));
+		personInfo.setHousenumber(getString(etHouseNumber));
 		personInfo.setBirthday(super.getString(tvBirthday));
 		personInfo.setPermission(spPermission.getSelectedItemPosition());
-		PersonInfo.update(EditPersonInfo.this, String.valueOf(getText(R.string.updating_personal_details)),
+		LoginInfo.update(EditPersonInfo.this,
+				String.valueOf(getText(R.string.updating_personal_details)),
 				new RequestStringListener() {
 
 					@Override
 					public void onComplete(String result) {
 						if (JSONUtil.isSuccess(result)) {
-							showToast(String.valueOf(getText(R.string.updated_personal_details)));
+							showToast(String
+									.valueOf(getText(R.string.updated_personal_details)));
 							setResult(PersonHomeActivity.EDIT_PERSON_INFO);
 							finish();
 						} else {
-							showToast(getText(R.string.failed_update_personal_details)+"," + JSONUtil.getMessage(result));
+							showToast(getText(R.string.failed_update_personal_details)
+									+ "," + JSONUtil.getMessage(result));
 						}
 					}
 				});

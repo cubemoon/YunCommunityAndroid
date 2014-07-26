@@ -25,9 +25,9 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.HeaderFragment;
 import com.yuncommunity.item.UserItem;
@@ -117,7 +117,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 获取个人信息
 	 */
 	private void getPersonInfo() {
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.USER_INFO);
+		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
+				JsonApi.USER_INFO);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("targetid", targetid);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -283,7 +284,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		}
 		String timeStamp = StringUtil.getTimeStamp();
 		// 照片命名
-		String cropFileName = "yanzhuang_" + timeStamp + ".jpg";
+		String cropFileName = Constant.APP_NAME + "_" + timeStamp + ".jpg";
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -338,7 +339,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		String ext = FileUtil.getFileFormat(thePath);
 		ext = StringUtil.isEmpty(ext) ? "jpg" : ext;
 		// 照片命名
-		String cropFileName = "yanzhuang_" + timeStamp + "." + ext;
+		String cropFileName = Constant.APP_NAME + "_" + timeStamp + "." + ext;
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -475,18 +476,18 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 					public void onComplete(String result) {
 						showToast("上传成功");
 						ivBg.setImageBitmap(protraitBitmap);
-						PersonInfo.getInstance(PersonHomeActivity.this)
-								.setBackGround(protraitFile.getName());
-						PersonInfo.update(PersonHomeActivity.this);
+						LoginInfo.getInstance(PersonHomeActivity.this)
+								.setBackground(protraitFile.getName());
+						LoginInfo.update(PersonHomeActivity.this);
 					}
 				});
 	}
 
 	private void updateData(Intent data) {
-		PersonInfo personInfo = PersonInfo.getInstance(getApplicationContext());
+		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
 		tvName.setText(personInfo.getName() + "\n"
 				+ personInfo.getIntroduction());
-		tvBirthday.setText(personInfo.getHouseNumber() + "\n"
+		tvBirthday.setText(personInfo.getHousenumber() + "\n"
 				+ personInfo.getBirthday());
 	}
 }

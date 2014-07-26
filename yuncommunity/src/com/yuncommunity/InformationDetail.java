@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.InformationMedia;
 import com.yuncommunity.item.CommentItem;
@@ -176,7 +176,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.information_detail, menu);
-		if (item.getUserid() != PersonInfo.getInstance(getApplicationContext())
+		if (item.getUserid() != LoginInfo.getInstance(getApplicationContext())
 				.getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
 		}

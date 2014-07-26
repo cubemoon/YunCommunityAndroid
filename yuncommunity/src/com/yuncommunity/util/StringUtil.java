@@ -386,7 +386,7 @@ public class StringUtil {
 
 	public static String getFileName(String url) {
 		if (StringUtil.isEmpty(url) || !url.contains("/")) {
-			return "";
+			return url;
 		}
 		return url.substring(url.lastIndexOf("/") + 1);
 	}

@@ -1,16 +1,9 @@
 package com.yuncommunity.base;
 
-import com.baidu.mobstat.StatService;
-import com.yuncommunity.app.Constant;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.OnNetFailListener;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +13,15 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+
+import com.baidu.mobstat.StatService;
+import com.yuncommunity.R;
+import com.yuncommunity.app.Constant;
+import com.yuncommunity.util.DialogUtil;
+import com.yuncommunity.util.JSONUtil;
+import com.yuncommunity.util.NetUtil;
+import com.yuncommunity.util.NetUtil.OnNetFailListener;
+import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 下拉刷新,上拉加载更多的fragment
@@ -166,5 +168,12 @@ public abstract class BaseListFragment extends ListFragment implements
 	public void onResume() {
 		StatService.onResume(this);
 		super.onResume();
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		getActivity().overridePendingTransition(R.anim.slide_in_right,
+				R.anim.slide_out_left);
 	}
 }

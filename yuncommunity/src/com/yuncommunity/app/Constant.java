@@ -12,12 +12,14 @@ import android.os.Environment;
 public class Constant {
 	/** 接口根目录 */
 	public static final String ROOT_URL = "http://182.92.82.150/json";// 服务器
+	// public static final String ROOT_URL = "http://10.42.0.1:8080/json";//
+	// 我的电脑
 	// public static final String ROOT_URL =
-	// "http://192.168.1.103:8080/yanzhuang/json";// 我的电脑
-	// public static final String ROOT_URL =
-	// "http://192.168.1.111:8080/yanzhuang/json";//媳妇的电脑
+	// "http://192.168.1.111:8080/json";//媳妇的电脑
 	/** SharedPreferences用到的应用名称 */
 	public static final String APP_NAME = "yuncommunity";
+	/** 加密解密用到的key */
+	public static final String KEY = "yuncommu";
 	/** 小区id */
 	public static long COMMUNITY_ID = 1;
 	/** 小区管理员id */

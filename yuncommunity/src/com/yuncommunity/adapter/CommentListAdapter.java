@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.CommentItem;
@@ -106,7 +106,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	protected void opposition(CommentItem item, boolean isOpposition) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.COMMENT_OPPOSITION);
-		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isopposition", isOpposition);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -127,7 +127,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	protected void approval(CommentItem item, boolean isapproval) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.COMMENT_APPROVAL);
-		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isapproval", isapproval);
 		netUtil.postRequest("", new RequestStringListener() {

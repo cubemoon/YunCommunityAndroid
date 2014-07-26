@@ -1,6 +1,7 @@
 package com.yuncommunity.base;
 
 import com.baidu.mobstat.StatService;
+import com.yuncommunity.R;
 import com.yuncommunity.util.ETUtil;
 import com.yuncommunity.util.ViewUtil;
 
@@ -84,5 +85,12 @@ public class BaseFragment extends Fragment {
 	public void onResume() {
 		StatService.onResume(this);
 		super.onResume();
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		getActivity().overridePendingTransition(R.anim.slide_in_right,
+				R.anim.slide_out_left);
 	}
 }

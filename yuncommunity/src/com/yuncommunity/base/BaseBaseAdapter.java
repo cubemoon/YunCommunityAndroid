@@ -22,7 +22,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.util.ViewUtil;
 
 /**
@@ -146,6 +146,6 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 	}
 
 	public long getUserid() {
-		return PersonInfo.getInstance(context).getUserid();
+		return LoginInfo.getInstance(context).getUserid();
 	}
 }

@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.UserItem;
@@ -56,7 +56,7 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 				isFollowing(item, btnFollowing);
 			}
 		});
-		if (item.getUserid() == PersonInfo.getInstance(context).getUserid()) {
+		if (item.getUserid() == LoginInfo.getInstance(context).getUserid()) {
 			btnFollowing.setVisibility(View.GONE);
 		}
 		return view;
@@ -115,7 +115,7 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 			boolean isFollowing) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.USER_FOLLOWING);
-		netUtil.setParams("userid", PersonInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
 		netUtil.setParams("targetid", item.getUserid());
 		netUtil.setParams("isfollowing", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {

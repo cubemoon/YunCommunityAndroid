@@ -1,5 +1,6 @@
 package com.yuncommunity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -102,5 +103,12 @@ public class BaseDialogFragment extends DialogFragment {
 	public void onResume() {
 		StatService.onResume(this);
 		super.onResume();
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		getActivity().overridePendingTransition(R.anim.slide_in_right,
+				R.anim.slide_out_left);
 	}
 }

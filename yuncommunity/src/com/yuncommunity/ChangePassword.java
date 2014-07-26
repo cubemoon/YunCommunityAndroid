@@ -6,7 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.util.ETUtil;
 import com.yuncommunity.util.JSONUtil;
@@ -70,14 +70,14 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 			etPassword2.setError(getText(R.string.two_password_not_match));
 			return;
 		}
-		if (!PersonInfo.getInstance(getApplicationContext()).getPassword()
+		if (!LoginInfo.getInstance(getApplicationContext()).getPassword()
 				.equals(getString(etPassword))) {
 			etPassword.setError(getText(R.string.wrong_password));
 			return;
 		}
-		PersonInfo.getInstance(getApplicationContext()).setPassword(
+		LoginInfo.getInstance(getApplicationContext()).setPassword(
 				getString(etPassword1));
-		PersonInfo.update(ChangePassword.this, String.valueOf(getText(R.string.changing_password)),
+		LoginInfo.update(ChangePassword.this, String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {
 
 					@Override
