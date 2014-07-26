@@ -8,7 +8,7 @@
 
         <TextView
             style="@style/form_left"
-            android:text="轮廓图:" />
+            android:text="@string/outline" />
 
         <ImageView
             android:id="@+id/community_edit_image"
@@ -20,7 +20,7 @@
 
         <TextView
             style="@style/form_left"
-            android:text="简介:" />
+            android:text="@string/brief" />
 
         <EditText
             android:id="@+id/community_edit_desc"

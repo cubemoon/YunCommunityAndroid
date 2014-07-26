@@ -11,7 +11,7 @@
             android:id="@+id/select_address_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="地址" />
+            android:hint="@string/address_details" />
     </LinearLayout>
 
     <Button
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/select_address_down"
         android:layout_alignParentRight="true"
-        android:text="右" />
+        android:text="@string/right" />
 
     <Button
         android:id="@+id/select_address_down"
@@ -30,7 +30,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="48dp"
         android:layout_marginRight="48dp"
-        android:text="下" />
+        android:text="@string/down" />
 
     <Button
         android:id="@+id/select_address_up"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/select_address_right"
         android:layout_alignLeft="@+id/select_address_down"
-        android:text="上" />
+        android:text="@string/up" />
 
     <Button
         android:id="@+id/select_address_left"
@@ -47,6 +47,6 @@
         android:layout_above="@+id/select_address_down"
         android:layout_marginRight="32dp"
         android:layout_toLeftOf="@+id/select_address_right"
-        android:text="左" />
+        android:text="@string/left" />
 
 </RelativeLayout>

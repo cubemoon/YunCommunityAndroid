@@ -13,26 +13,26 @@
 
             <TextView
                 style="@style/form_left"
-                android:text="标题:" />
+                android:text="@string/title" />
 
             <EditText
                 android:id="@+id/release_title"
                 style="@style/form_right"
-                android:hint="请输入标题" />
+                android:hint="@string/input_title" />
         </LinearLayout>
 
         <LinearLayout style="@style/single_view" >
 
             <TextView
                 style="@style/form_left"
-                android:text="简介:" />
+                android:text="@string/brief" />
 
             <EditText
                 android:id="@+id/release_desc"
                 style="@style/form_right"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:hint="请简单介绍下"
+                android:hint="@string/brief_hint"
                 android:lines="4"
                 android:singleLine="false" />
         </LinearLayout>
@@ -41,13 +41,13 @@
 
             <TextView
                 style="@style/form_left"
-                android:text="详细地址:" />
+                android:text="@string/address_details" />
 
             <EditText
                 android:id="@+id/release_address"
                 style="@style/form_right"
                 android:enabled="false"
-                android:hint="点击右侧图标选择地址" />
+                android:hint="@string/select_address_right_icon"/>
 
             <Button
                 android:id="@+id/release_map"
@@ -60,12 +60,12 @@
 
             <TextView
                 style="@style/form_left"
-                android:text="电话:" />
+                android:text="@string/phone" />
 
             <EditText
                 android:id="@+id/release_phone"
                 style="@style/form_right"
-                android:hint="输入电话"
+                android:hint="@string/phone_hint"
                 android:inputType="phone" />
         </LinearLayout>
 
@@ -73,12 +73,12 @@
 
             <TextView
                 style="@style/form_left"
-                android:text="标签:" />
+                android:text="@string/tag" />
 
             <EditText
                 android:id="@+id/release_tag"
                 style="@style/form_right"
-                android:hint="多个标签用逗号隔开" />
+                android:hint="@string/tab_between" />
         </LinearLayout>
 
         <LinearLayout style="@style/single_view" >

@@ -14,14 +14,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:text="重新启动" />
+            android:text="@string/restart" />
 
         <Button
             android:id="@+id/collapse_exit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:text="退出应用" />
+            android:text="@string/quit" />
     </LinearLayout>
 
 </LinearLayout>

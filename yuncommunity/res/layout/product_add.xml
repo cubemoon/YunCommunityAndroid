@@ -8,12 +8,12 @@
     <EditText
         android:id="@+id/product_add_name"
         style="@style/single_view"
-        android:hint="输入产品名称" />
+        android:hint="@string/input_product_name" />
 
     <EditText
         android:id="@+id/product_add_desc"
         style="@style/single_view"
-        android:hint="输入产品简介" />
+        android:hint="@string/input_product_brief" />
 
     <ImageView
         android:id="@+id/product_add_image"

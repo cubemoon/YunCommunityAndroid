@@ -42,7 +42,7 @@
             android:layout_below="@+id/comment_list_item_content"
             android:background="@color/transparent"
             android:drawableLeft="@drawable/ic_approval"
-            android:text="同意" />
+            android:text="@string/agree" />
 
         <Button
             android:id="@+id/comment_list_item_opposition"
@@ -52,7 +52,7 @@
             android:layout_toRightOf="@+id/comment_list_item_approval"
             android:background="@color/transparent"
             android:drawableLeft="@drawable/ic_opposition"
-            android:text="反对" />
+            android:text="@string/disagree" />
 
         <TextView
             android:id="@+id/comment_list_item_time"

@@ -19,7 +19,7 @@
         android:id="@+id/evaluation_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入标签,用逗号隔开"
+        android:hint="@string/tag_hint"
         android:singleLine="true" />
 
     <EditText
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
-        android:hint="输入评论内容"
+        android:hint="@string/input_comment"
         android:lines="4"
         android:singleLine="false" />
 
