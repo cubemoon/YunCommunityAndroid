@@ -63,4 +63,9 @@
 	<string name="help">帮助</string>
 	<string name="map_help_details">点击地图选择位置,点击上,下,左,右做个按钮进行微调.</string>
 	<string name="click_map_first">请先点击地图选择位置</string>
+	<string name="original_password">原密码</string>
+	<string name="password_hint">密码6-12位[不包括#$%^&amp;/*\~]</string>
+	<string name="new_password">新密码</string>
+	<string name="new_password_again">新密码[再一次]</string>
+	<string name="submit">提交</string>
 </resources>

@@ -63,5 +63,9 @@
 	<string name="help">help</string>
 	<string name="map_help_details">Click map to select a location, use arrow button to adjust.</string>
 	<string name="click_map_first">Please click map to select a location</string>
-
+<string name="original_password">Original password</string>
+	<string name="password_hint">Password length between 6 to 12 [No #$%^&amp;/*\~]</string>
+	<string name="new_password">New password</string>
+	<string name="new_password_again">New password[Type again]</string>
+	<string name="submit">Submit</string>
 </resources>
