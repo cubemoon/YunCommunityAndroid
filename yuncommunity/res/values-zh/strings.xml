@@ -104,4 +104,15 @@
 	<string name="down">下</string>
 	<string name="up">上</string>
 	<string name="left">左</string>
+	<string name="finish">完成</string>
+	<string name="edit">编辑</string>
+	<string name="check_author">查看作者</string>
+	<string name="showing_on_map">在地图上显示</string>
+	<string name="administrator">管理员</string>
+	<string name="search">搜索</string>
+	<string name="log_out">登出</string>
+	<string name="edit_personal_details">编辑个人资料</string>
+	<string name="edit_password">修改密码</string>
+	<string name="add">添加</string>
+	
 </resources>

@@ -4,15 +4,15 @@
 
     <item
         android:id="@+id/action_map"
-        android:title="在地图上显示"
-        yourapp:showAsAction="always"/>
+        android:title="@string/showing_on_map"
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_admin"
-        android:title="管理员"
-        yourapp:showAsAction="always"/>
+        android:title="@string/administrator"
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_edit"
-        android:title="编辑"
-        yourapp:showAsAction="always"/>
+        android:title="@string/edit"
+        android:showAsAction="always"/>
 
 </menu>

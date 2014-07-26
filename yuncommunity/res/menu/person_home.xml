@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/action_edit"
-        android:title="编辑个人资料"
-        yourapp:showAsAction="never"/>
+        android:title="@string/edit_personal_details"
+        android:showAsAction="never"/>
     <item
         android:id="@+id/action_change_password"
-        android:title="修改密码"
-        yourapp:showAsAction="never"/>
+        android:title="@string/edit_password"
+        android:showAsAction="never"/>
 
 </menu>

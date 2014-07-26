@@ -4,23 +4,23 @@
 
     <item
         android:id="@+id/action_edit"
-        android:title="编辑"
-        yourapp:showAsAction="always"/>
+        android:title="@string/edit"
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_product"
-        android:title="产品"
-        yourapp:showAsAction="always"/>
+        android:title="@string/product"
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_followers"
-        android:title="关注者(5)"
-        yourapp:showAsAction="always"/>
+        android:title="@string/follow"
+        android:showAsAction="always"/>
     <item
         android:id="@+id/action_author"
-        android:title="查看作者"
-        yourapp:showAsAction="never"/>
+        android:title="@string/check_author"
+        android:showAsAction="never"/>
     <item
         android:id="@+id/action_report"
-        android:title="举报"
-        yourapp:showAsAction="never"/>
+        android:title="@string/report"
+        android:showAsAction="never"/>
 
 </menu>
