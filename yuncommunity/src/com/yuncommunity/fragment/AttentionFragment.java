@@ -46,10 +46,10 @@ public class AttentionFragment extends BaseFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		adapter = new BaseTabsAdapter((BaseActivity) getActivity(), pager);
-		adapter.addTab("朋友", FriendDynamicList.newInstance(getFriendNetUtil()));
-		adapter.addTab("活动", getInformationList(Constant.TYPE_ACTIVITY));
-		adapter.addTab("商家服务", getInformationList(Constant.TYPE_BUSINESS));
-		adapter.addTab("个人服务", getInformationList(Constant.TYPE_PERSONAL));
+		adapter.addTab(String.valueOf(getText(R.string.friend)), FriendDynamicList.newInstance(getFriendNetUtil()));
+		adapter.addTab(String.valueOf(getText(R.string.activity)), getInformationList(Constant.TYPE_ACTIVITY));
+		adapter.addTab(String.valueOf(getText(R.string.business_service)), getInformationList(Constant.TYPE_BUSINESS));
+		adapter.addTab(String.valueOf(getText(R.string.personal_service)), getInformationList(Constant.TYPE_PERSONAL));
 	}
 
 	private Fragment getInformationList(int infotype) {

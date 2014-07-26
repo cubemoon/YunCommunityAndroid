@@ -276,7 +276,9 @@ public class NetUtil extends Handler {
 							+ "="
 							+ URLEncoder.encode(params.get(key).toString(),
 									"utf-8"));
-				} catch (IOException | JSONException e) {
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}

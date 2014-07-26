@@ -114,5 +114,6 @@
 	<string name="edit_personal_details">编辑个人资料</string>
 	<string name="edit_password">修改密码</string>
 	<string name="add">添加</string>
+	<string name="friend">朋友</string>
 	
 </resources>

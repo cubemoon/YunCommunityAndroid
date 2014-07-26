@@ -112,5 +112,5 @@
     <string name="edit_personal_details">Edit personal details</string>
     <string name="edit_password">Modify password</string>
     <string name="add">Add</string>
-
+<string name="friend">Friend</string>
 </resources>
