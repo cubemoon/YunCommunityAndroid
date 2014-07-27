@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="姓名:" />
+
+        <EditText
+            android:id="@+id/activity_sign_up_name"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="电话:" />
+
+        <EditText
+            android:id="@+id/activity_sign_up_phone"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="邮箱:" />
+
+        <EditText
+            android:id="@+id/activity_sign_up_email"
+            style="@style/form_right" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="成年人:" />
+
+        <Spinner
+            android:id="@+id/activity_sign_up_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/adult_count" />
+
+        <TextView
+            style="@style/form_left"
+            android:text="孩子:" />
+
+        <Spinner
+            android:id="@+id/activity_sign_up_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/child_count" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="备注:" />
+
+        <EditText
+            android:id="@+id/activity_sign_up_remark"
+            style="@style/form_right" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -18,7 +18,7 @@
             android:fillViewport="true" >
 
             <LinearLayout
-                android:id="@+id/information_detail_tags"
+                android:id="@+id/activity_detail_tags"
                 style="@style/single_view_nomargin"
                 android:layout_weight="1.0"
                 android:orientation="horizontal" >
@@ -30,41 +30,41 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/information_detail_title"
+                android:id="@+id/activity_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="服务名称"
+                android:text="活动名称"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/information_detail_time"
+                android:id="@+id/activity_detail_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/information_detail_title"
+                android:layout_below="@+id/activity_detail_title"
                 android:text="发布时间"
                 android:textColor="@color/gray" />
 
             <Button
-                android:id="@+id/information_detail_following"
+                android:id="@+id/activity_detail_following"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="关注" />
+                android:text="@string/activity_signup" />
 
             <ImageButton
-                android:id="@+id/information_detail_call"
+                android:id="@+id/activity_detail_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/information_detail_following"
+                android:layout_toLeftOf="@+id/activity_detail_following"
                 android:background="@color/transparent"
                 android:src="@drawable/ic_call" />
         </RelativeLayout>
 
         <FrameLayout
-            android:id="@+id/information_detail_media"
+            android:id="@+id/activity_detail_media"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </FrameLayout>
@@ -72,14 +72,14 @@
         <LinearLayout style="@style/single_view_nomargin" >
 
             <TextView
-                android:id="@+id/information_detail_desc"
+                android:id="@+id/activity_detail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:text="服务简介" />
+                android:text="活动简介" />
 
             <ImageButton
-                android:id="@+id/information_detail_map"
+                android:id="@+id/activity_detail_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_map" />
@@ -88,14 +88,14 @@
         <LinearLayout style="@style/single_view_nomargin" >
 
             <RatingBar
-                android:id="@+id/information_detail_scoreavg"
+                android:id="@+id/activity_detail_scoreavg"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5" />
 
             <TextView
-                android:id="@+id/information_detail_scorecount"
+                android:id="@+id/activity_detail_scorecount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -103,7 +103,7 @@
                 android:text="共有100人评价" />
 
             <Button
-                android:id="@+id/information_detail_evaluation"
+                android:id="@+id/activity_detail_evaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="评价" />
@@ -115,7 +115,7 @@
             android:background="@color/gray" />
 
         <FrameLayout
-            android:id="@+id/information_detail_commentlist"
+            android:id="@+id/activity_detail_commentlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </FrameLayout>

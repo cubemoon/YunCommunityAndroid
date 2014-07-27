@@ -1,4 +1,4 @@
-package com.yuncommunity.fragment;
+package com.yuncommunity.dialog;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -3,6 +3,29 @@
 
     <string name="app_name">Cloud Community</string>
     <string name="change_password">Change Password</string>
-    <string name="not_optional">必填</string>
+    <string name="not_optional">not_optional</string>
+    <string name="activity_signup">报名</string>
+    <string name="activity_signuping">正在报名...</string>
+    <string name="activity_signup_fail">报名失败,</string>
+    <string name="activity_call">拨打电话联系?\n</string>
+    <string name="activity_signup_cancel">取消报名</string>
+    <string name="activity_signup_cancel_fail">取消报名失败,</string>
+    <string name="activity_signup_canceling">取消报名...</string>
+    <string name="evaluation">评价</string>
+    <string name="comment_delete">删除评论</string>
+    <string name="modify">修改</string>
+    <string name="thanks">非常感谢!</string>
+    <string name="report">举报</string>
+    <string name="say_something">说点什么吧</string>
+    <string name="activity_signup_people">报名者(</string>
+    <string name="adult_count">个大人,</string>
+    <string name="child_count">个孩子.</string>
+    <string name="auto_login_fail">自动登录失败,</string>
+    <string name="login_or_register">登录/注册</string>
+    <string name="person_service">个人服务</string>
+    <string name="business_service">商家服务</string>
+    <string name="activity">活动</string>
+    <string name="attention">关注</string>
+    <string name="you_must_login_before">只有登录后才能发布信息</string>
 
 </resources>

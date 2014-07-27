@@ -28,8 +28,8 @@ import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
-import com.yuncommunity.app.MyApplication;
 import com.yuncommunity.app.LoginInfo;
+import com.yuncommunity.app.MyApplication;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.ETUtil;
 
@@ -188,6 +188,10 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
 	public String getString(Spinner sp) {
 		return sp.getSelectedItem().toString();
+	}
+
+	public int getInt(Spinner sp) {
+		return Integer.valueOf(sp.getSelectedItem().toString());
 	}
 
 	public int getSelection(int resId, String string) {

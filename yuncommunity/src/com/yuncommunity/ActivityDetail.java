@@ -21,11 +21,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
@@ -43,12 +43,13 @@ import com.yuncommunity.util.NetUtil.RequestStringListener;
 import com.yuncommunity.util.StringUtil;
 
 /**
- * 活动/商家服务/个人服务详情
+ * 获取详情
  * 
  * @author oldfeel
  * 
+ *         Create on: 2014年7月27日
  */
-public class InformationDetail extends BaseActivity implements OnClickListener {
+public class ActivityDetail extends BaseActivity implements OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;
 	private ImageButton ibCall, ibMap;
@@ -57,17 +58,16 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private InformationItem item;
 	private CommentItem myComment;
 	private long followerCount;
-	private long productCount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.information_detail);
+		setContentView(R.layout.activity_detail);
 		setTitle(getText(R.string.details));
 		item = (InformationItem) getIntent().getSerializableExtra("item");
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.information_detail_media,
+				.replace(R.id.activity_detail_media,
 						InformationMedia.newInstance(item)).commit();
 		initView();
 		initListener();
@@ -97,12 +97,11 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		CommentListFragment fragment = CommentListFragment
 				.newInstance(getCommentListNetUtil());
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.information_detail_commentlist, fragment)
-				.commit();
+				.replace(R.id.activity_detail_commentlist, fragment).commit();
 	}
 
 	private NetUtil getCommentListNetUtil() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("userid", getUserid());
@@ -110,7 +109,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void getDetail() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_DETAIL);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
@@ -145,13 +144,13 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			llTags.addView(getTagView(list.get(i)));
 		}
 		followerCount = data.getLong("followercount");
-		productCount = data.getLong("productcount");
-		btnFollowing.setText(isFollowing ? getText(R.string.follow_cancel)
-				: getText(R.string.follow));
+		btnFollowing.setText(isFollowing ? getText(R.string.activity_signup)
+				: getText(R.string.activity_signup_cancel));
 		rbScore.setRating(Float.valueOf(scoreAvg));
 		tvScoreCount.setText(scoreAvg + getText(R.string.score_total)
 				+ scoreCount + getText(R.string.people_feedback));
-		btnEvaluation.setText((myComment == null) ? "评价" : "修改");
+		btnEvaluation.setText((myComment == null) ? R.string.evaluation
+				: R.string.modify);
 		supportInvalidateOptionsMenu();
 	}
 
@@ -163,27 +162,24 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
-		llTags = getLinearLayout(R.id.information_detail_tags);
-		btnFollowing = getButton(R.id.information_detail_following);
-		btnEvaluation = getButton(R.id.information_detail_evaluation);
-		ibCall = getImageButton(R.id.information_detail_call);
-		ibMap = getImageButton(R.id.information_detail_map);
-		tvTitle = getTextView(R.id.information_detail_title);
-		tvTime = getTextView(R.id.information_detail_time);
-		tvDesc = getTextView(R.id.information_detail_desc);
-		tvScoreCount = getTextView(R.id.information_detail_scorecount);
-		rbScore = (RatingBar) findViewById(R.id.information_detail_scoreavg);
+		llTags = getLinearLayout(R.id.activity_detail_tags);
+		btnFollowing = getButton(R.id.activity_detail_following);
+		btnEvaluation = getButton(R.id.activity_detail_evaluation);
+		ibCall = getImageButton(R.id.activity_detail_call);
+		ibMap = getImageButton(R.id.activity_detail_map);
+		tvTitle = getTextView(R.id.activity_detail_title);
+		tvTime = getTextView(R.id.activity_detail_time);
+		tvDesc = getTextView(R.id.activity_detail_desc);
+		tvScoreCount = getTextView(R.id.activity_detail_scorecount);
+		rbScore = (RatingBar) findViewById(R.id.activity_detail_scoreavg);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.information_detail, menu);
+		getMenuInflater().inflate(R.menu.activity_detail, menu);
 		if (item.getUserid() != LoginInfo.getInstance(getApplicationContext())
 				.getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
-		}
-		if (item.getInfotype() != Constant.TYPE_BUSINESS) {
-			menu.findItem(R.id.action_product).setVisible(false);
 		}
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -191,8 +187,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.findItem(R.id.action_followers).setTitle(
-				"关注者(" + followerCount + ")");
-		menu.findItem(R.id.action_product).setTitle("产品(" + productCount + ")");
+				getString(R.string.activity_signup_people) + followerCount
+						+ ")");
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -203,7 +199,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			edit();
 			break;
 		case R.id.action_followers:
-			seeFollowings();
+			seeSignups();
 			break;
 		case R.id.action_author:
 			seeAuthor();
@@ -211,43 +207,37 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		case R.id.action_report:
 			isReport();
 			break;
-		case R.id.action_product:
-			productList();
-			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * 产品列表
-	 */
-	private void productList() {
-		Intent intent = new Intent(InformationDetail.this, ProductList.class);
-		intent.putExtra("item", item);
-		startActivity(intent);
-	}
-
 	private void edit() {
-		Intent intent = new Intent(InformationDetail.this,
+		Intent intent = new Intent(ActivityDetail.this,
 				InformationReleaseActivity.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
 
 	/**
-	 * 查看关注者
+	 * 查看报名者
 	 */
-	private void seeFollowings() {
-		Intent intent = new Intent(InformationDetail.this, UserList.class);
-		intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
+	private void seeSignups() {
+		Intent intent = new Intent();
+		if (item.getUserid() == getUserid()) { // 如果当前用户是活动发起者,查看报名者的详细信息
+			intent.setClass(ActivityDetail.this, ActivitySignUps.class);
+		} else { // 否则只能看基本信息
+			intent.setClass(ActivityDetail.this, UserList.class);
+			intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
+		}
 		intent.putExtra("informationid", item.getInformationid());
 		startActivity(intent);
+
 	}
 
 	private void seeAuthor() {
-		Intent intent = new Intent(InformationDetail.this,
+		Intent intent = new Intent(ActivityDetail.this,
 				PersonHomeActivity.class);
 		intent.putExtra("targetid", item.getUserid());
 		startActivity(intent);
@@ -256,21 +246,25 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private void isReport() {
 		final EditText etContent = new EditText(getApplicationContext());
 		etContent.setHeight(72);
-		etContent.setHint("说点什么吧");
-		new AlertDialog.Builder(InformationDetail.this).setTitle("举报")
+		etContent.setHint(R.string.say_something);
+		new AlertDialog.Builder(ActivityDetail.this)
+				.setTitle(R.string.report)
 				.setView(etContent)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				.setPositiveButton(android.R.string.ok,
+						new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						report(getString(etContent));
-					}
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								report(getString(etContent));
+							}
 
-				}).setNegativeButton("取消", null).show();
+						}).setNegativeButton(android.R.string.cancel, null)
+				.show();
 	}
 
 	protected void report(String string) {
-		NetUtil netUtil = new NetUtil(InformationDetail.this, JsonApi.REPORT);
+		NetUtil netUtil = new NetUtil(ActivityDetail.this, JsonApi.REPORT);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", string);
@@ -281,22 +275,22 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				LogUtil.showLog(result);
 			}
 		});
-		showSimpleDialog("非常感谢!");
+		showSimpleDialog(getString(R.string.thanks));
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.information_detail_call:
+		case R.id.activity_detail_call:
 			call();
 			break;
-		case R.id.information_detail_following:
-			following();
+		case R.id.activity_detail_following:
+			singUpOrCancel();
 			break;
-		case R.id.information_detail_evaluation:
+		case R.id.activity_detail_evaluation:
 			evaluation();
 			break;
-		case R.id.information_detail_map:
+		case R.id.activity_detail_map:
 			showMap();
 			break;
 		default:
@@ -305,7 +299,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void showMap() {
-		Intent intent = new Intent(InformationDetail.this, InformationMap.class);
+		Intent intent = new Intent(ActivityDetail.this, InformationMap.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
@@ -314,7 +308,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	 * 评价/修改评价
 	 */
 	private void evaluation() {
-		View view = LayoutInflater.from(InformationDetail.this).inflate(
+		View view = LayoutInflater.from(ActivityDetail.this).inflate(
 				R.layout.evaluation_dialog, null);
 		final RatingBar rbEvaluationScore = (RatingBar) view
 				.findViewById(R.id.evaluation_score);
@@ -322,35 +316,37 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				.findViewById(R.id.evaluation_content);
 		final EditText etEvaluationTag = (EditText) view
 				.findViewById(R.id.evaluation_tag);
-		Builder builder = new AlertDialog.Builder(InformationDetail.this);
+		Builder builder = new AlertDialog.Builder(ActivityDetail.this);
 		builder.setView(view);
-		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				submitEvaluation(rbEvaluationScore, etEvaluationTag,
-						etEvaluationContent);
-				btnEvaluation.setText("修改");
-				if (myComment == null) {
-					myComment = new CommentItem();
-				}
-				myComment.setTags(ETUtil.getString(etEvaluationTag));
-				myComment.setContent(ETUtil.getString(etEvaluationContent));
-				myComment.setScore((int) rbEvaluationScore.getRating());
-			}
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						submitEvaluation(rbEvaluationScore, etEvaluationTag,
+								etEvaluationContent);
+						btnEvaluation.setText(R.string.modify);
+						if (myComment == null) {
+							myComment = new CommentItem();
+						}
+						myComment.setTags(ETUtil.getString(etEvaluationTag));
+						myComment.setContent(ETUtil
+								.getString(etEvaluationContent));
+						myComment.setScore((int) rbEvaluationScore.getRating());
+					}
 
-		});
+				});
 		if (myComment != null) {
 			rbEvaluationScore.setRating(myComment.getScore());
 			etEvaluationTag.setText(myComment.getTags());
 			etEvaluationContent.setText(myComment.getContent());
-			builder.setNegativeButton("删除评论",
+			builder.setNegativeButton(R.string.comment_delete,
 					new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							deleteEvaluation();
-							btnEvaluation.setText("评价");
+							btnEvaluation.setText(R.string.evaluation);
 						}
 					});
 		}
@@ -360,7 +356,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	protected void submitEvaluation(RatingBar rbEvaluationScore,
 			EditText etEvaluationTag, EditText etEvaluationContent) {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENT);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
@@ -377,14 +373,14 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 							.toString(), CommentItem.class);
 				} else {
 					showToast(JSONUtil.getMessage(result));
-					btnEvaluation.setText("评价");
+					btnEvaluation.setText(R.string.evaluation);
 				}
 			}
 		});
 	}
 
 	protected void deleteEvaluation() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", myComment.getInformationid());
@@ -398,39 +394,119 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		myComment = null;
 	}
 
-	private void following() {
-		boolean isFollowing;
-		if (btnFollowing.getText().equals("关注")) {
-			isFollowing = true;
-			btnFollowing.setText("取消关注");
-			followerCount++;
+	/**
+	 * 报名或者取消报名
+	 */
+	private void singUpOrCancel() {
+		if (btnFollowing.getText().equals(getText(R.string.activity_signup))) {
+			signUp();
 		} else {
-			isFollowing = false;
-			btnFollowing.setText("关注");
-			followerCount--;
+			cancelSingUp();
 		}
-		supportInvalidateOptionsMenu();
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
-				JsonApi.INFORMATION_FOLLOWING);
+	}
+
+	/**
+	 * 取消报名
+	 */
+	private void cancelSingUp() {
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+				JsonApi.ACTIVITY_SIGN_UP_CANCEL);
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("informationid", item.getInformationid());
-		netUtil.setParams("isfollowing", isFollowing);
-		netUtil.postRequest("", new RequestStringListener() {
+		netUtil.postRequest(R.string.activity_signup_canceling,
+				new RequestStringListener() {
 
-			@Override
-			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					LogUtil.showLog("关注成功");
-				} else {
-					LogUtil.showLog(JSONUtil.getMessage(result));
-				}
-			}
-		});
+					@Override
+					public void onComplete(String result) {
+						if (JSONUtil.isSuccess(result)) {
+							btnFollowing.setText(R.string.activity_signup);
+							followerCount--;
+							supportInvalidateOptionsMenu();
+						} else {
+							showToast(getString(R.string.activity_signup_cancel_fail)
+									+ JSONUtil.getMessage(result));
+						}
+					}
+				});
+	}
+
+	/**
+	 * 报名
+	 */
+	private void signUp() {
+		View view = LayoutInflater.from(ActivityDetail.this).inflate(
+				R.layout.activity_sign_up, null);
+		final EditText etName = (EditText) view
+				.findViewById(R.id.activity_sign_up_name);
+		final EditText etPhone = (EditText) view
+				.findViewById(R.id.activity_sign_up_phone);
+		final EditText etEmail = (EditText) view
+				.findViewById(R.id.activity_sign_up_email);
+		final EditText etRemark = (EditText) view
+				.findViewById(R.id.activity_sign_up_remark);
+		final Spinner spAdult = (Spinner) view
+				.findViewById(R.id.activity_sign_up_adult);
+		final Spinner spChild = (Spinner) view
+				.findViewById(R.id.activity_sign_up_child);
+		LoginInfo loginInfo = LoginInfo.getInstance(getApplicationContext());
+		etName.setText(loginInfo.getName());
+		etPhone.setText(loginInfo.getPhone());
+		etEmail.setText(loginInfo.getEmail());
+		new AlertDialog.Builder(ActivityDetail.this)
+				.setTitle(R.string.activity_signup)
+				.setView(view)
+				.setPositiveButton(android.R.string.ok,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								String name = getString(etName);
+								String phone = getString(etPhone);
+								String email = getString(etEmail);
+								String remark = getString(etRemark);
+								int adult = getInt(spAdult);
+								int child = getInt(spChild);
+								signUp(name, phone, email, remark, adult, child);
+							}
+
+						}).setNegativeButton(android.R.string.cancel, null)
+				.show();
+	}
+
+	protected void signUp(String name, String phone, String email,
+			String remark, int adult, int child) {
+		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+				JsonApi.ACTIVITY_SIGN_UP);
+		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("informationid", item.getInformationid());
+		netUtil.setParams("name", name);
+		netUtil.setParams("phone", phone);
+		netUtil.setParams("email", email);
+		netUtil.setParams("remark", remark);
+		netUtil.setParams("adult", adult);
+		netUtil.setParams("child", child);
+		netUtil.postRequest(R.string.activity_signuping,
+				new RequestStringListener() {
+
+					@Override
+					public void onComplete(String result) {
+						if (JSONUtil.isSuccess(result)) {
+							btnFollowing
+									.setText(R.string.activity_signup_cancel);
+							followerCount++;
+							supportInvalidateOptionsMenu();
+						} else {
+							showToast(getString(R.string.activity_signup_fail)
+									+ JSONUtil.getMessage(result));
+						}
+					}
+				});
 	}
 
 	private void call() {
-		DialogUtil.getInstance().showSimpleDialog(InformationDetail.this,
-				"拨打电话联系?\n" + item.getPhone(),
+		DialogUtil.getInstance().showSimpleDialog(ActivityDetail.this,
+				getString(R.string.activity_call) + item.getPhone(),
 				new DialogInterface.OnClickListener() {
 
 					@Override
