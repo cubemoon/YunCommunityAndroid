@@ -9,6 +9,11 @@
 
 ## 修改记录 ##
 
+### 7月27日 ###
+  - 添加[活动报名](#活动报名)接口
+  - 添加[取消活动报名](#取消活动报名)接口
+  - 添加[查看活动报名者列表](#查看活动报名者列表)接口
+
 ## 目录 ##
 
 [TOC]
@@ -342,4 +347,34 @@
     - image                         图片
     - lat                           纬度
     - lon                           经度
+  - 返回结果
+
+### 活动报名 ###
+
+  - 请求方法    activity_sign_up
+  - 发送参数
+    - userid                        用户id
+    - informationid                 活动id
+    - name                          姓名
+    - phone                         电话
+    - email                         邮箱
+    - remark                        备注
+    - adult                         成人数量
+    - child                         孩子数量
+  - 返回结果
+
+### 取消活动报名 ###
+
+  - 请求方法    activity_sign_up_cancel
+  - 发送参数
+    - userid                        用户id
+    - informationid                 活动id
+  - 返回结果
+
+### 查看活动报名者列表 ###
+
+  - 请求方法    activity_sign_up_list
+  - 发送参数
+    - informationid                 活动id
+    - page                          页码
   - 返回结果
