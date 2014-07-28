@@ -9,13 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
+import com.yuncommunity.util.Utils;
 
 /**
  * 小区简介
@@ -102,7 +103,8 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void editCommunity() {
 		if (item == null) {
-			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
+			showToast(String
+					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
 		Intent intent = new Intent(CommunityIntroduction.this,
@@ -116,11 +118,17 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void lookMap() {
 		if (item == null) {
-			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
+			showToast(String
+					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
-		Intent intent = new Intent(CommunityIntroduction.this,
-				CommunityMap.class);
+		Intent intent = new Intent();
+		if (Utils.isChinese()) {
+			intent.setClass(CommunityIntroduction.this, CommunityBaiduMap.class);
+		} else {
+			intent.setClass(CommunityIntroduction.this,
+					CommunityGoogleMap.class);
+		}
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
@@ -130,7 +138,8 @@ public class CommunityIntroduction extends BaseActivity {
 	 */
 	private void lookAdmin() {
 		if (item == null) {
-			showToast(String.valueOf(getText(R.string.community_info_loading_failed)));
+			showToast(String
+					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
 		Intent intent = new Intent(CommunityIntroduction.this,

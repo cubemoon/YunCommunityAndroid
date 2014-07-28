@@ -99,18 +99,25 @@
         </activity>
         <activity android:name="com.yuncommunity.CommunityIntroduction" >
         </activity>
-        <activity android:name="com.yuncommunity.CommunityMap" >
+        <activity android:name="com.yuncommunity.CommunityBaiduMap" >
         </activity>
         <activity android:name="com.yuncommunity.CommunityEdit" >
         </activity>
-        <activity android:name="com.yuncommunity.SelectAddress" >
+        <activity android:name="com.yuncommunity.SelectAddressBaiduMap" >
         </activity>
-        <activity android:name="com.yuncommunity.InformationMap" >
+        <activity android:name="com.yuncommunity.InformationBaiduMap" >
         </activity>
         <activity android:name="com.yuncommunity.ActivityDetail" >
         </activity>
         <activity android:name="com.yuncommunity.ActivitySignUps" >
         </activity>
+        <activity android:name="com.yuncommunity.CommunityGoogleMap" >
+        </activity>
+        <activity android:name="com.yuncommunity.InformationGoogleMap" >
+        </activity>
+        <activity android:name="com.yuncommunity.SelectAddressGoogleMap" >
+        </activity>
+        <!-- 百度应用统计 -->
         <!-- 渠道商编号,其中 name 请不要改,将 value 修改为渠道商编号。渠道名称请到 mtj.baidu.com的渠道管理中修改 -->
         <meta-data
             android:name="BaiduMobAd_CHANNEL"
@@ -140,6 +147,7 @@
             android:name="BaiduMobAd_CELL_LOCATION"
             android:value="true" />
 
+        <!-- 百度地图 api key -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -150,6 +158,13 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="rUst8SeKI4jopNCyFCjsMmoO" >
         </meta-data>
+        <!-- 谷歌地图 api key -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCit0vy_64wpfRk9IuxI2LuE86goh_slXE" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

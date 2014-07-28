@@ -41,6 +41,7 @@ import com.yuncommunity.util.LogUtil;
 import com.yuncommunity.util.NetUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
 import com.yuncommunity.util.StringUtil;
+import com.yuncommunity.util.Utils;
 
 /**
  * 获取详情
@@ -299,7 +300,12 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void showMap() {
-		Intent intent = new Intent(ActivityDetail.this, InformationMap.class);
+		Intent intent = new Intent();
+		if (Utils.isChinese()) {
+			intent.setClass(ActivityDetail.this, InformationBaiduMap.class);
+		} else {
+			intent.setClass(ActivityDetail.this, InformationGoogleMap.class);
+		}
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}

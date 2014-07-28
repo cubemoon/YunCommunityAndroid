@@ -1,5 +1,7 @@
 package com.yuncommunity.util;
 
+import java.util.Locale;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +24,15 @@ public class Utils {
 		Intent intent = new Intent("android.intent.action.CALL",
 				Uri.parse("tel:" + phone));
 		context.startActivity(intent);
+	}
+
+	/**
+	 * 
+	 * @return true为中国语言,false为不是中国语言
+	 */
+	public static boolean isChinese() {
+		return Locale.getDefault() == Locale.CHINA
+				|| Locale.getDefault() == Locale.CHINESE;
 	}
 
 }

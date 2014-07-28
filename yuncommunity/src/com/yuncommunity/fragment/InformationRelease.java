@@ -1,6 +1,7 @@
 package com.yuncommunity.fragment;
 
 import java.io.File;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,9 +21,10 @@ import android.widget.ImageView;
 
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.SelectAddress;
-import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.SelectAddressBaiduMap;
+import com.yuncommunity.SelectAddressGoogleMap;
 import com.yuncommunity.app.Constant;
+import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.dialog.LookBigImage;
@@ -33,6 +35,7 @@ import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
 import com.yuncommunity.util.StringUtil;
+import com.yuncommunity.util.Utils;
 
 /**
  * 发布信息
@@ -97,7 +100,8 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		if (image != null || voice != null || video != null) {
 			getUptoken();
 		}
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_RELEASE);
+		NetUtil netUtil = new NetUtil(getActivity(),
+				JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
 				.getUserid());
@@ -341,7 +345,12 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 	 * 打开地图,选择地址
 	 */
 	private void selectAddress() {
-		Intent intent = new Intent(getActivity(), SelectAddress.class);
+		Intent intent = new Intent();
+		if (Utils.isChinese()) {
+			intent.setClass(getActivity(), SelectAddressBaiduMap.class);
+		} else {
+			intent.setClass(getActivity(), SelectAddressGoogleMap.class);
+		}
 		startActivityForResult(intent, REQUEST_SELECT_ADDRESS);
 	}
 
