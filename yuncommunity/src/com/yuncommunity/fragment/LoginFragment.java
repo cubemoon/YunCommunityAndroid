@@ -23,7 +23,7 @@ import com.yuncommunity.ForgetPassword;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil;
@@ -167,7 +167,7 @@ public class LoginFragment extends BaseFragment {
 				public void onComplete(String result) {
 					showProgress(false);
 					if (JSONUtil.isSuccess(result)) {
-						PersonInfo.getInstance(getActivity()).saveInfo(
+						LoginInfo.getInstance(getActivity()).saveInfo(
 								JSONUtil.getData(result).toString());
 						Intent intent = new Intent(getActivity(),
 								MainActivity.class);

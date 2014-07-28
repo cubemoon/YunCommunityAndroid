@@ -125,6 +125,10 @@ public class NetUtil extends Handler {
 		pd.show();
 	}
 
+	public void postRequest(int resId, RequestStringListener stringListener) {
+		postRequest(activity.getString(resId), stringListener);
+	}
+
 	/**
 	 * 发起一个post请求,返回string对象
 	 * 
@@ -374,37 +378,6 @@ public class NetUtil extends Handler {
 	public interface RequestStringListener {
 		/** 返回字符串 */
 		public void onComplete(String result);
-	}
-
-	/**
-	 * 判断网络连接
-	 * */
-	public static boolean isNetworkConnect(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		cm.getActiveNetworkInfo();
-		if (cm.getActiveNetworkInfo() != null) {
-			return cm.getActiveNetworkInfo().isAvailable();
-		}
-		return false;
-	}
-
-	/**
-	 * 打开网络对话框
-	 */
-	public static void whetherOpenNet(final Context context) {
-		new AlertDialog.Builder(context)
-				.setTitle("网络木有连接")
-				.setMessage("是否打开网络连接")
-				.setPositiveButton(android.R.string.ok,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								context.startActivity(new Intent(
-										Settings.ACTION_WIRELESS_SETTINGS));
-							}
-						}).setNeutralButton(android.R.string.cancel, null)
-				.show();
 	}
 
 	/**

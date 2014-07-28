@@ -12,7 +12,7 @@
         android:smallScreens="true" />
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -50,7 +50,7 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.Yuncommunity" >
         <activity
             android:name="com.yuncommunity.WelcomeActivity"
             android:label="@string/app_name" >
@@ -107,6 +107,38 @@
         </activity>
         <activity android:name="com.yuncommunity.InformationMap" >
         </activity>
+        <activity android:name="com.yuncommunity.ActivityDetail" >
+        </activity>
+        <activity android:name="com.yuncommunity.ActivitySignUps" >
+        </activity>
+        <!-- 渠道商编号,其中 name 请不要改,将 value 修改为渠道商编号。渠道名称请到 mtj.baidu.com的渠道管理中修改 -->
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="Baidu	Market" />
+        <!-- 您从百度网站获取的 APP	KEY -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="0b4f8d1586" />
+        <!-- 是否开启错误日志统计，默认为 false -->
+        <meta-data
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="false" />
+        <!-- 日志发送策略，可选值：APP_START、ONCE_A_DAY、SET_TIME_INTERVAL，默认为 APP_START -->
+        <meta-data
+            android:name="BaiduMobAd_SEND_STRATEGY"
+            android:value="APP_START" />
+        <!-- 上面的日志发送策略 为 SET_TIME_INTERVAL 时，需设定时间间隔。取值为 1-24（小时）的整数，默认为 1 -->
+        <meta-data
+            android:name="BaiduMobAd_TIME_INTERVAL"
+            android:value="2" />
+        <!-- 日志仅在 wifi 网络下发送，默认为 false -->
+        <meta-data
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="false" />
+        <!-- 是否获取基站位置信息，默认为 true(获取基站位置) -->
+        <meta-data
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
 
         <service
             android:name="com.baidu.location.f"
@@ -116,7 +148,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="F6j64Qn5NZ9UPGpGfdbKyycA" >
+            android:value="rUst8SeKI4jopNCyFCjsMmoO" >
         </meta-data>
     </application>
 

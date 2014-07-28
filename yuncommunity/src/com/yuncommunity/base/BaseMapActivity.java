@@ -1,5 +1,6 @@
 package com.yuncommunity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfigeration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mobstat.StatService;
 import com.yuncommunity.R;
 
 /**
@@ -108,6 +110,7 @@ public class BaseMapActivity extends BaseActivity {
 		mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 		// 开启定位图层
 		mBaiduMap.setMyLocationEnabled(true);
+		StatService.onResume(this);
 		super.onResume();
 	}
 
@@ -119,6 +122,7 @@ public class BaseMapActivity extends BaseActivity {
 		// 当不需要定位图层时关闭定位图层
 		mBaiduMap.setMyLocationEnabled(false);
 		mBaiduMap = null;
+		StatService.onPause(this);
 		super.onPause();
 	}
 
@@ -126,5 +130,17 @@ public class BaseMapActivity extends BaseActivity {
 	protected void onDestroy() {
 		mMapView.onDestroy();
 		super.onDestroy();
+	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	}
 }

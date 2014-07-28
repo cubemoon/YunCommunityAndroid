@@ -67,4 +67,10 @@ public class JsonApi {
 	public static final String COMMUNITY_INTRODUCTION = "community_introduction";
 	/** 编辑小区介绍 */
 	public static final String COMMUNITY_EDIT = "community_edit";
+	/** 活动报名 */
+	public static final String ACTIVITY_SIGN_UP = "activity_sign_up";
+	/** 取消活动报名 */
+	public static final String ACTIVITY_SIGN_UP_CANCEL = "activity_sign_up_cancel";
+	/** 查看活动报名者列表 */
+	public static final String ACTIVITY_SIGN_UP_LIST = "activity_sign_up_list";
 }

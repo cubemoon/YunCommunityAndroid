@@ -8,14 +8,14 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
 import com.yuncommunity.R;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.util.DialogUtil;
 import com.yuncommunity.util.JSONUtil;
 import com.yuncommunity.util.NetUtil;
@@ -161,8 +161,8 @@ public class MySettingsFragment extends PreferenceFragment {
 	private void initBusinessMsg() {
 		CheckBoxPreference businessmsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.business_msg));
-		businessmsg.setChecked(PersonInfo.getInstance(getActivity())
-				.getBusinesssmg());
+		businessmsg.setChecked(LoginInfo.getInstance(getActivity())
+				.getBusinessmsg());
 		businessmsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
@@ -170,7 +170,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						PersonInfo.getInstance(getActivity()).setBusinessmsg(
+						LoginInfo.getInstance(getActivity()).setBusinessmsg(
 								Boolean.valueOf(newValue.toString()));
 						return true;
 					}
@@ -180,7 +180,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	private void initActivityMsg() {
 		CheckBoxPreference activitymsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.activity_msg));
-		activitymsg.setChecked(PersonInfo.getInstance(getActivity())
+		activitymsg.setChecked(LoginInfo.getInstance(getActivity())
 				.getActivitymsg());
 		activitymsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -189,7 +189,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						PersonInfo.getInstance(getActivity()).setActivitymsg(
+						LoginInfo.getInstance(getActivity()).setActivitymsg(
 								Boolean.valueOf(newValue.toString()));
 						return true;
 					}
@@ -199,7 +199,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	private void initFriendMsg() {
 		CheckBoxPreference friendMsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.friend_msg));
-		friendMsg.setChecked(PersonInfo.getInstance(getActivity())
+		friendMsg.setChecked(LoginInfo.getInstance(getActivity())
 				.getFriendmsg());
 		friendMsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -208,7 +208,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						PersonInfo.getInstance(getActivity()).setFriendmsg(
+						LoginInfo.getInstance(getActivity()).setFriendmsg(
 								Boolean.valueOf(newValue.toString()));
 						return true;
 					}
@@ -223,7 +223,7 @@ public class MySettingsFragment extends PreferenceFragment {
 
 	private void updateMySettings() {
 		if (isUpdate) {
-			PersonInfo.update(getActivity());
+			LoginInfo.update(getActivity());
 		}
 	}
 

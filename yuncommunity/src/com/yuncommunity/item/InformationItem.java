@@ -49,7 +49,7 @@ public class InformationItem extends BaseItem {
 	/** time. */
 	private String time;
 
-	/** infotype. */
+	/** infotype. 1为活动,2为商家,3为个人 */
 	private Integer infotype;
 
 	private double evaluation;

@@ -17,16 +17,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.adapter.DrawerListAdapter;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.AttentionFragment;
 import com.yuncommunity.fragment.InformationFragment;
 import com.yuncommunity.util.JSONUtil;
+import com.yuncommunity.util.LogUtil;
 import com.yuncommunity.util.NetUtil;
 import com.yuncommunity.util.NetUtil.RequestStringListener;
 
@@ -47,11 +46,13 @@ public class MainActivity extends BaseActivity {
 	private InformationFragment personalFragment;
 	private int infotype;
 	private TextView tvName;
+	private ImageView ivAvatar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		setSwipeBackEnable(false);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -91,8 +92,7 @@ public class MainActivity extends BaseActivity {
 	protected void onNewIntent(Intent intent) {
 		boolean isLogin = intent.getBooleanExtra("login", false);
 		if (isLogin) {
-			tvName.setText(PersonInfo.getInstance(getApplicationContext())
-					.getName());
+			updateHeaderView();
 		}
 		boolean result = intent.getBooleanExtra("result", false);
 		if (result) { // 发布成功
@@ -117,12 +117,12 @@ public class MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
 			return;
 		}
-		String email = PersonInfo.getInstance(getApplicationContext())
+		String email = LoginInfo.getInstance(getApplicationContext())
 				.getEmail();
-		String password = PersonInfo.getInstance(getApplicationContext())
+		String password = LoginInfo.getInstance(getApplicationContext())
 				.getPassword();
 		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("email", email);
@@ -132,10 +132,14 @@ public class MainActivity extends BaseActivity {
 			@Override
 			public void onComplete(String result) {
 				if (JSONUtil.isSuccess(result)) {
-					PersonInfo.getInstance(getApplicationContext()).saveInfo(
+					LoginInfo.getInstance(getApplicationContext()).saveInfo(
 							JSONUtil.getData(result).toString());
+					updateHeaderView();
 				} else {
-					showToast(getText(R.string.auto_login_failed)+"," + JSONUtil.getMessage(result));
+
+					showToast(getText(R.string.auto_login_failed) + ","
+							+ JSONUtil.getMessage(result));
+
 					cancelLogin();
 				}
 			}
@@ -146,7 +150,8 @@ public class MainActivity extends BaseActivity {
 	 * 登出
 	 */
 	protected void cancelLogin() {
-		PersonInfo.getInstance(MainActivity.this).saveInfo("");
+		LoginInfo.getInstance(MainActivity.this).saveInfo("");
+		LoginInfo.getInstance(MainActivity.this).close();
 		openActivity(LoginRegisterActivity.class);
 		finish();
 	}
@@ -154,23 +159,25 @@ public class MainActivity extends BaseActivity {
 	private View getHeaderView() {
 		View view = getLayoutInflater()
 				.inflate(R.layout.menu_header_view, null);
-		ImageView ivAvatar = (ImageView) view.findViewById(R.id.avatar);
+		ivAvatar = (ImageView) view.findViewById(R.id.avatar);
 		tvName = (TextView) view.findViewById(R.id.text);
-		int id = R.drawable.ic_launcher;
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-				.showImageForEmptyUri(id).showImageOnFail(id)
-				.cacheInMemory(true).cacheOnDisc(true).build();
-		ImageLoader imageLoader = ImageLoader.getInstance();
-		imageLoader.displayImage(PersonInfo
-				.getInstance(getApplicationContext()).getAvatar(), ivAvatar,
-				options);
-		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
-			tvName.setText(getText(R.string.login_or_register));
+
+		updateHeaderView();
+		return view;
+	}
+
+	private void updateHeaderView() {
+		LogUtil.showLog("update header view "
+				+ LoginInfo.getInstance(getApplicationContext()).getAvatar());
+		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
+				.getAvatar(), ivAvatar, options);
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
+			tvName.setText(R.string.login_or_register);
+
 		} else {
-			tvName.setText(PersonInfo.getInstance(getApplicationContext())
+			tvName.setText(LoginInfo.getInstance(getApplicationContext())
 					.getName());
 		}
-		return view;
 	}
 
 	private void selectItem(int position) {
@@ -230,7 +237,9 @@ public class MainActivity extends BaseActivity {
 	 * 个人服务
 	 */
 	private void openPersonal() {
-		setTitle(getText(R.string.personal_service));
+
+		setTitle(R.string.person_service);
+
 		adapter.setSelected(3);
 		infotype = Constant.TYPE_PERSONAL;
 		if (personalFragment == null) {
@@ -244,7 +253,9 @@ public class MainActivity extends BaseActivity {
 	 * 商家服务
 	 */
 	private void openBusiness() {
-		setTitle(getText(R.string.business_service));
+
+		setTitle(R.string.business_service);
+
 		adapter.setSelected(2);
 		infotype = Constant.TYPE_BUSINESS;
 		if (businessFragment == null) {
@@ -258,7 +269,9 @@ public class MainActivity extends BaseActivity {
 	 * 活动
 	 */
 	private void openActivity() {
-		setTitle(getText(R.string.activity));
+
+		setTitle(R.string.activity);
+
 		adapter.setSelected(1);
 		infotype = Constant.TYPE_ACTIVITY;
 		if (activityFragment == null) {
@@ -272,7 +285,9 @@ public class MainActivity extends BaseActivity {
 	 * 关注
 	 */
 	private void openAttention() {
-		setTitle(getText(R.string.follow));
+
+		setTitle(R.string.attention);
+
 		adapter.setSelected(0);
 		if (attentionFragment == null) {
 			attentionFragment = AttentionFragment.newInstance();
@@ -289,7 +304,7 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!PersonInfo.getInstance(getApplicationContext()).isLogin()) {
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
 			openActivity(LoginRegisterActivity.class);
 			return;
 		}
@@ -328,17 +343,19 @@ public class MainActivity extends BaseActivity {
 	private void releaseInformation() {
 		if (getUserid() == 0) {
 			new AlertDialog.Builder(MainActivity.this)
-					.setTitle(getText(R.string.login_before_publish))
-					.setPositiveButton(getText(R.string.login_or_register),
-							new DialogInterface.OnClickListener() {
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									openActivity(LoginRegisterActivity.class);
-								}
+			.setTitle(R.string.you_must_login_before)
+					.setPositiveButton(R.string.login_or_register,
 
-							}).setNegativeButton(R.string.cancel, null).show();
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							openActivity(LoginRegisterActivity.class);
+						}
+
+					}).setNegativeButton(android.R.string.cancel, null).show();
+
 			return;
 		}
 		Intent intent = new Intent(MainActivity.this,

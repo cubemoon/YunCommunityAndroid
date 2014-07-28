@@ -21,9 +21,9 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.util.FileUtil;
 import com.yuncommunity.util.ImageUtil;
@@ -137,7 +137,7 @@ public class HeaderFragment extends BaseFragment {
 		}
 		String timeStamp = StringUtil.getTimeStamp();
 		// 照片命名
-		String cropFileName = "yanzhuang_" + timeStamp + ".jpg";
+		String cropFileName = Constant.APP_NAME + "_" + timeStamp + ".jpg";
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -203,7 +203,7 @@ public class HeaderFragment extends BaseFragment {
 		String ext = FileUtil.getFileFormat(thePath);
 		ext = StringUtil.isEmpty(ext) ? "jpg" : ext;
 		// 照片命名
-		String cropFileName = "yanzhuang_" + timeStamp + "." + ext;
+		String cropFileName = Constant.APP_NAME + "_" + timeStamp + "." + ext;
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
@@ -224,7 +224,7 @@ public class HeaderFragment extends BaseFragment {
 		}
 		File headerFile = new File(protraitFile.getParent() + "/avatar-"
 				+ System.currentTimeMillis() + "-"
-				+ PersonInfo.getInstance(getActivity()).getUserid() + ".jpg");
+				+ LoginInfo.getInstance(getActivity()).getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
@@ -255,9 +255,9 @@ public class HeaderFragment extends BaseFragment {
 					public void onComplete(String result) {
 						showToast("上传成功");
 						ivHeader.setImageBitmap(protraitBitmap);
-						PersonInfo.getInstance(getActivity()).setAvatar(
+						LoginInfo.getInstance(getActivity()).setAvatar(
 								protraitFile.getName());
-						PersonInfo.update(getActivity());
+						LoginInfo.update(getActivity());
 					}
 				});
 	}

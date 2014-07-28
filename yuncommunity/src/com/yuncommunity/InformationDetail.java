@@ -25,9 +25,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.InformationMedia;
 import com.yuncommunity.item.CommentItem;
@@ -146,10 +146,15 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		}
 		followerCount = data.getLong("followercount");
 		productCount = data.getLong("productcount");
-		btnFollowing.setText(isFollowing ? getText(R.string.follow_cancel) : getText(R.string.follow));
+		btnFollowing.setText(isFollowing ? getText(R.string.follow_cancel)
+				: getText(R.string.follow));
 		rbScore.setRating(Float.valueOf(scoreAvg));
-		tvScoreCount.setText(scoreAvg + getText(R.string.score_total) + scoreCount + getText(R.string.people_feedback));
-		btnEvaluation.setText((myComment == null) ? getText(R.string.feedback) : getText(R.string.modify));
+
+		tvScoreCount.setText(scoreAvg + getText(R.string.score_total)
+				+ scoreCount + getText(R.string.people_feedback));
+		btnEvaluation.setText((myComment == null) ? getText(R.string.feedback)
+				: getText(R.string.modify));
+
 		supportInvalidateOptionsMenu();
 	}
 
@@ -176,7 +181,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.information_detail, menu);
-		if (item.getUserid() != PersonInfo.getInstance(getApplicationContext())
+		if (item.getUserid() != LoginInfo.getInstance(getApplicationContext())
 				.getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
 		}
@@ -189,8 +194,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.findItem(R.id.action_followers).setTitle(
-				getText(R.string.follower)+"(" + followerCount + ")");
-		menu.findItem(R.id.action_product).setTitle(getText(R.string.product)+"(" + productCount + ")");
+				getText(R.string.follower) + "(" + followerCount + ")");
+		menu.findItem(R.id.action_product).setTitle(
+				getText(R.string.product) + "(" + productCount + ")");
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -201,7 +207,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			edit();
 			break;
 		case R.id.action_followers:
-			seeFollowers();
+			seeFollowings();
 			break;
 		case R.id.action_author:
 			seeAuthor();
@@ -234,7 +240,10 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		startActivity(intent);
 	}
 
-	private void seeFollowers() {
+	/**
+	 * 查看关注者
+	 */
+	private void seeFollowings() {
 		Intent intent = new Intent(InformationDetail.this, UserList.class);
 		intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
 		intent.putExtra("informationid", item.getInformationid());
@@ -252,16 +261,20 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		final EditText etContent = new EditText(getApplicationContext());
 		etContent.setHeight(72);
 		etContent.setHint(getText(R.string.say_something));
-		new AlertDialog.Builder(InformationDetail.this).setTitle(getText(R.string.report))
+		new AlertDialog.Builder(InformationDetail.this)
+				.setTitle(getText(R.string.report))
 				.setView(etContent)
-				.setPositiveButton(getText(R.string.confirm), new DialogInterface.OnClickListener() {
+				.setPositiveButton(getText(R.string.confirm),
+						new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						report(getString(etContent));
-					}
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								report(getString(etContent));
+							}
 
-				}).setNegativeButton(getText(R.string.cancel), null).show();
+						}).setNegativeButton(getText(R.string.cancel), null)
+				.show();
 	}
 
 	protected void report(String string) {
@@ -319,22 +332,24 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				.findViewById(R.id.evaluation_tag);
 		Builder builder = new AlertDialog.Builder(InformationDetail.this);
 		builder.setView(view);
-		builder.setPositiveButton(getText(R.string.confirm), new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(getText(R.string.confirm),
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				submitEvaluation(rbEvaluationScore, etEvaluationTag,
-						etEvaluationContent);
-				btnEvaluation.setText(getText(R.string.modify));
-				if (myComment == null) {
-					myComment = new CommentItem();
-				}
-				myComment.setTags(ETUtil.getString(etEvaluationTag));
-				myComment.setContent(ETUtil.getString(etEvaluationContent));
-				myComment.setScore((int) rbEvaluationScore.getRating());
-			}
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						submitEvaluation(rbEvaluationScore, etEvaluationTag,
+								etEvaluationContent);
+						btnEvaluation.setText(getText(R.string.modify));
+						if (myComment == null) {
+							myComment = new CommentItem();
+						}
+						myComment.setTags(ETUtil.getString(etEvaluationTag));
+						myComment.setContent(ETUtil
+								.getString(etEvaluationContent));
+						myComment.setScore((int) rbEvaluationScore.getRating());
+					}
 
-		});
+				});
 		if (myComment != null) {
 			rbEvaluationScore.setRating(myComment.getScore());
 			etEvaluationTag.setText(myComment.getTags());
@@ -425,7 +440,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	private void call() {
 		DialogUtil.getInstance().showSimpleDialog(InformationDetail.this,
-				getText(R.string.call)+"?\n" + item.getPhone(),
+				getText(R.string.call) + "?\n" + item.getPhone(),
 				new DialogInterface.OnClickListener() {
 
 					@Override

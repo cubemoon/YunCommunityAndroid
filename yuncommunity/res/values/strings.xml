@@ -112,5 +112,22 @@
     <string name="edit_personal_details">Edit personal details</string>
     <string name="edit_password">Modify password</string>
     <string name="add">Add</string>
-<string name="friend">Friend</string>
+    <string name="friend">Friend</string>
+    <string name="activity_signup">Attend Activity</string>
+    <string name="activity_signuping">Submiting activity interest</string>
+    <string name="activity_signup_fail">Failed to submit activity interest,</string>
+    <string name="activity_call">Please give a call?\n</string>
+    <string name="activity_signup_cancel">Cancel interest</string>
+    <string name="activity_signup_cancel_fail">Failed to cancel interest,</string>
+    <string name="activity_signup_canceling">Canceling interest now...</string>
+    <string name="evaluation">Feedback</string>
+    <string name="comment_delete">Delete comment</string>
+    <string name="activity_signup_people">Attender(</string>
+    <string name="adult_count">Adults,</string>
+    <string name="child_count">Children.</string>
+    <string name="auto_login_fail">Failed to login in automatically,</string>
+    <string name="person_service">Personal service</string>
+    <string name="attention">Follow</string>
+    <string name="you_must_login_before">Please login in first</string>
+
 </resources>

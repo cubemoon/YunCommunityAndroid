@@ -23,8 +23,9 @@ import com.yuncommunity.R;
 import com.yuncommunity.SelectAddress;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseFragment;
+import com.yuncommunity.dialog.LookBigImage;
 import com.yuncommunity.util.ETUtil;
 import com.yuncommunity.util.FileUtil;
 import com.yuncommunity.util.ImageUtil;
@@ -85,7 +86,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		ivImage.setOnClickListener(this);
 		ivVideo.setOnClickListener(this);
 		ivVoice.setOnClickListener(this);
-		etPhone.setText(PersonInfo.getInstance(getActivity()).getPhone());
+		etPhone.setText(LoginInfo.getInstance(getActivity()).getPhone());
 	}
 
 	public void submit() {
@@ -98,7 +99,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		}
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
-		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
+		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
 				.getUserid());
 		netUtil.setParams("title", getString(etTitle));
 		netUtil.setParams("description", getString(etDesc));
@@ -391,7 +392,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 			return null;
 		}
 		String timeStamp = StringUtil.getTimeStamp();
-		String fileName = PersonInfo.getInstance(getActivity()).getUserid()
+		String fileName = LoginInfo.getInstance(getActivity()).getUserid()
 				+ "_" + timeStamp + type;
 		return Constant.FILE_SAVEPATH + "/" + fileName;
 	}

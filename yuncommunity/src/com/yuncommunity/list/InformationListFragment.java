@@ -1,12 +1,14 @@
 package com.yuncommunity.list;
 
+import android.content.Intent;
+
+import com.yuncommunity.ActivityDetail;
 import com.yuncommunity.InformationDetail;
 import com.yuncommunity.adapter.InformationListAdapter;
+import com.yuncommunity.app.Constant;
 import com.yuncommunity.base.BaseListFragment;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.util.NetUtil;
-
-import android.content.Intent;
 
 /**
  * 活动/商家服务/个人服务列表
@@ -24,7 +26,12 @@ public class InformationListFragment extends BaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		InformationItem item = (InformationItem) adapter.getItem(position);
-		Intent intent = new Intent(getActivity(), InformationDetail.class);
+		Intent intent = new Intent();
+		if (item.getInfotype() == Constant.TYPE_ACTIVITY) {
+			intent.setClass(getActivity(), ActivityDetail.class);
+		} else {
+			intent.setClass(getActivity(), InformationDetail.class);
+		}
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yuncommunity.R;
 import com.yuncommunity.base.BaseFragment;
+import com.yuncommunity.dialog.LookBigImage;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.util.LogUtil;
 import com.yuncommunity.util.StringUtil;

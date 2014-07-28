@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.app.PersonInfo;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.base.BaseTabsAdapter;
@@ -54,7 +54,7 @@ public class AttentionFragment extends BaseFragment {
 
 	private Fragment getInformationList(int infotype) {
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.USER_INFORMATION_LIST);
-		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
+		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
 				.getUserid());
 		netUtil.setParams("infotype", infotype);
 		return InformationListFragment.newInstance(netUtil);
@@ -62,7 +62,7 @@ public class AttentionFragment extends BaseFragment {
 
 	private NetUtil getFriendNetUtil() {
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.USER_FRIEND_DYNAMIC);
-		netUtil.setParams("userid", PersonInfo.getInstance(getActivity())
+		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
 				.getUserid());
 		return netUtil;
 	}
