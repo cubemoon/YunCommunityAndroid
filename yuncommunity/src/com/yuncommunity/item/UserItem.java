@@ -14,7 +14,7 @@ public class UserItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** userId. */
-	private Long Userid;
+	private long Userid;
 
 	/** name. */
 	private String Name;
@@ -88,7 +88,7 @@ public class UserItem implements Serializable {
 	 * @param userid
 	 *            userId
 	 */
-	public void setUserid(Long userid) {
+	public void setUserid(long userid) {
 		this.Userid = userid;
 	}
 
@@ -97,7 +97,7 @@ public class UserItem implements Serializable {
 	 * 
 	 * @return userId
 	 */
-	public Long getUserid() {
+	public long getUserid() {
 		return this.Userid;
 	}
 
@@ -349,42 +349,6 @@ public class UserItem implements Serializable {
 	 */
 	public String getTime() {
 		return this.Time;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Userid == null) ? 0 : Userid.hashCode());
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		UserItem other = (UserItem) obj;
-		if (Userid == null) {
-			if (other.Userid != null) {
-				return false;
-			}
-		} else if (!Userid.equals(other.Userid)) {
-			return false;
-		}
-		return true;
 	}
 
 	public boolean isFollowing() {

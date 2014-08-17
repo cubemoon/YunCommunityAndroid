@@ -14,10 +14,10 @@ public class ActivitySignUpItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** informationId. */
-	private Long Informationid;
+	private long Informationid;
 
 	/** userId. */
-	private Long Userid;
+	private long Userid;
 
 	/** name. */
 	private String Name;
@@ -51,7 +51,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @param informationid
 	 *            informationId
 	 */
-	public void setInformationid(Long informationid) {
+	public void setInformationid(long informationid) {
 		this.Informationid = informationid;
 	}
 
@@ -60,7 +60,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * 
 	 * @return informationId
 	 */
-	public Long getInformationid() {
+	public long getInformationid() {
 		return this.Informationid;
 	}
 
@@ -70,7 +70,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @param userid
 	 *            userId
 	 */
-	public void setUserid(Long userid) {
+	public void setUserid(long userid) {
 		this.Userid = userid;
 	}
 
@@ -79,7 +79,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * 
 	 * @return userId
 	 */
-	public Long getUserid() {
+	public long getUserid() {
 		return this.Userid;
 	}
 

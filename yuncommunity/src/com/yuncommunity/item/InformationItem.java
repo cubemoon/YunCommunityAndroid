@@ -14,10 +14,10 @@ public class InformationItem extends BaseItem {
 	private static final long serialVersionUID = 1L;
 
 	/** informationid. */
-	private Long Informationid;
+	private long Informationid;
 
 	/** userid. */
-	private Long Userid;
+	private long Userid;
 
 	/** title. */
 	private String Title;
@@ -76,7 +76,7 @@ public class InformationItem extends BaseItem {
 	 * @param informationid
 	 *            informationid
 	 */
-	public void setInformationid(Long informationid) {
+	public void setInformationid(long informationid) {
 		this.Informationid = informationid;
 	}
 
@@ -85,7 +85,7 @@ public class InformationItem extends BaseItem {
 	 * 
 	 * @return informationid
 	 */
-	public Long getInformationid() {
+	public long getInformationid() {
 		return this.Informationid;
 	}
 
@@ -95,7 +95,7 @@ public class InformationItem extends BaseItem {
 	 * @param userid
 	 *            userid
 	 */
-	public void setUserid(Long userid) {
+	public void setUserid(long userid) {
 		this.Userid = userid;
 	}
 
@@ -104,7 +104,7 @@ public class InformationItem extends BaseItem {
 	 * 
 	 * @return userid
 	 */
-	public Long getUserid() {
+	public long getUserid() {
 		return this.Userid;
 	}
 
@@ -315,43 +315,6 @@ public class InformationItem extends BaseItem {
 	 */
 	public Integer getInfotype() {
 		return this.Infotype;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((Informationid == null) ? 0 : Informationid.hashCode());
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		InformationItem other = (InformationItem) obj;
-		if (Informationid == null) {
-			if (other.Informationid != null) {
-				return false;
-			}
-		} else if (!Informationid.equals(other.Informationid)) {
-			return false;
-		}
-		return true;
 	}
 
 	public void setScore(float score) {

@@ -14,10 +14,10 @@ public class ProductItem extends BaseItem {
 	private static final long serialVersionUID = 1L;
 
 	/** productId. */
-	private Long Productid;
+	private long Productid;
 
 	/** informationId. */
-	private Long Informationid;
+	private long Informationid;
 
 	/** name. */
 	private String Name;
@@ -43,7 +43,7 @@ public class ProductItem extends BaseItem {
 	 * @param productid
 	 *            productId
 	 */
-	public void setProductid(Long productid) {
+	public void setProductid(long productid) {
 		this.Productid = productid;
 	}
 
@@ -52,7 +52,7 @@ public class ProductItem extends BaseItem {
 	 * 
 	 * @return productId
 	 */
-	public Long getProductid() {
+	public long getProductid() {
 		return this.Productid;
 	}
 
@@ -62,7 +62,7 @@ public class ProductItem extends BaseItem {
 	 * @param informationid
 	 *            informationId
 	 */
-	public void setInformationid(Long informationid) {
+	public void setInformationid(long informationid) {
 		this.Informationid = informationid;
 	}
 
@@ -71,7 +71,7 @@ public class ProductItem extends BaseItem {
 	 * 
 	 * @return informationId
 	 */
-	public Long getInformationid() {
+	public long getInformationid() {
 		return this.Informationid;
 	}
 
@@ -149,43 +149,6 @@ public class ProductItem extends BaseItem {
 	 */
 	public String getTime() {
 		return this.Time;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((Productid == null) ? 0 : Productid.hashCode());
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		ProductItem other = (ProductItem) obj;
-		if (Productid == null) {
-			if (other.Productid != null) {
-				return false;
-			}
-		} else if (!Productid.equals(other.Productid)) {
-			return false;
-		}
-		return true;
 	}
 
 }

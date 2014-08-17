@@ -40,7 +40,7 @@ public class LoginInfo extends UserItem {
 	}
 
 	public boolean isLogin() {
-		return (getUserid() != null) && (getUserid() != 0);
+		return getUserid() != 0;
 	}
 
 	public void saveInfo(String result) {
