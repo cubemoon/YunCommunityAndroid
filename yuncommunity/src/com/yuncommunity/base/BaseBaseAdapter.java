@@ -60,7 +60,7 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 			clear();
 		}
 		array = (new Gson().fromJson(result, JsonObject.class))
-				.getAsJsonArray("data");
+				.getAsJsonArray("Data");
 	}
 
 	public void add(T t) {

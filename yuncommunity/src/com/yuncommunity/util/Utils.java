@@ -33,8 +33,10 @@ public class Utils {
 	 * @return true为中国语言,false为不是中国语言
 	 */
 	public static boolean isChinese() {
-		return Locale.getDefault() == Locale.CHINA
-				|| Locale.getDefault() == Locale.CHINESE;
+		String def = Locale.getDefault().toString();
+		String china = Locale.CHINA.toString();
+		String chinese = Locale.CHINESE.toString();
+		return def.equals(china) || def.equals(chinese);
 	}
 
 }
