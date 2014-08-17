@@ -167,13 +167,10 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void updateHeaderView() {
-		LogUtil.showLog("update header view "
-				+ LoginInfo.getInstance(getApplicationContext()).getAvatar());
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getAvatar(), ivAvatar, options);
 		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
 			tvName.setText(R.string.login_or_register);
-
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
 					.getName());

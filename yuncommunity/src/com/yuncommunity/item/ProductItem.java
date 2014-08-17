@@ -14,22 +14,22 @@ public class ProductItem extends BaseItem {
 	private static final long serialVersionUID = 1L;
 
 	/** productId. */
-	private Long productid;
+	private Long Productid;
 
 	/** informationId. */
-	private Long informationid;
+	private Long Informationid;
 
 	/** name. */
-	private String name;
+	private String Name;
 
 	/** description. */
-	private String description;
+	private String Description;
 
 	/** image. */
-	private String image;
+	private String Image;
 
 	/** time. */
-	private String time;
+	private String Time;
 
 	/**
 	 * Constructor.
@@ -44,7 +44,7 @@ public class ProductItem extends BaseItem {
 	 *            productId
 	 */
 	public void setProductid(Long productid) {
-		this.productid = productid;
+		this.Productid = productid;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class ProductItem extends BaseItem {
 	 * @return productId
 	 */
 	public Long getProductid() {
-		return this.productid;
+		return this.Productid;
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ProductItem extends BaseItem {
 	 *            informationId
 	 */
 	public void setInformationid(Long informationid) {
-		this.informationid = informationid;
+		this.Informationid = informationid;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ProductItem extends BaseItem {
 	 * @return informationId
 	 */
 	public Long getInformationid() {
-		return this.informationid;
+		return this.Informationid;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ProductItem extends BaseItem {
 	 *            name
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class ProductItem extends BaseItem {
 	 * @return name
 	 */
 	public String getName() {
-		return this.name;
+		return this.Name;
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class ProductItem extends BaseItem {
 	 *            description
 	 */
 	public void setDescription(String description) {
-		this.description = description;
+		this.Description = description;
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class ProductItem extends BaseItem {
 	 * @return description
 	 */
 	public String getDescription() {
-		return this.description;
+		return this.Description;
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ProductItem extends BaseItem {
 	 *            image
 	 */
 	public void setImage(String image) {
-		this.image = image;
+		this.Image = image;
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class ProductItem extends BaseItem {
 	 * @return image
 	 */
 	public String getImage() {
-		return this.image;
+		return this.Image;
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class ProductItem extends BaseItem {
 	 *            time
 	 */
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class ProductItem extends BaseItem {
 	 * @return time
 	 */
 	public String getTime() {
-		return this.time;
+		return this.Time;
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class ProductItem extends BaseItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((productid == null) ? 0 : productid.hashCode());
+				+ ((Productid == null) ? 0 : Productid.hashCode());
 		return result;
 	}
 
@@ -178,11 +178,11 @@ public class ProductItem extends BaseItem {
 			return false;
 		}
 		ProductItem other = (ProductItem) obj;
-		if (productid == null) {
-			if (other.productid != null) {
+		if (Productid == null) {
+			if (other.Productid != null) {
 				return false;
 			}
-		} else if (!productid.equals(other.productid)) {
+		} else if (!Productid.equals(other.Productid)) {
 			return false;
 		}
 		return true;

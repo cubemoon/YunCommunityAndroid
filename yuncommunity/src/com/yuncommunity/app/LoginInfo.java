@@ -73,14 +73,16 @@ public class LoginInfo extends UserItem {
 		setTime(userItem.getTime());
 		setUserid(userItem.getUserid());
 	}
-	
-	public void saveRealPassword(String password){
+
+	public void saveRealPassword(String password) {
 		editor.putString("password", DesUtil.encode(Constant.KEY, password));
 		editor.commit();
 	}
-	public String getRealPassword(){
+
+	public String getRealPassword() {
 		return DesUtil.decode(Constant.KEY, sp.getString("password", ""));
 	}
+
 	public static void update(Activity activity, String text,
 			RequestStringListener stringListener) {
 		LoginInfo loginInfo = LoginInfo.getInstance(activity);

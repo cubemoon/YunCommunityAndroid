@@ -14,54 +14,54 @@ public class InformationItem extends BaseItem {
 	private static final long serialVersionUID = 1L;
 
 	/** informationid. */
-	private Long informationid;
+	private Long Informationid;
 
 	/** userid. */
-	private Long userid;
+	private Long Userid;
 
 	/** title. */
-	private String title;
+	private String Title;
 
 	/** description. */
-	private String description;
+	private String Description;
 
 	/** address. */
-	private String address;
+	private String Address;
 
 	/** lon. */
-	private Double lon;
+	private Double Lon;
 
 	/** lat. */
-	private Double lat;
+	private Double Lat;
 
 	/** phone. */
-	private String phone;
+	private String Phone;
 
 	/** image. */
-	private String image;
+	private String Image;
 
 	/** voice. */
-	private String voice;
+	private String Voice;
 
 	/** video. */
-	private String video;
+	private String Video;
 
 	/** time. */
-	private String time;
+	private String Time;
 
 	/** infotype. 1为活动,2为商家,3为个人 */
-	private Integer infotype;
+	private Integer Infotype;
 
-	private double evaluation;
+	private double Evaluation;
 
-	private float score;
+	private float Score;
 
 	public double getEvaluation() {
-		return evaluation;
+		return Evaluation;
 	}
 
 	public void setEvaluation(double evaluation) {
-		this.evaluation = evaluation;
+		this.Evaluation = evaluation;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class InformationItem extends BaseItem {
 	 *            informationid
 	 */
 	public void setInformationid(Long informationid) {
-		this.informationid = informationid;
+		this.Informationid = informationid;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class InformationItem extends BaseItem {
 	 * @return informationid
 	 */
 	public Long getInformationid() {
-		return this.informationid;
+		return this.Informationid;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class InformationItem extends BaseItem {
 	 *            userid
 	 */
 	public void setUserid(Long userid) {
-		this.userid = userid;
+		this.Userid = userid;
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class InformationItem extends BaseItem {
 	 * @return userid
 	 */
 	public Long getUserid() {
-		return this.userid;
+		return this.Userid;
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class InformationItem extends BaseItem {
 	 *            title
 	 */
 	public void setTitle(String title) {
-		this.title = title;
+		this.Title = title;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class InformationItem extends BaseItem {
 	 * @return title
 	 */
 	public String getTitle() {
-		return this.title;
+		return this.Title;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class InformationItem extends BaseItem {
 	 *            description
 	 */
 	public void setDescription(String description) {
-		this.description = description;
+		this.Description = description;
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class InformationItem extends BaseItem {
 	 * @return description
 	 */
 	public String getDescription() {
-		return this.description;
+		return this.Description;
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class InformationItem extends BaseItem {
 	 *            address
 	 */
 	public void setAddress(String address) {
-		this.address = address;
+		this.Address = address;
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class InformationItem extends BaseItem {
 	 * @return address
 	 */
 	public String getAddress() {
-		return this.address;
+		return this.Address;
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class InformationItem extends BaseItem {
 	 *            lon
 	 */
 	public void setLon(Double lon) {
-		this.lon = lon;
+		this.Lon = lon;
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class InformationItem extends BaseItem {
 	 * @return lon
 	 */
 	public Double getLon() {
-		return this.lon;
+		return this.Lon;
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class InformationItem extends BaseItem {
 	 *            lat
 	 */
 	public void setLat(Double lat) {
-		this.lat = lat;
+		this.Lat = lat;
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class InformationItem extends BaseItem {
 	 * @return lat
 	 */
 	public Double getLat() {
-		return this.lat;
+		return this.Lat;
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class InformationItem extends BaseItem {
 	 *            phone
 	 */
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.Phone = phone;
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class InformationItem extends BaseItem {
 	 * @return phone
 	 */
 	public String getPhone() {
-		return this.phone;
+		return this.Phone;
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class InformationItem extends BaseItem {
 	 *            image
 	 */
 	public void setImage(String image) {
-		this.image = image;
+		this.Image = image;
 	}
 
 	/**
@@ -238,7 +238,7 @@ public class InformationItem extends BaseItem {
 	 * @return image
 	 */
 	public String getImage() {
-		return this.image;
+		return this.Image;
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class InformationItem extends BaseItem {
 	 *            voice
 	 */
 	public void setVoice(String voice) {
-		this.voice = voice;
+		this.Voice = voice;
 	}
 
 	/**
@@ -257,7 +257,7 @@ public class InformationItem extends BaseItem {
 	 * @return voice
 	 */
 	public String getVoice() {
-		return this.voice;
+		return this.Voice;
 	}
 
 	/**
@@ -267,7 +267,7 @@ public class InformationItem extends BaseItem {
 	 *            video
 	 */
 	public void setVideo(String video) {
-		this.video = video;
+		this.Video = video;
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class InformationItem extends BaseItem {
 	 * @return video
 	 */
 	public String getVideo() {
-		return this.video;
+		return this.Video;
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class InformationItem extends BaseItem {
 	 *            time
 	 */
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class InformationItem extends BaseItem {
 	 * @return time
 	 */
 	public String getTime() {
-		return this.time;
+		return this.Time;
 	}
 
 	/**
@@ -305,7 +305,7 @@ public class InformationItem extends BaseItem {
 	 *            infotype
 	 */
 	public void setInfotype(Integer infotype) {
-		this.infotype = infotype;
+		this.Infotype = infotype;
 	}
 
 	/**
@@ -314,7 +314,7 @@ public class InformationItem extends BaseItem {
 	 * @return infotype
 	 */
 	public Integer getInfotype() {
-		return this.infotype;
+		return this.Infotype;
 	}
 
 	/**
@@ -325,7 +325,7 @@ public class InformationItem extends BaseItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((informationid == null) ? 0 : informationid.hashCode());
+				+ ((Informationid == null) ? 0 : Informationid.hashCode());
 		return result;
 	}
 
@@ -344,21 +344,21 @@ public class InformationItem extends BaseItem {
 			return false;
 		}
 		InformationItem other = (InformationItem) obj;
-		if (informationid == null) {
-			if (other.informationid != null) {
+		if (Informationid == null) {
+			if (other.Informationid != null) {
 				return false;
 			}
-		} else if (!informationid.equals(other.informationid)) {
+		} else if (!Informationid.equals(other.Informationid)) {
 			return false;
 		}
 		return true;
 	}
 
 	public void setScore(float score) {
-		this.score = score;
+		this.Score = score;
 	}
 
 	public float getScore() {
-		return score;
+		return Score;
 	}
 }

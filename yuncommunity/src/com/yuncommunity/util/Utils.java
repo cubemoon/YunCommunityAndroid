@@ -2,6 +2,8 @@ package com.yuncommunity.util;
 
 import java.util.Locale;
 
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

@@ -285,7 +285,7 @@ public class NetUtil extends Handler {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				
+
 				// 打印出get方法请求的url
 				if (sb.length() == 0) {
 					sb.append("?");
@@ -308,7 +308,8 @@ public class NetUtil extends Handler {
 					out.append(line);
 				}
 				input.close();
-				return out.toString();
+				String result = out.toString();
+				return result;
 			}
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
