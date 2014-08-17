@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity {
 		String email = LoginInfo.getInstance(getApplicationContext())
 				.getEmail();
 		String password = LoginInfo.getInstance(getApplicationContext())
-				.getPassword();
+				.getRealPassword();
 		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("email", email);
 		netUtil.setParams("password", password);

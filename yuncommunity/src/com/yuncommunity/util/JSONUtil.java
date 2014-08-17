@@ -20,7 +20,7 @@ public class JSONUtil {
 	public static boolean isSuccess(String result) {
 		try {
 			JSONObject json = new JSONObject(result);
-			return json.getBoolean("result");
+			return json.getInt("Code") == 0;
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +36,7 @@ public class JSONUtil {
 	public static String getMessage(String result) {
 		try {
 			JSONObject json = new JSONObject(result);
-			return json.getString("message");
+			return json.getString("Data");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class JSONUtil {
 	public static JSONObject getData(String result) {
 		try {
 			JSONObject json = new JSONObject(result);
-			return json.getJSONObject("data");
+			return json.getJSONObject("Data");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
