@@ -5,22 +5,22 @@
     <item
         android:id="@+id/action_edit"
         android:title="@string/edit"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_product"
         android:title="@string/product"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_followers"
         android:title="@string/follow"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_author"
         android:title="@string/check_author"
-        android:showAsAction="never"/>
+        yourapp:showAsAction="never"/>
     <item
         android:id="@+id/action_report"
         android:title="@string/report"
-        android:showAsAction="never"/>
+        yourapp:showAsAction="never"/>
 
 </menu>

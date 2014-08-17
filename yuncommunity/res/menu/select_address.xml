@@ -6,10 +6,10 @@
         android:id="@+id/action_complete"
         android:icon="@drawable/ic_complete"
         android:title="@string/finish"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_help"
         android:title="@string/help"
-        android:showAsAction="never"/>
+        yourapp:showAsAction="never"/>
 
 </menu>

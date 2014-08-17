@@ -6,6 +6,6 @@
         android:id="@+id/action_complete"
         android:icon="@drawable/ic_complete"
         android:title="@string/finish"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
 
 </menu>
