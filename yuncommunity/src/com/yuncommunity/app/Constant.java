@@ -12,7 +12,7 @@ import android.os.Environment;
 public class Constant {
 	/** 接口根目录 */
 	// public static final String ROOT_URL = "http://182.92.82.150/json";// 服务器
-	public static final String ROOT_URL = "http://10.42.0.1:8080/json";// 我的电脑
+	public static final String ROOT_URL = "http://192.168.0.111:8080/json";// 我的电脑
 	// public static final String ROOT_URL =
 	// "http://192.168.1.111:8080/json";//媳妇的电脑
 	/** SharedPreferences用到的应用名称 */

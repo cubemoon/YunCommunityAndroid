@@ -48,8 +48,8 @@ public abstract class BaseActivity extends SwipeBackActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SDKInitializer.initialize(getApplicationContext());
 		try {
+			SDKInitializer.initialize(getApplicationContext());
 			ViewConfiguration mconfig = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
 					.getDeclaredField("sHasPermanentMenuKey");
