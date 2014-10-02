@@ -156,7 +156,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="GbP4z06FUqMW2sqLc1FfclcB" >
+            android:value="MgChdEKGimRdwdAPBNzqmNOe" >
         </meta-data>
         <!-- 谷歌地图 api key -->
         <meta-data

@@ -1,10 +1,5 @@
 package com.yuncommunity.base;
 
-import com.baidu.mobstat.StatService;
-import com.yuncommunity.R;
-import com.yuncommunity.util.ETUtil;
-import com.yuncommunity.util.ViewUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +10,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.yuncommunity.R;
+import com.yuncommunity.util.ETUtil;
+import com.yuncommunity.util.ViewUtil;
 
 /**
  * fragment基类
@@ -73,18 +72,6 @@ public class BaseFragment extends Fragment {
 
 	public EditText getEditText(View view, int id) {
 		return ViewUtil.getEditText(view, id);
-	}
-
-	@Override
-	public void onPause() {
-		StatService.onPause(this);
-		super.onPause();
-	}
-
-	@Override
-	public void onResume() {
-		StatService.onResume(this);
-		super.onResume();
 	}
 
 	@Override

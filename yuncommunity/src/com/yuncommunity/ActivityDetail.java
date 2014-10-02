@@ -133,18 +133,18 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 
 	protected void parseDetail(String result) throws JSONException {
 		JSONObject data = JSONUtil.getData(result);
-		String scoreAvg = data.getString("scoreavg");
-		long scoreCount = data.getLong("scorecount");
-		boolean isFollowing = data.getBoolean("isfollowing");
-		myComment = new Gson().fromJson(data.getString("mycomment"),
+		String scoreAvg = data.getString("ScoreAvg");
+		long scoreCount = data.getLong("ScoreCount");
+		boolean isFollowing = data.getBoolean("IsFollowing");
+		myComment = new Gson().fromJson(data.getString("MyComment"),
 				CommentItem.class);
-		List<TagItem> list = new Gson().fromJson(data.getString("taglist"),
+		List<TagItem> list = new Gson().fromJson(data.getString("TagList"),
 				new TypeToken<List<TagItem>>() {
 				}.getType());
 		for (int i = 0; i < list.size(); i++) {
 			llTags.addView(getTagView(list.get(i)));
 		}
-		followerCount = data.getLong("followercount");
+		followerCount = data.getLong("FollowerCount");
 		btnFollowing.setText(isFollowing ? getText(R.string.activity_signup)
 				: getText(R.string.activity_signup_cancel));
 		rbScore.setRating(Float.valueOf(scoreAvg));

@@ -159,18 +159,6 @@ public abstract class BaseListFragment extends ListFragment implements
 	public abstract void initAdapter();
 
 	@Override
-	public void onPause() {
-		StatService.onPause(this);
-		super.onPause();
-	}
-
-	@Override
-	public void onResume() {
-		StatService.onResume(this);
-		super.onResume();
-	}
-
-	@Override
 	public void startActivity(Intent intent) {
 		super.startActivity(intent);
 		getActivity().overridePendingTransition(R.anim.slide_in_right,

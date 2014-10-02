@@ -17,7 +17,7 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MyLocationConfigeration;
+import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mobstat.StatService;
@@ -68,9 +68,9 @@ public class BaiduMapActivity extends BaseActivity {
 		// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
 		BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
 				.fromResource(R.drawable.icon_geo);
-		MyLocationConfigeration config = new MyLocationConfigeration(
-				com.baidu.mapapi.map.MyLocationConfigeration.LocationMode.NORMAL,
-				true, mCurrentMarker);
+		MyLocationConfiguration config = new MyLocationConfiguration(
+				MyLocationConfiguration.LocationMode.NORMAL, true,
+				mCurrentMarker);
 		mBaiduMap.setMyLocationConfigeration(config);
 	}
 
@@ -95,9 +95,6 @@ public class BaiduMapActivity extends BaseActivity {
 				MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
 				mBaiduMap.animateMapStatus(u);
 			}
-		}
-
-		public void onReceivePoi(BDLocation poiLocation) {
 		}
 	};
 

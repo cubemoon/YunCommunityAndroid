@@ -295,7 +295,8 @@ public class InformationItem extends BaseItem {
 	 * @return time
 	 */
 	public String getTime() {
-		return this.Time;
+		// return this.Time;
+		return super.getTime(Time);
 	}
 
 	/**

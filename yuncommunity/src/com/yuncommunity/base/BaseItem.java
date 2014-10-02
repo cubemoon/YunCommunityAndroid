@@ -2,6 +2,8 @@ package com.yuncommunity.base;
 
 import java.io.Serializable;
 
+import com.yuncommunity.util.StringUtil;
+
 /**
  * item 基类
  * 
@@ -12,4 +14,14 @@ import java.io.Serializable;
 public abstract class BaseItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 获取时间
+	 * 
+	 * @param time
+	 * @return
+	 */
+	public String getTime(String time) {
+		return StringUtil.friendly_time(time);
+	}
 }
