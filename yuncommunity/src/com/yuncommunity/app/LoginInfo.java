@@ -40,12 +40,12 @@ public class LoginInfo extends UserItem {
 	}
 
 	public boolean isLogin() {
-		return (getUserid() != null) && (getUserid() != 0);
+		return getUserid() != 0;
 	}
 
 	public void saveInfo(String result) {
 		editor.putString("logininfo",
-				DesUtil.encode(Constant.APP_NAME, result.toString()));
+				DesUtil.encode(Constant.KEY, result.toString()));
 		editor.commit();
 		if (StringUtil.isEmpty(result)) {
 			return;
@@ -74,13 +74,22 @@ public class LoginInfo extends UserItem {
 		setUserid(userItem.getUserid());
 	}
 
+	public void saveRealPassword(String password) {
+		editor.putString("password", DesUtil.encode(Constant.KEY, password));
+		editor.commit();
+	}
+
+	public String getRealPassword() {
+		return DesUtil.decode(Constant.KEY, sp.getString("password", ""));
+	}
+
 	public static void update(Activity activity, String text,
 			RequestStringListener stringListener) {
 		LoginInfo loginInfo = LoginInfo.getInstance(activity);
 		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
 		netUtil.setParams("userid", loginInfo.getUserid());
 		netUtil.setParams("name", loginInfo.getName());
-		netUtil.setParams("password", loginInfo.getPassword());
+		netUtil.setParams("password", loginInfo.getRealPassword());
 		netUtil.setParams("phone", loginInfo.getPhone());
 		netUtil.setParams("housenumber", loginInfo.getHousenumber());
 		netUtil.setParams("birthday", loginInfo.getBirthday());

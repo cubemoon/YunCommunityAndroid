@@ -169,6 +169,8 @@ public class LoginFragment extends BaseFragment {
 					if (JSONUtil.isSuccess(result)) {
 						LoginInfo.getInstance(getActivity()).saveInfo(
 								JSONUtil.getData(result).toString());
+						LoginInfo.getInstance(getActivity()).saveRealPassword(
+								mPassword);
 						Intent intent = new Intent(getActivity(),
 								MainActivity.class);
 						intent.putExtra("login", true);

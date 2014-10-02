@@ -50,6 +50,7 @@ public class NetUtil extends Handler {
 	private ProgressDialog pd;
 	private Thread requestThread;
 	private AlertDialog dialog;
+	private String api;
 
 	/**
 	 * 构造一个netapi对象
@@ -61,7 +62,7 @@ public class NetUtil extends Handler {
 	 */
 	public NetUtil(Activity Activity, String api) {
 		this.activity = Activity;
-		setParams("api", api);
+		this.api = api;
 	}
 
 	/**
@@ -257,10 +258,8 @@ public class NetUtil extends Handler {
 	 */
 	public String postStringResult() throws SocketTimeoutException,
 			JSONException {
-		LogUtil.showLog("url is " + Constant.ROOT_URL);
-		LogUtil.showLog("post " + params);
 		try {
-			URL url = new URL(Constant.ROOT_URL);
+			URL url = new URL(Constant.ROOT_URL + api);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
@@ -272,6 +271,7 @@ public class NetUtil extends Handler {
 			DataOutputStream outStream = new DataOutputStream(
 					conn.getOutputStream());
 			Iterator<?> iterator = params.keys();
+			StringBuilder sb = new StringBuilder();
 			while (iterator.hasNext()) {
 				String key = iterator.next().toString();
 				try {
@@ -285,7 +285,20 @@ public class NetUtil extends Handler {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
+
+				// 打印出get方法请求的url
+				if (sb.length() == 0) {
+					sb.append("?");
+				} else {
+					sb.append("&");
+				}
+				sb.append(URLEncoder.encode(key, "utf-8")
+						+ "="
+						+ URLEncoder
+								.encode(params.get(key).toString(), "utf-8"));
 			}
+			LogUtil.showLog("request url is " + Constant.ROOT_URL + api
+					+ sb.toString());
 			if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 				StringBuffer out = new StringBuffer();
 				BufferedReader input = new BufferedReader(
@@ -295,7 +308,8 @@ public class NetUtil extends Handler {
 					out.append(line);
 				}
 				input.close();
-				return out.toString();
+				String result = out.toString();
+				return result;
 			}
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();

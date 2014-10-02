@@ -5,10 +5,10 @@
     <item
         android:id="@+id/action_edit"
         android:title="@string/edit_personal_details"
-        android:showAsAction="never"/>
+        yourapp:showAsAction="never"/>
     <item
         android:id="@+id/action_change_password"
         android:title="@string/edit_password"
-        android:showAsAction="never"/>
+        yourapp:showAsAction="never"/>
 
 </menu>

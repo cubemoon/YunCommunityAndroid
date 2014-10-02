@@ -12,72 +12,72 @@ import com.yuncommunity.base.BaseItem;
  */
 public class FriendDynamicListItem extends BaseItem {
 	private static final long serialVersionUID = 1L;
-	private long userid;
-	private long targetid;
+	private long Userid;
+	private long Targetid;
 	/** 1为关注活动,2为关注商家服务,3为关注个人服务,4为关注用户,5为评论,6为赞同评论,7为反对评论 */
-	private int dynamicType;
-	private String time;
-	private Object content;
-	private String avatar;
-	private String name;
+	private int TynamicType;
+	private String Time;
+	private Object Content;
+	private String Avatar;
+	private String Name;
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public String getAvatar() {
-		return avatar;
+		return Avatar;
 	}
 
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		this.Avatar = avatar;
 	}
 
 	public long getUserid() {
-		return userid;
+		return Userid;
 	}
 
 	public void setUserid(long userid) {
-		this.userid = userid;
+		this.Userid = userid;
 	}
 
 	public long getTargetid() {
-		return targetid;
+		return Targetid;
 	}
 
 	public void setTargetid(long targetid) {
-		this.targetid = targetid;
+		this.Targetid = targetid;
 	}
 
 	public int getDynamicType() {
-		return dynamicType;
+		return TynamicType;
 	}
 
 	public void setDynamicType(int dynamicType) {
-		this.dynamicType = dynamicType;
+		this.TynamicType = dynamicType;
 	}
 
 	public String getTime() {
-		return time;
+		return Time;
 	}
 
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	public void setContent(Object content) {
-		this.content = content;
+		this.Content = content;
 	}
 
 	public Object getContent() {
-		if (content == null) {
+		if (Content == null) {
 			return "";
 		}
-		return content;
+		return Content;
 	}
 
 	public CharSequence getChild() {
@@ -90,7 +90,7 @@ public class FriendDynamicListItem extends BaseItem {
 	}
 
 	public CharSequence getDesc() {
-		switch (dynamicType) {
+		switch (TynamicType) {
 		case Constant.TYPE_ACTIVITY:
 		case Constant.TYPE_BUSINESS:
 		case Constant.TYPE_PERSONAL:
@@ -117,7 +117,7 @@ public class FriendDynamicListItem extends BaseItem {
 	}
 
 	public CharSequence getExplanation() {
-		switch (dynamicType) {
+		switch (TynamicType) {
 		case Constant.TYPE_ACTIVITY:
 			return "关注了该活动";
 		case Constant.TYPE_APPROVAL:

@@ -75,7 +75,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 			etPassword.setError(getText(R.string.wrong_password));
 			return;
 		}
-		LoginInfo.getInstance(getApplicationContext()).setPassword(
+		LoginInfo.getInstance(getApplicationContext()).saveRealPassword(
 				getString(etPassword1));
 		LoginInfo.update(ChangePassword.this, String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {

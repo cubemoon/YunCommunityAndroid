@@ -14,46 +14,45 @@ public class ActivitySignUpItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** informationId. */
-	private Long informationid;
+	private long Informationid;
 
 	/** userId. */
-	private Long userid;
+	private long Userid;
 
 	/** name. */
-	private String name;
+	private String Name;
 
 	/** phone. */
-	private String phone;
+	private String Phone;
 
 	/** email. */
-	private String email;
+	private String Email;
 
 	/** adultcount. */
-	private Integer adultcount;
+	private Integer Adultcount;
 
 	/** childcount. */
-	private Integer childcount;
+	private Integer Childcount;
 
 	/** remark. */
-	private String remark;
+	private String Remark;
 
-	private String avatar;
-	private String time;
+	private String Avatar;
+	private String Time;
 
 	/**
 	 * Constructor.
 	 */
 	public ActivitySignUpItem() {
 	}
-
 	/**
 	 * Set the informationId.
 	 * 
 	 * @param informationid
 	 *            informationId
 	 */
-	public void setInformationid(Long informationid) {
-		this.informationid = informationid;
+	public void setInformationid(long informationid) {
+		this.Informationid = informationid;
 	}
 
 	/**
@@ -61,8 +60,8 @@ public class ActivitySignUpItem implements Serializable {
 	 * 
 	 * @return informationId
 	 */
-	public Long getInformationid() {
-		return this.informationid;
+	public long getInformationid() {
+		return this.Informationid;
 	}
 
 	/**
@@ -71,8 +70,8 @@ public class ActivitySignUpItem implements Serializable {
 	 * @param userid
 	 *            userId
 	 */
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserid(long userid) {
+		this.Userid = userid;
 	}
 
 	/**
@@ -80,8 +79,8 @@ public class ActivitySignUpItem implements Serializable {
 	 * 
 	 * @return userId
 	 */
-	public Long getUserid() {
-		return this.userid;
+	public long getUserid() {
+		return this.Userid;
 	}
 
 	/**
@@ -91,7 +90,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            name
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	/**
@@ -100,7 +99,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return name
 	 */
 	public String getName() {
-		return this.name;
+		return this.Name;
 	}
 
 	/**
@@ -110,7 +109,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            phone
 	 */
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.Phone = phone;
 	}
 
 	/**
@@ -119,7 +118,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return phone
 	 */
 	public String getPhone() {
-		return this.phone;
+		return this.Phone;
 	}
 
 	/**
@@ -129,7 +128,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            email
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.Email = email;
 	}
 
 	/**
@@ -138,7 +137,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return email
 	 */
 	public String getEmail() {
-		return this.email;
+		return this.Email;
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            adultcount
 	 */
 	public void setAdultcount(Integer adultcount) {
-		this.adultcount = adultcount;
+		this.Adultcount = adultcount;
 	}
 
 	/**
@@ -157,7 +156,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return adultcount
 	 */
 	public Integer getAdultcount() {
-		return this.adultcount;
+		return this.Adultcount;
 	}
 
 	/**
@@ -167,7 +166,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            childcount
 	 */
 	public void setChildcount(Integer childcount) {
-		this.childcount = childcount;
+		this.Childcount = childcount;
 	}
 
 	/**
@@ -176,7 +175,7 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return childcount
 	 */
 	public Integer getChildcount() {
-		return this.childcount;
+		return this.Childcount;
 	}
 
 	/**
@@ -186,7 +185,7 @@ public class ActivitySignUpItem implements Serializable {
 	 *            remark
 	 */
 	public void setRemark(String remark) {
-		this.remark = remark;
+		this.Remark = remark;
 	}
 
 	/**
@@ -195,23 +194,23 @@ public class ActivitySignUpItem implements Serializable {
 	 * @return remark
 	 */
 	public String getRemark() {
-		return this.remark;
+		return this.Remark;
 	}
 
 	public String getTime() {
-		return time;
+		return Time;
 	}
 
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		this.Avatar = avatar;
 	}
 
 	public String getAvatar() {
-		return null;
+		return Avatar;
 	}
 
 }

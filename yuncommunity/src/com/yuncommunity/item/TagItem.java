@@ -9,50 +9,50 @@ import com.yuncommunity.base.BaseItem;
  * 
  */
 public class TagItem extends BaseItem {
-	private long userid;
-	private long informationid;
-	private long tagid;
-	private String name;
-	private long count;
+	private long Userid;
+	private long Informationid;
+	private long Tagid;
+	private String Name;
+	private long Count;
 
 	public long getUserid() {
-		return userid;
+		return Userid;
 	}
 
 	public void setUserid(long userid) {
-		this.userid = userid;
+		this.Userid = userid;
 	}
 
 	public long getInformationid() {
-		return informationid;
+		return Informationid;
 	}
 
 	public void setInformationid(long informationid) {
-		this.informationid = informationid;
+		this.Informationid = informationid;
 	}
 
 	public long getTagid() {
-		return tagid;
+		return Tagid;
 	}
 
 	public void setTagid(long tagid) {
-		this.tagid = tagid;
+		this.Tagid = tagid;
 	}
 
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	public long getCount() {
-		return count;
+		return Count;
 	}
 
 	public void setCount(long count) {
-		this.count = count;
+		this.Count = count;
 	}
 
 }

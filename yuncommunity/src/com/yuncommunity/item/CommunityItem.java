@@ -9,77 +9,77 @@ import com.yuncommunity.base.BaseItem;
  * 
  */
 public class CommunityItem extends BaseItem {
-	private long communityid;
-	private long userid;
-	private double lat;
-	private double lon;
-	private String image;
-	private String description;
-	private String time;
-	private String name;
+	private long Communityid;
+	private long Userid;
+	private double Lat;
+	private double Lon;
+	private String Image;
+	private String Description;
+	private String Time;
+	private String Name;
 
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	public long getCommunityid() {
-		return communityid;
+		return Communityid;
 	}
 
 	public void setCommunityid(long communityid) {
-		this.communityid = communityid;
+		this.Communityid = communityid;
 	}
 
 	public long getUserid() {
-		return userid;
+		return Userid;
 	}
 
 	public void setUserid(long userid) {
-		this.userid = userid;
+		this.Userid = userid;
 	}
 
 	public double getLat() {
-		return lat;
+		return Lat;
 	}
 
 	public void setLat(double lat) {
-		this.lat = lat;
+		this.Lat = lat;
 	}
 
 	public double getLon() {
-		return lon;
+		return Lon;
 	}
 
 	public void setLon(double lon) {
-		this.lon = lon;
+		this.Lon = lon;
 	}
 
 	public String getImage() {
-		return image;
+		return Image;
 	}
 
 	public void setImage(String image) {
-		this.image = image;
+		this.Image = image;
 	}
 
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.Description = description;
 	}
 
 	public String getTime() {
-		return time;
+		return Time;
 	}
 
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 }

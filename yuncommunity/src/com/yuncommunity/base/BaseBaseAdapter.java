@@ -60,7 +60,7 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 			clear();
 		}
 		array = (new Gson().fromJson(result, JsonObject.class))
-				.getAsJsonArray("data");
+				.getAsJsonArray("Data");
 	}
 
 	public void add(T t) {
@@ -74,6 +74,10 @@ public abstract class BaseBaseAdapter<T> extends BaseAdapter {
 	}
 
 	public void addAll(List<T> list) {
+		if (list == null || list.size() == 0) {
+			setIsAddOver(true);
+			return;
+		}
 		if (list.size() < Constant.PAGE_SIZE) { // 如果加载的数据量小于每页显示的数据,说明加载完成
 			setIsAddOver(true);
 		}

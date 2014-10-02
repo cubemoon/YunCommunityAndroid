@@ -5,14 +5,14 @@
     <item
         android:id="@+id/action_map"
         android:title="@string/showing_on_map"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_admin"
         android:title="@string/administrator"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
     <item
         android:id="@+id/action_edit"
         android:title="@string/edit"
-        android:showAsAction="always"/>
+        yourapp:showAsAction="always"/>
 
 </menu>

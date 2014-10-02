@@ -125,7 +125,7 @@
         <!-- 您从百度网站获取的 APP	KEY -->
         <meta-data
             android:name="BaiduMobAd_STAT_ID"
-            android:value="0b4f8d1586" />
+            android:value="a800660f32" />
         <!-- 是否开启错误日志统计，默认为 false -->
         <meta-data
             android:name="BaiduMobAd_EXCEPTION_LOG"
@@ -156,7 +156,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="rUst8SeKI4jopNCyFCjsMmoO" >
+            android:value="GbP4z06FUqMW2sqLc1FfclcB" >
         </meta-data>
         <!-- 谷歌地图 api key -->
         <meta-data

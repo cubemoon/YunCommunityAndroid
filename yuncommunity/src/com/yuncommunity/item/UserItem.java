@@ -14,59 +14,59 @@ public class UserItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** userId. */
-	private Long userid;
+	private long Userid;
 
 	/** name. */
-	private String name;
+	private String Name;
 
 	/** password. */
-	private String password;
+	private String Password;
 
 	/** email. */
-	private String email;
+	private String Email;
 
 	/** phone. */
-	private String phone;
+	private String Phone;
 
 	/** houseNumber. */
-	private String housenumber;
+	private String Housenumber;
 
 	/** birthday. */
-	private String birthday;
+	private String Birthday;
 
 	/** permission. */
-	private int permission;
+	private int Permission;
 
 	/** background. */
-	private String background;
+	private String Background;
 
 	/** avatar. */
-	private String avatar;
+	private String Avatar;
 
 	/** friendMsg. */
-	private Boolean friendmsg = true;
+	private Boolean Friendmsg = true;
 
 	/** businessMsg. */
-	private Boolean businessmsg = true;
+	private Boolean Businessmsg = true;
 
 	/** activityMsg. */
-	private Boolean activitymsg = true;
+	private Boolean Activitymsg = true;
 
 	/** time. */
-	private String time;
+	private String Time;
 
-	private boolean isFollowing;
+	private boolean IsFollowing;
 
-	private long followingCount;
+	private long FollowingCount;
 
-	private long fansCount;
+	private long FansCount;
 
-	private long serverCount;
+	private long ServerCount;
 
-	private boolean isFans;
+	private boolean IsFans;
 
-	private String lastActivity;
-	private String introduction;
+	private String LastActivity;
+	private String Introduction;
 
 	/**
 	 * Constructor.
@@ -75,11 +75,11 @@ public class UserItem implements Serializable {
 	}
 
 	public String getIntroduction() {
-		return introduction;
+		return Introduction;
 	}
 
 	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
+		this.Introduction = introduction;
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class UserItem implements Serializable {
 	 * @param userid
 	 *            userId
 	 */
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserid(long userid) {
+		this.Userid = userid;
 	}
 
 	/**
@@ -97,8 +97,8 @@ public class UserItem implements Serializable {
 	 * 
 	 * @return userId
 	 */
-	public Long getUserid() {
-		return this.userid;
+	public long getUserid() {
+		return this.Userid;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class UserItem implements Serializable {
 	 *            name
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	/**
@@ -117,10 +117,10 @@ public class UserItem implements Serializable {
 	 * @return name
 	 */
 	public String getName() {
-		if (name == null || name.length() == 0) {
+		if (Name == null || Name.length() == 0) {
 			return getEmail();
 		}
-		return this.name;
+		return this.Name;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class UserItem implements Serializable {
 	 *            password
 	 */
 	public void setPassword(String password) {
-		this.password = password;
+		this.Password = password;
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class UserItem implements Serializable {
 	 * @return password
 	 */
 	public String getPassword() {
-		return this.password;
+		return this.Password;
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class UserItem implements Serializable {
 	 *            email
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.Email = email;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class UserItem implements Serializable {
 	 * @return email
 	 */
 	public String getEmail() {
-		return this.email;
+		return this.Email;
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class UserItem implements Serializable {
 	 *            phone
 	 */
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.Phone = phone;
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class UserItem implements Serializable {
 	 * @return phone
 	 */
 	public String getPhone() {
-		return this.phone;
+		return this.Phone;
 	}
 
 	/**
@@ -187,7 +187,7 @@ public class UserItem implements Serializable {
 	 *            houseNumber
 	 */
 	public void setHousenumber(String housenumber) {
-		this.housenumber = housenumber;
+		this.Housenumber = housenumber;
 	}
 
 	/**
@@ -196,7 +196,7 @@ public class UserItem implements Serializable {
 	 * @return houseNumber
 	 */
 	public String getHousenumber() {
-		return this.housenumber;
+		return this.Housenumber;
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class UserItem implements Serializable {
 	 *            birthday
 	 */
 	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+		this.Birthday = birthday;
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class UserItem implements Serializable {
 	 * @return birthday
 	 */
 	public String getBirthday() {
-		return this.birthday;
+		return this.Birthday;
 	}
 
 	/**
@@ -225,7 +225,7 @@ public class UserItem implements Serializable {
 	 *            permission
 	 */
 	public void setPermission(Integer permission) {
-		this.permission = permission;
+		this.Permission = permission;
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class UserItem implements Serializable {
 	 * @return permission
 	 */
 	public int getPermission() {
-		return this.permission;
+		return this.Permission;
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class UserItem implements Serializable {
 	 *            background
 	 */
 	public void setBackground(String background) {
-		this.background = background;
+		this.Background = background;
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class UserItem implements Serializable {
 	 * @return background
 	 */
 	public String getBackground() {
-		return this.background;
+		return this.Background;
 	}
 
 	/**
@@ -263,7 +263,7 @@ public class UserItem implements Serializable {
 	 *            avatar
 	 */
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		this.Avatar = avatar;
 	}
 
 	/**
@@ -272,7 +272,7 @@ public class UserItem implements Serializable {
 	 * @return avatar
 	 */
 	public String getAvatar() {
-		return this.avatar;
+		return this.Avatar;
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class UserItem implements Serializable {
 	 *            friendMsg
 	 */
 	public void setFriendmsg(Boolean friendmsg) {
-		this.friendmsg = friendmsg;
+		this.Friendmsg = friendmsg;
 	}
 
 	/**
@@ -291,7 +291,7 @@ public class UserItem implements Serializable {
 	 * @return friendMsg
 	 */
 	public Boolean getFriendmsg() {
-		return this.friendmsg;
+		return this.Friendmsg;
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class UserItem implements Serializable {
 	 *            businessMsg
 	 */
 	public void setBusinessmsg(Boolean businessmsg) {
-		this.businessmsg = businessmsg;
+		this.Businessmsg = businessmsg;
 	}
 
 	/**
@@ -310,7 +310,7 @@ public class UserItem implements Serializable {
 	 * @return businessMsg
 	 */
 	public Boolean getBusinessmsg() {
-		return this.businessmsg;
+		return this.Businessmsg;
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class UserItem implements Serializable {
 	 *            activityMsg
 	 */
 	public void setActivitymsg(Boolean activitymsg) {
-		this.activitymsg = activitymsg;
+		this.Activitymsg = activitymsg;
 	}
 
 	/**
@@ -329,7 +329,7 @@ public class UserItem implements Serializable {
 	 * @return activityMsg
 	 */
 	public Boolean getActivitymsg() {
-		return this.activitymsg;
+		return this.Activitymsg;
 	}
 
 	/**
@@ -339,7 +339,7 @@ public class UserItem implements Serializable {
 	 *            time
 	 */
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	/**
@@ -348,91 +348,55 @@ public class UserItem implements Serializable {
 	 * @return time
 	 */
 	public String getTime() {
-		return this.time;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		UserItem other = (UserItem) obj;
-		if (userid == null) {
-			if (other.userid != null) {
-				return false;
-			}
-		} else if (!userid.equals(other.userid)) {
-			return false;
-		}
-		return true;
+		return this.Time;
 	}
 
 	public boolean isFollowing() {
-		return isFollowing;
+		return IsFollowing;
 	}
 
 	public void setFollowing(boolean isFollowing) {
-		this.isFollowing = isFollowing;
+		this.IsFollowing = isFollowing;
 	}
 
 	public void setFollowingCount(long followingCount) {
-		this.followingCount = followingCount;
+		this.FollowingCount = followingCount;
 	}
 
 	public long getFollowingCount() {
-		return followingCount;
+		return FollowingCount;
 	}
 
 	public void setFansCount(long fansCount) {
-		this.fansCount = fansCount;
+		this.FansCount = fansCount;
 	}
 
 	public long getFansCount() {
-		return fansCount;
+		return FansCount;
 	}
 
 	public void setServerCount(long serverCount) {
-		this.serverCount = serverCount;
+		this.ServerCount = serverCount;
 	}
 
 	public long getServerCount() {
-		return serverCount;
+		return ServerCount;
 	}
 
 	public void setFans(boolean isFans) {
-		this.isFans = isFans;
+		this.IsFans = isFans;
 	}
 
 	public boolean isFans() {
-		return isFans;
+		return IsFans;
 	}
 
 	public void setLastActivity(String lastActivity) {
-		this.lastActivity = lastActivity;
+		this.LastActivity = lastActivity;
 	}
 
 	public String getLastActivity() {
-		return lastActivity;
+		return LastActivity;
 	}
 
 }

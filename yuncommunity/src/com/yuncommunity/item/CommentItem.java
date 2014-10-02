@@ -9,134 +9,134 @@ import com.yuncommunity.base.BaseItem;
  * 
  */
 public class CommentItem extends BaseItem {
-	private long commentid;
-	private long userid;
-	private long informationid;
-	private String content;
-	private float score;
-	private long opposition;
-	private long approval;
-	private String avatar;
-	private String name;
-	private String time;
-	private String tags;
-	private boolean isOpposition;
-	private boolean isApproval;
-	private Object informationItem;
+	private long Commentid;
+	private long Userid;
+	private long Informationid;
+	private String Content;
+	private float Score;
+	private long Opposition;
+	private long Approval;
+	private String Avatar;
+	private String Name;
+	private String Time;
+	private String Tags;
+	private boolean IsOpposition;
+	private boolean IsApproval;
+	private Object InformationItem;
 
 	public Object getInformationItem() {
-		if (informationItem == null) {
+		if (InformationItem == null) {
 			return "";
 		}
-		return informationItem;
+		return InformationItem;
 	}
 
 	public void setInformationItem(Object informationItem) {
-		this.informationItem = informationItem;
+		this.InformationItem = informationItem;
 	}
 
 	public boolean isOpposition() {
-		return isOpposition;
+		return IsOpposition;
 	}
 
 	public void setOpposition(boolean isOpposition) {
-		this.isOpposition = isOpposition;
+		this.IsOpposition = isOpposition;
 	}
 
 	public boolean isApproval() {
-		return isApproval;
+		return IsApproval;
 	}
 
 	public void setApproval(boolean isApproval) {
-		this.isApproval = isApproval;
+		this.IsApproval = isApproval;
 	}
 
 	public String getTime() {
-		return time;
+		return Time;
 	}
 
 	public void setTime(String time) {
-		this.time = time;
+		this.Time = time;
 	}
 
 	public String getName() {
-		return name;
+		return Name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.Name = name;
 	}
 
 	public String getAvatar() {
-		return avatar;
+		return Avatar;
 	}
 
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		this.Avatar = avatar;
 	}
 
 	public long getCommentid() {
-		return commentid;
+		return Commentid;
 	}
 
 	public void setCommentid(long commentid) {
-		this.commentid = commentid;
+		this.Commentid = commentid;
 	}
 
 	public long getUserid() {
-		return userid;
+		return Userid;
 	}
 
 	public void setUserid(long userid) {
-		this.userid = userid;
+		this.Userid = userid;
 	}
 
 	public long getInformationid() {
-		return informationid;
+		return Informationid;
 	}
 
 	public void setInformationid(long informationid) {
-		this.informationid = informationid;
+		this.Informationid = informationid;
 	}
 
 	public String getContent() {
-		return content;
+		return Content;
 	}
 
 	public void setContent(String content) {
-		this.content = content;
+		this.Content = content;
 	}
 
 	public float getScore() {
-		return score;
+		return Score;
 	}
 
 	public void setScore(float score) {
-		this.score = score;
+		this.Score = score;
 	}
 
 	public long getOppositionCount() {
-		return opposition;
+		return Opposition;
 	}
 
 	public void setOppositionCount(long opposition) {
-		this.opposition = opposition;
+		this.Opposition = opposition;
 	}
 
 	public long getApprovalCount() {
-		return approval;
+		return Approval;
 	}
 
 	public void setApprovalCount(long approval) {
-		this.approval = approval;
+		this.Approval = approval;
 	}
 
 	public void setTags(String tags) {
-		this.tags = tags;
+		this.Tags = tags;
 	}
 
 	public String getTags() {
-		return tags;
+		return Tags;
 	}
 
 }
