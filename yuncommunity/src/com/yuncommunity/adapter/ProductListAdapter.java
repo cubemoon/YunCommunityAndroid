@@ -14,14 +14,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.oldfeel.base.BaseBaseAdapter;
+import com.oldfeel.utils.DialogUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.ProductItem;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 产品列表适配器
@@ -72,7 +72,8 @@ public class ProductListAdapter extends BaseBaseAdapter<ProductItem> {
 	}
 
 	protected void delete(final ProductItem item) {
-		NetUtil netUtil = new NetUtil((Activity) context, JsonApi.PRODUCT_DELETE);
+		NetUtil netUtil = new NetUtil((Activity) context,
+				JsonApi.PRODUCT_DELETE);
 		netUtil.setParams("userid", super.getUserid());
 		netUtil.setParams("productid", item.getProductid());
 		netUtil.postRequest("正在删除", new RequestStringListener() {

@@ -11,12 +11,12 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.oldfeel.base.BaseFragment;
+import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.dialog.LookBigImage;
 import com.yuncommunity.item.InformationItem;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.StringUtil;
 
 /**
  * 信息详情中,多媒体的展示

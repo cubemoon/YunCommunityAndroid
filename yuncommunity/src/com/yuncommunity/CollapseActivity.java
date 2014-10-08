@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.util.LogUtil;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.LogUtil;
 
 /**
  * 应用崩溃提示

@@ -6,11 +6,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.ETUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.util.ETUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 修改密码
@@ -77,16 +77,19 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 		}
 		LoginInfo.getInstance(getApplicationContext()).saveRealPassword(
 				getString(etPassword1));
-		LoginInfo.update(ChangePassword.this, String.valueOf(getText(R.string.changing_password)),
+		LoginInfo.update(ChangePassword.this,
+				String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {
 
 					@Override
 					public void onComplete(String result) {
 						if (JSONUtil.isSuccess(result)) {
-							showToast(String.valueOf(getText(R.string.changed_successfully)));
+							showToast(String
+									.valueOf(getText(R.string.changed_successfully)));
 							finish();
 						} else {
-							showToast(getText(R.string.changed_failed)+"," + JSONUtil.getMessage(result));
+							showToast(getText(R.string.changed_failed) + ","
+									+ JSONUtil.getMessage(result));
 						}
 					}
 				});

@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.Utils;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.item.CommunityItem;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.Utils;
 
 /**
  * 小区简介

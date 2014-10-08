@@ -2,7 +2,7 @@ package com.yuncommunity;
 
 import android.os.Bundle;
 
-import com.yuncommunity.base.BaseActivity;
+import com.oldfeel.base.BaseActivity;
 import com.yuncommunity.fragment.MySettingsFragment;
 
 /**

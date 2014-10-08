@@ -1,6 +1,6 @@
 package com.yuncommunity.item;
 
-import com.yuncommunity.base.BaseItem;
+import com.oldfeel.base.BaseItem;
 
 /**
  * 评论

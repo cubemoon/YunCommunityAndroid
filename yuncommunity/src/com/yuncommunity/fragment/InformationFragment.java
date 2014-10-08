@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.oldfeel.base.BaseFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.list.InformationListFragment;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 活动/商家服务/个人服务

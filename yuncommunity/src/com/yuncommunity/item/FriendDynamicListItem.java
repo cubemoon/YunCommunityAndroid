@@ -1,8 +1,8 @@
 package com.yuncommunity.item;
 
 import com.google.gson.Gson;
+import com.oldfeel.base.BaseItem;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.base.BaseItem;
 
 /**
  * 好友动态

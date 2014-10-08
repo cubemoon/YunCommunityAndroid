@@ -13,15 +13,15 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.base.BaseBaseAdapter;
+import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.UserItem;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 用户列表适配器

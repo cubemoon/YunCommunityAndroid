@@ -1,7 +1,6 @@
 package com.yuncommunity.fragment;
 
 import java.io.File;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.oldfeel.base.BaseFragment;
+import com.oldfeel.utils.ETUtil;
+import com.oldfeel.utils.FileUtil;
+import com.oldfeel.utils.ImageUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.StringUtil;
+import com.oldfeel.utils.Utils;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
 import com.yuncommunity.SelectAddressBaiduMap;
@@ -26,16 +34,7 @@ import com.yuncommunity.SelectAddressGoogleMap;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseFragment;
 import com.yuncommunity.dialog.LookBigImage;
-import com.yuncommunity.util.ETUtil;
-import com.yuncommunity.util.FileUtil;
-import com.yuncommunity.util.ImageUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.StringUtil;
-import com.yuncommunity.util.Utils;
 
 /**
  * 发布信息

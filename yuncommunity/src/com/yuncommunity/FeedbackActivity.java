@@ -11,12 +11,12 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.DialogUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 建议反馈
@@ -81,25 +81,33 @@ public class FeedbackActivity extends BaseActivity {
 		netUtil.setParams("userid", getUserid());
 		netUtil.setParams("content", getString(etContent));
 		netUtil.setParams("anonymous", cbIsAnonymous.isChecked());
-		netUtil.postRequest(String.valueOf(getText(R.string.submiting_feedback)), new RequestStringListener() {
+		netUtil.postRequest(
+				String.valueOf(getText(R.string.submiting_feedback)),
+				new RequestStringListener() {
 
-			@Override
-			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					DialogUtil.getInstance().showSimpleDialog(
-							FeedbackActivity.this, String.valueOf(getText(R.string.submitted_feedback)),
-							new OnClickListener() {
+					@Override
+					public void onComplete(String result) {
+						if (JSONUtil.isSuccess(result)) {
+							DialogUtil
+									.getInstance()
+									.showSimpleDialog(
+											FeedbackActivity.this,
+											String.valueOf(getText(R.string.submitted_feedback)),
+											new OnClickListener() {
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									FeedbackActivity.this.finish();
-								}
-							});
-				} else {
-					showToast(getText(R.string.failed_submit_feedback)+"," + JSONUtil.getMessage(result));
-				}
-			}
-		});
+												@Override
+												public void onClick(
+														DialogInterface dialog,
+														int which) {
+													FeedbackActivity.this
+															.finish();
+												}
+											});
+						} else {
+							showToast(getText(R.string.failed_submit_feedback)
+									+ "," + JSONUtil.getMessage(result));
+						}
+					}
+				});
 	}
 }

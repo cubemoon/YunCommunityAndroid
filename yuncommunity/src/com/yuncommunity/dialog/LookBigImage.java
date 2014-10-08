@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.oldfeel.base.BaseDialogFragment;
+import com.oldfeel.utils.ImageUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.base.BaseDialogFragment;
-import com.yuncommunity.util.ImageUtil;
 
 /**
  * 查看大图

@@ -3,8 +3,6 @@ package com.yuncommunity.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -12,12 +10,12 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.oldfeel.base.BaseBaseAdapter;
+import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.StringUtil;
+import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
-import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.ActivitySignUpItem;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.StringUtil;
-import com.yuncommunity.util.Utils;
 
 /**
  * 活动报名者适配器

@@ -1,6 +1,6 @@
 package com.yuncommunity;
 
-import com.yuncommunity.base.BaseActivity;
+import com.oldfeel.base.BaseActivity;
 
 /**
  * 搜索

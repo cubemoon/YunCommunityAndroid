@@ -2,9 +2,9 @@ package com.yuncommunity.list;
 
 import android.support.v4.app.Fragment;
 
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.ActivitySignUpListAdapter;
-import com.yuncommunity.base.BaseListFragment;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 活动报名者列表

@@ -1,10 +1,10 @@
 package com.yuncommunity.list;
 
-import com.yuncommunity.adapter.FriendDynamicListAdapter;
-import com.yuncommunity.base.BaseListFragment;
-import com.yuncommunity.util.NetUtil;
-
 import android.support.v4.app.Fragment;
+
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.adapter.FriendDynamicListAdapter;
 
 /**
  * 朋友的动态信息

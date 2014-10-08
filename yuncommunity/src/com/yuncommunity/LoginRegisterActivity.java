@@ -3,8 +3,8 @@ package com.yuncommunity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.base.BaseTabsAdapter;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.base.BaseTabsAdapter;
 import com.yuncommunity.fragment.LoginFragment;
 import com.yuncommunity.fragment.RegisterFragment;
 

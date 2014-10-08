@@ -25,21 +25,21 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.DialogUtil;
+import com.oldfeel.utils.FileUtil;
+import com.oldfeel.utils.ImageUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.HeaderFragment;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.list.InformationListFragment;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.FileUtil;
-import com.yuncommunity.util.ImageUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.StringUtil;
 
 /**
  * 个人首页
@@ -148,10 +148,13 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 								getUserid() == targetid)).commit();
 		tvName.setText(item.getName() + "\n" + item.getIntroduction());
 		tvBirthday.setText(item.getHousenumber() + "\n" + item.getBirthday());
-		btnFollowing.setText(item.isFollowing() ? getText(R.string.follow) : getText(R.string.follow_cancel));
-		btnFollowings.setText(getText(R.string.follow)+"(" + item.getFollowingCount() + ")");
-		btnFans.setText(getText(R.string.fan)+"(" + item.getFansCount() + ")");
-		btnServer.setText(getText(R.string.publish)+"(" + item.getServerCount() + ")");
+		btnFollowing.setText(item.isFollowing() ? getText(R.string.follow)
+				: getText(R.string.follow_cancel));
+		btnFollowings.setText(getText(R.string.follow) + "("
+				+ item.getFollowingCount() + ")");
+		btnFans.setText(getText(R.string.fan) + "(" + item.getFansCount() + ")");
+		btnServer.setText(getText(R.string.publish) + "("
+				+ item.getServerCount() + ")");
 	}
 
 	private void initListener() {
@@ -185,7 +188,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	private void userNotExists() {
 		DialogUtil.getInstance().showSimpleDialog(PersonHomeActivity.this,
-				String.valueOf(getText(R.string.user_not_exist)), new DialogInterface.OnClickListener() {
+				String.valueOf(getText(R.string.user_not_exist)),
+				new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -266,7 +270,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		intent.setType("image/*");
-		startActivityForResult(Intent.createChooser(intent, getText(R.string.choose_photo)),
+		startActivityForResult(
+				Intent.createChooser(intent, getText(R.string.choose_photo)),
 				ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP);
 	}
 
@@ -279,7 +284,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				savedir.mkdirs();
 			}
 		} else {
-			showToast(String.valueOf(getText(R.string.failed_save_uploaded_photo)));
+			showToast(String
+					.valueOf(getText(R.string.failed_save_uploaded_photo)));
 			return null;
 		}
 		String timeStamp = StringUtil.getTimeStamp();
@@ -324,7 +330,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				savedir.mkdirs();
 			}
 		} else {
-			showToast(String.valueOf(getText(R.string.failed_save_uploaded_photo)));
+			showToast(String
+					.valueOf(getText(R.string.failed_save_uploaded_photo)));
 			return null;
 		}
 		String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss",
@@ -442,24 +449,27 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		if (!StringUtil.isEmpty(protraitPath) && protraitFile.exists()) {
 			protraitBitmap = ImageUtil.loadImgThumbnail(protraitPath, 800, 400);
 		} else {
-			showSimpleDialog(String.valueOf(getText(R.string.failed_upload_not_exist_photo)));
+			showSimpleDialog(String
+					.valueOf(getText(R.string.failed_upload_not_exist_photo)));
 		}
 		File headerFile = new File(protraitFile.getParent() + "/bg-"
 				+ System.currentTimeMillis() + "-" + getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);
-		netUtil.postRequest(String.valueOf(getText(R.string.uploading)), new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.uploading)),
+				new RequestStringListener() {
 
-			@Override
-			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					startUpload(JSONUtil.getMessage(result));
-				} else {
-					showToast(String.valueOf(getText(R.string.failed_to_get_uptoken)));
-				}
-			}
-		});
+					@Override
+					public void onComplete(String result) {
+						if (JSONUtil.isSuccess(result)) {
+							startUpload(JSONUtil.getMessage(result));
+						} else {
+							showToast(String
+									.valueOf(getText(R.string.failed_to_get_uptoken)));
+						}
+					}
+				});
 	}
 
 	/**

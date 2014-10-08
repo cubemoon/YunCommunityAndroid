@@ -11,7 +11,7 @@ import android.os.Environment;
  */
 public class Constant {
 	/** 接口根目录 */
-	public static final String ROOT_URL = "http://192.168.0.111:8080/v1/client/";// 我的电脑
+	public static final String ROOT_URL = "http://192.168.0.104:8080/v1/client/";// 我的电脑
 	// public static final String ROOT_URL =
 	// "http://yuncommunity.com/v1/client/";// 服务器
 	/** SharedPreferences用到的应用名称 */

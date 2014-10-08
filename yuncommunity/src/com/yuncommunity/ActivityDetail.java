@@ -26,22 +26,22 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.DialogUtil;
+import com.oldfeel.utils.ETUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.StringUtil;
+import com.oldfeel.utils.Utils;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.InformationMedia;
 import com.yuncommunity.item.CommentItem;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.list.CommentListFragment;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.ETUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.StringUtil;
-import com.yuncommunity.util.Utils;
 
 /**
  * 获取详情

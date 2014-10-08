@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
-import com.yuncommunity.base.BaseBaseAdapter;
 import com.yuncommunity.item.FriendDynamicListItem;
 
 /**

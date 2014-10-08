@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
+import com.oldfeel.base.BaseActivity;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.InformationRelease;
 
 /**

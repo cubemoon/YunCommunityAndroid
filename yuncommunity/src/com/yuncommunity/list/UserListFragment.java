@@ -1,12 +1,12 @@
 package com.yuncommunity.list;
 
+import android.content.Intent;
+
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.PersonHomeActivity;
 import com.yuncommunity.adapter.UserListAdapter;
-import com.yuncommunity.base.BaseListFragment;
 import com.yuncommunity.item.UserItem;
-import com.yuncommunity.util.NetUtil;
-
-import android.content.Intent;
 
 /**
  * 用户列表

@@ -2,13 +2,13 @@ package com.yuncommunity.list;
 
 import android.content.Intent;
 
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.ActivityDetail;
 import com.yuncommunity.InformationDetail;
 import com.yuncommunity.adapter.InformationListAdapter;
 import com.yuncommunity.app.Constant;
-import com.yuncommunity.base.BaseListFragment;
 import com.yuncommunity.item.InformationItem;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 活动/商家服务/个人服务列表

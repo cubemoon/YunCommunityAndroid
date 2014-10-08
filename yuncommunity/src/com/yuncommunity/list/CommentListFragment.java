@@ -1,8 +1,8 @@
 package com.yuncommunity.list;
 
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.CommentListAdapter;
-import com.yuncommunity.base.BaseListFragment;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 评论列表

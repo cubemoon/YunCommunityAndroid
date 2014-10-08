@@ -12,15 +12,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
+import com.oldfeel.utils.DialogUtil;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.VersionUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.util.DialogUtil;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.VersionUtil;
 
 /**
  * 设置

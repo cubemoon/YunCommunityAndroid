@@ -7,7 +7,7 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.yuncommunity.base.BaiduMapActivity;
+import com.oldfeel.base.BaiduMapActivity;
 import com.yuncommunity.item.CommunityItem;
 
 /**

@@ -1,9 +1,9 @@
 package com.yuncommunity.list;
 
+import com.oldfeel.base.BaseListFragment;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.ProductListAdapter;
-import com.yuncommunity.base.BaseListFragment;
 import com.yuncommunity.item.ProductItem;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 产品列表

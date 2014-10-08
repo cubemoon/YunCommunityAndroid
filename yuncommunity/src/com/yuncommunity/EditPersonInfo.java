@@ -14,10 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 编辑个人资料

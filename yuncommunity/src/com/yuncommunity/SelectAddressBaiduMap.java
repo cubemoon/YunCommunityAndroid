@@ -24,8 +24,8 @@ import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
-import com.yuncommunity.base.BaiduMapActivity;
-import com.yuncommunity.util.ETUtil;
+import com.oldfeel.base.BaiduMapActivity;
+import com.oldfeel.utils.ETUtil;
 
 /**
  * 选择地址
@@ -33,7 +33,8 @@ import com.yuncommunity.util.ETUtil;
  * @author oldfeel
  * 
  */
-public class SelectAddressBaiduMap extends BaiduMapActivity implements OnClickListener {
+public class SelectAddressBaiduMap extends BaiduMapActivity implements
+		OnClickListener {
 	private EditText etContent;
 	private Button btnUp, btnDown, btnRight, btnLeft;
 	protected Point clickedPoint;
@@ -143,7 +144,8 @@ public class SelectAddressBaiduMap extends BaiduMapActivity implements OnClickLi
 	 * 显示帮助
 	 */
 	private void showHelp() {
-		new AlertDialog.Builder(SelectAddressBaiduMap.this).setTitle(String.valueOf(getText(R.string.help)))
+		new AlertDialog.Builder(SelectAddressBaiduMap.this)
+				.setTitle(String.valueOf(getText(R.string.help)))
 				.setMessage(getText(R.string.map_help_details))
 				.setPositiveButton(getText(R.string.confirm), null).show();
 	}

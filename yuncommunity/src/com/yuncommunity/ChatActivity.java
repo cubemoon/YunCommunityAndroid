@@ -2,10 +2,10 @@ package com.yuncommunity;
 
 import android.os.Bundle;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.list.ChatListFragment;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 发送私信/聊天界面

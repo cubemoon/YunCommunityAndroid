@@ -1,6 +1,6 @@
 package com.yuncommunity;
 
-import com.yuncommunity.base.GoogleMapActivity;
+import com.oldfeel.base.GoogleMapActivity;
 
 /**
  * 选择地址

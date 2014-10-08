@@ -2,10 +2,10 @@ package com.yuncommunity;
 
 import android.os.Bundle;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.list.UserListFragment;
-import com.yuncommunity.util.NetUtil;
 
 /**
  * 用户列表
@@ -31,7 +31,8 @@ public class UserList extends BaseActivity {
 		if (api.equals(JsonApi.INFORMATION_FOLLOWERS)) {
 			long informationid = getIntent().getLongExtra("informationid", -1);
 			netUtil.setParams("informationid", informationid);
-		} else if (api.equals(JsonApi.USER_FOLLOWINGS) || api.equals(JsonApi.USER_FANS)) {
+		} else if (api.equals(JsonApi.USER_FOLLOWINGS)
+				|| api.equals(JsonApi.USER_FANS)) {
 			long targetid = getIntent().getLongExtra("targetid", -1);
 			netUtil.setParams("targetid", targetid);
 		}

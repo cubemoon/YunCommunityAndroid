@@ -19,16 +19,16 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.oldfeel.base.BaseFragment;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.OnNetFailListener;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.ForgetPassword;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseFragment;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.OnNetFailListener;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 登录

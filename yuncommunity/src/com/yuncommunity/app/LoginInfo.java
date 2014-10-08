@@ -6,11 +6,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.google.gson.Gson;
+import com.oldfeel.app.BaseConstant;
+import com.oldfeel.utils.DesUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.item.UserItem;
-import com.yuncommunity.util.DesUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.StringUtil;
 
 /**
  * 个人信息
@@ -72,6 +73,7 @@ public class LoginInfo extends UserItem {
 		setServerCount(userItem.getServerCount());
 		setTime(userItem.getTime());
 		setUserid(userItem.getUserid());
+		BaseConstant.getInstance().setUserId(userItem.getUserid());
 	}
 
 	public void saveRealPassword(String password) {

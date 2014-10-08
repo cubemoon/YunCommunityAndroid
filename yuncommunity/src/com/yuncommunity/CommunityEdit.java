@@ -6,13 +6,13 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.app.JsonApi;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.item.CommunityItem;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
-import com.yuncommunity.util.StringUtil;
 
 /**
  * 编辑小区介绍
@@ -61,23 +61,26 @@ public class CommunityEdit extends BaseActivity {
 	 * 完成编辑
 	 */
 	private void complete() {
-		NetUtil netUtil = new NetUtil(CommunityEdit.this, JsonApi.COMMUNITY_EDIT);
+		NetUtil netUtil = new NetUtil(CommunityEdit.this,
+				JsonApi.COMMUNITY_EDIT);
 		netUtil.setParams("communityid", item.getCommunityid());
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("image", StringUtil.getFileName(item.getImage()));
 		netUtil.setParams("lat", item.getLat());
 		netUtil.setParams("lon", item.getLon());
-		netUtil.postRequest(String.valueOf(getText(R.string.uploading)), new RequestStringListener() {
+		netUtil.postRequest(String.valueOf(getText(R.string.uploading)),
+				new RequestStringListener() {
 
-			@Override
-			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					showToast(String.valueOf(getText(R.string.edit_finished)));
-					finish();
-				} else {
-					showToast(JSONUtil.getMessage(result));
-				}
-			}
-		});
+					@Override
+					public void onComplete(String result) {
+						if (JSONUtil.isSuccess(result)) {
+							showToast(String
+									.valueOf(getText(R.string.edit_finished)));
+							finish();
+						} else {
+							showToast(JSONUtil.getMessage(result));
+						}
+					}
+				});
 	}
 }

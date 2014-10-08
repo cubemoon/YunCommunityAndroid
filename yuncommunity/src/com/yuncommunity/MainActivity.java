@@ -17,17 +17,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.adapter.DrawerListAdapter;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
-import com.yuncommunity.base.BaseActivity;
 import com.yuncommunity.fragment.AttentionFragment;
 import com.yuncommunity.fragment.InformationFragment;
-import com.yuncommunity.util.JSONUtil;
-import com.yuncommunity.util.LogUtil;
-import com.yuncommunity.util.NetUtil;
-import com.yuncommunity.util.NetUtil.RequestStringListener;
 
 /**
  * 主界面
