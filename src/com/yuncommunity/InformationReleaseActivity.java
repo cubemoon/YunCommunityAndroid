@@ -57,7 +57,7 @@ public class InformationReleaseActivity extends BaseActivity {
 			fragment = InformationRelease.newInstance(Constant.TYPE_BUSINESS);
 			break;
 		case 2:
-			fragment = InformationRelease.newInstance(Constant.TYPE_PERSONAL);
+			fragment = InformationRelease.newInstance(Constant.TYPE_TASK);
 			break;
 		default:
 			break;

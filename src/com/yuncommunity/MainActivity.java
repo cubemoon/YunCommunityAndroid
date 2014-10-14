@@ -38,11 +38,12 @@ public class MainActivity extends BaseActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private DrawerListAdapter adapter;
+	private DrawerListAdapter drawerListAdapter;
+	private InformationFragment squareFragment;
 	private AttentionFragment attentionFragment;
 	private InformationFragment activityFragment;
 	private InformationFragment businessFragment;
-	private InformationFragment personalFragment;
+	private InformationFragment taskFragment;
 	private int infotype;
 	private TextView tvName;
 	private ImageView ivAvatar;
@@ -57,9 +58,9 @@ public class MainActivity extends BaseActivity {
 
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
-		adapter = new DrawerListAdapter(getApplicationContext());
+		drawerListAdapter = new DrawerListAdapter(getApplicationContext());
 		mDrawerList.addHeaderView(getHeaderView());
-		mDrawerList.setAdapter(adapter);
+		mDrawerList.setAdapter(drawerListAdapter);
 		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -104,9 +105,8 @@ public class MainActivity extends BaseActivity {
 					&& businessFragment.isVisible()) {
 				businessFragment.updateList();
 			}
-			if (infotype == Constant.TYPE_PERSONAL
-					&& personalFragment.isVisible()) {
-				personalFragment.updateList();
+			if (infotype == Constant.TYPE_TASK && taskFragment.isVisible()) {
+				taskFragment.updateList();
 			}
 		}
 		super.onNewIntent(intent);
@@ -183,24 +183,27 @@ public class MainActivity extends BaseActivity {
 			openPersonHome();
 			break;
 		case 1:
-			openAttention();
+			openAttention(0);
 			break;
 		case 2:
-			openActivity();
+			openSquare(1);
 			break;
 		case 3:
-			openBusiness();
+			openActivity(2);
 			break;
 		case 4:
-			openPersonal();
+			openBusiness(3);
 			break;
 		case 5:
-			openIntroduction();
+			openTask(4);
 			break;
 		case 6:
-			openFeedback();
+			openCommunityManager();
 			break;
 		case 7:
+			openFeedback();
+			break;
+		case 8:
 			openSettings();
 			break;
 		default:
@@ -211,8 +214,8 @@ public class MainActivity extends BaseActivity {
 	/**
 	 * 小区简介
 	 */
-	private void openIntroduction() {
-		openActivity(CommunityIntroduction.class);
+	private void openCommunityManager() {
+		openActivity(CommunityManager.class);
 	}
 
 	/**
@@ -230,29 +233,28 @@ public class MainActivity extends BaseActivity {
 	}
 
 	/**
-	 * 个人服务
+	 * 任务
+	 * 
+	 * @param i
 	 */
-	private void openPersonal() {
-
-		setTitle(R.string.person_service);
-
-		adapter.setSelected(3);
-		infotype = Constant.TYPE_PERSONAL;
-		if (personalFragment == null) {
-			personalFragment = InformationFragment
-					.newInstance(Constant.TYPE_PERSONAL);
+	private void openTask(int i) {
+		setTitle(R.string.task);
+		drawerListAdapter.setSelected(i);
+		infotype = Constant.TYPE_TASK;
+		if (taskFragment == null) {
+			taskFragment = InformationFragment.newInstance(Constant.TYPE_TASK);
 		}
-		showFragment(personalFragment);
+		showFragment(taskFragment);
 	}
 
 	/**
 	 * 商家服务
+	 * 
+	 * @param i
 	 */
-	private void openBusiness() {
-
+	private void openBusiness(int i) {
 		setTitle(R.string.business_service);
-
-		adapter.setSelected(2);
+		drawerListAdapter.setSelected(i);
 		infotype = Constant.TYPE_BUSINESS;
 		if (businessFragment == null) {
 			businessFragment = InformationFragment
@@ -263,12 +265,12 @@ public class MainActivity extends BaseActivity {
 
 	/**
 	 * 活动
+	 * 
+	 * @param i
 	 */
-	private void openActivity() {
-
+	private void openActivity(int i) {
 		setTitle(R.string.activity);
-
-		adapter.setSelected(1);
+		drawerListAdapter.setSelected(i);
 		infotype = Constant.TYPE_ACTIVITY;
 		if (activityFragment == null) {
 			activityFragment = InformationFragment
@@ -279,16 +281,31 @@ public class MainActivity extends BaseActivity {
 
 	/**
 	 * 关注
+	 * 
+	 * @param i
 	 */
-	private void openAttention() {
-
+	private void openAttention(int i) {
 		setTitle(R.string.attention);
-
-		adapter.setSelected(0);
+		drawerListAdapter.setSelected(i);
 		if (attentionFragment == null) {
 			attentionFragment = AttentionFragment.newInstance();
 		}
 		showFragment(attentionFragment);
+	}
+
+	/**
+	 * 打开广场
+	 * 
+	 * @param i
+	 */
+	private void openSquare(int i) {
+		setTitle(R.string.square);
+		drawerListAdapter.setSelected(i);
+		if (squareFragment == null) {
+			squareFragment = InformationFragment
+					.newInstance(Constant.TYPE_SQUARE);
+		}
+		showFragment(squareFragment);
 	}
 
 	private void showFragment(Fragment fragment) {
