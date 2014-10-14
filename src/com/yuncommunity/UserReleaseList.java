@@ -26,7 +26,7 @@ public class UserReleaseList extends BaseActivity {
 	}
 
 	private NetUtil getNetUtil() {
-		long userid = getIntent().getLongExtra("userid", -1);
+		long userid = getIntent().getLongExtra("targetid", -1);
 		NetUtil netUtil = new NetUtil(UserReleaseList.this,
 				JsonApi.USER_RELEASE_LIST);
 		netUtil.setParams("userid", userid);
