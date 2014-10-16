@@ -3,10 +3,11 @@
 
     <string-array name="drawer_menus">
         <item>Follow</item>
+        <item>Square</item>
         <item>Activities</item>
-        <item>Business Service</item>
-        <item>Personal Service</item>
-        <item>Community Info</item>
+        <item>Business</item>
+        <item>Task</item>
+        <item>Community Manager</item>
         <item>Suggestion and Feedback</item>
         <item>Setting</item>
     </string-array>

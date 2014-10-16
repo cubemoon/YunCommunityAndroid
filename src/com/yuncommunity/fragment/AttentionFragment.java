@@ -53,7 +53,7 @@ public class AttentionFragment extends BaseFragment {
 		adapter.addTab(String.valueOf(getText(R.string.business_service)),
 				getInformationList(Constant.TYPE_BUSINESS));
 		adapter.addTab(String.valueOf(getText(R.string.personal_service)),
-				getInformationList(Constant.TYPE_PERSONAL));
+				getInformationList(Constant.TYPE_TASK));
 	}
 
 	private Fragment getInformationList(int infotype) {
