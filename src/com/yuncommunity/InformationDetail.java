@@ -183,7 +183,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.information_detail, menu);
 		if (item.getUserid() != LoginInfo.getInstance(getApplicationContext())
-				.getUserid()) {
+				.getUserInfo().getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
 		}
 		if (item.getInfotype() != Constant.TYPE_BUSINESS) {

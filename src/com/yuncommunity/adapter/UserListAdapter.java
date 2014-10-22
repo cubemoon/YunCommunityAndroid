@@ -56,7 +56,8 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 				isFollowing(item, btnFollowing);
 			}
 		});
-		if (item.getUserid() == LoginInfo.getInstance(context).getUserid()) {
+		if (item.getUserid() == LoginInfo.getInstance(context).getUserInfo()
+				.getUserid()) {
 			btnFollowing.setVisibility(View.GONE);
 		}
 		return view;
@@ -115,7 +116,8 @@ public class UserListAdapter extends BaseBaseAdapter<UserItem> {
 			boolean isFollowing) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.USER_FOLLOWING);
-		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context)
+				.getUserInfo().getUserid());
 		netUtil.setParams("targetid", item.getUserid());
 		netUtil.setParams("isfollowing", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {

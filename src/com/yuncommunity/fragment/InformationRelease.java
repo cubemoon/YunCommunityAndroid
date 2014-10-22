@@ -88,7 +88,8 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		ivImage.setOnClickListener(this);
 		ivVideo.setOnClickListener(this);
 		ivVoice.setOnClickListener(this);
-		etPhone.setText(LoginInfo.getInstance(getActivity()).getPhone());
+		etPhone.setText(LoginInfo.getInstance(getActivity()).getUserInfo()
+				.getPhone());
 	}
 
 	public void submit() {
@@ -103,7 +104,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 				JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", infotype);
 		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
-				.getUserid());
+				.getUserInfo().getUserid());
 		netUtil.setParams("title", getString(etTitle));
 		netUtil.setParams("description", getString(etDesc));
 		netUtil.setParams("address", getString(etAddress));
@@ -400,7 +401,8 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 			return null;
 		}
 		String timeStamp = StringUtil.getTimeStamp();
-		String fileName = LoginInfo.getInstance(getActivity()).getUserid()
+		String fileName = LoginInfo.getInstance(getActivity()).getUserInfo()
+				.getUserid()
 				+ "_" + timeStamp + type;
 		return Constant.FILE_SAVEPATH + "/" + fileName;
 	}

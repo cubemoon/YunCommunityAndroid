@@ -60,7 +60,7 @@ public class AttentionFragment extends BaseFragment {
 		NetUtil netUtil = new NetUtil(getActivity(),
 				JsonApi.USER_INFORMATION_LIST);
 		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
-				.getUserid());
+				.getUserInfo().getUserid());
 		netUtil.setParams("infotype", infotype);
 		return InformationListFragment.newInstance(netUtil);
 	}
@@ -69,7 +69,7 @@ public class AttentionFragment extends BaseFragment {
 		NetUtil netUtil = new NetUtil(getActivity(),
 				JsonApi.USER_FRIEND_DYNAMIC);
 		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
-				.getUserid());
+				.getUserInfo().getUserid());
 		return netUtil;
 	}
 

@@ -162,7 +162,7 @@ public class MySettingsFragment extends PreferenceFragment {
 		CheckBoxPreference businessmsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.business_msg));
 		businessmsg.setChecked(LoginInfo.getInstance(getActivity())
-				.getBusinessmsg());
+				.getUserInfo().getBusinessmsg());
 		businessmsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
@@ -170,8 +170,11 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						LoginInfo.getInstance(getActivity()).setBusinessmsg(
-								Boolean.valueOf(newValue.toString()));
+						LoginInfo
+								.getInstance(getActivity())
+								.getUserInfo()
+								.setBusinessmsg(
+										Boolean.valueOf(newValue.toString()));
 						return true;
 					}
 				});
@@ -181,7 +184,7 @@ public class MySettingsFragment extends PreferenceFragment {
 		CheckBoxPreference activitymsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.activity_msg));
 		activitymsg.setChecked(LoginInfo.getInstance(getActivity())
-				.getActivitymsg());
+				.getUserInfo().getActivitymsg());
 		activitymsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
@@ -189,8 +192,11 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						LoginInfo.getInstance(getActivity()).setActivitymsg(
-								Boolean.valueOf(newValue.toString()));
+						LoginInfo
+								.getInstance(getActivity())
+								.getUserInfo()
+								.setActivitymsg(
+										Boolean.valueOf(newValue.toString()));
 						return true;
 					}
 				});
@@ -199,7 +205,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	private void initFriendMsg() {
 		CheckBoxPreference friendMsg = (CheckBoxPreference) getPreferenceManager()
 				.findPreference(getString(R.string.friend_msg));
-		friendMsg.setChecked(LoginInfo.getInstance(getActivity())
+		friendMsg.setChecked(LoginInfo.getInstance(getActivity()).getUserInfo()
 				.getFriendmsg());
 		friendMsg
 				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -208,8 +214,11 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
 						isUpdate = true;
-						LoginInfo.getInstance(getActivity()).setFriendmsg(
-								Boolean.valueOf(newValue.toString()));
+						LoginInfo
+								.getInstance(getActivity())
+								.getUserInfo()
+								.setFriendmsg(
+										Boolean.valueOf(newValue.toString()));
 						return true;
 					}
 				});

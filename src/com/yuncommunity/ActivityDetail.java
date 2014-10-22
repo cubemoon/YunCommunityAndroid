@@ -179,7 +179,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_detail, menu);
 		if (item.getUserid() != LoginInfo.getInstance(getApplicationContext())
-				.getUserid()) {
+				.getUserInfo().getUserid()) {
 			menu.findItem(R.id.action_edit).setVisible(false);
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -455,9 +455,9 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 		final Spinner spChild = (Spinner) view
 				.findViewById(R.id.activity_sign_up_child);
 		LoginInfo loginInfo = LoginInfo.getInstance(getApplicationContext());
-		etName.setText(loginInfo.getName());
-		etPhone.setText(loginInfo.getPhone());
-		etEmail.setText(loginInfo.getEmail());
+		etName.setText(loginInfo.getUserInfo().getName());
+		etPhone.setText(loginInfo.getUserInfo().getPhone());
+		etEmail.setText(loginInfo.getUserInfo().getEmail());
 		new AlertDialog.Builder(ActivityDetail.this)
 				.setTitle(R.string.activity_signup)
 				.setView(view)

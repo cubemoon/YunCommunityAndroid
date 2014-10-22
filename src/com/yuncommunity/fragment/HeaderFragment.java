@@ -222,9 +222,12 @@ public class HeaderFragment extends BaseFragment {
 		} else {
 			showSimpleDialog("图像不存在，上传失败·");
 		}
-		File headerFile = new File(protraitFile.getParent() + "/avatar-"
-				+ System.currentTimeMillis() + "-"
-				+ LoginInfo.getInstance(getActivity()).getUserid() + ".jpg");
+		File headerFile = new File(protraitFile.getParent()
+				+ "/avatar-"
+				+ System.currentTimeMillis()
+				+ "-"
+				+ LoginInfo.getInstance(getActivity()).getUserInfo()
+						.getUserid() + ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.UPTOKEN);
@@ -255,8 +258,8 @@ public class HeaderFragment extends BaseFragment {
 					public void onComplete(String result) {
 						showToast("上传成功");
 						ivHeader.setImageBitmap(protraitBitmap);
-						LoginInfo.getInstance(getActivity()).setAvatar(
-								protraitFile.getName());
+						LoginInfo.getInstance(getActivity()).getUserInfo()
+								.setAvatar(protraitFile.getName());
 						LoginInfo.update(getActivity());
 					}
 				});

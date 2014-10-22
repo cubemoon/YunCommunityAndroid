@@ -106,7 +106,8 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	protected void opposition(CommentItem item, boolean isOpposition) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.COMMENT_OPPOSITION);
-		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context)
+				.getUserInfo().getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isopposition", isOpposition);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -127,7 +128,8 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 	protected void approval(CommentItem item, boolean isapproval) {
 		NetUtil netUtil = new NetUtil((BaseActivity) context,
 				JsonApi.COMMENT_APPROVAL);
-		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context)
+				.getUserInfo().getUserid());
 		netUtil.setParams("commentid", item.getCommentid());
 		netUtil.setParams("isapproval", isapproval);
 		netUtil.postRequest("", new RequestStringListener() {

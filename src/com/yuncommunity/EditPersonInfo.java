@@ -54,14 +54,14 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 	}
 
 	private void putDataToView() {
-		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
-		etName.setText(personInfo.getName());
-		etIntro.setText(personInfo.getIntroduction());
-		etPhone.setText(personInfo.getPhone());
-		etEmail.setText(personInfo.getEmail());
-		etHouseNumber.setText(personInfo.getHousenumber());
-		tvBirthday.setText(personInfo.getBirthday());
-		spPermission.setSelection(personInfo.getPermission());
+		LoginInfo loginInfo = LoginInfo.getInstance(getApplicationContext());
+		etName.setText(loginInfo.getUserInfo().getName());
+		etIntro.setText(loginInfo.getUserInfo().getIntroduction());
+		etPhone.setText(loginInfo.getUserInfo().getPhone());
+		etEmail.setText(loginInfo.getUserInfo().getEmail());
+		etHouseNumber.setText(loginInfo.getUserInfo().getHousenumber());
+		tvBirthday.setText(loginInfo.getUserInfo().getBirthday());
+		spPermission.setSelection(loginInfo.getUserInfo().getPermission());
 	}
 
 	@Override
@@ -84,13 +84,14 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 	}
 
 	private void complete() {
-		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
-		personInfo.setName(getString(etName));
-		personInfo.setIntroduction(getString(etIntro));
-		personInfo.setPhone(getString(etPhone));
-		personInfo.setHousenumber(getString(etHouseNumber));
-		personInfo.setBirthday(super.getString(tvBirthday));
-		personInfo.setPermission(spPermission.getSelectedItemPosition());
+		LoginInfo loginInfo = LoginInfo.getInstance(getApplicationContext());
+		loginInfo.getUserInfo().setName(getString(etName));
+		loginInfo.getUserInfo().setIntroduction(getString(etIntro));
+		loginInfo.getUserInfo().setPhone(getString(etPhone));
+		loginInfo.getUserInfo().setHousenumber(getString(etHouseNumber));
+		loginInfo.getUserInfo().setBirthday(super.getString(tvBirthday));
+		loginInfo.getUserInfo().setPermission(
+				spPermission.getSelectedItemPosition());
 		LoginInfo.update(EditPersonInfo.this,
 				String.valueOf(getText(R.string.updating_personal_details)),
 				new RequestStringListener() {

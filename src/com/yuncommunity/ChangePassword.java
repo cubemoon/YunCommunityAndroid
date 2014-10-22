@@ -70,8 +70,8 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 			etPassword2.setError(getText(R.string.two_password_not_match));
 			return;
 		}
-		if (!LoginInfo.getInstance(getApplicationContext()).getPassword()
-				.equals(getString(etPassword))) {
+		if (!LoginInfo.getInstance(getApplicationContext()).getUserInfo()
+				.getPassword().equals(getString(etPassword))) {
 			etPassword.setError(getText(R.string.wrong_password));
 			return;
 		}

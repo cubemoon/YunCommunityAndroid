@@ -487,6 +487,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 						showToast("上传成功");
 						ivBg.setImageBitmap(protraitBitmap);
 						LoginInfo.getInstance(PersonHomeActivity.this)
+								.getUserInfo()
 								.setBackground(protraitFile.getName());
 						LoginInfo.update(PersonHomeActivity.this);
 					}
@@ -495,9 +496,9 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	private void updateData(Intent data) {
 		LoginInfo personInfo = LoginInfo.getInstance(getApplicationContext());
-		tvName.setText(personInfo.getName() + "\n"
-				+ personInfo.getIntroduction());
-		tvBirthday.setText(personInfo.getHousenumber() + "\n"
-				+ personInfo.getBirthday());
+		tvName.setText(personInfo.getUserInfo().getName() + "\n"
+				+ personInfo.getUserInfo().getIntroduction());
+		tvBirthday.setText(personInfo.getUserInfo().getHousenumber() + "\n"
+				+ personInfo.getUserInfo().getBirthday());
 	}
 }

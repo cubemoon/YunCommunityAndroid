@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
-				.getEmail();
+				.getUserInfo().getEmail();
 		String password = LoginInfo.getInstance(getApplicationContext())
 				.getRealPassword();
 		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
@@ -167,12 +167,12 @@ public class MainActivity extends BaseActivity {
 
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
-				.getAvatar(), ivAvatar, options);
+				.getUserInfo().getAvatar(), ivAvatar, options);
 		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
-					.getName());
+					.getUserInfo().getName());
 		}
 	}
 

@@ -11,6 +11,7 @@ import com.oldfeel.utils.DesUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
+import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.item.UserItem;
 
 /**
@@ -20,10 +21,12 @@ import com.yuncommunity.item.UserItem;
  * 
  *         Created on: 2014年3月1日
  */
-public class LoginInfo extends UserItem {
+public class LoginInfo {
 	private static LoginInfo loginInfo;
 	private SharedPreferences sp;
 	private Editor editor;
+	private UserItem userInfo; // 登陆用户信息
+	private CommunityItem communityInfo; // 小区信息
 
 	public static LoginInfo getInstance(Context context) {
 		if (loginInfo == null) {
@@ -37,11 +40,13 @@ public class LoginInfo extends UserItem {
 				Context.MODE_PRIVATE);
 		editor = sp.edit();
 		editor.commit();
+		userInfo = new UserItem();
+		communityInfo = new CommunityItem();
 		saveInfo(DesUtil.decode(Constant.KEY, sp.getString("logininfo", "")));
 	}
 
 	public boolean isLogin() {
-		return getUserid() != 0;
+		return userInfo.getUserid() != 0;
 	}
 
 	public void saveInfo(String result) {
@@ -51,29 +56,8 @@ public class LoginInfo extends UserItem {
 		if (StringUtil.isEmpty(result)) {
 			return;
 		}
-		UserItem userItem = new Gson().fromJson(result, UserItem.class);
-		setActivitymsg(userItem.getActivitymsg());
-		setAvatar(userItem.getAvatar());
-		setBackground(userItem.getBackground());
-		setBirthday(userItem.getBirthday());
-		setBusinessmsg(userItem.getBusinessmsg());
-		setEmail(userItem.getEmail());
-		setFans(userItem.isFans());
-		setFansCount(userItem.getFansCount());
-		setFollowing(userItem.isFollowing());
-		setFollowingCount(userItem.getFollowingCount());
-		setFriendmsg(userItem.getFriendmsg());
-		setHousenumber(userItem.getHousenumber());
-		setIntroduction(userItem.getIntroduction());
-		setLastActivity(userItem.getLastActivity());
-		setName(userItem.getName());
-		setPassword(userItem.getPassword());
-		setPermission(userItem.getPermission());
-		setPhone(userItem.getPhone());
-		setServerCount(userItem.getServerCount());
-		setTime(userItem.getTime());
-		setUserid(userItem.getUserid());
-		BaseConstant.getInstance().setUserId(userItem.getUserid());
+		userInfo = new Gson().fromJson(result, UserItem.class);
+		BaseConstant.getInstance().setUserId(userInfo.getUserid());
 	}
 
 	public void saveRealPassword(String password) {
@@ -89,21 +73,25 @@ public class LoginInfo extends UserItem {
 			RequestStringListener stringListener) {
 		LoginInfo loginInfo = LoginInfo.getInstance(activity);
 		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
-		netUtil.setParams("userid", loginInfo.getUserid());
-		netUtil.setParams("name", loginInfo.getName());
+		netUtil.setParams("userid", loginInfo.getUserInfo().getUserid());
+		netUtil.setParams("name", loginInfo.getUserInfo().getName());
 		netUtil.setParams("password", loginInfo.getRealPassword());
-		netUtil.setParams("phone", loginInfo.getPhone());
-		netUtil.setParams("housenumber", loginInfo.getHousenumber());
-		netUtil.setParams("birthday", loginInfo.getBirthday());
-		netUtil.setParams("permission", loginInfo.getPermission());
+		netUtil.setParams("phone", loginInfo.getUserInfo().getPhone());
+		netUtil.setParams("housenumber", loginInfo.getUserInfo()
+				.getHousenumber());
+		netUtil.setParams("birthday", loginInfo.getUserInfo().getBirthday());
+		netUtil.setParams("permission", loginInfo.getUserInfo().getPermission());
 		netUtil.setParams("background",
-				StringUtil.getFileName(loginInfo.getBackground()));
+				StringUtil.getFileName(loginInfo.getUserInfo().getBackground()));
 		netUtil.setParams("avatar",
-				StringUtil.getFileName(loginInfo.getAvatar()));
-		netUtil.setParams("friendmsg", loginInfo.getFriendmsg());
-		netUtil.setParams("activitymsg", loginInfo.getActivitymsg());
-		netUtil.setParams("businessmsg", loginInfo.getBusinessmsg());
-		netUtil.setParams("introduction", loginInfo.getIntroduction());
+				StringUtil.getFileName(loginInfo.getUserInfo().getAvatar()));
+		netUtil.setParams("friendmsg", loginInfo.getUserInfo().getFriendmsg());
+		netUtil.setParams("activitymsg", loginInfo.getUserInfo()
+				.getActivitymsg());
+		netUtil.setParams("businessmsg", loginInfo.getUserInfo()
+				.getBusinessmsg());
+		netUtil.setParams("introduction", loginInfo.getUserInfo()
+				.getIntroduction());
 		netUtil.postRequest(text, stringListener);
 	}
 
@@ -114,4 +102,21 @@ public class LoginInfo extends UserItem {
 	public void close() {
 		loginInfo = null;
 	}
+
+	public UserItem getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserItem userInfo) {
+		this.userInfo = userInfo;
+	}
+
+	public CommunityItem getCommunityInfo() {
+		return communityInfo;
+	}
+
+	public void setCommunityInfo(CommunityItem communityInfo) {
+		this.communityInfo = communityInfo;
+	}
+
 }
