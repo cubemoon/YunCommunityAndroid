@@ -1,17 +1,19 @@
 package com.yuncommunity.fragment;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseFragment;
-import com.oldfeel.base.BaseTabsAdapter;
 import com.oldfeel.utils.NetUtil;
+import com.viewpagerindicator.TabPageIndicator;
 import com.yuncommunity.R;
 import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
@@ -27,7 +29,7 @@ import com.yuncommunity.list.InformationListFragment;
  */
 public class AttentionFragment extends BaseFragment {
 	private ViewPager pager;
-	private BaseTabsAdapter adapter;
+	private TabPageIndicator indicator;
 
 	public static AttentionFragment newInstance() {
 		AttentionFragment fragment = new AttentionFragment();
@@ -37,23 +39,27 @@ public class AttentionFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.view_pager, null);
+		View view = inflater.inflate(R.layout.attention_fragment, null);
 		pager = (ViewPager) view.findViewById(R.id.pager);
+		indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
 		return view;
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		adapter = new BaseTabsAdapter((BaseActivity) getActivity(), pager);
-		adapter.addTab(String.valueOf(getText(R.string.friend)),
+		MyFragmentPageAdapter adapter = new MyFragmentPageAdapter(getActivity()
+				.getSupportFragmentManager());
+		adapter.add(String.valueOf(getText(R.string.friend)),
 				FriendDynamicList.newInstance(getFriendNetUtil()));
-		adapter.addTab(String.valueOf(getText(R.string.activity)),
+		adapter.add(String.valueOf(getText(R.string.activity)),
 				getInformationList(Constant.TYPE_ACTIVITY));
-		adapter.addTab(String.valueOf(getText(R.string.business_service)),
+		adapter.add(String.valueOf(getText(R.string.business_service)),
 				getInformationList(Constant.TYPE_BUSINESS));
-		adapter.addTab(String.valueOf(getText(R.string.personal_service)),
+		adapter.add(String.valueOf(getText(R.string.personal_service)),
 				getInformationList(Constant.TYPE_TASK));
+		pager.setAdapter(adapter);
+		indicator.setViewPager(pager);
 	}
 
 	private Fragment getInformationList(int infotype) {
@@ -73,12 +79,59 @@ public class AttentionFragment extends BaseFragment {
 		return netUtil;
 	}
 
-	@Override
-	public void onStop() {
-		ActionBar actionBar = ((BaseActivity) getActivity())
-				.getSupportActionBar();
-		actionBar.removeAllTabs();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		super.onStop();
+	class MyFragmentPageAdapter extends FragmentPagerAdapter {
+		ArrayList<PagerItem> list = new ArrayList<PagerItem>();
+
+		public MyFragmentPageAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		public void add(String title, Fragment fragment) {
+			list.add(new PagerItem(title, fragment));
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			return list.get(position).getFragment();
+		}
+
+		@Override
+		public int getCount() {
+			return list.size();
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return list.get(position).getTitle();
+		}
+
+	}
+
+	class PagerItem {
+		private String title;
+		private Fragment fragment;
+
+		public PagerItem(String title, Fragment fragment) {
+			super();
+			this.title = title;
+			this.fragment = fragment;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public Fragment getFragment() {
+			return fragment;
+		}
+
+		public void setFragment(Fragment fragment) {
+			this.fragment = fragment;
+		}
+
 	}
 }

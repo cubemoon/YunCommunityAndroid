@@ -14,8 +14,8 @@ import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.Utils;
-import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 
 /**
@@ -42,7 +42,9 @@ public class CommunityManager extends BaseActivity {
 	private void getData() {
 		NetUtil netUtil = new NetUtil(CommunityManager.this,
 				JsonApi.COMMUNITY_INTRODUCTION);
-		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
+		netUtil.setParams("communityid",
+				LoginInfo.getInstance(getApplicationContext())
+						.getCommunityInfo().getCommunityid());
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override
@@ -72,7 +74,8 @@ public class CommunityManager extends BaseActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.introduction, menu);
-		if (Constant.COMMUNITY_ADMIN_ID == getUserid()) {
+		if (LoginInfo.getInstance(getApplicationContext()).getCommunityInfo()
+				.getUserid() == getUserid()) {
 			menu.findItem(R.id.action_admin).setVisible(false);
 		} else {
 			menu.findItem(R.id.action_edit).setVisible(false);
@@ -107,8 +110,7 @@ public class CommunityManager extends BaseActivity {
 					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
-		Intent intent = new Intent(CommunityManager.this,
-				CommunityEdit.class);
+		Intent intent = new Intent(CommunityManager.this, CommunityEdit.class);
 		intent.putExtra("item", item);
 		startActivityForResult(intent, REQUEST_EDIT);
 	}
@@ -126,8 +128,7 @@ public class CommunityManager extends BaseActivity {
 		if (Utils.isChinese()) {
 			intent.setClass(CommunityManager.this, CommunityBaiduMap.class);
 		} else {
-			intent.setClass(CommunityManager.this,
-					CommunityGoogleMap.class);
+			intent.setClass(CommunityManager.this, CommunityGoogleMap.class);
 		}
 		intent.putExtra("item", item);
 		startActivity(intent);

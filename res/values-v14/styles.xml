@@ -12,6 +12,7 @@
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Yuncommunity</item>
         <item name="android:actionMenuTextColor">@color/white</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
     </style>
 
     <style name="ActionBar.Solid.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">

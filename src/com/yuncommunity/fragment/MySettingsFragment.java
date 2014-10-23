@@ -12,13 +12,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
+import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.VersionUtil;
+import com.yuncommunity.ChangeCommunity;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
 
@@ -46,6 +47,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		initChangeCommunity();
 		initFriendMsg();
 		initActivityMsg();
 		initBusinessMsg();
@@ -53,6 +55,26 @@ public class MySettingsFragment extends PreferenceFragment {
 		initWifiUpdate();
 		initCheckVersion();
 		initAbout();
+	}
+
+	/**
+	 * 切换小区
+	 */
+	private void initChangeCommunity() {
+		Preference preference = getPreferenceManager().findPreference(
+				getString(R.string.change_community));
+		preference.setSummary(LoginInfo.getInstance(getActivity())
+				.getCommunityInfo().getName());
+		preference
+				.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+					@Override
+					public boolean onPreferenceClick(Preference preference) {
+						((BaseActivity) getActivity())
+								.openActivity(ChangeCommunity.class);
+						return false;
+					}
+				});
 	}
 
 	private void initAbout() {
@@ -98,7 +120,8 @@ public class MySettingsFragment extends PreferenceFragment {
 	 */
 	protected void checkVersion() {
 		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.CHECK_VERSION);
-		netUtil.setParams("communityid", Constant.COMMUNITY_ID);
+		netUtil.setParams("communityid", LoginInfo.getInstance(getActivity())
+				.getCommunityInfo().getCommunityid());
 		netUtil.postRequest("正在检查版本", new RequestStringListener() {
 
 			@Override

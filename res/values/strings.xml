@@ -142,6 +142,7 @@
     <string name="feedback_anonymous">Thank you for your feedback, we do not bother you anymore</string>
     <string name="feedback_not_anonymous">Thank you for your feedback, we will contact you shortly</string>
     <string name="about">about</string>
+    <string name="change_community">change_community</string>
     <string name="check_version">check_version</string>
     <string name="wifi_update">wifi_update</string>
     <string name="search_history">search_history</string>

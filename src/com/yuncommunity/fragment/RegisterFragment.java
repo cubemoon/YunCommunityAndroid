@@ -28,7 +28,6 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.ForgetPassword;
 import com.yuncommunity.MainActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.app.Constant;
 import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
 
@@ -164,7 +163,9 @@ public class RegisterFragment extends BaseFragment {
 			netUtil = new NetUtil(getActivity(), JsonApi.REGISTER);
 			netUtil.setParams("email", mEmail);
 			netUtil.setParams("password", mPassword);
-			netUtil.setParams("communityid", Constant.COMMUNITY_ID);
+			netUtil.setParams("communityid",
+					LoginInfo.getInstance(getActivity()).getCommunityInfo()
+							.getCommunityid());
 			netUtil.postRequest("", new RequestStringListener() {
 
 				@Override

@@ -17,6 +17,24 @@ public class CommunityItem extends BaseItem {
 	private String Description;
 	private String Time;
 	private String Name;
+	private double Distance;
+	private int PeopleCount;
+
+	public int getPeopleCount() {
+		return PeopleCount;
+	}
+
+	public void setPeopleCount(int peopleCount) {
+		PeopleCount = peopleCount;
+	}
+
+	public String getDistance() {
+		return super.getDistance(Distance);
+	}
+
+	public void setDistance(double distance) {
+		this.Distance = distance;
+	}
 
 	public String getName() {
 		return Name;

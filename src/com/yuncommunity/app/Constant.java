@@ -18,10 +18,6 @@ public class Constant {
 	public static final String APP_NAME = "yuncommunity";
 	/** 加密解密用到的key */
 	public static final String KEY = "yuncommu";
-	/** 小区id */
-	public static long COMMUNITY_ID = 1;
-	/** 小区管理员id */
-	public static long COMMUNITY_ADMIN_ID = 1;
 	/** 本应用的根目录 */
 	public static final String ROOT_DIR = Environment
 			.getExternalStorageDirectory().getAbsolutePath()

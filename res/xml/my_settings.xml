@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <Preference
+        android:defaultValue="云社区"
+        android:key="@string/change_community"
+        android:title="切换小区" />
+
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="@string/friend_msg"

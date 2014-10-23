@@ -27,6 +27,7 @@ import com.yuncommunity.app.JsonApi;
 import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.fragment.AttentionFragment;
 import com.yuncommunity.fragment.InformationFragment;
+import com.yuncommunity.item.CommunityItem;
 
 /**
  * 主界面
@@ -86,14 +87,25 @@ public class MainActivity extends BaseActivity {
 			selectItem(2);
 		}
 		updatePersonInfo();
+
+		initCommunity();
+	}
+
+	private void initCommunity() {
+		if (LoginInfo.getInstance(getApplicationContext()).getCommunityInfo()
+				.getCommunityid() == 0) {
+			openActivity(ChangeCommunity.class);
+		}
 	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
+		// 登陆
 		boolean isLogin = intent.getBooleanExtra("login", false);
 		if (isLogin) {
 			updateHeaderView();
 		}
+		// 发布
 		boolean result = intent.getBooleanExtra("result", false);
 		if (result) { // 发布成功
 			int infotype = intent.getIntExtra("infotype", 0);
@@ -108,6 +120,14 @@ public class MainActivity extends BaseActivity {
 			if (infotype == Constant.TYPE_TASK && taskFragment.isVisible()) {
 				taskFragment.updateList();
 			}
+		}
+		// 小区信息
+		CommunityItem communityItem = (CommunityItem) intent
+				.getSerializableExtra("communityitem");
+		if (communityItem != null) {
+			LoginInfo.getInstance(getApplicationContext()).setCommunityInfo(
+					communityItem);
+			onCreate(null);
 		}
 		super.onNewIntent(intent);
 	}
