@@ -4,9 +4,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.oldfeel.app.BaseConstant;
 import com.oldfeel.base.BaseActivity;
-import com.yuncommunity.theme.android.app.Constant;
+import com.oldfeel.conf.BaseConstant;
+import com.yuncommunity.theme.android.conf.Constant;
 
 /**
  * 欢迎界面

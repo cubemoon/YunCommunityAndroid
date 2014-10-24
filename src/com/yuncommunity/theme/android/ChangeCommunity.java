@@ -15,7 +15,7 @@ import com.oldfeel.interfaces.MyLocationListener;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.app.JsonApi;
+import com.yuncommunity.theme.android.conf.JsonApi;
 import com.yuncommunity.theme.android.list.NearCommunityList;
 
 /**

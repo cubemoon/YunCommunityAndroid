@@ -7,7 +7,7 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.theme.android.ActivityDetail;
 import com.yuncommunity.theme.android.InformationDetail;
 import com.yuncommunity.theme.android.adapter.InformationListAdapter;
-import com.yuncommunity.theme.android.app.Constant;
+import com.yuncommunity.theme.android.conf.Constant;
 import com.yuncommunity.theme.android.item.InformationItem;
 
 /**

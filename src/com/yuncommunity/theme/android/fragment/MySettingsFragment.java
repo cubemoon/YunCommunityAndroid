@@ -20,8 +20,8 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.VersionUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.theme.android.ChangeCommunity;
-import com.yuncommunity.theme.android.app.JsonApi;
-import com.yuncommunity.theme.android.app.LoginInfo;
+import com.yuncommunity.theme.android.conf.JsonApi;
+import com.yuncommunity.theme.android.conf.LoginInfo;
 
 /**
  * 设置

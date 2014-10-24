@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
-import com.yuncommunity.theme.android.app.Constant;
+import com.yuncommunity.theme.android.conf.Constant;
 
 /**
  * 数据库帮助类

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.app.JsonApi;
+import com.yuncommunity.theme.android.conf.JsonApi;
 import com.yuncommunity.theme.android.list.InformationListFragment;
 
 /**

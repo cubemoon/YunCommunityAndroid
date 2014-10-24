@@ -2,7 +2,7 @@ package com.yuncommunity.theme.android.item;
 
 import com.google.gson.Gson;
 import com.oldfeel.base.BaseItem;
-import com.yuncommunity.theme.android.app.Constant;
+import com.yuncommunity.theme.android.conf.Constant;
 
 /**
  * 好友动态

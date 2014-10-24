@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.oldfeel.base.BaseActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.app.Constant;
+import com.yuncommunity.theme.android.conf.Constant;
 import com.yuncommunity.theme.android.fragment.InformationRelease;
 
 /**

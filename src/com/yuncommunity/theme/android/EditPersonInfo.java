@@ -18,7 +18,7 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.app.LoginInfo;
+import com.yuncommunity.theme.android.conf.LoginInfo;
 
 /**
  * 编辑个人资料

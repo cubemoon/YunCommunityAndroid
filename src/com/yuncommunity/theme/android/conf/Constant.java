@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android.app;
+package com.yuncommunity.theme.android.conf;
 
 import android.os.Environment;
 

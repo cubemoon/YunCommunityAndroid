@@ -28,8 +28,8 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.theme.android.ForgetPassword;
 import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.android.app.JsonApi;
-import com.yuncommunity.theme.android.app.LoginInfo;
+import com.yuncommunity.theme.android.conf.JsonApi;
+import com.yuncommunity.theme.android.conf.LoginInfo;
 
 /**
  * 注册
