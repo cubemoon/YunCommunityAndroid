@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.google.gson.Gson;
-import com.oldfeel.app.BaseConstant;
 import com.oldfeel.utils.DesUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -26,7 +25,6 @@ public class LoginInfo {
 	private SharedPreferences sp;
 	private Editor editor;
 	private UserItem userInfo; // 登陆用户信息
-	private CommunityItem communityInfo; // 小区信息
 
 	public static LoginInfo getInstance(Context context) {
 		if (loginInfo == null) {
@@ -40,8 +38,6 @@ public class LoginInfo {
 				Context.MODE_PRIVATE);
 		editor = sp.edit();
 		editor.commit();
-		userInfo = new UserItem();
-		communityInfo = new CommunityItem();
 		saveInfo(DesUtil.decode(Constant.KEY, sp.getString("logininfo", "")));
 	}
 
@@ -57,7 +53,6 @@ public class LoginInfo {
 			return;
 		}
 		userInfo = new Gson().fromJson(result, UserItem.class);
-		BaseConstant.getInstance().setUserId(userInfo.getUserid());
 	}
 
 	public void saveRealPassword(String password) {
@@ -112,11 +107,11 @@ public class LoginInfo {
 	}
 
 	public CommunityItem getCommunityInfo() {
-		return communityInfo;
+		return userInfo.getCommunityInfo();
 	}
 
-	public void setCommunityInfo(CommunityItem communityInfo) {
-		this.communityInfo = communityInfo;
+	public long getUserId() {
+		return userInfo.getUserid();
 	}
 
 }

@@ -21,6 +21,7 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.item.ProductItem;
 
 /**
@@ -74,7 +75,7 @@ public class ProductListAdapter extends BaseBaseAdapter<ProductItem> {
 	protected void delete(final ProductItem item) {
 		NetUtil netUtil = new NetUtil((Activity) context,
 				JsonApi.PRODUCT_DELETE);
-		netUtil.setParams("userid", super.getUserid());
+		netUtil.setParams("userid", LoginInfo.getInstance(context).getUserId());
 		netUtil.setParams("productid", item.getProductid());
 		netUtil.postRequest("正在删除", new RequestStringListener() {
 

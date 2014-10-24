@@ -17,6 +17,7 @@ import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 
 /**
  * 建议反馈
@@ -78,7 +79,8 @@ public class FeedbackActivity extends BaseActivity {
 			return;
 		}
 		NetUtil netUtil = new NetUtil(FeedbackActivity.this, JsonApi.FEEDBACK);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("content", getString(etContent));
 		netUtil.setParams("anonymous", cbIsAnonymous.isChecked());
 		netUtil.postRequest(

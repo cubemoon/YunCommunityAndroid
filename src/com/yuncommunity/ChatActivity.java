@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.list.ChatListFragment;
 
 /**
@@ -27,7 +28,8 @@ public class ChatActivity extends BaseActivity {
 	private NetUtil getNetUtil() {
 		long targetid = getIntent().getLongExtra("targetid", -1);
 		NetUtil netUtil = new NetUtil(ChatActivity.this, JsonApi.CHAT_HISTORY);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("targetid", targetid);
 		return netUtil;
 	}

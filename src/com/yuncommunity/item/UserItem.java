@@ -67,6 +67,15 @@ public class UserItem implements Serializable {
 
 	private String LastActivity;
 	private String Introduction;
+	private CommunityItem CommunityInfo;
+
+	public CommunityItem getCommunityInfo() {
+		return CommunityInfo;
+	}
+
+	public void setCommunityInfo(CommunityItem communityInfo) {
+		CommunityInfo = communityInfo;
+	}
 
 	/**
 	 * Constructor.

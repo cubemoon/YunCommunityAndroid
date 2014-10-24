@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.list.UserListFragment;
 
 /**
@@ -27,7 +28,8 @@ public class UserList extends BaseActivity {
 	private NetUtil getNetUtil() {
 		String api = getIntent().getStringExtra("api");
 		NetUtil netUtil = new NetUtil(UserList.this, api);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		if (api.equals(JsonApi.INFORMATION_FOLLOWERS)) {
 			long informationid = getIntent().getLongExtra("informationid", -1);
 			netUtil.setParams("informationid", informationid);

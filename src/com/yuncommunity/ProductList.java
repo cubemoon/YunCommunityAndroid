@@ -16,6 +16,7 @@ import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.app.JsonApi;
+import com.yuncommunity.app.LoginInfo;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.ProductItem;
 import com.yuncommunity.list.ProductListFragment;
@@ -42,7 +43,8 @@ public class ProductList extends BaseActivity {
 
 	private NetUtil getNetUtil() {
 		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_LIST);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		return netUtil;
 	}

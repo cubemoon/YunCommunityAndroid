@@ -125,8 +125,8 @@ public class MainActivity extends BaseActivity {
 		CommunityItem communityItem = (CommunityItem) intent
 				.getSerializableExtra("communityitem");
 		if (communityItem != null) {
-			LoginInfo.getInstance(getApplicationContext()).setCommunityInfo(
-					communityItem);
+			LoginInfo.getInstance(getApplicationContext()).getUserInfo()
+					.setCommunityInfo(communityItem);
 			onCreate(null);
 		}
 		super.onNewIntent(intent);
@@ -342,7 +342,8 @@ public class MainActivity extends BaseActivity {
 			return;
 		}
 		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
-		intent.putExtra("targetid", getUserid());
+		intent.putExtra("targetid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		startActivity(intent);
 	}
 
@@ -374,7 +375,7 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void releaseInformation() {
-		if (getUserid() == 0) {
+		if (LoginInfo.getInstance(getApplicationContext()).getUserId() == 0) {
 			new AlertDialog.Builder(MainActivity.this)
 
 			.setTitle(R.string.you_must_login_before)

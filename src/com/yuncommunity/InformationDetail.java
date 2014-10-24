@@ -106,14 +106,16 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		return netUtil;
 	}
 
 	private void getDetail() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_DETAIL);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -280,7 +282,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	protected void report(String string) {
 		NetUtil netUtil = new NetUtil(InformationDetail.this, JsonApi.REPORT);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", string);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -378,7 +381,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			EditText etEvaluationTag, EditText etEvaluationContent) {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENT);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
 		netUtil.setParams("tags", ETUtil.getString(etEvaluationTag));
@@ -402,7 +406,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	protected void deleteEvaluation() {
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", myComment.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -428,7 +433,8 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		supportInvalidateOptionsMenu();
 		NetUtil netUtil = new NetUtil(InformationDetail.this,
 				JsonApi.INFORMATION_FOLLOWING);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("isfollowing", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {

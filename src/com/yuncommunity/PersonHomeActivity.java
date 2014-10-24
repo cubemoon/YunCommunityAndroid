@@ -77,7 +77,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		if (targetid == getUserid()) {
+		if (targetid == LoginInfo.getInstance(getApplicationContext())
+				.getUserId()) {
 			getMenuInflater().inflate(R.menu.person_home, menu);
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -119,7 +120,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	private void getPersonInfo() {
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
 				JsonApi.USER_INFO);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("targetid", targetid);
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -144,8 +146,9 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				.beginTransaction()
 				.replace(
 						R.id.person_home_header,
-						HeaderFragment.newInstance(item.getAvatar(),
-								getUserid() == targetid)).commit();
+						HeaderFragment.newInstance(item.getAvatar(), LoginInfo
+								.getInstance(getApplicationContext())
+								.getUserId() == targetid)).commit();
 		tvName.setText(item.getName() + "\n" + item.getIntroduction());
 		tvBirthday.setText(item.getHousenumber() + "\n" + item.getBirthday());
 		btnFollowing.setText(item.isFollowing() ? getText(R.string.follow)
@@ -178,7 +181,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		btnServer = getButton(R.id.person_home_server);
 		int width = getResources().getDisplayMetrics().widthPixels;
 		ivBg.setLayoutParams(new LayoutParams(width, width / 2));
-		if (super.getUserid() == targetid) {
+		if (LoginInfo.getInstance(getApplicationContext()).getUserId() == targetid) {
 			btnFollowing.setVisibility(View.GONE);
 			btnMsg.setVisibility(View.GONE);
 		} else {
@@ -365,7 +368,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		}
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
 				JsonApi.USER_FOLLOWING);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("targetid", targetid);
 		netUtil.setParams("isfollowingid", isFollowing);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -453,7 +457,9 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 					.valueOf(getText(R.string.failed_upload_not_exist_photo)));
 		}
 		File headerFile = new File(protraitFile.getParent() + "/bg-"
-				+ System.currentTimeMillis() + "-" + getUserid() + ".jpg");
+				+ System.currentTimeMillis() + "-"
+				+ LoginInfo.getInstance(getApplicationContext()).getUserId()
+				+ ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
 		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);

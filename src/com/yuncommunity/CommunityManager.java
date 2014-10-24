@@ -75,7 +75,8 @@ public class CommunityManager extends BaseActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.introduction, menu);
 		if (LoginInfo.getInstance(getApplicationContext()).getCommunityInfo()
-				.getUserid() == getUserid()) {
+				.getUserid() == LoginInfo.getInstance(getApplicationContext())
+				.getUserId()) {
 			menu.findItem(R.id.action_admin).setVisible(false);
 		} else {
 			menu.findItem(R.id.action_edit).setVisible(false);

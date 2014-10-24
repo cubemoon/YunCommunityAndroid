@@ -105,14 +105,16 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		return netUtil;
 	}
 
 	private void getDetail() {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_DETAIL);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -226,7 +228,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	 */
 	private void seeSignups() {
 		Intent intent = new Intent();
-		if (item.getUserid() == getUserid()) { // 如果当前用户是活动发起者,查看报名者的详细信息
+		if (item.getUserid() == LoginInfo.getInstance(getApplicationContext())
+				.getUserId()) { // 如果当前用户是活动发起者,查看报名者的详细信息
 			intent.setClass(ActivityDetail.this, ActivitySignUps.class);
 		} else { // 否则只能看基本信息
 			intent.setClass(ActivityDetail.this, UserList.class);
@@ -266,7 +269,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 
 	protected void report(String string) {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this, JsonApi.REPORT);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", string);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -364,7 +368,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 			EditText etEvaluationTag, EditText etEvaluationContent) {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENT);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("content", ETUtil.getString(etEvaluationContent));
 		netUtil.setParams("tags", ETUtil.getString(etEvaluationTag));
@@ -388,7 +393,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	protected void deleteEvaluation() {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", myComment.getInformationid());
 		netUtil.postRequest("", new RequestStringListener() {
 
@@ -417,7 +423,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	private void cancelSingUp() {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.ACTIVITY_SIGN_UP_CANCEL);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.postRequest(R.string.activity_signup_canceling,
 				new RequestStringListener() {
@@ -484,7 +491,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 			String remark, int adult, int child) {
 		NetUtil netUtil = new NetUtil(ActivityDetail.this,
 				JsonApi.ACTIVITY_SIGN_UP);
-		netUtil.setParams("userid", getUserid());
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("name", name);
 		netUtil.setParams("phone", phone);
