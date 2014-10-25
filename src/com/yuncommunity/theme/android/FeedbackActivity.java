@@ -17,8 +17,8 @@ import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 
 /**
  * 建议反馈

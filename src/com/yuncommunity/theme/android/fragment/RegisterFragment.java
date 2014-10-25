@@ -26,10 +26,10 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.OnNetFailListener;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.ForgetPassword;
 import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
 
 /**
  * 注册

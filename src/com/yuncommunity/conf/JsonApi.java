@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android.conf;
+package com.yuncommunity.conf;
 
 /**
  * 接口

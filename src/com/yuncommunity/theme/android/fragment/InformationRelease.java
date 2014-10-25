@@ -28,12 +28,12 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.MainActivity;
 import com.yuncommunity.theme.android.SelectAddressBaiduMap;
 import com.yuncommunity.theme.android.SelectAddressGoogleMap;
-import com.yuncommunity.theme.android.conf.Constant;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
 import com.yuncommunity.theme.android.dialog.LookBigImage;
 
 /**

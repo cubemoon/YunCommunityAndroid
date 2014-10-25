@@ -4,11 +4,11 @@ import android.content.Intent;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.conf.Constant;
+import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.android.ActivityDetail;
 import com.yuncommunity.theme.android.InformationDetail;
 import com.yuncommunity.theme.android.adapter.InformationListAdapter;
-import com.yuncommunity.theme.android.conf.Constant;
-import com.yuncommunity.theme.android.item.InformationItem;
 
 /**
  * 活动/商家服务/个人服务列表

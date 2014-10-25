@@ -9,7 +9,7 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.oldfeel.base.BaiduMapActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.item.InformationItem;
+import com.yuncommunity.item.InformationItem;
 
 /**
  * 信息地图

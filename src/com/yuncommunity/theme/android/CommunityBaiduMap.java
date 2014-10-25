@@ -9,7 +9,7 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.oldfeel.base.BaiduMapActivity;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.item.CommunityItem;
+import com.yuncommunity.item.CommunityItem;
 
 /**
  * 小区在地图上的位置

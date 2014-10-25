@@ -128,7 +128,10 @@
     <string name="auto_login_fail">Failed to login in automatically,</string>
     <string name="task">Task</string>
     <string name="attention">Follow</string>
+    <string name="collection">Collection</string>
     <string name="square">Square</string>
+    <string name="server">Server</string>
+    <string name="person">Person</string>
     <string name="you_must_login_before">Please login in first</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -143,11 +146,15 @@
     <string name="feedback_not_anonymous">Thank you for your feedback, we will contact you shortly</string>
     <string name="about">about</string>
     <string name="change_community">change_community</string>
+    <string name="theme">theme</string>
     <string name="check_version">check_version</string>
     <string name="wifi_update">wifi_update</string>
     <string name="search_history">search_history</string>
     <string name="business_msg">business_msg</string>
     <string name="activity_msg">activity_msg</string>
     <string name="friend_msg">friend_msg</string>
+    <string name="select">select</string>
+    <string name="theme_android">android theme</string>
+    <string name="theme_ios">ios theme</string>
 
 </resources>

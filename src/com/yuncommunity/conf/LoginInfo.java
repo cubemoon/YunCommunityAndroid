@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android.conf;
+package com.yuncommunity.conf;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,9 @@ import com.oldfeel.utils.DesUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
-import com.yuncommunity.theme.android.item.CommunityItem;
-import com.yuncommunity.theme.android.item.UserItem;
+import com.yuncommunity.R;
+import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.item.UserItem;
 
 /**
  * 个人信息
@@ -25,6 +26,7 @@ public class LoginInfo {
 	private SharedPreferences sp;
 	private Editor editor;
 	private UserItem userInfo; // 登陆用户信息
+	private Context context;
 
 	public static LoginInfo getInstance(Context context) {
 		if (loginInfo == null) {
@@ -34,6 +36,7 @@ public class LoginInfo {
 	}
 
 	public LoginInfo(Context context) {
+		this.context = context;
 		sp = context.getSharedPreferences(Constant.APP_NAME,
 				Context.MODE_PRIVATE);
 		editor = sp.edit();
@@ -112,6 +115,15 @@ public class LoginInfo {
 
 	public long getUserId() {
 		return userInfo.getUserid();
+	}
+
+	public String getTheme() {
+		return sp.getString("theme", context.getString(R.string.theme_ios));
+	}
+
+	public void setTheme(String theme) {
+		editor.putString("theme", theme);
+		editor.commit();
 	}
 
 }

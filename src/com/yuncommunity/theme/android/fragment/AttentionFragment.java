@@ -15,9 +15,9 @@ import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.NetUtil;
 import com.viewpagerindicator.TabPageIndicator;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.Constant;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
+import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.list.FriendDynamicList;
 import com.yuncommunity.theme.android.list.InformationListFragment;
 

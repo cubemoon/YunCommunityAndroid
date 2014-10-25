@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.item.FriendDynamicListItem;
+import com.yuncommunity.item.FriendDynamicListItem;
 
 /**
  * 朋友的动态信息适配器

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.item.InformationItem;
+import com.yuncommunity.item.InformationItem;
 
 /**
  * 活动/商家服务/个人服务适配器

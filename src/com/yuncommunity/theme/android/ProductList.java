@@ -16,10 +16,10 @@ import com.oldfeel.utils.JSONUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
-import com.yuncommunity.theme.android.item.InformationItem;
-import com.yuncommunity.theme.android.item.ProductItem;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.item.InformationItem;
+import com.yuncommunity.item.ProductItem;
 import com.yuncommunity.theme.android.list.ProductListFragment;
 
 /**

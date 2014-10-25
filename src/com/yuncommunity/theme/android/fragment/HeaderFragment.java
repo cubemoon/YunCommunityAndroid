@@ -28,9 +28,9 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.Constant;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
+import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 
 /**
  * 我的头像,提供更新图片的功能

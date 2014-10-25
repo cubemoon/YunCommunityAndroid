@@ -15,9 +15,9 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
-import com.yuncommunity.theme.android.item.CommunityItem;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.item.CommunityItem;
 
 /**
  * 小区简介

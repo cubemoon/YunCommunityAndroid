@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/i_square_detail_avatar"
+            style="@style/avatar_mid" />
+
+        <TextView
+            android:id="@+id/i_square_detail_name"
+            style="@style/text_name"
+            android:layout_toRightOf="@+id/i_square_detail_avatar" />
+
+        <TextView
+            android:id="@+id/i_square_detail_content"
+            style="@style/text_content"
+            android:layout_below="@+id/i_square_detail_name"
+            android:layout_toLeftOf="@+id/i_square_detail_commentcount"
+            android:layout_toRightOf="@+id/i_square_detail_avatar" />
+
+        <TextView
+            android:id="@+id/i_square_detail_time"
+            style="@style/text_content"
+            android:layout_below="@+id/i_square_detail_content"
+            android:layout_toRightOf="@+id/i_square_detail_avatar" />
+
+        <TextView
+            android:id="@+id/i_square_detail_commentcount"
+            style="@style/text_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <com.oldfeel.view.HorizontalListView
+        android:id="@+id/i_square_detail_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.oldfeel.view.HorizontalListView>
+
+</LinearLayout>

@@ -3,6 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/i_main_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" />
+
+    <RadioGroup
+        android:id="@+id/i_main_nav"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_footer"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/i_main_square"
+            style="@style/btn_footer"
+            android:checked="true"
+            android:text="@string/square" />
+
+        <RadioButton
+            android:id="@+id/i_main_server"
+            style="@style/btn_footer"
+            android:text="@string/server" />
+
+        <RadioButton
+            android:id="@+id/i_main_activity"
+            style="@style/btn_footer"
+            android:text="@string/activity" />
+
+        <RadioButton
+            android:id="@+id/i_main_person"
+            style="@style/btn_footer"
+            android:text="@string/person" />
+    </RadioGroup>
 
 </LinearLayout>

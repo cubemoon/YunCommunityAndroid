@@ -1,8 +1,8 @@
-package com.yuncommunity.theme.android.item;
+package com.yuncommunity.item;
 
 import com.google.gson.Gson;
 import com.oldfeel.base.BaseItem;
-import com.yuncommunity.theme.android.conf.Constant;
+import com.yuncommunity.conf.Constant;
 
 /**
  * 好友动态

@@ -15,7 +15,7 @@ import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.StringUtil;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.item.ActivitySignUpItem;
+import com.yuncommunity.item.ActivitySignUpItem;
 
 /**
  * 活动报名者适配器

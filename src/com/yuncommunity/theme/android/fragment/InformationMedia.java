@@ -15,8 +15,8 @@ import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
+import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.android.dialog.LookBigImage;
-import com.yuncommunity.theme.android.item.InformationItem;
 
 /**
  * 信息详情中,多媒体的展示

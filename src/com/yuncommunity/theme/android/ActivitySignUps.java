@@ -5,8 +5,8 @@ import android.os.Bundle;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.item.InformationItem;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.android.list.ActivitySignUpList;
 
 /**

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/i_square_detail_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_footer"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/i_square_detail_attention"
+            style="@style/btn_footer"
+            android:text="@string/attention" />
+
+        <Button
+            android:id="@+id/i_square_detail_collection"
+            style="@style/btn_footer"
+            android:text="@string/collection" />
+
+        <Button
+            android:id="@+id/i_square_detail_comment"
+            style="@style/btn_footer"
+            android:text="@string/comment" />
+    </LinearLayout>
+
+</LinearLayout>

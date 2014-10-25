@@ -2,8 +2,8 @@ package com.yuncommunity.theme.android.list;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.item.ProductItem;
 import com.yuncommunity.theme.android.adapter.ProductListAdapter;
-import com.yuncommunity.theme.android.item.ProductItem;
 
 /**
  * 产品列表

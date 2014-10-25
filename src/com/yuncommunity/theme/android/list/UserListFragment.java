@@ -4,9 +4,9 @@ import android.content.Intent;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.item.UserItem;
 import com.yuncommunity.theme.android.PersonHomeActivity;
 import com.yuncommunity.theme.android.adapter.UserListAdapter;
-import com.yuncommunity.theme.android.item.UserItem;
 
 /**
  * 用户列表

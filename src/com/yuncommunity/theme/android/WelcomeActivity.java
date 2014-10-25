@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.conf.BaseConstant;
-import com.yuncommunity.theme.android.conf.Constant;
+import com.yuncommunity.conf.Constant;
 
 /**
  * 欢迎界面

@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android.item;
+package com.yuncommunity.item;
 
 import java.io.Serializable;
 

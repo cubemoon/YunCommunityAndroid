@@ -5,6 +5,10 @@
         android:defaultValue="云社区"
         android:key="@string/change_community"
         android:title="切换小区" />
+    <Preference
+        android:defaultValue="android风格"
+        android:key="@string/theme"
+        android:title="主题" />
 
     <CheckBoxPreference
         android:defaultValue="true"

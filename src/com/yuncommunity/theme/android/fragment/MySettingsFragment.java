@@ -19,9 +19,10 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.VersionUtil;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.ChangeCommunity;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
+import com.yuncommunity.theme.android.SwitchTheme;
 
 /**
  * 设置
@@ -48,6 +49,7 @@ public class MySettingsFragment extends PreferenceFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		initChangeCommunity();
+		initTheme();
 		initFriendMsg();
 		initActivityMsg();
 		initBusinessMsg();
@@ -72,6 +74,25 @@ public class MySettingsFragment extends PreferenceFragment {
 					public boolean onPreferenceClick(Preference preference) {
 						((BaseActivity) getActivity())
 								.openActivity(ChangeCommunity.class);
+						return false;
+					}
+				});
+	}
+
+	/**
+	 * 主题
+	 */
+	private void initTheme() {
+		Preference preference = getPreferenceManager().findPreference(
+				getString(R.string.theme));
+		preference.setSummary(LoginInfo.getInstance(getActivity()).getTheme());
+		preference
+				.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+					@Override
+					public boolean onPreferenceClick(Preference preference) {
+						((BaseActivity) getActivity())
+								.openActivity(SwitchTheme.class);
 						return false;
 					}
 				});

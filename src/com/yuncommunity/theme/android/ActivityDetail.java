@@ -36,12 +36,12 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.android.conf.JsonApi;
-import com.yuncommunity.theme.android.conf.LoginInfo;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.item.CommentItem;
+import com.yuncommunity.item.InformationItem;
+import com.yuncommunity.item.TagItem;
 import com.yuncommunity.theme.android.fragment.InformationMedia;
-import com.yuncommunity.theme.android.item.CommentItem;
-import com.yuncommunity.theme.android.item.InformationItem;
-import com.yuncommunity.theme.android.item.TagItem;
 import com.yuncommunity.theme.android.list.CommentListFragment;
 
 /**
