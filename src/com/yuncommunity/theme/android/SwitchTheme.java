@@ -35,7 +35,7 @@ public class SwitchTheme extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.view_pager);
+		setContentView(R.layout.single_view_pager);
 		pager = (ViewPager) findViewById(R.id.pager);
 		adapter = new ThemeFragmentPagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(adapter);
