@@ -12,6 +12,29 @@ public class FuncItem extends BaseItem {
 	private int nameResId;
 	private int imageResId;
 	private Class<?> TheClass;
+	private String name;
+
+	public FuncItem(int nameResId, int imageResId, Class<?> theClass) {
+		super();
+		this.nameResId = nameResId;
+		this.imageResId = imageResId;
+		TheClass = theClass;
+	}
+
+	public FuncItem(String name, int imageResId, Class<?> theClass) {
+		super();
+		this.name = name;
+		this.imageResId = imageResId;
+		TheClass = theClass;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getNameResId() {
 		return nameResId;

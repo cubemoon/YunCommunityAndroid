@@ -126,4 +126,11 @@ public class LoginInfo {
 		editor.commit();
 	}
 
+	public String getName() {
+		if (userInfo != null) {
+			return userInfo.getName();
+		}
+		return context.getString(R.string.login_or_register);
+	}
+
 }

@@ -29,7 +29,7 @@ public class IServerFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		tagAdapter = new IServerTagAdapter(getActivity());
-		getListView().setAdapter(tagAdapter);
+		setListAdapter(tagAdapter);
 	}
 
 	@Override

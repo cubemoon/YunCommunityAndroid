@@ -156,5 +156,9 @@
     <string name="select">select</string>
     <string name="theme_android">android theme</string>
     <string name="theme_ios">ios theme</string>
+    <string name="release_product">Release Product</string>
+    <string name="release_activity">Release Activity</string>
+    <string name="my_collection">My Collection</string>
+    <string name="my_attention">My Attention</string>
 
 </resources>
