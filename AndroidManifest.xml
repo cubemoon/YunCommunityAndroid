@@ -52,7 +52,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Yuncommunity" >
         <activity
-            android:name="com.yuncommunity.theme.android.WelcomeActivity"
+            android:name="com.yuncommunity.WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,11 +9,43 @@ import com.oldfeel.base.BaseItem;
  * 
  */
 public class TagItem extends BaseItem {
+	public static final long TAGID_PROPERTY = 5; // 物业中心 的标签id
+	public static final long TAGID_REPAIR = 6; // 维修的标签id
+	public static final long TAGID_EXPRESS = 7; // 快递的标签id
+	public static final long TAGID_WASHING = 8; // 洗衣的标签id
+	public static final long TAGID_TAKEOUT = 9; // 外卖
+	public static final long TAGID_LIFE_DISTRIBUTION = 10; // 生活配送
+	public static final long TAGID_FRUITS = 11; // 水果
+	public static final long TAGID_HOUSEKEEPING_SERVICE = 12; // 家政服务
 	private long Userid;
 	private long Informationid;
 	private long Tagid;
 	private String Name;
 	private long Count;
+	private String Icon;
+	private int IconResId;
+
+	public TagItem(String Name, int IconResId, long Tagid) {
+		this.Name = Name;
+		this.IconResId = IconResId;
+		this.Tagid = Tagid;
+	}
+
+	public int getIconResId() {
+		return IconResId;
+	}
+
+	public void setIconResId(int iconResId) {
+		IconResId = iconResId;
+	}
+
+	public String getIcon() {
+		return Icon;
+	}
+
+	public void setIcon(String icon) {
+		Icon = icon;
+	}
 
 	public long getUserid() {
 		return Userid;

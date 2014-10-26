@@ -14,9 +14,9 @@
     <ImageView
         android:id="@+id/theme_thumbnail_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1.0"
-        android:scaleType="center" />
+        android:scaleType="centerInside" />
 
     <Button
         android:id="@+id/theme_thumbnail_select"

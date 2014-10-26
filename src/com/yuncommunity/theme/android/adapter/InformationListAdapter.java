@@ -31,7 +31,7 @@ public class InformationListAdapter extends BaseBaseAdapter<InformationItem> {
 		InformationItem item = getItem(position);
 		view = inflater.inflate(R.layout.information_list_item, null);
 		ImageView ivImage = getImageView(view, R.id.information_list_item_image);
-		TextView tvTitle = getTextView(view, R.id.information__list_item_title);
+		TextView tvTitle = getTextView(view, R.id.information_list_item_title);
 		TextView tvDesc = getTextView(view, R.id.information_list_item_desc);
 		TextView tvEvaluation = getTextView(view,
 				R.id.information_list_item_evaluation);

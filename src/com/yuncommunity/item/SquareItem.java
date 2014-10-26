@@ -1,7 +1,5 @@
 package com.yuncommunity.item;
 
-import com.oldfeel.base.BaseItem;
-
 /**
  * 广场信息
  * 
@@ -9,6 +7,6 @@ import com.oldfeel.base.BaseItem;
  * 
  *         Create on: 2014年10月26日
  */
-public class SquareItem extends BaseItem {
+public class SquareItem extends InformationItem {
 
 }

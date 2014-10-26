@@ -1,37 +1,8 @@
 <resources>
 
     <style name="Theme.Yuncommunity" parent="@style/Theme.AppCompat.Light">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_yuncommunity</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Yuncommunity</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Yuncommunity</item>
-        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Yuncommunity</item>
-        <item name="android:actionDropDownStyle">@style/DropDownNav.Yuncommunity</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Yuncommunity</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_yuncommunity</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_yuncommunity</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Yuncommunity</item>
-        <item name="android:actionMenuTextColor">@color/white</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
-    </style>
-
-    <style name="ActionBar.Solid.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="android:background">@drawable/ab_solid_yuncommunity</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_yuncommunity</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_yuncommunity</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Yuncommunity</item>
-        <item name="android:titleTextStyle">@style/Theme.Yuncommunity.TitleTextStyle</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">@drawable/ab_transparent_yuncommunity</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Yuncommunity</item>
-    </style>
-
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Yuncommunity.Widget" parent="@style/Theme.AppCompat">
-        <item name="android:popupMenuStyle">@style/PopupMenu.Yuncommunity</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Yuncommunity</item>
     </style>
 
 </resources>

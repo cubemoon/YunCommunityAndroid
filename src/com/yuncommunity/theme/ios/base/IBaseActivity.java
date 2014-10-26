@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.oldfeel.conf.MyApplication;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ETUtil;
+import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
 
@@ -236,5 +237,25 @@ public class IBaseActivity extends SwipeBackActivity {
 
 	public long getUserId() {
 		return LoginInfo.getInstance(getApplicationContext()).getUserId();
+	}
+
+	public void hideRight() {
+		btnRight.setVisibility(View.GONE);
+	}
+
+	public void hideLeft() {
+		btnLeft.setVisibility(View.GONE);
+	}
+
+	public NetUtil initNetUtil(String api) {
+		NetUtil netUtil = new NetUtil(this, api);
+		netUtil.setParams("userid", getUserId());
+		netUtil.setParams("communityid", getCommunityId());
+		return netUtil;
+	}
+
+	private long getCommunityId() {
+		return LoginInfo.getInstance(getApplicationContext())
+				.getCommunityInfo().getCommunityid();
 	}
 }

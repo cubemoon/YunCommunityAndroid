@@ -12,6 +12,7 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
 import com.yuncommunity.item.SquareItem;
+import com.yuncommunity.theme.ios.IProductList;
 import com.yuncommunity.theme.ios.ISquareDetail;
 import com.yuncommunity.theme.ios.adapter.ISquareAdapter;
 import com.yuncommunity.theme.ios.adapter.ISquareHeaderAdapter;
@@ -50,8 +51,8 @@ public class ISquareFragment extends BaseListFragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(getActivity(), headerAdapter
-						.getItem(position).getTheClass());
+				Intent intent = new Intent(getActivity(), IProductList.class);
+				intent.putExtra("item", headerAdapter.getItemId(position));
 				startActivity(intent);
 			}
 		});

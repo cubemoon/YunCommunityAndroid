@@ -153,5 +153,13 @@
     <string name="release_activity">发起活动</string>
     <string name="my_collection">我的收藏</string>
     <string name="my_attention">我的关注</string>
+    <string name="property">物业</string>
+    <string name="repair">维修</string>
+    <string name="express">快递</string>
+    <string name="washing">洗衣</string>
+    <string name="takeout">外卖</string>
+    <string name="life_distribution">生活配送</string>
+    <string name="fruits">水果</string>
+    <string name="housekeeping_service">家政服务</string>
 
 </resources>

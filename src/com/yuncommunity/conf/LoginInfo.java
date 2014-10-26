@@ -13,6 +13,8 @@ import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.item.UserItem;
+import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.theme.ios.IMainActivity;
 
 /**
  * 个人信息
@@ -45,6 +47,9 @@ public class LoginInfo {
 	}
 
 	public boolean isLogin() {
+		if (userInfo == null) {
+			return false;
+		}
 		return userInfo.getUserid() != 0;
 	}
 
@@ -102,6 +107,9 @@ public class LoginInfo {
 	}
 
 	public UserItem getUserInfo() {
+		if (userInfo == null) {
+			return new UserItem();
+		}
 		return userInfo;
 	}
 
@@ -110,11 +118,11 @@ public class LoginInfo {
 	}
 
 	public CommunityItem getCommunityInfo() {
-		return userInfo.getCommunityInfo();
+		return getUserInfo().getCommunityInfo();
 	}
 
 	public long getUserId() {
-		return userInfo.getUserid();
+		return getUserInfo().getUserid();
 	}
 
 	public String getTheme() {
@@ -131,6 +139,21 @@ public class LoginInfo {
 			return userInfo.getName();
 		}
 		return context.getString(R.string.login_or_register);
+	}
+
+	/**
+	 * 获取当前用户使用的主题风格
+	 * 
+	 * @return
+	 */
+	public Class<?> getThemeClass() {
+		String name = getTheme();
+		if (name.equals(context.getString(R.string.theme_android))) {
+			return MainActivity.class;
+		} else if (name.equals(context.getString(R.string.theme_ios))) {
+			return IMainActivity.class;
+		}
+		return IMainActivity.class;
 	}
 
 }

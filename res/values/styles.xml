@@ -2,23 +2,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Theme.Yuncommunity" parent="@style/Theme.AppCompat.Light">
-        <item name="actionBarItemBackground">@drawable/selectable_background_yuncommunity</item>
-        <item name="popupMenuStyle">@style/PopupMenu.Yuncommunity</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Yuncommunity</item>
-        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Yuncommunity</item>
-        <item name="actionDropDownStyle">@style/DropDownNav.Yuncommunity</item>
-        <item name="actionBarStyle">@style/ActionBar.Solid.Yuncommunity</item>
-        <item name="actionModeBackground">@drawable/cab_background_top_yuncommunity</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_yuncommunity</item>
-        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Yuncommunity</item>
-        <item name="actionMenuTextColor">@color/white</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
     </style>
 
     <style name="TabPageIndicator">
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/tab_indicator_ab_yuncommunity</item>
+        <item name="android:background">@drawable/abc_tab_indicator_material</item>
         <item name="android:paddingLeft">22dip</item>
         <item name="android:paddingRight">22dip</item>
         <item name="android:paddingTop">12dp</item>
@@ -27,55 +17,6 @@
         <item name="android:textSize">12sp</item>
         <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="ActionBar.Solid.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="background">@drawable/ab_solid_yuncommunity</item>
-        <item name="backgroundStacked">@drawable/ab_stacked_solid_yuncommunity</item>
-        <item name="backgroundSplit">@drawable/ab_bottom_solid_yuncommunity</item>
-        <item name="progressBarStyle">@style/ProgressBar.Yuncommunity</item>
-        <item name="titleTextStyle">@style/Theme.Yuncommunity.TitleTextStyle</item>
-    </style>
-
-    <style name="Theme.Yuncommunity.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="background">@drawable/ab_transparent_yuncommunity</item>
-        <item name="progressBarStyle">@style/ProgressBar.Yuncommunity</item>
-    </style>
-
-    <style name="PopupMenu.Yuncommunity" parent="@style/Widget.AppCompat.Light.PopupMenu">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_yuncommunity</item>
-    </style>
-
-    <style name="DropDownListView.Yuncommunity" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
-        <item name="android:listSelector">@drawable/selectable_background_yuncommunity</item>
-    </style>
-
-    <style name="ActionBarTabStyle.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
-        <item name="android:background">@drawable/tab_indicator_ab_yuncommunity</item>
-    </style>
-
-    <style name="DropDownNav.Yuncommunity" parent="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
-        <item name="android:background">@drawable/spinner_background_ab_yuncommunity</item>
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_yuncommunity</item>
-        <item name="android:dropDownSelector">@drawable/selectable_background_yuncommunity</item>
-    </style>
-
-    <style name="ProgressBar.Yuncommunity" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="android:progressDrawable">@drawable/progress_horizontal_yuncommunity</item>
-    </style>
-
-    <style name="ActionButton.CloseMode.Yuncommunity" parent="@style/Widget.AppCompat.Light.ActionButton.CloseMode">
-        <item name="android:background">@drawable/btn_cab_done_yuncommunity</item>
-    </style>
-
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Yuncommunity.Widget" parent="@style/Theme.AppCompat">
-        <item name="popupMenuStyle">@style/PopupMenu.Yuncommunity</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Yuncommunity</item>
     </style>
 
     <style name="LoginFormContainer">
@@ -106,7 +47,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:singleLine">true</item>
-        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:background">@drawable/abc_edit_text_material</item>
         <item name="android:layout_weight">1.0</item>
     </style>
 

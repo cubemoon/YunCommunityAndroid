@@ -2,6 +2,7 @@ package com.yuncommunity.theme.ios.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
@@ -26,16 +27,27 @@ public class IPersonAdapter extends BaseBaseAdapter<FuncItem> {
 		super(context);
 		add(new FuncItem(LoginInfo.getInstance(context).getName(),
 				R.drawable.avatar_default, IPersonInfo.class));
-		add(new FuncItem(R.string.release_product, 0, IReleaseProduct.class));
-		add(new FuncItem(R.string.release_activity, 0, IReleaseActivity.class));
-		add(new FuncItem(R.string.my_collection, 0, IMyCollection.class));
-		add(new FuncItem(R.string.my_collection, 0, IMyAttention.class));
-		add(new FuncItem(R.string.setting, 0, ISetting.class));
+		add(new FuncItem(context.getString(R.string.release_product),
+				R.drawable.ic_launcher, IReleaseProduct.class));
+		add(new FuncItem(context.getString(R.string.release_activity),
+				R.drawable.ic_launcher, IReleaseActivity.class));
+		add(new FuncItem(context.getString(R.string.my_collection),
+				R.drawable.ic_launcher, IMyCollection.class));
+		add(new FuncItem(context.getString(R.string.my_collection),
+				R.drawable.ic_launcher, IMyAttention.class));
+		add(new FuncItem(context.getString(R.string.setting),
+				R.drawable.ic_launcher, ISetting.class));
 	}
 
 	@Override
 	public View getView(int position, View view) {
-		return null;
+		FuncItem item = getItem(position);
+		view = inflater.inflate(R.layout.single_text_light, null);
+		TextView tvName = (TextView) view.findViewById(R.id.text);
+		tvName.setText(item.getName());
+		tvName.setCompoundDrawablesWithIntrinsicBounds(item.getImageResId(), 0,
+				0, 0);
+		return view;
 	}
 
 }

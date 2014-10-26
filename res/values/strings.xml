@@ -160,5 +160,13 @@
     <string name="release_activity">Release Activity</string>
     <string name="my_collection">My Collection</string>
     <string name="my_attention">My Attention</string>
+    <string name="property">Property</string>
+    <string name="repair">Repaire</string>
+    <string name="express">Express</string>
+    <string name="washing">Washing</string>
+    <string name="takeout">Take Out</string>
+    <string name="life_distribution">Life Distribution</string>
+    <string name="fruits">Fruits</string>
+    <string name="housekeeping_service">Housekeeping Service</string>
 
 </resources>

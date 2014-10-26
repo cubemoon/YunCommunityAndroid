@@ -111,7 +111,7 @@ public class SwitchTheme extends BaseActivity {
 	class ThemeItem {
 		private int imageResId, nameResId;
 
-		public ThemeItem(int imageResId, int nameResId) {
+		public ThemeItem(int nameResId, int imageResId) {
 			super();
 			this.imageResId = imageResId;
 			this.nameResId = nameResId;
@@ -147,11 +147,8 @@ public class SwitchTheme extends BaseActivity {
 			finish();
 		} else {
 			LoginInfo.getInstance(getApplicationContext()).setTheme(name);
-			if (name.equals(getString(R.string.theme_android))) {
-				openActivity(MainActivity.class);
-			} else if (name.equals(getString(R.string.theme_ios))) {
-				openActivity(IMainActivity.class);
-			}
+			openActivity(LoginInfo.getInstance(getApplicationContext())
+					.getThemeClass());
 		}
 	}
 }

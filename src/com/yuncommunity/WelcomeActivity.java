@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android;
+package com.yuncommunity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.conf.BaseConstant;
 import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.theme.android.MainActivity;
 
 /**
  * 欢迎界面
@@ -24,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setBackgroundColor(Color.GREEN);
 		setContentView(imageView);
-		openActivity(MainActivity.class);
+		openActivity(LoginInfo.getInstance(getApplicationContext()).getThemeClass());
 		finish();
 	}
 }

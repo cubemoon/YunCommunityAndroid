@@ -19,6 +19,11 @@ import com.yuncommunity.theme.ios.adapter.IPersonAdapter;
 public class IPersonFragment extends ListFragment {
 	private IPersonAdapter personAdapter;
 
+	public static IPersonFragment newInstance() {
+		IPersonFragment fragment = new IPersonFragment();
+		return fragment;
+	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);

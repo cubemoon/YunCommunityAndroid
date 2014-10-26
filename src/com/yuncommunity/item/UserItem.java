@@ -70,6 +70,9 @@ public class UserItem implements Serializable {
 	private CommunityItem CommunityInfo;
 
 	public CommunityItem getCommunityInfo() {
+		if (CommunityInfo == null) {
+			return new CommunityItem();
+		}
 		return CommunityInfo;
 	}
 
