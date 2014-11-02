@@ -27,4 +27,8 @@ public class CommentListFragment extends BaseListFragment {
 		adapter = new CommentListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

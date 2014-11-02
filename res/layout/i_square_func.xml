@@ -2,6 +2,6 @@
 <com.oldfeel.view.HorizontalListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/i_square_func"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="96dp" >
 
 </com.oldfeel.view.HorizontalListView>

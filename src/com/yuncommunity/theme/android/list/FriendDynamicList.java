@@ -29,4 +29,8 @@ public class FriendDynamicList extends BaseListFragment {
 		adapter = new FriendDynamicListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

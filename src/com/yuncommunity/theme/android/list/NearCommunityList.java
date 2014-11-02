@@ -35,4 +35,8 @@ public class NearCommunityList extends BaseListFragment {
 		adapter = new NearCommunityAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

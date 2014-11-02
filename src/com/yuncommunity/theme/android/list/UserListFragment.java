@@ -35,4 +35,8 @@ public class UserListFragment extends BaseListFragment {
 		adapter = new UserListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

@@ -23,4 +23,8 @@ public class ISquareCommentList extends BaseListFragment {
 	@Override
 	public void initAdapter() {
 	}
+
+	@Override
+	public void initHeaderView() {
+	}
 }

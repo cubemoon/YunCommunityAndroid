@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_default" >
+
+    <EditText
+        android:id="@+id/i_release_square_speak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:hint="输入你想在广场上说的话"
+        android:lines="5" />
+
+    <com.oldfeel.view.HorizontalListView
+        android:id="@+id/i_release_square_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.oldfeel.view.HorizontalListView>
+
+</LinearLayout>

@@ -36,7 +36,6 @@ public class IMainActivity extends IBaseActivity {
 		setContentLayout(R.layout.i_main_activity);
 		setSwipeBackEnable(false);
 		super.hideLeft();
-		super.hideRight();
 		pager = (ViewPager) findViewById(R.id.i_main_pager);
 		rgNav = (RadioGroup) findViewById(R.id.i_main_nav);
 		adapter = new BasePagerAdapter(getSupportFragmentManager());
@@ -50,19 +49,24 @@ public class IMainActivity extends IBaseActivity {
 
 			@Override
 			public void onPageSelected(int position) {
+				hideRight();
 				int id = R.id.i_main_square;
 				switch (position) {
 				case 0:
 					id = R.id.i_main_square;
+					showRight();
 					break;
 				case 1:
 					id = R.id.i_main_server;
+					hideRight();
 					break;
 				case 2:
 					id = R.id.i_main_activity;
+					hideRight();
 					break;
 				case 3:
 					id = R.id.i_main_person;
+					hideRight();
 					break;
 				default:
 					break;

@@ -41,10 +41,10 @@ import com.yuncommunity.conf.LoginInfo;
  */
 public class IBaseActivity extends SwipeBackActivity {
 	private MyApplication myApplication;
-	protected DisplayImageOptions options;
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	protected Button btnLeft, btnRight;
-	protected TextView tvTitle;
+	public DisplayImageOptions options;
+	public ImageLoader imageLoader = ImageLoader.getInstance();
+	public Button btnLeft, btnRight;
+	public TextView tvTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +245,14 @@ public class IBaseActivity extends SwipeBackActivity {
 
 	public void hideLeft() {
 		btnLeft.setVisibility(View.GONE);
+	}
+
+	public void showRight() {
+		btnRight.setVisibility(View.VISIBLE);
+	}
+
+	public void showLeft() {
+		btnLeft.setVisibility(View.VISIBLE);
 	}
 
 	public NetUtil initNetUtil(String api) {

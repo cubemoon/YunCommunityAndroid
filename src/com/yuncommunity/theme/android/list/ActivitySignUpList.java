@@ -30,4 +30,8 @@ public class ActivitySignUpList extends BaseListFragment {
 		adapter = new ActivitySignUpListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

@@ -168,5 +168,6 @@
     <string name="life_distribution">Life Distribution</string>
     <string name="fruits">Fruits</string>
     <string name="housekeeping_service">Housekeeping Service</string>
+    <string name="speak">Speak</string>
 
 </resources>

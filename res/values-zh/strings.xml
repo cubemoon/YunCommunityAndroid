@@ -161,5 +161,6 @@
     <string name="life_distribution">生活配送</string>
     <string name="fruits">水果</string>
     <string name="housekeeping_service">家政服务</string>
+    <string name="speak">说说</string>
 
 </resources>

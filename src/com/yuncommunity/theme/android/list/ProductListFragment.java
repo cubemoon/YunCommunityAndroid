@@ -32,4 +32,8 @@ public class ProductListFragment extends BaseListFragment {
 		((ProductListAdapter) adapter).add(0, item);
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

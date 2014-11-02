@@ -34,4 +34,8 @@ public class IProductListFragment extends BaseListFragment {
 		adapter = new IProductListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

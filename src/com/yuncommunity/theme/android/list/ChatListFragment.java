@@ -27,4 +27,8 @@ public class ChatListFragment extends BaseListFragment {
 	public void initAdapter() {
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }

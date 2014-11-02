@@ -33,4 +33,8 @@ public class IActivityFragment extends BaseListFragment {
 	public void initAdapter() {
 		adapter = new IActivityAdapter(getActivity());
 	}
+
+	@Override
+	public void initHeaderView() {
+	}
 }

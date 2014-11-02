@@ -27,6 +27,10 @@ public class ISquareHeaderAdapter extends BaseBaseAdapter<TagItem> {
 				R.drawable.ic_launcher, TagItem.TAGID_EXPRESS));
 		add(new TagItem(context.getString(R.string.washing),
 				R.drawable.ic_launcher, TagItem.TAGID_WASHING));
+		add(new TagItem(context.getString(R.string.takeout),
+				R.drawable.ic_launcher, TagItem.TAGID_TAKEOUT));
+		add(new TagItem(context.getString(R.string.life_distribution),
+				R.drawable.ic_launcher, TagItem.TAGID_LIFE_DISTRIBUTION));
 	}
 
 	@Override

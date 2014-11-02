@@ -41,4 +41,8 @@ public class InformationListFragment extends BaseListFragment {
 		adapter = new InformationListAdapter(getActivity());
 	}
 
+	@Override
+	public void initHeaderView() {
+	}
+
 }
