@@ -9,12 +9,13 @@
         android:id="@+id/i_release_square_speak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1.0"
         android:gravity="top"
         android:hint="输入你想在广场上说的话"
         android:lines="5" />
 
     <com.oldfeel.view.HorizontalListView
-        android:id="@+id/i_release_square_image"
+        android:id="@+id/i_release_square_image_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </com.oldfeel.view.HorizontalListView>

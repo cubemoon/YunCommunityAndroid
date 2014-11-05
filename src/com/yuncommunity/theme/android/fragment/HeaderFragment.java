@@ -46,7 +46,6 @@ public class HeaderFragment extends BaseFragment {
 
 	private final static int CROP = 200;
 	private Uri origUri;
-	private Uri cropUri;
 	private File protraitFile;
 	private Bitmap protraitBitmap;
 	private String protraitPath;
@@ -118,32 +117,14 @@ public class HeaderFragment extends BaseFragment {
 	 * 相机拍照
 	 */
 	protected void startActionCamera() {
+		protraitFile = ImageUtil.getCameraTempFile(getActivity(),
+				Constant.FILE_SAVEPATH, LoginInfo.getInstance(getActivity())
+						.getUserId());
+		protraitPath = protraitFile.getAbsolutePath();
+		origUri = Uri.fromFile(protraitFile);
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, this.getCameraTempFile());
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, origUri);
 		startActivityForResult(intent, ImageUtil.REQUEST_CODE_GETIMAGE_BYCAMERA);
-	}
-
-	// 拍照保存的绝对路径
-	private Uri getCameraTempFile() {
-		String storageState = Environment.getExternalStorageState();
-		if (storageState.equals(Environment.MEDIA_MOUNTED)) {
-			File savedir = new File(Constant.FILE_SAVEPATH);
-			if (!savedir.exists()) {
-				savedir.mkdirs();
-			}
-		} else {
-			showToast("无法保存上传的头像，请检查SD卡是否挂载");
-			return null;
-		}
-		String timeStamp = StringUtil.getTimeStamp();
-		// 照片命名
-		String cropFileName = Constant.APP_NAME + "_" + timeStamp + ".jpg";
-		// 裁剪头像的绝对路径
-		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
-		protraitFile = new File(protraitPath);
-		cropUri = Uri.fromFile(protraitFile);
-		this.origUri = this.cropUri;
-		return this.cropUri;
 	}
 
 	/**
@@ -156,7 +137,7 @@ public class HeaderFragment extends BaseFragment {
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		intent.setType("image/*");
 		startActivityForResult(Intent.createChooser(intent, "选择图片"),
-				ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP);
+				ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD);
 	}
 
 	/**
@@ -178,7 +159,7 @@ public class HeaderFragment extends BaseFragment {
 		intent.putExtra("outputY", CROP);
 		intent.putExtra("scale", true);// 去黑边
 		intent.putExtra("scaleUpIfNeeded", true);// 去黑边
-		startActivityForResult(intent, ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD);
+		startActivityForResult(intent, ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP);
 	}
 
 	// 裁剪头像的绝对路径
@@ -207,9 +188,7 @@ public class HeaderFragment extends BaseFragment {
 		// 裁剪头像的绝对路径
 		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
-
-		cropUri = Uri.fromFile(protraitFile);
-		return this.cropUri;
+		return Uri.fromFile(protraitFile);
 	}
 
 	/**
@@ -275,10 +254,10 @@ public class HeaderFragment extends BaseFragment {
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYCAMERA:
 			startActionCrop(origUri);// 拍照后裁剪
 			break;
-		case ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP:
+		case ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD:
 			startActionCrop(data.getData());// 选图后裁剪
 			break;
-		case ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD:
+		case ImageUtil.REQUEST_CODE_GETIMAGE_BYCROP:
 			uploadNewPhoto();// 上传新照片
 			break;
 		}
