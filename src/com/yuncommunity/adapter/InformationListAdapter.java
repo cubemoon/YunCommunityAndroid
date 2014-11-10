@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import java.util.List;
 
@@ -12,32 +12,32 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
-import com.yuncommunity.item.ActivityItem;
+import com.yuncommunity.item.InformationItem;
 
 /**
+ * 活动/商家服务/个人服务适配器
  * 
  * @author oldfeel
  * 
- *         Create on: 2014年10月26日
  */
-public class IActivityAdapter extends BaseBaseAdapter<ActivityItem> {
+public class InformationListAdapter extends BaseBaseAdapter<InformationItem> {
 
-	public IActivityAdapter(Context context) {
+	public InformationListAdapter(Context context) {
 		super(context);
 	}
 
 	@Override
 	public View getView(int position, View view) {
-		ActivityItem item = getItem(position);
-		view = inflater.inflate(R.layout.i_activity_item, null);
-		ImageView ivImage = getImageView(view, R.id.i_activity_item_image);
-		TextView tvTitle = getTextView(view, R.id.i_activity_item_title);
-		TextView tvDesc = getTextView(view, R.id.i_activity_item_desc);
+		InformationItem item = getItem(position);
+		view = inflater.inflate(R.layout.information_list_item, null);
+		ImageView ivImage = getImageView(view, R.id.information_list_item_image);
+		TextView tvTitle = getTextView(view, R.id.information_list_item_title);
+		TextView tvDesc = getTextView(view, R.id.information_list_item_desc);
 		TextView tvEvaluation = getTextView(view,
-				R.id.i_activity_item_evaluation);
-		TextView tvTime = getTextView(view, R.id.i_activity_item_time);
-		RatingBar rbScore = super
-				.getRatingBar(view, R.id.i_activity_item_score);
+				R.id.information_list_item_evaluation);
+		TextView tvTime = getTextView(view, R.id.information_list_item_time);
+		RatingBar rbScore = super.getRatingBar(view,
+				R.id.information_list_item_score);
 		imageLoader.displayImage(item.getImage(), ivImage, options);
 		tvTitle.setText(item.getTitle());
 		tvDesc.setText(item.getDescription());
@@ -50,10 +50,9 @@ public class IActivityAdapter extends BaseBaseAdapter<ActivityItem> {
 	@Override
 	public void addResult(int page, String result) {
 		super.addResult(page, result);
-		List<ActivityItem> list = new Gson().fromJson(array,
-				new TypeToken<List<ActivityItem>>() {
+		List<InformationItem> list = new Gson().fromJson(array,
+				new TypeToken<List<InformationItem>>() {
 				}.getType());
 		addAll(list);
 	}
-
 }

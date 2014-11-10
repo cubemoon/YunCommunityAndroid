@@ -41,8 +41,8 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommentItem;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
+import com.yuncommunity.list.CommentListFragment;
 import com.yuncommunity.theme.android.fragment.InformationMedia;
-import com.yuncommunity.theme.android.list.CommentListFragment;
 
 /**
  * 获取详情

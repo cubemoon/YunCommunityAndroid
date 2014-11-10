@@ -14,14 +14,14 @@ import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
+import com.yuncommunity.adapter.SquareAdapter;
+import com.yuncommunity.adapter.SquareHeaderAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.theme.ios.IMainActivity;
 import com.yuncommunity.theme.ios.IProductList;
 import com.yuncommunity.theme.ios.IReleaseSquare;
 import com.yuncommunity.theme.ios.ISquareDetail;
-import com.yuncommunity.theme.ios.adapter.ISquareAdapter;
-import com.yuncommunity.theme.ios.adapter.ISquareHeaderAdapter;
 
 /**
  * 广场
@@ -31,7 +31,7 @@ import com.yuncommunity.theme.ios.adapter.ISquareHeaderAdapter;
  *         Create on: 2014年10月25日
  */
 public class ISquareFragment extends BaseListFragment {
-	private ISquareHeaderAdapter headerAdapter;
+	private SquareHeaderAdapter headerAdapter;
 
 	public static ISquareFragment newInstance(NetUtil netUtil) {
 		ISquareFragment fragment = new ISquareFragment();
@@ -64,7 +64,7 @@ public class ISquareFragment extends BaseListFragment {
 		HorizontalListView listView = (HorizontalListView) view
 				.findViewById(R.id.i_square_func);
 		listView.getParent().requestDisallowInterceptTouchEvent(true);
-		headerAdapter = new ISquareHeaderAdapter(getActivity());
+		headerAdapter = new SquareHeaderAdapter(getActivity());
 		listView.setAdapter(headerAdapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -89,7 +89,7 @@ public class ISquareFragment extends BaseListFragment {
 
 	@Override
 	public void initAdapter() {
-		adapter = new ISquareAdapter(getActivity());
+		adapter = new SquareAdapter(getActivity());
 	}
 
 	@Override

@@ -1,22 +1,21 @@
-package com.yuncommunity.theme.android.list;
+package com.yuncommunity.list;
 
 import android.support.v4.app.Fragment;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
-import com.yuncommunity.theme.android.adapter.ActivitySignUpListAdapter;
+import com.yuncommunity.adapter.FriendDynamicListAdapter;
 
 /**
- * 活动报名者列表
+ * 朋友的动态信息
  * 
  * @author oldfeel
  * 
- *         Create on: 2014年7月27日
  */
-public class ActivitySignUpList extends BaseListFragment {
+public class FriendDynamicList extends BaseListFragment {
 
 	public static Fragment newInstance(NetUtil netUtil) {
-		ActivitySignUpList fragment = new ActivitySignUpList();
+		FriendDynamicList fragment = new FriendDynamicList();
 		fragment.netUtil = netUtil;
 		return fragment;
 	}
@@ -27,7 +26,7 @@ public class ActivitySignUpList extends BaseListFragment {
 
 	@Override
 	public void initAdapter() {
-		adapter = new ActivitySignUpListAdapter(getActivity());
+		adapter = new FriendDynamicListAdapter(getActivity());
 	}
 
 	@Override

@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.yuncommunity.R;
+import com.yuncommunity.adapter.PersonAdapter;
 import com.yuncommunity.item.FuncItem;
-import com.yuncommunity.theme.ios.adapter.IPersonAdapter;
 
 /**
  * 个人中心
@@ -18,7 +18,7 @@ import com.yuncommunity.theme.ios.adapter.IPersonAdapter;
  *         Create on: 2014年10月25日
  */
 public class IPersonFragment extends ListFragment {
-	private IPersonAdapter personAdapter;
+	private PersonAdapter personAdapter;
 
 	public static IPersonFragment newInstance() {
 		IPersonFragment fragment = new IPersonFragment();
@@ -28,7 +28,7 @@ public class IPersonFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		personAdapter = new IPersonAdapter(getActivity());
+		personAdapter = new PersonAdapter(getActivity());
 		setListAdapter(personAdapter);
 	}
 

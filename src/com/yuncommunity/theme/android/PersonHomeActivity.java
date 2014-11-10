@@ -44,8 +44,8 @@ import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.UserItem;
+import com.yuncommunity.list.InformationListFragment;
 import com.yuncommunity.theme.android.fragment.HeaderFragment;
-import com.yuncommunity.theme.android.list.InformationListFragment;
 
 /**
  * 个人首页

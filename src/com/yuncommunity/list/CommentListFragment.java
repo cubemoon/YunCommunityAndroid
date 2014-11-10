@@ -1,8 +1,8 @@
-package com.yuncommunity.theme.android.list;
+package com.yuncommunity.list;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
-import com.yuncommunity.theme.android.adapter.CommentListAdapter;
+import com.yuncommunity.adapter.CommentListAdapter;
 
 /**
  * 评论列表

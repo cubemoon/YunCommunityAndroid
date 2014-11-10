@@ -9,7 +9,7 @@ import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.android.list.InformationListFragment;
+import com.yuncommunity.list.InformationListFragment;
 
 /**
  * 活动/商家服务/个人服务

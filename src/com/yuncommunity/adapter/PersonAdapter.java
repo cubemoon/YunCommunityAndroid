@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -21,9 +21,9 @@ import com.yuncommunity.theme.ios.ISetting;
  * 
  *         Create on: 2014年10月26日
  */
-public class IPersonAdapter extends BaseBaseAdapter<FuncItem> {
+public class PersonAdapter extends BaseBaseAdapter<FuncItem> {
 
-	public IPersonAdapter(Context context) {
+	public PersonAdapter(Context context) {
 		super(context);
 		add(new FuncItem(LoginInfo.getInstance(context).getName(),
 				R.drawable.avatar_default, IPersonInfo.class));

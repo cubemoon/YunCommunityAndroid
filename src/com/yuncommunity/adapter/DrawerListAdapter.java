@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.android.adapter;
+package com.yuncommunity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import java.io.File;
 
@@ -15,9 +15,9 @@ import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.theme.ios.IReleaseSquare;
 
-public class IUploadImageAdapter extends BaseBaseAdapter<Uri> {
+public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
 
-	public IUploadImageAdapter(Context context) {
+	public UploadImageAdapter(Context context) {
 		super(context);
 	}
 

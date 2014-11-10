@@ -7,7 +7,7 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.InformationItem;
-import com.yuncommunity.theme.android.list.ActivitySignUpList;
+import com.yuncommunity.list.ActivitySignUpList;
 
 /**
  * 活动报名者列表

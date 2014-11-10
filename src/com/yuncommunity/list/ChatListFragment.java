@@ -1,17 +1,20 @@
-package com.yuncommunity.theme.ios.list;
+package com.yuncommunity.list;
+
+import android.support.v4.app.Fragment;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 
 /**
+ * 聊天界面
  * 
  * @author oldfeel
  * 
- *         Create on: 2014年10月26日
  */
-public class ISquareCommentList extends BaseListFragment {
-	public static ISquareCommentList newInstance(NetUtil netUtil) {
-		ISquareCommentList fragment = new ISquareCommentList();
+public class ChatListFragment extends BaseListFragment {
+
+	public static Fragment newInstance(NetUtil netUtil) {
+		ChatListFragment fragment = new ChatListFragment();
 		fragment.netUtil = netUtil;
 		return fragment;
 	}
@@ -27,4 +30,5 @@ public class ISquareCommentList extends BaseListFragment {
 	@Override
 	public void initHeaderView() {
 	}
+
 }

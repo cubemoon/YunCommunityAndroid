@@ -7,7 +7,7 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.list.ChatListFragment;
+import com.yuncommunity.list.ChatListFragment;
 
 /**
  * 发送私信/聊天界面

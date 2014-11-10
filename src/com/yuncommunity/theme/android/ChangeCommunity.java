@@ -16,7 +16,7 @@ import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.android.list.NearCommunityList;
+import com.yuncommunity.list.NearCommunityList;
 
 /**
  * 改变小区

@@ -6,9 +6,9 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.yuncommunity.adapter.ServerTagAdapter;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.theme.ios.IProductList;
-import com.yuncommunity.theme.ios.adapter.IServerTagAdapter;
 
 /**
  * 服务
@@ -18,7 +18,7 @@ import com.yuncommunity.theme.ios.adapter.IServerTagAdapter;
  *         Create on: 2014年10月25日
  */
 public class IServerFragment extends ListFragment {
-	private IServerTagAdapter tagAdapter;
+	private ServerTagAdapter tagAdapter;
 
 	public static IServerFragment newInstance() {
 		IServerFragment fragment = new IServerFragment();
@@ -28,7 +28,7 @@ public class IServerFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		tagAdapter = new IServerTagAdapter(getActivity());
+		tagAdapter = new ServerTagAdapter(getActivity());
 		setListAdapter(tagAdapter);
 	}
 

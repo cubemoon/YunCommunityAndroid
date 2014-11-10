@@ -4,9 +4,9 @@ import android.content.Intent;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.adapter.ActivityAdapter;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.ios.IActivityDetail;
-import com.yuncommunity.theme.ios.adapter.IActivityAdapter;
 
 /**
  * 活动
@@ -31,7 +31,7 @@ public class IActivityFragment extends BaseListFragment {
 
 	@Override
 	public void initAdapter() {
-		adapter = new IActivityAdapter(getActivity());
+		adapter = new ActivityAdapter(getActivity());
 	}
 
 	@Override

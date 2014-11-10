@@ -6,7 +6,7 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.android.list.InformationListFragment;
+import com.yuncommunity.list.InformationListFragment;
 
 /**
  * 用户发布的信息列表

@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -14,9 +14,9 @@ import com.yuncommunity.item.TagItem;
  * 
  *         Create on: 2014年10月26日
  */
-public class IServerTagAdapter extends BaseBaseAdapter<TagItem> {
+public class ServerTagAdapter extends BaseBaseAdapter<TagItem> {
 
-	public IServerTagAdapter(Context context) {
+	public ServerTagAdapter(Context context) {
 		super(context);
 		add(R.string.takeout, R.drawable.ic_launcher, TagItem.TAGID_TAKEOUT);
 		add(R.string.life_distribution, R.drawable.ic_launcher,

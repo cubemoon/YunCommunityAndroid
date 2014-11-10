@@ -6,8 +6,8 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.TagItem;
+import com.yuncommunity.list.ProductListFragment;
 import com.yuncommunity.theme.ios.base.IBaseActivity;
-import com.yuncommunity.theme.ios.list.IProductListFragment;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class IProductList extends IBaseActivity {
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						IProductListFragment.newInstance(getListNetUtil()))
+						ProductListFragment.newInstance(getListNetUtil()))
 				.commit();
 	}
 

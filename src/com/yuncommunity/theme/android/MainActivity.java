@@ -22,11 +22,11 @@ import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
+import com.yuncommunity.adapter.DrawerListAdapter;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
-import com.yuncommunity.theme.android.adapter.DrawerListAdapter;
 import com.yuncommunity.theme.android.fragment.AttentionFragment;
 import com.yuncommunity.theme.android.fragment.InformationFragment;
 

@@ -10,7 +10,8 @@
 
         <EditText
             android:id="@+id/i_change_community_key"
-            style="@style/single_view_et" />
+            style="@style/single_view_et"
+            android:imeOptions="actionSearch" />
 
         <ImageButton
             android:id="@+id/i_change_community_search"

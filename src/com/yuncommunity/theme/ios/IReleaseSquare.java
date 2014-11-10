@@ -28,9 +28,9 @@ import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
 import com.yuncommunity.R;
+import com.yuncommunity.adapter.UploadImageAdapter;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.ios.adapter.IUploadImageAdapter;
 import com.yuncommunity.theme.ios.base.IBaseActivity;
 
 /**
@@ -44,7 +44,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
 public class IReleaseSquare extends IBaseActivity {
 	private EditText etSpeak;
 	private HorizontalListView hlvImages;
-	private IUploadImageAdapter adapter;
+	private UploadImageAdapter adapter;
 
 	private Uri origUri;
 	private File protraitFile;
@@ -58,7 +58,7 @@ public class IReleaseSquare extends IBaseActivity {
 		setContentLayout(R.layout.i_release_square);
 		etSpeak = (EditText) findViewById(R.id.i_release_square_speak);
 		hlvImages = (HorizontalListView) findViewById(R.id.i_release_square_image_list);
-		adapter = new IUploadImageAdapter(this);
+		adapter = new UploadImageAdapter(this);
 		hlvImages.setAdapter(adapter);
 		showRight();
 		btnRight.setText("完成");

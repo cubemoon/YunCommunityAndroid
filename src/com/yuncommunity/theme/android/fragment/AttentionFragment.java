@@ -18,8 +18,8 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.list.FriendDynamicList;
-import com.yuncommunity.theme.android.list.InformationListFragment;
+import com.yuncommunity.list.FriendDynamicList;
+import com.yuncommunity.list.InformationListFragment;
 
 /**
  * 关注

@@ -8,8 +8,8 @@ import android.widget.Button;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.item.SquareItem;
+import com.yuncommunity.list.SquareCommentList;
 import com.yuncommunity.theme.ios.base.IBaseActivity;
-import com.yuncommunity.theme.ios.list.ISquareCommentList;
 
 /**
  * 广场内容详情
@@ -20,7 +20,7 @@ import com.yuncommunity.theme.ios.list.ISquareCommentList;
  */
 public class ISquareDetail extends IBaseActivity implements OnClickListener {
 	private SquareItem squareItem;
-	private ISquareCommentList commentList;
+	private SquareCommentList commentList;
 	private Button btnAttention, btnCollection, btnComment;
 
 	@Override
@@ -28,7 +28,7 @@ public class ISquareDetail extends IBaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentLayout(R.layout.i_square_detail);
 		squareItem = (SquareItem) getIntent().getSerializableExtra("item");
-		commentList = ISquareCommentList.newInstance(getCommentListNetUtil());
+		commentList = SquareCommentList.newInstance(getCommentListNetUtil());
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.i_square_detail_frame, commentList).commit();
 		btnAttention = getButton(R.id.i_square_detail_attention);

@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -15,9 +15,9 @@ import com.yuncommunity.item.TagItem;
  * 
  *         Create on: 2014年10月26日
  */
-public class ISquareHeaderAdapter extends BaseBaseAdapter<TagItem> {
+public class SquareHeaderAdapter extends BaseBaseAdapter<TagItem> {
 
-	public ISquareHeaderAdapter(Context context) {
+	public SquareHeaderAdapter(Context context) {
 		super(context);
 		add(new TagItem(context.getString(R.string.property),
 				R.drawable.ic_launcher, TagItem.TAGID_PROPERTY));

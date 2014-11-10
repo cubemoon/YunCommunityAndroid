@@ -1,12 +1,12 @@
-package com.yuncommunity.theme.android.list;
+package com.yuncommunity.list;
 
 import android.content.Intent;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.adapter.NearCommunityAdapter;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.android.adapter.NearCommunityAdapter;
 
 /**
  * 附近小区列表

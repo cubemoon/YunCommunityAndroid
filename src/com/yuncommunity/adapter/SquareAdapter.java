@@ -1,4 +1,4 @@
-package com.yuncommunity.theme.ios.adapter;
+package com.yuncommunity.adapter;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ import com.yuncommunity.item.SquareItem;
  * 
  *         Create on: 2014年10月26日
  */
-public class ISquareAdapter extends BaseBaseAdapter<SquareItem> {
+public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 
-	public ISquareAdapter(Context context) {
+	public SquareAdapter(Context context) {
 		super(context);
 	}
 
