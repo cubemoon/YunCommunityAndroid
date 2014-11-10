@@ -1,30 +1,22 @@
 package com.yuncommunity.theme.ios;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ImageUtil;
 import com.oldfeel.utils.JsonUtil;
@@ -127,16 +119,25 @@ public class IReleaseSquare extends IBaseActivity {
 		});
 	}
 
+	/**
+	 * 上传照片
+	 * 
+	 * @param uptoken
+	 */
 	protected void uploadImage(final String uptoken) {
 		if (adapter.getCount() > 1) {
 			File file = adapter.getImageFile(0);
+			adapter.remove(0);
+			if (file == null) {
+				uploadImage(uptoken);
+				return;
+			}
 			uploadManager.put(file, file.getName(), uptoken,
 					new UpCompletionHandler() {
 
 						@Override
 						public void complete(String key, ResponseInfo info,
 								JSONObject response) {
-							adapter.remove(0);
 							uploadImage(uptoken);
 						}
 					}, null);
@@ -144,86 +145,6 @@ public class IReleaseSquare extends IBaseActivity {
 			DialogUtil.getInstance().cancelPd();
 			submitSpeak();
 		}
-	}
-
-	class ImageAdapter extends BaseAdapter {
-		ImageLoader imageLoader = ImageLoader.getInstance();
-		private Context context;
-		private List<Uri> list = new ArrayList<Uri>();
-
-		public ImageAdapter(Context context) {
-			this.context = context;
-		}
-
-		public String getUploadImages() {
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < getCount() - 1; i++) {
-				File file = getImageFile(i);
-				if (i == 0) {
-					sb.append(file.getName());
-				} else {
-					sb.append("," + file.getName());
-				}
-			}
-			return sb.toString();
-		}
-
-		public void remove(int i) {
-			list.remove(0);
-			notifyDataSetChanged();
-		}
-
-		public File getImageFile(int position) {
-			Uri uri = getItem(position);
-			String path = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
-			if (StringUtil.isEmpty(path)) {
-				path = ImageUtil.getAbsoluteImagePath(context, uri);
-			}
-			return new File(path);
-		}
-
-		@Override
-		public int getCount() {
-			return list.size() + 1;
-		}
-
-		@Override
-		public Uri getItem(int position) {
-			return list.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View view, ViewGroup parent) {
-			view = LayoutInflater.from(context).inflate(
-					R.layout.i_release_square_image_item, parent, false);
-			ImageView ivImage = (ImageView) view
-					.findViewById(R.id.i_release_square_image);
-
-			if (position == getCount() - 1) {
-				ivImage.setImageResource(R.drawable.ic_launcher);
-				ivImage.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						((IReleaseSquare) context).getImage();
-					}
-				});
-			} else {
-				imageLoader.displayImage(getItem(position).toString(), ivImage);
-			}
-			return view;
-		}
-
-		public void add(Uri uri) {
-			list.add(uri);
-			notifyDataSetChanged();
-		}
-
 	}
 
 	/**
@@ -258,12 +179,16 @@ public class IReleaseSquare extends IBaseActivity {
 	 */
 	protected void startActionCamera() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, getCameraTempFile());
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, initImageTemp());
 		startActivityForResult(intent, ImageUtil.REQUEST_CODE_GETIMAGE_BYCAMERA);
 	}
 
-	// 拍照保存的绝对路径
-	private Uri getCameraTempFile() {
+	/**
+	 * 获取上传照片的绝对路径
+	 * 
+	 * @return
+	 */
+	private Uri initImageTemp() {
 		String storageState = Environment.getExternalStorageState();
 		if (storageState.equals(Environment.MEDIA_MOUNTED)) {
 			File savedir = new File(Constant.FILE_SAVEPATH);
@@ -308,7 +233,15 @@ public class IReleaseSquare extends IBaseActivity {
 			addImage(origUri);
 			break;
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD:
-			addImage(data.getData());
+			Uri uri = data.getData();
+			String path = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
+			if (StringUtil.isEmpty(path)) {
+				path = ImageUtil.getAbsoluteImagePath(this, uri);
+			}
+			initImageTemp();
+			File file = new File(path);
+			file.renameTo(protraitFile);
+			addImage(origUri);
 			break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);

@@ -10,9 +10,6 @@ import com.oldfeel.base.BaseItem;
  */
 public class InformationItem extends BaseItem {
 
-	/** serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
 	/** informationid. */
 	private long Informationid;
 
@@ -55,6 +52,26 @@ public class InformationItem extends BaseItem {
 	private double Evaluation;
 
 	private float Score;
+
+	private UserItem UserInfo;
+
+	private long CommentCount;
+
+	public long getCommentCount() {
+		return CommentCount;
+	}
+
+	public void setCommentCount(long commentCount) {
+		CommentCount = commentCount;
+	}
+
+	public UserItem getUserInfo() {
+		return UserInfo;
+	}
+
+	public void setUserInfo(UserItem UserInfo) {
+		this.UserInfo = UserInfo;
+	}
 
 	public double getEvaluation() {
 		return Evaluation;
