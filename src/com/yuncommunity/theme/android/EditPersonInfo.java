@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
@@ -99,14 +99,14 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
+						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.updated_personal_details)));
 							setResult(PersonHomeActivity.EDIT_PERSON_INFO);
 							finish();
 						} else {
 							showToast(getText(R.string.failed_update_personal_details)
-									+ "," + JSONUtil.getMessage(result));
+									+ "," + JsonUtil.getData(result));
 						}
 					}
 				});

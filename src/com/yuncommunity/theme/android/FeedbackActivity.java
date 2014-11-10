@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
@@ -90,7 +90,7 @@ public class FeedbackActivity extends BaseActivity {
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
+						if (JsonUtil.isSuccess(result)) {
 							DialogUtil
 									.getInstance()
 									.showSimpleDialog(
@@ -108,7 +108,7 @@ public class FeedbackActivity extends BaseActivity {
 											});
 						} else {
 							showToast(getText(R.string.failed_submit_feedback)
-									+ "," + JSONUtil.getMessage(result));
+									+ "," + JsonUtil.getData(result));
 						}
 					}
 				});

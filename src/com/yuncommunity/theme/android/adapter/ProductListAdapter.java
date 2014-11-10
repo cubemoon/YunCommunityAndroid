@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.oldfeel.utils.DialogUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
@@ -81,12 +81,12 @@ public class ProductListAdapter extends BaseBaseAdapter<ProductItem> {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					DialogUtil.getInstance().showToast(context, "删除成功");
 					remove(item);
 				} else {
 					DialogUtil.getInstance().showToast(context,
-							"删除失败," + JSONUtil.getMessage(result));
+							JsonUtil.getData(result));
 				}
 			}
 		});

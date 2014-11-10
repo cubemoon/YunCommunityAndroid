@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -67,7 +68,7 @@ public class IBaseActivity extends SwipeBackActivity {
 
 	protected void setContentLayout(int layoutResID) {
 		View view = LayoutInflater.from(getApplicationContext()).inflate(
-				layoutResID, null);
+				layoutResID, new LinearLayout(this), false);
 		setContentLayout(view);
 	}
 
@@ -75,6 +76,13 @@ public class IBaseActivity extends SwipeBackActivity {
 		btnLeft = getButton(R.id.i_base_view_left);
 		btnRight = getButton(R.id.i_base_view_right);
 		tvTitle = getTextView(R.id.i_base_view_title);
+		btnLeft.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
 	}
 
 	@Override

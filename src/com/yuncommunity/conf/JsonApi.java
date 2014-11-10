@@ -75,4 +75,6 @@ public class JsonApi {
 	public static final String ACTIVITY_SIGN_UP_LIST = "activity_sign_up_list";
 	/** 附近小区列表 */
 	public static final String NEAR_COMMUNITY_LIST = "near_community_list";
+	/** 注册时需要的验证码 */
+	public static final String REGISTER_VCODE = "register_vcode";
 }

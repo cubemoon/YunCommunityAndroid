@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseBaseAdapter;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -114,7 +114,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 
 			@Override
 			public void onComplete(String result) {
-				LogUtil.showLog(JSONUtil.getMessage(result));
+				LogUtil.showLog(JsonUtil.getData(result));
 			}
 		});
 	}
@@ -136,7 +136,7 @@ public class CommentListAdapter extends BaseBaseAdapter<CommentItem> {
 
 			@Override
 			public void onComplete(String result) {
-				LogUtil.showLog(JSONUtil.getMessage(result));
+				LogUtil.showLog(JsonUtil.getData(result));
 			}
 		});
 	}

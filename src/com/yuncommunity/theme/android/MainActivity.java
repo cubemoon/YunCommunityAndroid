@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
@@ -137,7 +137,8 @@ public class MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
+				MainActivity.this)) {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
@@ -151,14 +152,14 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					LoginInfo.getInstance(getApplicationContext()).saveInfo(
-							JSONUtil.getData(result).toString());
+							JsonUtil.getData(result).toString());
 					updateHeaderView();
 				} else {
 
 					showToast(getText(R.string.auto_login_failed) + ","
-							+ JSONUtil.getMessage(result));
+							+ JsonUtil.getData(result));
 
 					cancelLogin();
 				}
@@ -189,7 +190,8 @@ public class MainActivity extends BaseActivity {
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getAvatar(), ivAvatar, options);
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
+				MainActivity.this)) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
@@ -338,7 +340,8 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin()) {
+		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
+				MainActivity.this)) {
 			openActivity(LoginRegisterActivity.class);
 			return;
 		}

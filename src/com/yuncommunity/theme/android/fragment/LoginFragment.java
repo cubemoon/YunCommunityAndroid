@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.oldfeel.base.BaseFragment;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.OnNetFailListener;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -166,9 +166,9 @@ public class LoginFragment extends BaseFragment {
 				@Override
 				public void onComplete(String result) {
 					showProgress(false);
-					if (JSONUtil.isSuccess(result)) {
+					if (JsonUtil.isSuccess(result)) {
 						LoginInfo.getInstance(getActivity()).saveInfo(
-								JSONUtil.getData(result).toString());
+								JsonUtil.getData(result).toString());
 						LoginInfo.getInstance(getActivity()).saveRealPassword(
 								mPassword);
 						Intent intent = new Intent(getActivity(),

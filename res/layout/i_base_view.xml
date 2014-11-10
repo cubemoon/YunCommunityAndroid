@@ -4,46 +4,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/green"
-        android:orientation="horizontal" >
+        android:background="@color/green" >
 
         <Button
             android:id="@+id/i_base_view_left"
             android:layout_width="72dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/margin_default"
             android:background="@color/transparent"
             android:gravity="center_vertical"
             android:text="@string/cancel" />
 
+        <Button
+            android:id="@+id/i_base_view_right"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_default"
+            android:background="@color/transparent"
+            android:gravity="center_vertical|right"
+            android:text="@string/finish" />
+
         <TextView
             android:id="@+id/i_base_view_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="88dp"
+            android:layout_marginRight="88dp"
             android:layout_weight="1.0"
             android:background="@color/transparent"
             android:gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_title" />
-
-        <Button
-            android:id="@+id/i_base_view_right"
-            android:layout_width="72dp"
-            android:layout_height="48dp"
-            android:layout_marginRight="@dimen/margin_default"
-            android:background="@color/transparent"
-            android:gravity="center_vertical|right"
-            android:text="@string/finish" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/i_base_view_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_weight="1.0" >
     </FrameLayout>
 
 </LinearLayout>

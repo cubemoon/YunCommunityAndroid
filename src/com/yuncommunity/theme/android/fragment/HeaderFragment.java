@@ -2,6 +2,8 @@ package com.yuncommunity.theme.android.fragment;
 
 import java.io.File;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -23,10 +25,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.FileUtil;
 import com.oldfeel.utils.ImageUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -214,8 +219,8 @@ public class HeaderFragment extends BaseFragment {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					startUpload(JSONUtil.getMessage(result));
+				if (JsonUtil.isSuccess(result)) {
+					startUpload(JsonUtil.getData(result));
 				} else {
 					showToast("获取uptoken失败");
 				}
@@ -229,19 +234,20 @@ public class HeaderFragment extends BaseFragment {
 	 * @param uptoken
 	 */
 	protected void startUpload(String uptoken) {
-		NetUtil netUtil = new NetUtil(getActivity(), "");
-		netUtil.postFile("正在上传头像...", protraitFile.getName(), protraitFile,
-				uptoken, new RequestStringListener() {
+		UploadManager uploadManager = new UploadManager();
+		uploadManager.put(protraitFile, protraitFile.getName(), uptoken,
+				new UpCompletionHandler() {
 
 					@Override
-					public void onComplete(String result) {
+					public void complete(String key, ResponseInfo info,
+							JSONObject response) {
 						showToast("上传成功");
 						ivHeader.setImageBitmap(protraitBitmap);
 						LoginInfo.getInstance(getActivity()).getUserInfo()
 								.setAvatar(protraitFile.getName());
 						LoginInfo.update(getActivity());
 					}
-				});
+				}, null);
 	}
 
 	@Override

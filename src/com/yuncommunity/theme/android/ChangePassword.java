@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.ETUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
@@ -84,13 +84,13 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
+						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.changed_successfully)));
 							finish();
 						} else {
 							showToast(getText(R.string.changed_failed) + ","
-									+ JSONUtil.getMessage(result));
+									+ JsonUtil.getData(result));
 						}
 					}
 				});

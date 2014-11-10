@@ -14,7 +14,7 @@ import android.webkit.WebView;
 
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.VersionUtil;
@@ -147,7 +147,7 @@ public class MySettingsFragment extends PreferenceFragment {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					if (VersionUtil.isNeedUpdate(getActivity(), result)) {
 						DialogUtil.getInstance().showSimpleDialog(
 								getActivity(),
@@ -166,7 +166,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					}
 				} else {
 					DialogUtil.getInstance().showToast(getActivity(),
-							"检查失败," + JSONUtil.getMessage(result));
+							"检查失败," + JsonUtil.getData(result));
 				}
 			}
 		});

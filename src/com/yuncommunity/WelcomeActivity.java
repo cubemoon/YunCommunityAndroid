@@ -4,11 +4,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.conf.BaseConstant;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.theme.ios.base.IBaseActivity;
 
 /**
  * 欢迎界面
@@ -17,7 +16,7 @@ import com.yuncommunity.theme.android.MainActivity;
  * 
  *         Create on: 2014年5月15日
  */
-public class WelcomeActivity extends BaseActivity {
+public class WelcomeActivity extends IBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,7 +25,8 @@ public class WelcomeActivity extends BaseActivity {
 		ImageView imageView = new ImageView(this);
 		imageView.setBackgroundColor(Color.GREEN);
 		setContentView(imageView);
-		openActivity(LoginInfo.getInstance(getApplicationContext()).getThemeClass());
+		openActivity(LoginInfo.getInstance(getApplicationContext())
+				.getThemeClass());
 		finish();
 	}
 }

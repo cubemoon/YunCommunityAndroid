@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
@@ -74,12 +74,12 @@ public class CommunityEdit extends BaseActivity {
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
+						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.edit_finished)));
 							finish();
 						} else {
-							showToast(JSONUtil.getMessage(result));
+							showToast(JsonUtil.getData(result));
 						}
 					}
 				});

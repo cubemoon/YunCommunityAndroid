@@ -14,6 +14,7 @@ import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.theme.ios.IMainActivity;
 import com.yuncommunity.theme.ios.IProductList;
@@ -46,7 +47,9 @@ public class ISquareFragment extends BaseListFragment {
 
 			@Override
 			public void onClick(View v) {
-				openActivity(IReleaseSquare.class);
+				if (LoginInfo.getInstance(getActivity()).isLogin(getActivity())) {
+					openActivity(IReleaseSquare.class);
+				}
 			}
 		});
 	}
@@ -60,6 +63,7 @@ public class ISquareFragment extends BaseListFragment {
 				R.layout.i_square_func, new LinearLayout(getActivity()), true);
 		HorizontalListView listView = (HorizontalListView) view
 				.findViewById(R.id.i_square_func);
+		listView.getParent().requestDisallowInterceptTouchEvent(true);
 		headerAdapter = new ISquareHeaderAdapter(getActivity());
 		listView.setAdapter(headerAdapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -93,4 +97,9 @@ public class ISquareFragment extends BaseListFragment {
 		getListView().addHeaderView(getHeaderView());
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		getData(0);
+	}
 }

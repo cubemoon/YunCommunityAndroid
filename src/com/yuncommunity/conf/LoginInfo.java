@@ -1,7 +1,10 @@
 package com.yuncommunity.conf;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
@@ -14,6 +17,7 @@ import com.yuncommunity.R;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.theme.ios.ILoginActivity;
 import com.yuncommunity.theme.ios.IMainActivity;
 
 /**
@@ -46,11 +50,26 @@ public class LoginInfo {
 		saveInfo(DesUtil.decode(Constant.KEY, sp.getString("logininfo", "")));
 	}
 
-	public boolean isLogin() {
-		if (userInfo == null) {
-			return false;
+	public boolean isLogin(final Activity activity) {
+		boolean isLogin = false;
+		if (userInfo != null && userInfo.getUserid() != 0) {
+			isLogin = true;
 		}
-		return userInfo.getUserid() != 0;
+		if (!isLogin) {
+			new AlertDialog.Builder(activity)
+					.setTitle("您需要登录后才能继续操作")
+					.setPositiveButton("登录/注册",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									activity.startActivity(new Intent(context,
+											ILoginActivity.class));
+								}
+							}).setNegativeButton("取消", null).show();
+		}
+		return isLogin;
 	}
 
 	public void saveInfo(String result) {

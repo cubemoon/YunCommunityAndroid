@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
@@ -106,11 +106,11 @@ public class ProductList extends BaseActivity {
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
+						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.added_successfully)));
 							fragment.add(new Gson().fromJson(
-									JSONUtil.getData(result).toString(),
+									JsonUtil.getData(result).toString(),
 									ProductItem.class));
 						} else {
 							showToast(String

@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ETUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -122,21 +122,21 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					try {
 						parseDetail(result);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
 				} else {
-					showToast(JSONUtil.getMessage(result));
+					showToast(JsonUtil.getData(result));
 				}
 			}
 		});
 	}
 
 	protected void parseDetail(String result) throws JSONException {
-		JSONObject data = JSONUtil.getData(result);
+		JSONObject data = new JSONObject(JsonUtil.getData(result));
 		String scoreAvg = data.getString("scoreavg");
 		long scoreCount = data.getLong("scorecount");
 		boolean isFollowing = data.getBoolean("isfollowing");
@@ -393,11 +393,11 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			@Override
 			public void onComplete(String result) {
 				LogUtil.showLog(result);
-				if (JSONUtil.isSuccess(result)) {
-					myComment = new Gson().fromJson(JSONUtil.getData(result)
+				if (JsonUtil.isSuccess(result)) {
+					myComment = new Gson().fromJson(JsonUtil.getData(result)
 							.toString(), CommentItem.class);
 				} else {
-					showToast(JSONUtil.getMessage(result));
+					showToast(JsonUtil.getData(result));
 					btnEvaluation.setText(getText(R.string.comment));
 				}
 			}
@@ -414,7 +414,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onComplete(String result) {
-				LogUtil.showLog(JSONUtil.getMessage(result));
+				LogUtil.showLog(JsonUtil.getData(result));
 			}
 		});
 		myComment = null;
@@ -442,10 +442,10 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					LogUtil.showLog(String.valueOf(getText(R.string.followed)));
 				} else {
-					LogUtil.showLog(JSONUtil.getMessage(result));
+					LogUtil.showLog(JsonUtil.getData(result));
 				}
 			}
 		});

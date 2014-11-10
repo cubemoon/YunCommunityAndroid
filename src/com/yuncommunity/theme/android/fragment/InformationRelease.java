@@ -2,6 +2,8 @@ package com.yuncommunity.theme.android.fragment;
 
 import java.io.File;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,11 +24,14 @@ import com.oldfeel.base.BaseFragment;
 import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.FileUtil;
 import com.oldfeel.utils.ImageUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.oldfeel.utils.Utils;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -119,7 +124,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					showToast("发布成功");
 					Intent intent = new Intent(getActivity(),
 							MainActivity.class);
@@ -128,7 +133,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 					startActivity(intent);
 					getActivity().finish();
 				} else {
-					showToast("发布失败," + JSONUtil.getMessage(result));
+					showToast("发布失败," + JsonUtil.getData(result));
 				}
 			}
 		});
@@ -140,8 +145,8 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
-					startUploadFile(JSONUtil.getMessage(result));
+				if (JsonUtil.isSuccess(result)) {
+					startUploadFile(JsonUtil.getData(result));
 				} else {
 					showToast("获取uptoken失败");
 				}
@@ -159,14 +164,16 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 		if (StringUtil.isEmpty(filePath)) {
 			return;
 		}
-		NetUtil netUtil = new NetUtil(getActivity(), "");
-		netUtil.postFile("", FileUtil.getName(filePath), new File(filePath),
-				uptoken, new RequestStringListener() {
+		File file = new File(filePath);
+		UploadManager uploadManager = new UploadManager();
+		uploadManager.put(file, file.getName(), uptoken,
+				new UpCompletionHandler() {
 
 					@Override
-					public void onComplete(String result) {
+					public void complete(String key, ResponseInfo info,
+							JSONObject response) {
 					}
-				});
+				}, null);
 	}
 
 	@Override

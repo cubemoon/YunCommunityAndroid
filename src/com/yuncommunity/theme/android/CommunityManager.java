@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.Utils;
@@ -50,10 +50,10 @@ public class CommunityManager extends BaseActivity {
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					parseCommunity(result);
 				} else {
-					showToast(JSONUtil.getMessage(result));
+					showToast(JsonUtil.getData(result));
 				}
 			}
 		});
@@ -65,7 +65,7 @@ public class CommunityManager extends BaseActivity {
 	 * @param result
 	 */
 	protected void parseCommunity(String result) {
-		item = new Gson().fromJson(JSONUtil.getData(result).toString(),
+		item = new Gson().fromJson(JsonUtil.getData(result).toString(),
 				CommunityItem.class);
 		imageLoader.displayImage(item.getImage(), ivImage, options);
 		tvDesc.setText(item.getDescription());

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -29,11 +31,14 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.FileUtil;
 import com.oldfeel.utils.ImageUtil;
-import com.oldfeel.utils.JSONUtil;
+import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -128,10 +133,10 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 			@Override
 			public void onComplete(String result) {
-				if (JSONUtil.isSuccess(result)) {
+				if (JsonUtil.isSuccess(result)) {
 					parseInfo(result);
 				} else {
-					showToast(JSONUtil.getMessage(result));
+					showToast(JsonUtil.getData(result));
 				}
 			}
 		});
@@ -139,7 +144,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 	protected void parseInfo(String result) {
 		UserItem item = new Gson().fromJson(
-				JSONUtil.getData(result).toString(), UserItem.class);
+				JsonUtil.getData(result).toString(), UserItem.class);
 		if (!StringUtil.isEmpty(item.getBackground())) {
 			imageLoader.displayImage(item.getBackground(), ivBg, options);
 		}
@@ -469,8 +474,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 					@Override
 					public void onComplete(String result) {
-						if (JSONUtil.isSuccess(result)) {
-							startUpload(JSONUtil.getMessage(result));
+						if (JsonUtil.isSuccess(result)) {
+							startUpload(JsonUtil.getData(result));
 						} else {
 							showToast(String
 									.valueOf(getText(R.string.failed_to_get_uptoken)));
@@ -485,12 +490,13 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * @param uptoken
 	 */
 	protected void startUpload(String uptoken) {
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, "");
-		netUtil.postFile("正在上传背景...", protraitFile.getName(), protraitFile,
-				uptoken, new RequestStringListener() {
+		UploadManager uploadManager = new UploadManager();
+		uploadManager.put(protraitFile, protraitFile.getName(), uptoken,
+				new UpCompletionHandler() {
 
 					@Override
-					public void onComplete(String result) {
+					public void complete(String key, ResponseInfo info,
+							JSONObject response) {
 						showToast("上传成功");
 						ivBg.setImageBitmap(protraitBitmap);
 						LoginInfo.getInstance(PersonHomeActivity.this)
@@ -498,7 +504,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 								.setBackground(protraitFile.getName());
 						LoginInfo.update(PersonHomeActivity.this);
 					}
-				});
+				}, null);
 	}
 
 	private void updateData(Intent data) {

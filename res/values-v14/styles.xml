@@ -3,6 +3,7 @@
     <style name="Theme.Yuncommunity" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowIsTranslucent">true</item>
         <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
 </resources>

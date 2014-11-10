@@ -123,7 +123,9 @@
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.IActivityDetail" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IMainActivity" >
+        <activity
+            android:name="com.yuncommunity.theme.ios.IMainActivity"
+            android:launchMode="singleTask" >
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.IMyAttention" >
         </activity>
@@ -144,6 +146,12 @@
         <activity android:name="com.yuncommunity.theme.ios.ISquareDetail" >
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.IReleaseSquare" >
+        </activity>
+        <activity android:name="com.yuncommunity.theme.ios.ILoginActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.theme.ios.IRegisterActivity" >
+        </activity>
+        <activity android:name="com.yuncommunity.theme.ios.IForgetPassword" >
         </activity>
         <!-- 百度应用统计 -->
         <!-- 渠道商编号,其中 name 请不要改,将 value 修改为渠道商编号。渠道名称请到 mtj.baidu.com的渠道管理中修改 -->

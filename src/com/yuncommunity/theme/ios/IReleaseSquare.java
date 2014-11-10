@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,11 +24,21 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ImageUtil;
+import com.oldfeel.utils.JsonUtil;
+import com.oldfeel.utils.NetUtil;
+import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.oldfeel.view.HorizontalListView;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.theme.ios.adapter.IUploadImageAdapter;
 import com.yuncommunity.theme.ios.base.IBaseActivity;
 
 /**
@@ -40,11 +52,13 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
 public class IReleaseSquare extends IBaseActivity {
 	private EditText etSpeak;
 	private HorizontalListView hlvImages;
-	private ImageAdapter adapter;
+	private IUploadImageAdapter adapter;
 
 	private Uri origUri;
 	private File protraitFile;
 	private String protraitPath;
+	private UploadManager uploadManager = new UploadManager();
+	private String uploadImages;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +66,7 @@ public class IReleaseSquare extends IBaseActivity {
 		setContentLayout(R.layout.i_release_square);
 		etSpeak = (EditText) findViewById(R.id.i_release_square_speak);
 		hlvImages = (HorizontalListView) findViewById(R.id.i_release_square_image_list);
-		adapter = new ImageAdapter(this);
+		adapter = new IUploadImageAdapter(this);
 		hlvImages.setAdapter(adapter);
 		showRight();
 		btnRight.setText("完成");
@@ -60,7 +74,11 @@ public class IReleaseSquare extends IBaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				submitSpeak();
+				if (adapter.getCount() > 1) {
+					getToken();
+				} else {
+					submitSpeak();
+				}
 			}
 		});
 	}
@@ -69,15 +87,99 @@ public class IReleaseSquare extends IBaseActivity {
 	 * 提交说说
 	 */
 	protected void submitSpeak() {
+		NetUtil netUtil = new NetUtil(IReleaseSquare.this,
+				JsonApi.INFORMATION_RELEASE);
+		netUtil.setParams("infotype", Constant.TYPE_SQUARE);
+		netUtil.setParams("description", getString(etSpeak));
+		netUtil.setParams("image", uploadImages);
+		netUtil.postRequest("正在说说...", new RequestStringListener() {
 
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("说说成功");
+					finish();
+				} else {
+					showToast(JsonUtil.getData(result));
+				}
+			}
+		});
+	}
+
+	/**
+	 * 开始上传图片
+	 */
+	private void getToken() {
+		DialogUtil.getInstance().showPd(this, "正在上传图片...");
+		uploadImages = adapter.getUploadImages();
+		NetUtil netUtil = new NetUtil(IReleaseSquare.this, JsonApi.UPTOKEN);
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					uploadImage(JsonUtil.getData(result));
+				} else {
+					DialogUtil.getInstance().cancelPd();
+					showToast(JsonUtil.getData(result));
+				}
+			}
+		});
+	}
+
+	protected void uploadImage(final String uptoken) {
+		if (adapter.getCount() > 1) {
+			File file = adapter.getImageFile(0);
+			uploadManager.put(file, file.getName(), uptoken,
+					new UpCompletionHandler() {
+
+						@Override
+						public void complete(String key, ResponseInfo info,
+								JSONObject response) {
+							adapter.remove(0);
+							uploadImage(uptoken);
+						}
+					}, null);
+		} else {
+			DialogUtil.getInstance().cancelPd();
+			submitSpeak();
+		}
 	}
 
 	class ImageAdapter extends BaseAdapter {
+		ImageLoader imageLoader = ImageLoader.getInstance();
 		private Context context;
 		private List<Uri> list = new ArrayList<Uri>();
 
 		public ImageAdapter(Context context) {
 			this.context = context;
+		}
+
+		public String getUploadImages() {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < getCount() - 1; i++) {
+				File file = getImageFile(i);
+				if (i == 0) {
+					sb.append(file.getName());
+				} else {
+					sb.append("," + file.getName());
+				}
+			}
+			return sb.toString();
+		}
+
+		public void remove(int i) {
+			list.remove(0);
+			notifyDataSetChanged();
+		}
+
+		public File getImageFile(int position) {
+			Uri uri = getItem(position);
+			String path = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
+			if (StringUtil.isEmpty(path)) {
+				path = ImageUtil.getAbsoluteImagePath(context, uri);
+			}
+			return new File(path);
 		}
 
 		@Override
@@ -112,7 +214,7 @@ public class IReleaseSquare extends IBaseActivity {
 					}
 				});
 			} else {
-				ivImage.setImageURI(getItem(position));
+				imageLoader.displayImage(getItem(position).toString(), ivImage);
 			}
 			return view;
 		}
@@ -127,7 +229,7 @@ public class IReleaseSquare extends IBaseActivity {
 	/**
 	 * 添加图片
 	 */
-	protected void getImage() {
+	public void getImage() {
 		new AlertDialog.Builder(IReleaseSquare.this)
 				.setTitle("添加图片")
 				.setItems(R.array.add_image_type,
