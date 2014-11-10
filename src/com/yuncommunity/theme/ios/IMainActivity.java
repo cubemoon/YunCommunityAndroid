@@ -3,6 +3,8 @@ package com.yuncommunity.theme.ios;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -35,9 +37,101 @@ public class IMainActivity extends IBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentLayout(R.layout.i_main_activity);
 		setSwipeBackEnable(false);
-		super.hideLeft();
+		hideLeft();
+		initView();
+		initPager();
+		initListener();
+	}
+
+	private void initListener() {
+		rgNav.setOnCheckedChangeListener(checkedChangeListener);
+		pager.setOnPageChangeListener(pageChangeListener);
+		tvTitle.setOnClickListener(clickListener);
+	}
+
+	private OnCheckedChangeListener checkedChangeListener = new OnCheckedChangeListener() {
+
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			int index = 0;
+			switch (checkedId) {
+			case R.id.i_main_activity:
+				index = 2;
+				break;
+			case R.id.i_main_person:
+				index = 3;
+				break;
+			case R.id.i_main_server:
+				index = 1;
+				break;
+			case R.id.i_main_square:
+				index = 0;
+				break;
+			default:
+				break;
+			}
+			pager.setCurrentItem(index);
+		}
+	};
+	private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
+
+		@Override
+		public void onPageSelected(int position) {
+			hideRight();
+			int id = R.id.i_main_square;
+			switch (position) {
+			case 0:
+				id = R.id.i_main_square;
+				showRight();
+				break;
+			case 1:
+				id = R.id.i_main_server;
+				hideRight();
+				break;
+			case 2:
+				id = R.id.i_main_activity;
+				hideRight();
+				break;
+			case 3:
+				id = R.id.i_main_person;
+				hideRight();
+				break;
+			default:
+				break;
+			}
+			rgNav.check(id);
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+		}
+	};
+
+	private OnClickListener clickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.i_base_view_title:
+				openActivity(IChangeCommunity.class);
+				break;
+
+			default:
+				break;
+			}
+		}
+	};
+
+	private void initView() {
 		pager = (ViewPager) findViewById(R.id.i_main_pager);
 		rgNav = (RadioGroup) findViewById(R.id.i_main_nav);
+	}
+
+	private void initPager() {
 		adapter = new BasePagerAdapter(getSupportFragmentManager());
 		adapter.add(ISquareFragment.newInstance(getSquareNetUtil()));
 		adapter.add(IServerFragment.newInstance());
@@ -45,67 +139,6 @@ public class IMainActivity extends IBaseActivity {
 		adapter.add(IPersonFragment.newInstance());
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(3);
-		pager.setOnPageChangeListener(new OnPageChangeListener() {
-
-			@Override
-			public void onPageSelected(int position) {
-				hideRight();
-				int id = R.id.i_main_square;
-				switch (position) {
-				case 0:
-					id = R.id.i_main_square;
-					showRight();
-					break;
-				case 1:
-					id = R.id.i_main_server;
-					hideRight();
-					break;
-				case 2:
-					id = R.id.i_main_activity;
-					hideRight();
-					break;
-				case 3:
-					id = R.id.i_main_person;
-					hideRight();
-					break;
-				default:
-					break;
-				}
-				rgNav.check(id);
-			}
-
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-		rgNav.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				int index = 0;
-				switch (checkedId) {
-				case R.id.i_main_activity:
-					index = 2;
-					break;
-				case R.id.i_main_person:
-					index = 3;
-					break;
-				case R.id.i_main_server:
-					index = 1;
-					break;
-				case R.id.i_main_square:
-					index = 0;
-					break;
-				default:
-					break;
-				}
-				pager.setCurrentItem(index);
-			}
-		});
 	}
 
 	private NetUtil getActivityNetUtil() {

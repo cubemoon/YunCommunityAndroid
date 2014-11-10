@@ -12,7 +12,8 @@
         android:layout_weight="1.0"
         android:gravity="top"
         android:hint="输入你想在广场上说的话"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray" />
 
     <com.oldfeel.view.HorizontalListView
         android:id="@+id/i_release_square_image_list"

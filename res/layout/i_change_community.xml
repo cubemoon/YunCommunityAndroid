@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/i_change_community_key"
+            style="@style/single_view_et" />
+
+        <ImageButton
+            android:id="@+id/i_change_community_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_search" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/i_change_community_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/i_change_community_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更换小区"
+        android:textColor="@color/black" />
+
+</LinearLayout>

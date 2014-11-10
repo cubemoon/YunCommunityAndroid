@@ -6,6 +6,7 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.yuncommunity.R;
 import com.yuncommunity.item.FuncItem;
 import com.yuncommunity.theme.ios.adapter.IPersonAdapter;
 
@@ -38,5 +39,12 @@ public class IPersonFragment extends ListFragment {
 		if (item.getTheClass() != null) {
 			startActivity(new Intent(getActivity(), item.getTheClass()));
 		}
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		super.startActivity(intent);
+		getActivity().overridePendingTransition(R.anim.slide_in_right,
+				R.anim.slide_out_left);
 	}
 }

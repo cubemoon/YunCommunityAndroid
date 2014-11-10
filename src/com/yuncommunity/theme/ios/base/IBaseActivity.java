@@ -59,20 +59,7 @@ public class IBaseActivity extends SwipeBackActivity {
 			options = new DisplayImageOptions.Builder()
 					.showImageForEmptyUri(id).showImageOnFail(id)
 					.cacheInMemory(true).cacheOnDisc(true).build();
-		initTop();
-	}
 
-	protected void setContentLayout(View view) {
-		((FrameLayout) findViewById(R.id.i_base_view_content)).addView(view);
-	}
-
-	protected void setContentLayout(int layoutResID) {
-		View view = LayoutInflater.from(getApplicationContext()).inflate(
-				layoutResID, new LinearLayout(this), false);
-		setContentLayout(view);
-	}
-
-	private void initTop() {
 		btnLeft = getButton(R.id.i_base_view_left);
 		btnRight = getButton(R.id.i_base_view_right);
 		tvTitle = getTextView(R.id.i_base_view_title);
@@ -83,6 +70,16 @@ public class IBaseActivity extends SwipeBackActivity {
 				onBackPressed();
 			}
 		});
+	}
+
+	protected void setContentLayout(View view) {
+		((FrameLayout) findViewById(R.id.i_base_view_content)).addView(view);
+	}
+
+	protected void setContentLayout(int layoutResID) {
+		View view = LayoutInflater.from(getApplicationContext()).inflate(
+				layoutResID, new LinearLayout(this), false);
+		setContentLayout(view);
 	}
 
 	@Override

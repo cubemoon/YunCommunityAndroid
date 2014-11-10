@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
-import com.oldfeel.utils.LogUtil;
+import com.oldfeel.utils.StringUtil;
 import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
 import com.yuncommunity.item.SquareItem;
@@ -35,8 +35,6 @@ public class ISquareAdapter extends BaseBaseAdapter<SquareItem> {
 		TextView tvName = getTextView(view, R.id.i_square_item_name);
 		TextView tvTime = getTextView(view, R.id.i_square_item_time);
 		TextView tvDesc = getTextView(view, R.id.i_square_item_desc);
-		HorizontalListView hlvImages = (HorizontalListView) view
-				.findViewById(R.id.i_square_item_images);
 		TextView tvComment = getTextView(view, R.id.i_square_item_comment);
 		imageLoader.displayImage(item.getUserInfo().getAvatar(), ivAvatar,
 				options);
@@ -44,9 +42,14 @@ public class ISquareAdapter extends BaseBaseAdapter<SquareItem> {
 		tvTime.setText(item.getTime());
 		tvDesc.setText(item.getDescription());
 		tvComment.setText(item.getCommentCount() + "");
-		ISquareImagesAdapter adapter = new ISquareImagesAdapter(context,
-				item.getImage());
-		hlvImages.setAdapter(adapter);
+
+		if (!StringUtil.isEmpty(item.getImage())) {
+			HorizontalListView hlvImages = (HorizontalListView) view
+					.findViewById(R.id.i_square_item_images);
+			ISquareImagesAdapter adapter = new ISquareImagesAdapter(context,
+					item.getImage());
+			hlvImages.setAdapter(adapter);
+		}
 		return view;
 	}
 
@@ -65,9 +68,7 @@ public class ISquareAdapter extends BaseBaseAdapter<SquareItem> {
 			String[] strings = images.split(",");
 			for (String string : strings) {
 				add(string);
-				LogUtil.showLog("string is " + string);
 			}
-			LogUtil.showLog("image count is " + getCount());
 		}
 
 		@Override

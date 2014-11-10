@@ -79,8 +79,7 @@ public class IReleaseSquare extends IBaseActivity {
 	 * 提交说说
 	 */
 	protected void submitSpeak() {
-		NetUtil netUtil = new NetUtil(IReleaseSquare.this,
-				JsonApi.INFORMATION_RELEASE);
+		NetUtil netUtil = initNetUtil(JsonApi.INFORMATION_RELEASE);
 		netUtil.setParams("infotype", Constant.TYPE_SQUARE);
 		netUtil.setParams("description", getString(etSpeak));
 		netUtil.setParams("image", uploadImages);

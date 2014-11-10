@@ -77,4 +77,6 @@ public class JsonApi {
 	public static final String NEAR_COMMUNITY_LIST = "near_community_list";
 	/** 注册时需要的验证码 */
 	public static final String REGISTER_VCODE = "register_vcode";
+	/** 根据标签获取信息列表 */
+	public static final String INFORMATION_LIST_BY_TAG = "information_list_by_tag";
 }

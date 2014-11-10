@@ -33,7 +33,7 @@ public class IPersonAdapter extends BaseBaseAdapter<FuncItem> {
 				R.drawable.ic_launcher, IReleaseActivity.class));
 		add(new FuncItem(context.getString(R.string.my_collection),
 				R.drawable.ic_launcher, IMyCollection.class));
-		add(new FuncItem(context.getString(R.string.my_collection),
+		add(new FuncItem(context.getString(R.string.my_attention),
 				R.drawable.ic_launcher, IMyAttention.class));
 		add(new FuncItem(context.getString(R.string.setting),
 				R.drawable.ic_launcher, ISetting.class));

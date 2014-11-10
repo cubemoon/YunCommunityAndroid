@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.theme.ios.base.IBaseActivity;
 import com.yuncommunity.theme.ios.list.IProductListFragment;
@@ -30,6 +31,8 @@ public class IProductList extends IBaseActivity {
 	}
 
 	private NetUtil getListNetUtil() {
-		return null;
+		NetUtil netUtil = initNetUtil(JsonApi.INFORMATION_LIST_BY_TAG);
+		netUtil.setParams("tagid", tagItem.getTagid());
+		return netUtil;
 	}
 }
