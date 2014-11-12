@@ -8,12 +8,12 @@ import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
-import com.yuncommunity.theme.ios.IMyAttention;
-import com.yuncommunity.theme.ios.IMyCollection;
-import com.yuncommunity.theme.ios.IPersonInfo;
-import com.yuncommunity.theme.ios.IReleaseActivity;
-import com.yuncommunity.theme.ios.IReleaseProduct;
-import com.yuncommunity.theme.ios.ISetting;
+import com.yuncommunity.theme.ios.I_MyAttention;
+import com.yuncommunity.theme.ios.I_MyCollection;
+import com.yuncommunity.theme.ios.I_PersonInfo;
+import com.yuncommunity.theme.ios.I_ReleaseActivity;
+import com.yuncommunity.theme.ios.I_ReleaseProduct;
+import com.yuncommunity.theme.ios.I_Setting;
 
 /**
  * 
@@ -26,17 +26,17 @@ public class PersonAdapter extends BaseBaseAdapter<FuncItem> {
 	public PersonAdapter(Context context) {
 		super(context);
 		add(new FuncItem(LoginInfo.getInstance(context).getName(),
-				R.drawable.avatar_default, IPersonInfo.class));
+				R.drawable.avatar_default, I_PersonInfo.class));
 		add(new FuncItem(context.getString(R.string.release_product),
-				R.drawable.ic_launcher, IReleaseProduct.class));
+				R.drawable.ic_launcher, I_ReleaseProduct.class));
 		add(new FuncItem(context.getString(R.string.release_activity),
-				R.drawable.ic_launcher, IReleaseActivity.class));
+				R.drawable.ic_launcher, I_ReleaseActivity.class));
 		add(new FuncItem(context.getString(R.string.my_collection),
-				R.drawable.ic_launcher, IMyCollection.class));
+				R.drawable.ic_launcher, I_MyCollection.class));
 		add(new FuncItem(context.getString(R.string.my_attention),
-				R.drawable.ic_launcher, IMyAttention.class));
+				R.drawable.ic_launcher, I_MyAttention.class));
 		add(new FuncItem(context.getString(R.string.setting),
-				R.drawable.ic_launcher, ISetting.class));
+				R.drawable.ic_launcher, I_Setting.class));
 	}
 
 	@Override

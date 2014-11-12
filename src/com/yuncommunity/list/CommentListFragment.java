@@ -1,8 +1,8 @@
 package com.yuncommunity.list;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.CommentListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 
 /**
  * 评论列表
@@ -10,7 +10,7 @@ import com.yuncommunity.adapter.CommentListAdapter;
  * @author oldfeel
  * 
  */
-public class CommentListFragment extends BaseListFragment {
+public class CommentListFragment extends CustomBaseListFragment {
 
 	public static CommentListFragment newInstance(NetUtil netUtil) {
 		CommentListFragment fragment = new CommentListFragment();

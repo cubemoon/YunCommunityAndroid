@@ -15,7 +15,7 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 注册
@@ -24,7 +24,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年11月8日
  */
-public class IRegisterActivity extends IBaseActivity {
+public class I_RegisterActivity extends I_BaseActivity {
 	private EditText etPhone, etPassword, etVcode;
 	private Button btnGetVcode, btnSubmit;
 	private CheckBox cbIsAgree;
@@ -77,7 +77,7 @@ public class IRegisterActivity extends IBaseActivity {
 			etPhone.setError("格式错误");
 			return;
 		}
-		NetUtil netUtil = new NetUtil(IRegisterActivity.this,
+		NetUtil netUtil = new NetUtil(I_RegisterActivity.this,
 				JsonApi.REGISTER_VCODE);
 		netUtil.setParams("phone", getString(etPhone));
 		netUtil.postRequest("正在发送验证码...", new RequestStringListener() {
@@ -98,7 +98,7 @@ public class IRegisterActivity extends IBaseActivity {
 		if (ETUtil.isHaveNull(etPhone, etPassword)) {
 			return;
 		}
-		NetUtil netUtil = new NetUtil(IRegisterActivity.this, JsonApi.REGISTER);
+		NetUtil netUtil = new NetUtil(I_RegisterActivity.this, JsonApi.REGISTER);
 		netUtil.setParams("phone", getString(etPhone));
 		netUtil.setParams("vcode", getString(etVcode));
 		netUtil.setParams("password", getString(etPassword));
@@ -107,9 +107,9 @@ public class IRegisterActivity extends IBaseActivity {
 			@Override
 			public void onComplete(String result) {
 				showToast("注册成功");
-				LoginInfo.getInstance(IRegisterActivity.this).saveInfo(
+				LoginInfo.getInstance(I_RegisterActivity.this).saveInfo(
 						JsonUtil.getData(result));
-				openActivity(IMainActivity.class);
+				openActivity(I_MainActivity.class);
 			}
 		});
 	}

@@ -10,7 +10,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
-import com.yuncommunity.item.ActivitySignUpItem;
 import com.yuncommunity.item.CommunityItem;
 
 /**

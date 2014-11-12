@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import com.yuncommunity.adapter.ServerTagAdapter;
 import com.yuncommunity.item.TagItem;
-import com.yuncommunity.theme.ios.IProductList;
+import com.yuncommunity.theme.ios.I_ProductList;
 
 /**
  * 服务
@@ -36,7 +36,7 @@ public class IServerFragment extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		TagItem item = tagAdapter.getItem(position);
-		startActivity(new Intent(getActivity(), IProductList.class).putExtra(
+		startActivity(new Intent(getActivity(), I_ProductList.class).putExtra(
 				"item", item));
 	}
 }

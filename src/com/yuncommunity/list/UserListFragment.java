@@ -2,9 +2,9 @@ package com.yuncommunity.list;
 
 import android.content.Intent;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.UserListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.theme.android.PersonHomeActivity;
 
@@ -14,7 +14,7 @@ import com.yuncommunity.theme.android.PersonHomeActivity;
  * @author oldfeel
  * 
  */
-public class UserListFragment extends BaseListFragment {
+public class UserListFragment extends CustomBaseListFragment {
 
 	public static UserListFragment newInstance(NetUtil netUtil) {
 		UserListFragment fragment = new UserListFragment();

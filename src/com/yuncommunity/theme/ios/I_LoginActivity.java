@@ -15,7 +15,7 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 登陆
@@ -24,7 +24,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年11月8日
  */
-public class ILoginActivity extends IBaseActivity {
+public class I_LoginActivity extends I_BaseActivity {
 	private EditText etAccount, etPassword;
 	private Button btnSubmit;
 	private TextView tvForgetPassword;
@@ -42,7 +42,7 @@ public class ILoginActivity extends IBaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				openActivity(IRegisterActivity.class);
+				openActivity(I_RegisterActivity.class);
 			}
 		});
 	}
@@ -59,7 +59,7 @@ public class ILoginActivity extends IBaseActivity {
 
 			@Override
 			public void onClick(View v) {
-				openActivity(IForgetPassword.class);
+				openActivity(I_ForgetPassword.class);
 			}
 		});
 	}
@@ -69,7 +69,7 @@ public class ILoginActivity extends IBaseActivity {
 		if (ETUtil.isHaveNull(etAccount, etPassword)) {
 			return;
 		}
-		NetUtil netUtil = new NetUtil(ILoginActivity.this, JsonApi.LOGIN);
+		NetUtil netUtil = new NetUtil(I_LoginActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("account", getString(etAccount));
 		netUtil.setParams("password", getString(etPassword));
 		netUtil.postRequest("正在验证登录信息...", new RequestStringListener() {
@@ -77,9 +77,9 @@ public class ILoginActivity extends IBaseActivity {
 			@Override
 			public void onComplete(String result) {
 				if (JsonUtil.isSuccess(result)) {
-					LoginInfo.getInstance(ILoginActivity.this).saveInfo(
+					LoginInfo.getInstance(I_LoginActivity.this).saveInfo(
 							JsonUtil.getData(result));
-					openActivity(IMainActivity.class);
+					openActivity(I_MainActivity.class);
 				} else {
 					showToast(JsonUtil.getData(result));
 				}

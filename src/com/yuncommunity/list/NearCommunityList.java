@@ -2,9 +2,10 @@ package com.yuncommunity.list;
 
 import android.content.Intent;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.NearCommunityAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.MainActivity;
 
@@ -15,7 +16,7 @@ import com.yuncommunity.theme.android.MainActivity;
  * 
  *         Create on: 2014年10月22日
  */
-public class NearCommunityList extends BaseListFragment {
+public class NearCommunityList extends CustomBaseListFragment {
 	public static NearCommunityList newInstance(NetUtil netUtil) {
 		NearCommunityList fragment = new NearCommunityList();
 		fragment.netUtil = netUtil;
@@ -25,7 +26,10 @@ public class NearCommunityList extends BaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		CommunityItem communityItem = (CommunityItem) adapter.getItem(position);
-		Intent intent = new Intent(getActivity(), MainActivity.class);
+		LoginInfo.getInstance(getActivity()).getUserInfo()
+				.setCommunityInfo(communityItem);
+		LoginInfo.update(getActivity());
+		Intent intent = getThemeIntent(MainActivity.class);
 		intent.putExtra("communityitem", communityItem);
 		startActivity(intent);
 	}

@@ -31,7 +31,7 @@ import com.yuncommunity.R;
 import com.yuncommunity.adapter.UploadImageAdapter;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 发布广场信息
@@ -41,7 +41,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  *         Create on: 2014年11月2日
  */
 @SuppressLint("ViewHolder")
-public class IReleaseSquare extends IBaseActivity {
+public class I_ReleaseSquare extends I_BaseActivity {
 	private EditText etSpeak;
 	private HorizontalListView hlvImages;
 	private UploadImageAdapter adapter;
@@ -103,7 +103,7 @@ public class IReleaseSquare extends IBaseActivity {
 	private void getToken() {
 		DialogUtil.getInstance().showPd(this, "正在上传图片...");
 		uploadImages = adapter.getUploadImages();
-		NetUtil netUtil = new NetUtil(IReleaseSquare.this, JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(I_ReleaseSquare.this, JsonApi.UPTOKEN);
 		netUtil.postRequest("", new RequestStringListener() {
 
 			@Override
@@ -150,7 +150,7 @@ public class IReleaseSquare extends IBaseActivity {
 	 * 添加图片
 	 */
 	public void getImage() {
-		new AlertDialog.Builder(IReleaseSquare.this)
+		new AlertDialog.Builder(I_ReleaseSquare.this)
 				.setTitle("添加图片")
 				.setItems(R.array.add_image_type,
 						new DialogInterface.OnClickListener() {

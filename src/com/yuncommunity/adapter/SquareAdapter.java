@@ -36,6 +36,8 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 		TextView tvTime = getTextView(view, R.id.i_square_item_time);
 		TextView tvDesc = getTextView(view, R.id.i_square_item_desc);
 		TextView tvComment = getTextView(view, R.id.i_square_item_comment);
+		HorizontalListView hlvImages = (HorizontalListView) view
+				.findViewById(R.id.i_square_item_images);
 		imageLoader.displayImage(item.getUserInfo().getAvatar(), ivAvatar,
 				options);
 		tvName.setText(item.getUserInfo().getName());
@@ -43,9 +45,10 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 		tvDesc.setText(item.getDescription());
 		tvComment.setText(item.getCommentCount() + "");
 
-		if (!StringUtil.isEmpty(item.getImage())) {
-			HorizontalListView hlvImages = (HorizontalListView) view
-					.findViewById(R.id.i_square_item_images);
+		if (StringUtil.isEmpty(item.getImage())) {
+			hlvImages.setVisibility(View.GONE);
+		} else {
+			hlvImages.setVisibility(View.VISIBLE);
 			ISquareImagesAdapter adapter = new ISquareImagesAdapter(context,
 					item.getImage());
 			hlvImages.setAdapter(adapter);

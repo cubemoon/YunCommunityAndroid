@@ -121,39 +121,39 @@
         </activity>
         <activity android:name="com.yuncommunity.theme.android.SwitchTheme" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IActivityDetail" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ActivityDetail" >
         </activity>
         <activity
-            android:name="com.yuncommunity.theme.ios.IMainActivity"
+            android:name="com.yuncommunity.theme.ios.I_MainActivity"
             android:launchMode="singleTask" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IMyAttention" >
+        <activity android:name="com.yuncommunity.theme.ios.I_MyAttention" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IMyCollection" >
+        <activity android:name="com.yuncommunity.theme.ios.I_MyCollection" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IPersonInfo" >
+        <activity android:name="com.yuncommunity.theme.ios.I_PersonInfo" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IProductDetail" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ProductDetail" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IProductList" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ProductList" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IReleaseActivity" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ReleaseActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IReleaseProduct" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ReleaseProduct" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.ISetting" >
+        <activity android:name="com.yuncommunity.theme.ios.I_Setting" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.ISquareDetail" >
+        <activity android:name="com.yuncommunity.theme.ios.I_SquareDetail" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IReleaseSquare" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ReleaseSquare" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.ILoginActivity" >
+        <activity android:name="com.yuncommunity.theme.ios.I_LoginActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IRegisterActivity" >
+        <activity android:name="com.yuncommunity.theme.ios.I_RegisterActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IForgetPassword" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ForgetPassword" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.IChangeCommunity" >
+        <activity android:name="com.yuncommunity.theme.ios.I_ChangeCommunity" >
         </activity>
         <!-- 百度应用统计 -->
         <!-- 渠道商编号,其中 name 请不要改,将 value 修改为渠道商编号。渠道名称请到 mtj.baidu.com的渠道管理中修改 -->

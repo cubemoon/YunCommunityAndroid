@@ -18,10 +18,10 @@ import com.yuncommunity.adapter.SquareAdapter;
 import com.yuncommunity.adapter.SquareHeaderAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.SquareItem;
-import com.yuncommunity.theme.ios.IMainActivity;
-import com.yuncommunity.theme.ios.IProductList;
-import com.yuncommunity.theme.ios.IReleaseSquare;
-import com.yuncommunity.theme.ios.ISquareDetail;
+import com.yuncommunity.theme.ios.I_MainActivity;
+import com.yuncommunity.theme.ios.I_ProductList;
+import com.yuncommunity.theme.ios.I_ReleaseSquare;
+import com.yuncommunity.theme.ios.I_SquareDetail;
 
 /**
  * 广场
@@ -48,14 +48,14 @@ public class ISquareFragment extends BaseListFragment {
 			@Override
 			public void onClick(View v) {
 				if (LoginInfo.getInstance(getActivity()).isLogin(getActivity())) {
-					openActivity(IReleaseSquare.class);
+					openActivity(I_ReleaseSquare.class);
 				}
 			}
 		});
 	}
 
 	private Button getSpeakButton() {
-		return ((IMainActivity) getActivity()).btnRight;
+		return ((I_MainActivity) getActivity()).btnRight;
 	}
 
 	private View getHeaderView() {
@@ -71,7 +71,7 @@ public class ISquareFragment extends BaseListFragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(getActivity(), IProductList.class);
+				Intent intent = new Intent(getActivity(), I_ProductList.class);
 				intent.putExtra("item", headerAdapter.getItemId(position));
 				startActivity(intent);
 			}
@@ -82,7 +82,7 @@ public class ISquareFragment extends BaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		SquareItem item = (SquareItem) adapter.getItem(position);
-		Intent intent = new Intent(getActivity(), ISquareDetail.class);
+		Intent intent = new Intent(getActivity(), I_SquareDetail.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}

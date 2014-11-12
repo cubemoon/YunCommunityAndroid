@@ -2,8 +2,8 @@ package com.yuncommunity.list;
 
 import android.support.v4.app.Fragment;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.base.CustomBaseListFragment;
 
 /**
  * 聊天界面
@@ -11,7 +11,7 @@ import com.oldfeel.utils.NetUtil;
  * @author oldfeel
  * 
  */
-public class ChatListFragment extends BaseListFragment {
+public class ChatListFragment extends CustomBaseListFragment {
 
 	public static Fragment newInstance(NetUtil netUtil) {
 		ChatListFragment fragment = new ChatListFragment();

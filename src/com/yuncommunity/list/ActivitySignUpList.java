@@ -2,9 +2,9 @@ package com.yuncommunity.list;
 
 import android.support.v4.app.Fragment;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.ActivitySignUpListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 
 /**
  * 活动报名者列表
@@ -13,7 +13,7 @@ import com.yuncommunity.adapter.ActivitySignUpListAdapter;
  * 
  *         Create on: 2014年7月27日
  */
-public class ActivitySignUpList extends BaseListFragment {
+public class ActivitySignUpList extends CustomBaseListFragment {
 
 	public static Fragment newInstance(NetUtil netUtil) {
 		ActivitySignUpList fragment = new ActivitySignUpList();

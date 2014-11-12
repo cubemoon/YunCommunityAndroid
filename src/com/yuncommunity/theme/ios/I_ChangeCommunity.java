@@ -17,7 +17,7 @@ import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.list.NearCommunityList;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 切换小区
@@ -26,7 +26,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年11月10日
  */
-public class IChangeCommunity extends IBaseActivity {
+public class I_ChangeCommunity extends I_BaseActivity {
 	private EditText etKey;
 	private ImageButton ibSearch;
 	private Button btnSubmit;
@@ -36,6 +36,8 @@ public class IChangeCommunity extends IBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentLayout(R.layout.i_change_community);
+		setTitle("选择小区");
+		hideRight();
 		initView();
 		initListener();
 		startLocation();
@@ -46,8 +48,8 @@ public class IChangeCommunity extends IBaseActivity {
 
 			@Override
 			public void location(double lat, double lon) {
-				IChangeCommunity.this.lat = lat;
-				IChangeCommunity.this.lon = lon;
+				I_ChangeCommunity.this.lat = lat;
+				I_ChangeCommunity.this.lon = lon;
 				getNearCommunityList("");
 			}
 		});
@@ -55,14 +57,14 @@ public class IChangeCommunity extends IBaseActivity {
 	}
 
 	protected void getNearCommunityList(String key) {
-		NetUtil netUtil = new NetUtil(IChangeCommunity.this,
+		NetUtil netUtil = new NetUtil(I_ChangeCommunity.this,
 				JsonApi.NEAR_COMMUNITY_LIST);
 		netUtil.setParams("lat", lat);
 		netUtil.setParams("lon", lon);
 		netUtil.setParams("key", key);
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.change_community_list,
+				.replace(R.id.i_change_community_list,
 						NearCommunityList.newInstance(netUtil)).commit();
 	}
 
@@ -110,6 +112,7 @@ public class IChangeCommunity extends IBaseActivity {
 	 * 搜索小区
 	 */
 	protected void search() {
+		getNearCommunityList(getString(etKey));
 	}
 
 	/**

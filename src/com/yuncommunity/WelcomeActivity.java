@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.oldfeel.conf.BaseConstant;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 欢迎界面
@@ -16,7 +16,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年5月15日
  */
-public class WelcomeActivity extends IBaseActivity {
+public class WelcomeActivity extends I_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

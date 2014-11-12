@@ -1,8 +1,8 @@
 package com.yuncommunity.list;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.ProductListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.item.ProductItem;
 
 /**
@@ -11,7 +11,7 @@ import com.yuncommunity.item.ProductItem;
  * @author oldfeel
  * 
  */
-public class ProductListFragment extends BaseListFragment {
+public class ProductListFragment extends CustomBaseListFragment {
 
 	public static ProductListFragment newInstance(NetUtil netUtil) {
 		ProductListFragment fragment = new ProductListFragment();

@@ -13,7 +13,7 @@ import com.oldfeel.base.BaseBaseAdapter;
 import com.oldfeel.utils.ImageUtil;
 import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
-import com.yuncommunity.theme.ios.IReleaseSquare;
+import com.yuncommunity.theme.ios.I_ReleaseSquare;
 
 public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
 
@@ -39,7 +39,7 @@ public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
 
 				@Override
 				public void onClick(View v) {
-					((IReleaseSquare) context).getImage();
+					((I_ReleaseSquare) context).getImage();
 				}
 			});
 		} else {

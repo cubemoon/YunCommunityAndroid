@@ -2,9 +2,9 @@ package com.yuncommunity.list;
 
 import android.content.Intent;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.InformationListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.android.ActivityDetail;
@@ -16,7 +16,7 @@ import com.yuncommunity.theme.android.InformationDetail;
  * @author oldfeel
  * 
  */
-public class InformationListFragment extends BaseListFragment {
+public class InformationListFragment extends CustomBaseListFragment {
 	public static InformationListFragment newInstance(NetUtil netUtil) {
 		InformationListFragment fragment = new InformationListFragment();
 		fragment.netUtil = netUtil;

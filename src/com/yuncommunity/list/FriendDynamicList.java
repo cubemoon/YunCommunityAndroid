@@ -2,9 +2,9 @@ package com.yuncommunity.list;
 
 import android.support.v4.app.Fragment;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.FriendDynamicListAdapter;
+import com.yuncommunity.base.CustomBaseListFragment;
 
 /**
  * 朋友的动态信息
@@ -12,7 +12,7 @@ import com.yuncommunity.adapter.FriendDynamicListAdapter;
  * @author oldfeel
  * 
  */
-public class FriendDynamicList extends BaseListFragment {
+public class FriendDynamicList extends CustomBaseListFragment {
 
 	public static Fragment newInstance(NetUtil netUtil) {
 		FriendDynamicList fragment = new FriendDynamicList();

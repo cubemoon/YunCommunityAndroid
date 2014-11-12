@@ -1,7 +1,7 @@
 package com.yuncommunity.list;
 
-import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
+import com.yuncommunity.base.CustomBaseListFragment;
 
 /**
  * 
@@ -9,7 +9,7 @@ import com.oldfeel.utils.NetUtil;
  * 
  *         Create on: 2014年11月10日
  */
-public class SquareCommentList extends BaseListFragment {
+public class SquareCommentList extends CustomBaseListFragment {
 
 	public static SquareCommentList newInstance(NetUtil netUtil) {
 		SquareCommentList fragment = new SquareCommentList();

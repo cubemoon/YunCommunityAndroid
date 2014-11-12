@@ -1,6 +1,6 @@
 package com.yuncommunity.theme.ios;
 
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 
@@ -8,6 +8,6 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年10月26日
  */
-public class ISetting extends IBaseActivity {
+public class I_Setting extends I_BaseActivity {
 
 }

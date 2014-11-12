@@ -17,8 +17,8 @@ import com.yuncommunity.R;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.ios.ILoginActivity;
-import com.yuncommunity.theme.ios.IMainActivity;
+import com.yuncommunity.theme.ios.I_LoginActivity;
+import com.yuncommunity.theme.ios.I_MainActivity;
 
 /**
  * 个人信息
@@ -65,7 +65,7 @@ public class LoginInfo {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									activity.startActivity(new Intent(context,
-											ILoginActivity.class));
+											I_LoginActivity.class));
 								}
 							}).setNegativeButton("取消", null).show();
 		}
@@ -91,34 +91,17 @@ public class LoginInfo {
 		return DesUtil.decode(Constant.KEY, sp.getString("password", ""));
 	}
 
+	public static void update(Activity activity) {
+		update(activity, "", null);
+	}
+
 	public static void update(Activity activity, String text,
 			RequestStringListener stringListener) {
 		LoginInfo loginInfo = LoginInfo.getInstance(activity);
 		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
-		netUtil.setParams("userid", loginInfo.getUserInfo().getUserid());
-		netUtil.setParams("name", loginInfo.getUserInfo().getName());
-		netUtil.setParams("password", loginInfo.getRealPassword());
-		netUtil.setParams("phone", loginInfo.getUserInfo().getPhone());
-		netUtil.setParams("housenumber", loginInfo.getUserInfo()
-				.getHousenumber());
-		netUtil.setParams("birthday", loginInfo.getUserInfo().getBirthday());
-		netUtil.setParams("permission", loginInfo.getUserInfo().getPermission());
-		netUtil.setParams("background",
-				StringUtil.getFileName(loginInfo.getUserInfo().getBackground()));
-		netUtil.setParams("avatar",
-				StringUtil.getFileName(loginInfo.getUserInfo().getAvatar()));
-		netUtil.setParams("friendmsg", loginInfo.getUserInfo().getFriendmsg());
-		netUtil.setParams("activitymsg", loginInfo.getUserInfo()
-				.getActivitymsg());
-		netUtil.setParams("businessmsg", loginInfo.getUserInfo()
-				.getBusinessmsg());
-		netUtil.setParams("introduction", loginInfo.getUserInfo()
-				.getIntroduction());
+		netUtil.setParams("userinfo",
+				new Gson().toJson(loginInfo.getUserInfo()));
 		netUtil.postRequest(text, stringListener);
-	}
-
-	public static void update(Activity activity) {
-		update(activity, "", null);
 	}
 
 	public void close() {
@@ -166,13 +149,13 @@ public class LoginInfo {
 	 * @return
 	 */
 	public Class<?> getThemeClass() {
-		String name = getTheme();
-		if (name.equals(context.getString(R.string.theme_android))) {
+		String theme = getTheme();
+		if (theme.equals(context.getString(R.string.theme_android))) {
 			return MainActivity.class;
-		} else if (name.equals(context.getString(R.string.theme_ios))) {
-			return IMainActivity.class;
+		} else if (theme.equals(context.getString(R.string.theme_ios))) {
+			return I_MainActivity.class;
 		}
-		return IMainActivity.class;
+		return I_MainActivity.class;
 	}
 
 }

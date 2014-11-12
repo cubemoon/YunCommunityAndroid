@@ -1,5 +1,6 @@
 package com.yuncommunity.theme.ios;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -14,7 +15,9 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 import com.yuncommunity.theme.ios.fragment.IActivityFragment;
 import com.yuncommunity.theme.ios.fragment.IPersonFragment;
 import com.yuncommunity.theme.ios.fragment.IServerFragment;
@@ -27,7 +30,7 @@ import com.yuncommunity.theme.ios.fragment.ISquareFragment;
  * 
  *         Create on: 2014年10月24日
  */
-public class IMainActivity extends IBaseActivity {
+public class I_MainActivity extends I_BaseActivity {
 	private ViewPager pager;
 	private RadioGroup rgNav;
 	private BasePagerAdapter adapter;
@@ -41,6 +44,22 @@ public class IMainActivity extends IBaseActivity {
 		initView();
 		initPager();
 		initListener();
+		if (LoginInfo.getInstance(this).getCommunityInfo() == null) {
+			openActivity(I_ChangeCommunity.class);
+			finish();
+		} else {
+			setTitle(LoginInfo.getInstance(this).getCommunityInfo().getName());
+		}
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		CommunityItem communityItem = (CommunityItem) intent
+				.getSerializableExtra("communityitem");
+		if (communityItem != null) {
+			setTitle(communityItem.getName());
+		}
 	}
 
 	private void initListener() {
@@ -117,7 +136,7 @@ public class IMainActivity extends IBaseActivity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.i_base_view_title:
-				openActivity(IChangeCommunity.class);
+				openActivity(I_ChangeCommunity.class);
 				break;
 
 			default:

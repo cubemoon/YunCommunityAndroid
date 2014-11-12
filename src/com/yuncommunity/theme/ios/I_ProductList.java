@@ -7,7 +7,7 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.list.ProductListFragment;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 
@@ -15,7 +15,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年10月26日
  */
-public class IProductList extends IBaseActivity {
+public class I_ProductList extends I_BaseActivity {
 	private TagItem tagItem;
 
 	@Override

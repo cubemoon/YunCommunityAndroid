@@ -19,7 +19,7 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseFragment;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.ios.IMainActivity;
+import com.yuncommunity.theme.ios.I_MainActivity;
 
 /**
  * 切换主题

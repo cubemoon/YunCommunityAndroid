@@ -40,7 +40,7 @@ import com.yuncommunity.conf.LoginInfo;
  * 
  *         Create on: 2014年10月25日
  */
-public class IBaseActivity extends SwipeBackActivity {
+public class I_BaseActivity extends SwipeBackActivity {
 	private MyApplication myApplication;
 	public DisplayImageOptions options;
 	public ImageLoader imageLoader = ImageLoader.getInstance();

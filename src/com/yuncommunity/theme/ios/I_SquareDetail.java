@@ -9,7 +9,7 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.list.SquareCommentList;
-import com.yuncommunity.theme.ios.base.IBaseActivity;
+import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
  * 广场内容详情
@@ -18,7 +18,7 @@ import com.yuncommunity.theme.ios.base.IBaseActivity;
  * 
  *         Create on: 2014年10月26日
  */
-public class ISquareDetail extends IBaseActivity implements OnClickListener {
+public class I_SquareDetail extends I_BaseActivity implements OnClickListener {
 	private SquareItem squareItem;
 	private SquareCommentList commentList;
 	private Button btnAttention, btnCollection, btnComment;

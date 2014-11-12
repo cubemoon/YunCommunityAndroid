@@ -6,7 +6,7 @@ import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.ActivityAdapter;
 import com.yuncommunity.item.InformationItem;
-import com.yuncommunity.theme.ios.IActivityDetail;
+import com.yuncommunity.theme.ios.I_ActivityDetail;
 
 /**
  * 活动
@@ -25,7 +25,7 @@ public class IActivityFragment extends BaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		InformationItem item = (InformationItem) adapter.getItem(position);
-		startActivity(new Intent(getActivity(), IActivityDetail.class)
+		startActivity(new Intent(getActivity(), I_ActivityDetail.class)
 				.putExtra("item", item));
 	}
 
