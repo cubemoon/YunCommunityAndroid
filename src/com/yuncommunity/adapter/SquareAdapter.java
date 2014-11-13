@@ -49,7 +49,7 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 			hlvImages.setVisibility(View.GONE);
 		} else {
 			hlvImages.setVisibility(View.VISIBLE);
-			ISquareImagesAdapter adapter = new ISquareImagesAdapter(context,
+			SquareImagesAdapter adapter = new SquareImagesAdapter(context,
 					item.getImage());
 			hlvImages.setAdapter(adapter);
 		}
@@ -63,24 +63,5 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 				new TypeToken<List<SquareItem>>() {
 				}.getType());
 		addAll(list);
-	}
-
-	class ISquareImagesAdapter extends BaseBaseAdapter<String> {
-		public ISquareImagesAdapter(Context context, String images) {
-			super(context);
-			String[] strings = images.split(",");
-			for (String string : strings) {
-				add(string);
-			}
-		}
-
-		@Override
-		public View getView(int position, View view) {
-			view = inflater.inflate(R.layout.i_square_item_image, null);
-			ImageView ivImage = getImageView(view, R.id.i_square_item_image);
-			imageLoader.displayImage(getItem(position), ivImage, options);
-			return view;
-		}
-
 	}
 }

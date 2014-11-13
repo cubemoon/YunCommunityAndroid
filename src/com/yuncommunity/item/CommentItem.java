@@ -11,6 +11,7 @@ import com.oldfeel.base.BaseItem;
 public class CommentItem extends BaseItem {
 	private long Commentid;
 	private long Userid;
+	private long Replyid;
 	private long Informationid;
 	private String Content;
 	private float Score;
@@ -23,6 +24,14 @@ public class CommentItem extends BaseItem {
 	private boolean IsOpposition;
 	private boolean IsApproval;
 	private Object InformationItem;
+
+	public long getReplyid() {
+		return Replyid;
+	}
+
+	public void setReplyid(long replyid) {
+		Replyid = replyid;
+	}
 
 	public Object getInformationItem() {
 		if (InformationItem == null) {

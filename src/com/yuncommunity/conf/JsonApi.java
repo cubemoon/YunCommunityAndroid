@@ -83,4 +83,6 @@ public class JsonApi {
 	public static final String VCODE_FORGET_PASSWORD = "vcode_forget_password";
 	/** 忘记密码/修改密码 */
 	public static final String FORGET_PASSWORD = "forget_password";
+	/** 评论广场信息 */
+	public static final String SQUARE_COMMENT = "square_comment";
 }
