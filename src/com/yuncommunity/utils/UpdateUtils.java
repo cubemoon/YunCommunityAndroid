@@ -17,7 +17,7 @@ import com.yuncommunity.theme.ios.I_LoginActivity;
  * 
  *         Create on: 2014年11月13日
  */
-public class LoginUtils {
+public class UpdateUtils {
 
 	public static void update(Activity activity) {
 		update(activity, "", null);

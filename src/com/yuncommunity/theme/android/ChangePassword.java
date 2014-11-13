@@ -12,7 +12,7 @@ import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 修改密码
@@ -79,7 +79,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 		}
 		LoginInfo.getInstance(getApplicationContext()).saveRealPassword(
 				getString(etPassword1));
-		LoginUtils.update(ChangePassword.this,
+		UpdateUtils.update(ChangePassword.this,
 				String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {
 

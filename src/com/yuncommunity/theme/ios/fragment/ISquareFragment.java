@@ -21,7 +21,7 @@ import com.yuncommunity.theme.ios.I_MainActivity;
 import com.yuncommunity.theme.ios.I_ProductList;
 import com.yuncommunity.theme.ios.I_ReleaseSquare;
 import com.yuncommunity.theme.ios.I_SquareDetail;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 广场
@@ -47,7 +47,7 @@ public class ISquareFragment extends BaseListFragment {
 
 			@Override
 			public void onClick(View v) {
-				if (LoginUtils.isLogin(getActivity())) {
+				if (UpdateUtils.isLogin(getActivity())) {
 					openActivity(I_ReleaseSquare.class);
 				}
 			}

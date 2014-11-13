@@ -23,7 +23,7 @@ import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.ChangeCommunity;
 import com.yuncommunity.theme.android.SwitchTheme;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 设置
@@ -277,7 +277,7 @@ public class MySettingsFragment extends PreferenceFragment {
 
 	private void updateMySettings() {
 		if (isUpdate) {
-			LoginUtils.update(getActivity());
+			UpdateUtils.update(getActivity());
 		}
 	}
 

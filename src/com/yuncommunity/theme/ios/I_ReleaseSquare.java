@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.json.JSONObject;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,6 +20,7 @@ import com.google.gson.Gson;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ImageUtil;
 import com.oldfeel.utils.JsonUtil;
+import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
@@ -34,6 +34,7 @@ import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.SquareItem;
+import com.yuncommunity.item.UploadImageItem;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
@@ -43,17 +44,15 @@ import com.yuncommunity.theme.ios.base.I_BaseActivity;
  * 
  *         Create on: 2014年11月2日
  */
-@SuppressLint("ViewHolder")
 public class I_ReleaseSquare extends I_BaseActivity {
 	private EditText etSpeak;
 	private HorizontalListView hlvImages;
 	private UploadImageAdapter adapter;
 
-	private Uri origUri;
 	private File protraitFile;
-	private String protraitPath;
 	private UploadManager uploadManager = new UploadManager();
 	private String uploadImages;
+	private boolean isDestory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -135,14 +134,17 @@ public class I_ReleaseSquare extends I_BaseActivity {
 	 * @param uptoken
 	 */
 	protected void uploadImage(final String uptoken) {
+		if (isDestory) {
+			return;
+		}
 		if (adapter.getCount() > 1) {
-			File file = adapter.getImageFile(0);
+			UploadImageItem item = adapter.getItem(0);
 			adapter.remove(0);
-			if (file == null) {
+			if (item.getFile() == null || item.getFile().length() == 0) {
 				uploadImage(uptoken);
 				return;
 			}
-			uploadManager.put(file, file.getName(), uptoken,
+			uploadManager.put(item.getFile(), item.getKey(), uptoken,
 					new UpCompletionHandler() {
 
 						@Override
@@ -213,9 +215,9 @@ public class I_ReleaseSquare extends I_BaseActivity {
 		// 照片命名
 		String cropFileName = getUserId() + "_" + timeStamp + ".jpg";
 		// 裁剪头像的绝对路径
-		protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
+		String protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
-		origUri = Uri.fromFile(protraitFile);
+		Uri origUri = Uri.fromFile(protraitFile);
 		return origUri;
 	}
 
@@ -240,7 +242,7 @@ public class I_ReleaseSquare extends I_BaseActivity {
 
 		switch (requestCode) {
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYCAMERA:
-			addImage(origUri);
+			adapter.add(protraitFile, protraitFile.getName());
 			break;
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD:
 			Uri uri = data.getData();
@@ -248,21 +250,32 @@ public class I_ReleaseSquare extends I_BaseActivity {
 			if (StringUtil.isEmpty(path)) {
 				path = ImageUtil.getAbsoluteImagePath(this, uri);
 			}
+			if (StringUtil.isEmpty(path)) {
+				path = ImageUtil.getImagePath(this, uri);
+			}
 			initImageTemp();
-			File file = new File(path);
-			file.renameTo(protraitFile);
-			addImage(origUri);
+			if (!StringUtil.isEmpty(path)) {
+				File file = new File(path);
+				if (file.length() != 0) {
+					LogUtil.showLog("file name is " + file.getName());
+					LogUtil.showLog("protraitFile name is "
+							+ protraitFile.getName());
+					adapter.add(file, protraitFile.getName());
+				} else {
+					showToast("加载图片失败,可能是因为媒体库数据没有更新");
+				}
+			} else {
+				showToast("加载图片失败");
+			}
 			break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	/**
-	 * 添加图片到图片列表中
-	 * 
-	 * @param uri
-	 */
-	private void addImage(Uri uri) {
-		adapter.add(uri);
+	@Override
+	protected void onDestroy() {
+		DialogUtil.getInstance().cancelPd();
+		isDestory = true;
+		super.onDestroy();
 	}
 }

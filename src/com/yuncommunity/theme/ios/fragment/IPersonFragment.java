@@ -11,7 +11,7 @@ import com.yuncommunity.adapter.PersonAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
 import com.yuncommunity.theme.ios.I_LoginActivity;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 个人中心
@@ -43,7 +43,7 @@ public class IPersonFragment extends ListFragment {
 			startActivity(new Intent(getActivity(), I_LoginActivity.class));
 			return;
 		}
-		if (!LoginUtils.isLogin(getActivity())) {
+		if (!UpdateUtils.isLogin(getActivity())) {
 			return;
 		}
 		FuncItem item = personAdapter.getItem(position);

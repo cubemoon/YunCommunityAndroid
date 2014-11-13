@@ -19,7 +19,7 @@ import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 编辑个人资料
@@ -94,7 +94,7 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 		loginInfo.getUserInfo().setBirthday(super.getString(tvBirthday));
 		loginInfo.getUserInfo().setPermission(
 				spPermission.getSelectedItemPosition());
-		LoginUtils.update(EditPersonInfo.this,
+		UpdateUtils.update(EditPersonInfo.this,
 				String.valueOf(getText(R.string.updating_personal_details)),
 				new RequestStringListener() {
 

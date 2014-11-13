@@ -29,7 +29,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.fragment.AttentionFragment;
 import com.yuncommunity.theme.android.fragment.InformationFragment;
-import com.yuncommunity.utils.LoginUtils;
+import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 主界面
@@ -138,7 +138,7 @@ public class MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!LoginUtils.isLogin(MainActivity.this)) {
+		if (!UpdateUtils.isLogin(MainActivity.this)) {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
@@ -189,7 +189,7 @@ public class MainActivity extends BaseActivity {
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getAvatar(), ivAvatar, options);
-		if (!LoginUtils.isLogin(MainActivity.this)) {
+		if (!UpdateUtils.isLogin(MainActivity.this)) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
@@ -339,7 +339,7 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!LoginUtils.isLogin(MainActivity.this)) {
+		if (!UpdateUtils.isLogin(MainActivity.this)) {
 			openActivity(LoginRegisterActivity.class);
 			return;
 		}

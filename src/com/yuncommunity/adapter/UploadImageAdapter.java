@@ -10,12 +10,17 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.oldfeel.base.BaseBaseAdapter;
-import com.oldfeel.utils.ImageUtil;
-import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
+import com.yuncommunity.item.UploadImageItem;
 import com.yuncommunity.theme.ios.I_ReleaseSquare;
 
-public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
+/**
+ * 
+ * @author oldfeel
+ * 
+ *         Create on: 2014年11月13日
+ */
+public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
 
 	public UploadImageAdapter(Context context) {
 		super(context);
@@ -43,7 +48,8 @@ public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
 				}
 			});
 		} else {
-			imageLoader.displayImage(getItem(position).toString(), ivImage);
+			imageLoader.displayImage(Uri.fromFile(getItem(position).getFile())
+					.toString(), ivImage);
 		}
 		return view;
 	}
@@ -51,23 +57,21 @@ public class UploadImageAdapter extends BaseBaseAdapter<Uri> {
 	public String getUploadImages() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < getCount() - 1; i++) {
-			File file = getImageFile(i);
+			String key = getItem(i).getKey();
 			if (i == 0) {
-				sb.append(file.getName());
+				sb.append(key);
 			} else {
-				sb.append("," + file.getName());
+				sb.append("," + key);
 			}
 		}
 		return sb.toString();
 	}
 
-	public File getImageFile(int position) {
-		Uri uri = getItem(position);
-		String path = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
-		if (StringUtil.isEmpty(path)) {
-			path = ImageUtil.getAbsoluteImagePath(context, uri);
-		}
-		return new File(path);
+	public void add(File file, String name) {
+		UploadImageItem item = new UploadImageItem();
+		item.setFile(file);
+		item.setKey(name);
+		add(item);
 	}
 
 }
