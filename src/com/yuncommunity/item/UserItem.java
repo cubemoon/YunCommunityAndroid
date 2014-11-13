@@ -130,7 +130,8 @@ public class UserItem implements Serializable {
 	 */
 	public String getName() {
 		if (Name == null || Name.length() == 0) {
-			return getEmail();
+			Name = Phone.substring(0, Phone.length() - 7) + "****"
+					+ Phone.substring(Phone.length() - 3);
 		}
 		return this.Name;
 	}

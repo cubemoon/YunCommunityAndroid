@@ -99,17 +99,19 @@ public class I_RegisterActivity extends I_BaseActivity {
 			return;
 		}
 		NetUtil netUtil = new NetUtil(I_RegisterActivity.this, JsonApi.REGISTER);
-		netUtil.setParams("phone", getString(etPhone));
+		netUtil.setParams("account", getString(etPhone));
 		netUtil.setParams("vcode", getString(etVcode));
 		netUtil.setParams("password", getString(etPassword));
 		netUtil.postRequest("正在提交注册信息...", new RequestStringListener() {
 
 			@Override
 			public void onComplete(String result) {
-				showToast("注册成功");
-				LoginInfo.getInstance(I_RegisterActivity.this).saveInfo(
-						JsonUtil.getData(result));
-				openActivity(I_MainActivity.class);
+				if (JsonUtil.isSuccess(result)) {
+					showToast("注册成功");
+					LoginInfo.getInstance(I_RegisterActivity.this).saveInfo(
+							JsonUtil.getData(result));
+					openActivity(I_MainActivity.class);
+				}
 			}
 		});
 	}

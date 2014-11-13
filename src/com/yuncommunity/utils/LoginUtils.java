@@ -36,6 +36,7 @@ public class LoginUtils {
 		if (loginInfo.getUserId() == 0) {
 			return;
 		}
+		loginInfo.getUserInfo().setPassword(loginInfo.getRealPassword());
 		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
 		netUtil.setParams("userinfo",
 				new Gson().toJson(loginInfo.getUserInfo()));

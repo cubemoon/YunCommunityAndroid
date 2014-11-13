@@ -8,7 +8,8 @@
     <EditText
         android:id="@+id/i_login_account"
         style="@style/single_view_et"
-        android:hint="手机号或邮箱" />
+        android:hint="输入手机号码"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/i_login_password"

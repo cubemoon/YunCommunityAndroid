@@ -8,20 +8,16 @@
     <EditText
         android:id="@+id/i_register_phone"
         style="@style/single_view_et"
-        android:hint="输入手机号" />
-
-    <EditText
-        android:id="@+id/i_register_password"
-        style="@style/single_view_et"
-        android:hint="输入密码(8到16位非特殊字符)"
-        android:inputType="textPassword" />
+        android:hint="输入手机号"
+        android:inputType="phone" />
 
     <LinearLayout style="@style/single_view" >
 
         <EditText
             android:id="@+id/i_register_vcode"
-            style="@style/form_right"
-            android:hint="输入验证码(6位数字)" />
+            style="@style/form_left_et"
+            android:hint="输入验证码(6位数字)"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/i_register_getvcode"
@@ -30,6 +26,12 @@
             android:text="获取验证码"
             android:textColor="@color/black" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/i_register_password"
+        style="@style/single_view_et"
+        android:hint="输入密码(8到16位非特殊字符)"
+        android:inputType="textPassword" />
 
     <LinearLayout
         style="@style/single_view"
@@ -41,7 +43,8 @@
             android:id="@+id/i_register_isagree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:checked="true" />
 
         <TextView
             android:id="@+id/i_register_useragree"
