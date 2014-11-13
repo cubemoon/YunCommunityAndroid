@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity {
 					&& businessFragment.isVisible()) {
 				businessFragment.updateList();
 			}
-			if (infotype == Constant.TYPE_TASK && taskFragment.isVisible()) {
+			if (infotype == Constant.TYPE_PERSONAL && taskFragment.isVisible()) {
 				taskFragment.updateList();
 			}
 		}
@@ -263,9 +263,9 @@ public class MainActivity extends BaseActivity {
 	private void openTask(int i) {
 		setTitle(R.string.task);
 		drawerListAdapter.setSelected(i);
-		infotype = Constant.TYPE_TASK;
+		infotype = Constant.TYPE_PERSONAL;
 		if (taskFragment == null) {
-			taskFragment = InformationFragment.newInstance(Constant.TYPE_TASK);
+			taskFragment = InformationFragment.newInstance(Constant.TYPE_PERSONAL);
 		}
 		showFragment(taskFragment);
 	}

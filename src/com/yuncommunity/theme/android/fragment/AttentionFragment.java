@@ -57,7 +57,7 @@ public class AttentionFragment extends BaseFragment {
 		adapter.add(String.valueOf(getText(R.string.business_service)),
 				getInformationList(Constant.TYPE_BUSINESS));
 		adapter.add(String.valueOf(getText(R.string.personal_service)),
-				getInformationList(Constant.TYPE_TASK));
+				getInformationList(Constant.TYPE_PERSONAL));
 		pager.setAdapter(adapter);
 		indicator.setViewPager(pager);
 	}

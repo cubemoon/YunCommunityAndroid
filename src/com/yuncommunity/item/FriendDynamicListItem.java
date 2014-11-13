@@ -93,7 +93,7 @@ public class FriendDynamicListItem extends BaseItem {
 		switch (TynamicType) {
 		case Constant.TYPE_ACTIVITY:
 		case Constant.TYPE_BUSINESS:
-		case Constant.TYPE_TASK:
+		case Constant.TYPE_PERSONAL:
 		case Constant.TYPE_COMMENT:
 		case Constant.TYPE_APPROVAL:
 		case Constant.TYPE_OPPOSITION:
@@ -130,7 +130,7 @@ public class FriendDynamicListItem extends BaseItem {
 			return "关注了该用户";
 		case Constant.TYPE_OPPOSITION:
 			return "反对了该评论";
-		case Constant.TYPE_TASK:
+		case Constant.TYPE_PERSONAL:
 			return "关注了该个人服务";
 		default:
 			break;
@@ -151,7 +151,7 @@ public class FriendDynamicListItem extends BaseItem {
 			return "活动";
 		case Constant.TYPE_BUSINESS:
 			return "商家";
-		case Constant.TYPE_TASK:
+		case Constant.TYPE_PERSONAL:
 			return "个人服务";
 		default:
 			break;

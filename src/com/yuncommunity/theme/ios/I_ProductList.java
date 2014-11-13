@@ -23,6 +23,8 @@ public class I_ProductList extends I_BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentLayout(R.layout.single_frame);
 		tagItem = (TagItem) getIntent().getSerializableExtra("item");
+		setTitle(tagItem.getName());
+		hideRight();
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,

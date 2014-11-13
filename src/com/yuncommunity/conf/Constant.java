@@ -38,8 +38,8 @@ public class Constant {
 	public static final int TYPE_ACTIVITY = 1;
 	/** 商家服务 */
 	public static final int TYPE_BUSINESS = 2;
-	/** 任务 */
-	public static final int TYPE_TASK = 3;
+	/** 个人服务/产品 */
+	public static final int TYPE_PERSONAL = 3;
 	/** 关注用户 */
 	public static final int TYPE_FOLLOWING_USER = 4;
 	/** 评论 */
@@ -50,5 +50,7 @@ public class Constant {
 	public static final int TYPE_OPPOSITION = 7;
 	/** 广场微博 */
 	public static final int TYPE_SQUARE = 8;
+	/** 任务 */
+	public static final int TYPE_TASK = 9;
 
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ImageUtil;
 import com.oldfeel.utils.JsonUtil;
@@ -31,6 +32,8 @@ import com.yuncommunity.R;
 import com.yuncommunity.adapter.UploadImageAdapter;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
 
 /**
@@ -89,6 +92,14 @@ public class I_ReleaseSquare extends I_BaseActivity {
 			public void onComplete(String result) {
 				if (JsonUtil.isSuccess(result)) {
 					showToast("说说成功");
+					SquareItem item = new Gson().fromJson(
+							JsonUtil.getData(result), SquareItem.class);
+					item.setUserInfo(LoginInfo
+							.getInstance(I_ReleaseSquare.this).getUserInfo());
+					Intent intent = new Intent(I_ReleaseSquare.this,
+							I_MainActivity.class);
+					intent.putExtra("squareitem", item);
+					startActivity(intent);
 					finish();
 				} else {
 					showToast(JsonUtil.getData(result));

@@ -17,6 +17,7 @@ import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
 import com.yuncommunity.theme.ios.fragment.IActivityFragment;
 import com.yuncommunity.theme.ios.fragment.IPersonFragment;
@@ -59,13 +60,26 @@ public class I_MainActivity extends I_BaseActivity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
+		changeCommunity(intent);
+		squareRelease(intent);
+	}
+
+	private void squareRelease(Intent intent) {
+		SquareItem squareItem = (SquareItem) intent
+				.getSerializableExtra("squareitem");
+		if (squareItem != null) {
+			squareFragment.add(squareItem);
+		}
+	}
+
+	private void changeCommunity(Intent intent) {
 		CommunityItem communityItem = (CommunityItem) intent
 				.getSerializableExtra("communityitem");
 		if (communityItem != null) {
 			setTitle(communityItem.getName());
+			squareFragment.setNetUtil(getSquareNetUtil());
+			activityFragment.setNetUtil(getActivityNetUtil());
 		}
-		squareFragment.setNetUtil(getSquareNetUtil());
-		activityFragment.setNetUtil(getActivityNetUtil());
 	}
 
 	private void initListener() {
