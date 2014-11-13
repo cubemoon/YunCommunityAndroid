@@ -26,12 +26,12 @@ public class NearCommunityList extends CustomBaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		CommunityItem communityItem = (CommunityItem) adapter.getItem(position);
-		LoginInfo.getInstance(getActivity()).getUserInfo()
-				.setCommunityInfo(communityItem);
+		LoginInfo.getInstance(getActivity()).saveCommunityInfo(communityItem);
 		LoginInfo.update(getActivity());
 		Intent intent = getThemeIntent(MainActivity.class);
 		intent.putExtra("communityitem", communityItem);
 		startActivity(intent);
+		getActivity().finish();
 	}
 
 	@Override

@@ -34,6 +34,10 @@ public class I_MainActivity extends I_BaseActivity {
 	private ViewPager pager;
 	private RadioGroup rgNav;
 	private BasePagerAdapter adapter;
+	private ISquareFragment squareFragment;
+	private IServerFragment serverFragment;
+	private IActivityFragment activityFragment;
+	private IPersonFragment personFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class I_MainActivity extends I_BaseActivity {
 		initView();
 		initPager();
 		initListener();
-		if (LoginInfo.getInstance(this).getCommunityInfo() == null) {
+		if (LoginInfo.getInstance(this).getCommunityInfo().getCommunityid() == 0) {
 			openActivity(I_ChangeCommunity.class);
 			finish();
 		} else {
@@ -60,6 +64,8 @@ public class I_MainActivity extends I_BaseActivity {
 		if (communityItem != null) {
 			setTitle(communityItem.getName());
 		}
+		squareFragment.setNetUtil(getSquareNetUtil());
+		activityFragment.setNetUtil(getActivityNetUtil());
 	}
 
 	private void initListener() {
@@ -151,11 +157,15 @@ public class I_MainActivity extends I_BaseActivity {
 	}
 
 	private void initPager() {
+		squareFragment = ISquareFragment.newInstance(getSquareNetUtil());
+		serverFragment = IServerFragment.newInstance();
+		activityFragment = IActivityFragment.newInstance(getActivityNetUtil());
+		personFragment = IPersonFragment.newInstance();
 		adapter = new BasePagerAdapter(getSupportFragmentManager());
-		adapter.add(ISquareFragment.newInstance(getSquareNetUtil()));
-		adapter.add(IServerFragment.newInstance());
-		adapter.add(IActivityFragment.newInstance(getActivityNetUtil()));
-		adapter.add(IPersonFragment.newInstance());
+		adapter.add(squareFragment);
+		adapter.add(serverFragment);
+		adapter.add(activityFragment);
+		adapter.add(personFragment);
 		pager.setAdapter(adapter);
 		pager.setOffscreenPageLimit(3);
 	}

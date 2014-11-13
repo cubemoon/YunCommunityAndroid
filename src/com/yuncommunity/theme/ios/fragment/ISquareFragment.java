@@ -96,10 +96,4 @@ public class ISquareFragment extends BaseListFragment {
 	public void initHeaderView() {
 		getListView().addHeaderView(getHeaderView());
 	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		getData(0);
-	}
 }

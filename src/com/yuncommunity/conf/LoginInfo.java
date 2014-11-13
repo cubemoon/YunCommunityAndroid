@@ -50,6 +50,22 @@ public class LoginInfo {
 		saveInfo(DesUtil.decode(Constant.KEY, sp.getString("logininfo", "")));
 	}
 
+	public static void update(Activity activity) {
+		update(activity, "", null);
+	}
+
+	public static void update(Activity activity, String text,
+			RequestStringListener stringListener) {
+		LoginInfo loginInfo = LoginInfo.getInstance(activity);
+		if (loginInfo.getUserId() == 0) {
+			return;
+		}
+		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
+		netUtil.setParams("userinfo",
+				new Gson().toJson(loginInfo.getUserInfo()));
+		netUtil.postRequest(text, stringListener);
+	}
+
 	public boolean isLogin(final Activity activity) {
 		boolean isLogin = false;
 		if (userInfo != null && userInfo.getUserid() != 0) {
@@ -73,13 +89,24 @@ public class LoginInfo {
 	}
 
 	public void saveInfo(String result) {
+		UserItem item = new Gson().fromJson(result, UserItem.class);
+		if (getCommunityInfo().getCommunityid() != 0) { // 如果用户是第一次注册/登录,可能没有小区,所以要为用户赋值小区信息
+			item.setCommunityInfo(getCommunityInfo());
+		}
 		editor.putString("logininfo",
-				DesUtil.encode(Constant.KEY, result.toString()));
+				DesUtil.encode(Constant.KEY, new Gson().toJson(item)));
 		editor.commit();
 		if (StringUtil.isEmpty(result)) {
 			return;
 		}
 		userInfo = new Gson().fromJson(result, UserItem.class);
+	}
+
+	public UserItem getUserInfo() {
+		if (userInfo == null) {
+			return new UserItem();
+		}
+		return userInfo;
 	}
 
 	public void saveRealPassword(String password) {
@@ -91,35 +118,28 @@ public class LoginInfo {
 		return DesUtil.decode(Constant.KEY, sp.getString("password", ""));
 	}
 
-	public static void update(Activity activity) {
-		update(activity, "", null);
-	}
-
-	public static void update(Activity activity, String text,
-			RequestStringListener stringListener) {
-		LoginInfo loginInfo = LoginInfo.getInstance(activity);
-		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
-		netUtil.setParams("userinfo",
-				new Gson().toJson(loginInfo.getUserInfo()));
-		netUtil.postRequest(text, stringListener);
-	}
-
 	public void close() {
 		loginInfo = null;
 	}
 
-	public UserItem getUserInfo() {
-		if (userInfo == null) {
-			return new UserItem();
-		}
-		return userInfo;
-	}
-
-	public void setUserInfo(UserItem userInfo) {
-		this.userInfo = userInfo;
+	/**
+	 * 保存小区信息
+	 * 
+	 * @param communityItem
+	 */
+	public void saveCommunityInfo(CommunityItem communityItem) {
+		getUserInfo().setCommunityInfo(communityItem);
+		editor.putString("communityitem", new Gson().toJson(communityItem));
+		editor.commit();
 	}
 
 	public CommunityItem getCommunityInfo() {
+		if (getUserInfo().getCommunityInfo().getCommunityid() == 0) {
+			String temp = sp.getString("communityitem", null);
+			if (temp != null) {
+				return new Gson().fromJson(temp, CommunityItem.class);
+			}
+		}
 		return getUserInfo().getCommunityInfo();
 	}
 
