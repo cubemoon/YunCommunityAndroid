@@ -50,47 +50,9 @@ public class LoginInfo {
 		saveInfo(DesUtil.decode(Constant.KEY, sp.getString("logininfo", "")));
 	}
 
-	public static void update(Activity activity) {
-		update(activity, "", null);
-	}
-
-	public static void update(Activity activity, String text,
-			RequestStringListener stringListener) {
-		LoginInfo loginInfo = LoginInfo.getInstance(activity);
-		if (loginInfo.getUserId() == 0) {
-			return;
-		}
-		NetUtil netUtil = new NetUtil(activity, JsonApi.UPDATE_USER_INFO);
-		netUtil.setParams("userinfo",
-				new Gson().toJson(loginInfo.getUserInfo()));
-		netUtil.postRequest(text, stringListener);
-	}
-
-	public boolean isLogin(final Activity activity) {
-		boolean isLogin = false;
-		if (userInfo != null && userInfo.getUserid() != 0) {
-			isLogin = true;
-		}
-		if (!isLogin) {
-			new AlertDialog.Builder(activity)
-					.setTitle("您需要登录后才能继续操作")
-					.setPositiveButton("登录/注册",
-							new DialogInterface.OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									activity.startActivity(new Intent(context,
-											I_LoginActivity.class));
-								}
-							}).setNegativeButton("取消", null).show();
-		}
-		return isLogin;
-	}
-
 	public void saveInfo(String result) {
 		UserItem item = new Gson().fromJson(result, UserItem.class);
-		if (getCommunityInfo().getCommunityid() != 0) { // 如果用户是第一次注册/登录,可能没有小区,所以要为用户赋值小区信息
+		if (item != null && getCommunityInfo().getCommunityid() != 0) { // 如果用户是第一次注册/登录,可能没有小区,所以要为用户赋值小区信息
 			item.setCommunityInfo(getCommunityInfo());
 		}
 		editor.putString("logininfo",
@@ -118,7 +80,8 @@ public class LoginInfo {
 		return DesUtil.decode(Constant.KEY, sp.getString("password", ""));
 	}
 
-	public void close() {
+	public void cancelLogin() {
+		saveInfo("");
 		loginInfo = null;
 	}
 

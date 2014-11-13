@@ -8,7 +8,10 @@ import android.widget.ListView;
 
 import com.yuncommunity.R;
 import com.yuncommunity.adapter.PersonAdapter;
+import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
+import com.yuncommunity.theme.ios.I_LoginActivity;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 个人中心
@@ -35,6 +38,14 @@ public class IPersonFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
+		if (position == 0
+				&& LoginInfo.getInstance(getActivity()).getUserId() == 0) {
+			startActivity(new Intent(getActivity(), I_LoginActivity.class));
+			return;
+		}
+		if (!LoginUtils.isLogin(getActivity())) {
+			return;
+		}
 		FuncItem item = personAdapter.getItem(position);
 		if (item.getTheClass() != null) {
 			startActivity(new Intent(getActivity(), item.getTheClass()));
@@ -46,5 +57,11 @@ public class IPersonFragment extends ListFragment {
 		super.startActivity(intent);
 		getActivity().overridePendingTransition(R.anim.slide_in_right,
 				R.anim.slide_out_left);
+	}
+
+	public void updateName() {
+		personAdapter.getItem(0).setName(
+				LoginInfo.getInstance(getActivity()).getName());
+		personAdapter.notifyDataSetChanged();
 	}
 }

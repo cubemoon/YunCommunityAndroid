@@ -76,7 +76,11 @@ public class JsonApi {
 	/** 附近小区列表 */
 	public static final String NEAR_COMMUNITY_LIST = "near_community_list";
 	/** 注册时需要的验证码 */
-	public static final String REGISTER_VCODE = "register_vcode";
+	public static final String VCODE_REGISTER = "vcode_register";
 	/** 根据标签获取信息列表 */
 	public static final String INFORMATION_LIST_BY_TAG = "information_list_by_tag";
+	/** 忘记密码时获取验证码 */
+	public static final String VCODE_FORGET_PASSWORD = "vcode_forget_password";
+	/** 忘记密码/修改密码 */
+	public static final String FORGET_PASSWORD = "forget_password";
 }

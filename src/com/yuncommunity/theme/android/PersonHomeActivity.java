@@ -46,6 +46,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.list.InformationListFragment;
 import com.yuncommunity.theme.android.fragment.HeaderFragment;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 个人首页
@@ -502,7 +503,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 						LoginInfo.getInstance(PersonHomeActivity.this)
 								.getUserInfo()
 								.setBackground(protraitFile.getName());
-						LoginInfo.update(PersonHomeActivity.this);
+						LoginUtils.update(PersonHomeActivity.this);
 					}
 				}, null);
 	}

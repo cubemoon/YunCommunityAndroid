@@ -16,12 +16,12 @@ import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
 import com.yuncommunity.adapter.SquareAdapter;
 import com.yuncommunity.adapter.SquareHeaderAdapter;
-import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.SquareItem;
 import com.yuncommunity.theme.ios.I_MainActivity;
 import com.yuncommunity.theme.ios.I_ProductList;
 import com.yuncommunity.theme.ios.I_ReleaseSquare;
 import com.yuncommunity.theme.ios.I_SquareDetail;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 广场
@@ -47,7 +47,7 @@ public class ISquareFragment extends BaseListFragment {
 
 			@Override
 			public void onClick(View v) {
-				if (LoginInfo.getInstance(getActivity()).isLogin(getActivity())) {
+				if (LoginUtils.isLogin(getActivity())) {
 					openActivity(I_ReleaseSquare.class);
 				}
 			}

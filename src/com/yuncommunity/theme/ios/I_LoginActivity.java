@@ -1,5 +1,6 @@
 package com.yuncommunity.theme.ios;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 
 import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.JsonUtil;
-import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
@@ -28,12 +28,14 @@ public class I_LoginActivity extends I_BaseActivity {
 	private EditText etAccount, etPassword;
 	private Button btnSubmit;
 	private TextView tvForgetPassword;
+	private boolean cancelLogin; // 注销登录
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentLayout(R.layout.i_login);
 		setTitle("登录");
+		cancelLogin = getIntent().getBooleanExtra("cancelLogin", false);
 		initView();
 		initListener();
 		showRight();
@@ -65,7 +67,6 @@ public class I_LoginActivity extends I_BaseActivity {
 	}
 
 	protected void startLogin() {
-		LogUtil.showLog("start login");
 		if (ETUtil.isHaveNull(etAccount, etPassword)) {
 			return;
 		}
@@ -79,7 +80,11 @@ public class I_LoginActivity extends I_BaseActivity {
 				if (JsonUtil.isSuccess(result)) {
 					LoginInfo.getInstance(I_LoginActivity.this).saveInfo(
 							JsonUtil.getData(result));
-					openActivity(I_MainActivity.class);
+					Intent intent = new Intent(I_LoginActivity.this,
+							I_MainActivity.class);
+					intent.putExtra("islogin", true);
+					startActivity(intent);
+					onBackPressed();
 				} else {
 					showToast(JsonUtil.getData(result));
 				}
@@ -92,5 +97,13 @@ public class I_LoginActivity extends I_BaseActivity {
 		etPassword = getEditText(R.id.i_login_password);
 		btnSubmit = getButton(R.id.i_login_submit);
 		tvForgetPassword = getTextView(R.id.i_login_forgetpassword);
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (cancelLogin) {
+			openActivity(I_MainActivity.class);
+		}
+		super.onBackPressed();
 	}
 }

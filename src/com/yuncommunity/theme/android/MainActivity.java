@@ -29,6 +29,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.fragment.AttentionFragment;
 import com.yuncommunity.theme.android.fragment.InformationFragment;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 主界面
@@ -137,8 +138,7 @@ public class MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
-				MainActivity.this)) {
+		if (!LoginUtils.isLogin(MainActivity.this)) {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
@@ -171,8 +171,7 @@ public class MainActivity extends BaseActivity {
 	 * 登出
 	 */
 	protected void cancelLogin() {
-		LoginInfo.getInstance(MainActivity.this).saveInfo("");
-		LoginInfo.getInstance(MainActivity.this).close();
+		LoginInfo.getInstance(MainActivity.this).cancelLogin();
 		openActivity(LoginRegisterActivity.class);
 		finish();
 	}
@@ -190,8 +189,7 @@ public class MainActivity extends BaseActivity {
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getAvatar(), ivAvatar, options);
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
-				MainActivity.this)) {
+		if (!LoginUtils.isLogin(MainActivity.this)) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
@@ -265,7 +263,8 @@ public class MainActivity extends BaseActivity {
 		drawerListAdapter.setSelected(i);
 		infotype = Constant.TYPE_PERSONAL;
 		if (taskFragment == null) {
-			taskFragment = InformationFragment.newInstance(Constant.TYPE_PERSONAL);
+			taskFragment = InformationFragment
+					.newInstance(Constant.TYPE_PERSONAL);
 		}
 		showFragment(taskFragment);
 	}
@@ -340,8 +339,7 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!LoginInfo.getInstance(getApplicationContext()).isLogin(
-				MainActivity.this)) {
+		if (!LoginUtils.isLogin(MainActivity.this)) {
 			openActivity(LoginRegisterActivity.class);
 			return;
 		}

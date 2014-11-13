@@ -8,6 +8,7 @@ import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 附近小区列表
@@ -27,7 +28,7 @@ public class NearCommunityList extends CustomBaseListFragment {
 	public void onItemClick(int position) {
 		CommunityItem communityItem = (CommunityItem) adapter.getItem(position);
 		LoginInfo.getInstance(getActivity()).saveCommunityInfo(communityItem);
-		LoginInfo.update(getActivity());
+		LoginUtils.update(getActivity());
 		Intent intent = getThemeIntent(MainActivity.class);
 		intent.putExtra("communityitem", communityItem);
 		startActivity(intent);

@@ -62,6 +62,14 @@ public class I_MainActivity extends I_BaseActivity {
 		super.onNewIntent(intent);
 		changeCommunity(intent);
 		squareRelease(intent);
+		islogin(intent);
+	}
+
+	private void islogin(Intent intent) {
+		boolean islogin = intent.getBooleanExtra("islogin", false);
+		if (islogin) {
+			personFragment.updateName();
+		}
 	}
 
 	private void squareRelease(Intent intent) {

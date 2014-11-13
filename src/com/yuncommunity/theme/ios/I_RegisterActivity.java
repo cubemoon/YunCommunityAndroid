@@ -78,7 +78,7 @@ public class I_RegisterActivity extends I_BaseActivity {
 			return;
 		}
 		NetUtil netUtil = new NetUtil(I_RegisterActivity.this,
-				JsonApi.REGISTER_VCODE);
+				JsonApi.VCODE_REGISTER);
 		netUtil.setParams("phone", getString(etPhone));
 		netUtil.postRequest("正在发送验证码...", new RequestStringListener() {
 

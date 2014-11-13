@@ -36,6 +36,7 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.utils.LoginUtils;
 
 /**
  * 我的头像,提供更新图片的功能
@@ -245,7 +246,7 @@ public class HeaderFragment extends BaseFragment {
 						ivHeader.setImageBitmap(protraitBitmap);
 						LoginInfo.getInstance(getActivity()).getUserInfo()
 								.setAvatar(protraitFile.getName());
-						LoginInfo.update(getActivity());
+						LoginUtils.update(getActivity());
 					}
 				}, null);
 	}
