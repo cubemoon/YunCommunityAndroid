@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
+import com.oldfeel.interfaces.FragmentListener;
 import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
@@ -16,6 +17,7 @@ import com.yuncommunity.base.UploadImagesFragment;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.dialog.TagEdit;
 import com.yuncommunity.interfaces.UploadImagesListener;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
@@ -36,6 +38,23 @@ public class I_ReleaseProduct extends I_BaseActivity {
 		setContentLayout(R.layout.i_release_product);
 		initTop();
 		initView();
+		initUploadImage();
+	}
+
+	private FragmentListener tagEditListener = new FragmentListener() {
+
+		@Override
+		public void onCreated() {
+		}
+
+		@Override
+		public void onComplete(Object... objects) {
+			etTags.setText(objects[0].toString());
+			ETUtil.setEnd(etTags);
+		}
+	};
+
+	private void initUploadImage() {
 		uploadImagesFragment = new UploadImagesFragment();
 		uploadImagesFragment
 				.setOnUploadImageListener(new UploadImagesListener() {
@@ -56,6 +75,21 @@ public class I_ReleaseProduct extends I_BaseActivity {
 		etPhone = getEditText(R.id.i_release_product_phone);
 		etTags = getEditText(R.id.i_release_product_tags);
 		etDesc = getEditText(R.id.i_release_product_desc);
+		etPhone.setText(LoginInfo.getInstance(getApplicationContext())
+				.getUserInfo().getPhone());
+		etTags.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showTagEdit();
+			}
+		});
+	}
+
+	protected void showTagEdit() {
+		TagEdit tagEdit = TagEdit.newInstance(Constant.TYPE_PERSONAL,
+				getString(etTags), tagEditListener);
+		tagEdit.show(getSupportFragmentManager(), "tagedit");
 	}
 
 	private void initTop() {

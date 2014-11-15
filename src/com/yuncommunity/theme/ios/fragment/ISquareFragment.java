@@ -8,11 +8,11 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.oldfeel.base.BaseListFragment;
 import com.oldfeel.utils.NetUtil;
-import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
 import com.yuncommunity.adapter.SquareAdapter;
 import com.yuncommunity.adapter.SquareHeaderAdapter;
@@ -61,12 +61,11 @@ public class ISquareFragment extends BaseListFragment {
 	private View getHeaderView() {
 		View view = LayoutInflater.from(getActivity()).inflate(
 				R.layout.i_square_func, new LinearLayout(getActivity()), true);
-		HorizontalListView listView = (HorizontalListView) view
-				.findViewById(R.id.i_square_func);
-		listView.getParent().requestDisallowInterceptTouchEvent(true);
+		GridView gvFun = (GridView) view.findViewById(R.id.i_square_func);
+		gvFun.getParent().requestDisallowInterceptTouchEvent(true);
 		headerAdapter = new SquareHeaderAdapter(getActivity());
-		listView.setAdapter(headerAdapter);
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		gvFun.setAdapter(headerAdapter);
+		gvFun.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

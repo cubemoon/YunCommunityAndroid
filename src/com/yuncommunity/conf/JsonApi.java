@@ -87,4 +87,6 @@ public class JsonApi {
 	public static final String SQUARE_COMMENT = "square_comment";
 	/** 收藏信息 */
 	public static final String INFORMATION_COLLECTION = "information_collection";
+	/** 用户发布的商品标签历史记录 */
+	public static final String TAG_HISTORY = "tag_history";
 }

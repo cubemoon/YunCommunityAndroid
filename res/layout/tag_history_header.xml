@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.oldfeel.view.CustomGridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/i_square_func"
+    android:id="@+id/tag_history_header"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:numColumns="3" >
+    android:layout_height="match_parent"
+    android:numColumns="4" >
 
 </com.oldfeel.view.CustomGridView>

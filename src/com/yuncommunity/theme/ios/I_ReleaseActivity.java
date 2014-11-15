@@ -36,6 +36,10 @@ public class I_ReleaseActivity extends I_BaseActivity {
 		setContentLayout(R.layout.i_release_activity);
 		initTop();
 		initView();
+		initUploadImage();
+	}
+
+	private void initUploadImage() {
 		uploadImagesFragment = new UploadImagesFragment();
 		uploadImagesFragment
 				.setOnUploadImageListener(new UploadImagesListener() {

@@ -46,5 +46,15 @@
         <item>替换视频</item>
         <item>取消</item>
     </string-array>
+    <string-array name="recommend_tag">
+        <item>物业中心</item>
+        <item>维修</item>
+        <item>快递</item>
+        <item>洗衣</item>
+        <item>外卖</item>
+        <item>生活配送</item>
+        <item>水果</item>
+        <item>家政服务</item>
+    </string-array>
 
 </resources>
