@@ -11,6 +11,7 @@ import com.yuncommunity.adapter.PersonAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
 import com.yuncommunity.theme.ios.I_LoginActivity;
+import com.yuncommunity.theme.ios.I_PersonInfo;
 import com.yuncommunity.utils.UpdateUtils;
 
 /**
@@ -38,10 +39,23 @@ public class IPersonFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		if (position == 0
-				&& LoginInfo.getInstance(getActivity()).getUserId() == 0) {
-			startActivity(new Intent(getActivity(), I_LoginActivity.class));
+		if (position == 0) {
+			long userid = LoginInfo.getInstance(getActivity()).getUserId();
+			if (userid == 0) {
+				startActivity(new Intent(getActivity(), I_LoginActivity.class));
+			} else {
+				startActivity(new Intent(getActivity(), I_PersonInfo.class)
+						.putExtra("targetid", userid));
+			}
 			return;
+		}
+		if (position == personAdapter.getCount() - 1) {
+			LoginInfo.getInstance(getActivity()).cancelLogin();
+			updateName();
+			Intent intent = new Intent(getActivity(), I_LoginActivity.class);
+			intent.putExtra("cancelLogin", true);
+			startActivity(intent);
+			getActivity().finish();
 		}
 		if (!UpdateUtils.isLogin(getActivity())) {
 			return;

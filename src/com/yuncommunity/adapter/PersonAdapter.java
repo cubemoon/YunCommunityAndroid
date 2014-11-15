@@ -37,6 +37,7 @@ public class PersonAdapter extends BaseBaseAdapter<FuncItem> {
 				R.drawable.ic_launcher, I_MyAttention.class));
 		add(new FuncItem(context.getString(R.string.setting),
 				R.drawable.ic_launcher, I_Setting.class));
+		add(new FuncItem("注销", R.drawable.ic_launcher, null));
 	}
 
 	@Override

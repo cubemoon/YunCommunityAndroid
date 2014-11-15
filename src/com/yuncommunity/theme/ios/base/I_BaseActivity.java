@@ -240,6 +240,12 @@ public class I_BaseActivity extends SwipeBackActivity {
 		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	}
 
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		super.startActivityForResult(intent, requestCode);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	}
+
 	public long getUserId() {
 		return LoginInfo.getInstance(getApplicationContext()).getUserId();
 	}

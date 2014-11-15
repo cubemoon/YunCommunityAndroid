@@ -153,6 +153,8 @@
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.I_SquareCommentActivity" >
         </activity>
+        <activity android:name="com.yuncommunity.theme.ios.I_EditPersonInfo" >
+        </activity>
         <!-- 百度应用统计 -->
         <!-- 渠道商编号,其中 name 请不要改,将 value 修改为渠道商编号。渠道名称请到 mtj.baidu.com的渠道管理中修改 -->
         <meta-data
