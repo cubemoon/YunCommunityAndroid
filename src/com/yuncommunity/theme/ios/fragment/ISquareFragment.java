@@ -83,7 +83,7 @@ public class ISquareFragment extends BaseListFragment {
 	public void onItemClick(int position) {
 		SquareItem item = (SquareItem) adapter.getItem(position);
 		Intent intent = new Intent(getActivity(), I_SquareDetail.class);
-		intent.putExtra("item", item);
+		intent.putExtra("squareitem", item);
 		startActivity(intent);
 	}
 

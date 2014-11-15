@@ -137,9 +137,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	protected void parseDetail(String result) throws JSONException {
 		JSONObject data = new JSONObject(JsonUtil.getData(result));
-		String scoreAvg = data.getString("scoreavg");
-		long scoreCount = data.getLong("scorecount");
-		boolean isFollowing = data.getBoolean("isfollowing");
+		String scoreAvg = data.getString("ScoreAvg");
+		long scoreCount = data.getLong("ScoreCount");
+		boolean isFollowing = data.getBoolean("IsFollowing");
 		myComment = new Gson().fromJson(data.getString("mycomment"),
 				CommentItem.class);
 		List<TagItem> list = new Gson().fromJson(data.getString("taglist"),

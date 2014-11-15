@@ -31,7 +31,7 @@ public class JsonApi {
 	public static final String COMMENT_APPROVAL = "comment_approval";
 	/** 反对 */
 	public static final String COMMENT_OPPOSITION = "comment_opposition";
-	/** 活动与用户之间的关注 */
+	/** 信息与用户之间关注/取消关注 */
 	public static final String INFORMATION_FOLLOWING = "information_following";
 	/** 活动/商家服务/个人服务详情 */
 	public static final String INFORMATION_DETAIL = "information_detail";
@@ -39,7 +39,7 @@ public class JsonApi {
 	public static final String INFORMATION_COMMENTLIST = "information_commentlist";
 	/** 获取个人资料 */
 	public static final String USER_INFO = "user_info";
-	/** 关注/取消关注 */
+	/** 用户与用户之间关注/取消关注 */
 	public static final String USER_FOLLOWING = "user_following";
 	/** 用户的粉丝 */
 	public static final String USER_FANS = "user_fans";
@@ -85,4 +85,6 @@ public class JsonApi {
 	public static final String FORGET_PASSWORD = "forget_password";
 	/** 评论广场信息 */
 	public static final String SQUARE_COMMENT = "square_comment";
+	/** 收藏信息 */
+	public static final String INFORMATION_COLLECTION = "information_collection";
 }

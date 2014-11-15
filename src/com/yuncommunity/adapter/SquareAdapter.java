@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.oldfeel.utils.StringUtil;
-import com.oldfeel.view.HorizontalListView;
 import com.yuncommunity.R;
 import com.yuncommunity.item.SquareItem;
 
@@ -36,7 +36,7 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 		TextView tvTime = getTextView(view, R.id.i_square_item_time);
 		TextView tvDesc = getTextView(view, R.id.i_square_item_desc);
 		TextView tvComment = getTextView(view, R.id.i_square_item_comment);
-		HorizontalListView hlvImages = (HorizontalListView) view
+		GridView gvImages = (GridView) view
 				.findViewById(R.id.i_square_item_images);
 		imageLoader.displayImage(item.getUserInfo().getAvatar(), ivAvatar,
 				options);
@@ -46,12 +46,12 @@ public class SquareAdapter extends BaseBaseAdapter<SquareItem> {
 		tvComment.setText(item.getCommentCount() + "");
 
 		if (StringUtil.isEmpty(item.getImage())) {
-			hlvImages.setVisibility(View.GONE);
+			gvImages.setVisibility(View.GONE);
 		} else {
-			hlvImages.setVisibility(View.VISIBLE);
+			gvImages.setVisibility(View.VISIBLE);
 			SquareImagesAdapter adapter = new SquareImagesAdapter(context,
 					item.getImage());
-			hlvImages.setAdapter(adapter);
+			gvImages.setAdapter(adapter);
 		}
 		return view;
 	}

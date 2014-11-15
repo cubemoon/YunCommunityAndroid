@@ -8,6 +8,8 @@
         android:id="@+id/i_square_comment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="写下你的评论..." />
+        android:gravity="top"
+        android:hint="写下你的评论..."
+        android:textColor="@color/black" />
 
 </LinearLayout>

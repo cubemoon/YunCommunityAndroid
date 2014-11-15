@@ -7,6 +7,12 @@ import android.widget.ImageView;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
 
+/**
+ * 
+ * @author oldfeel
+ * 
+ *         Create on: 2014年11月15日
+ */
 public class SquareImagesAdapter extends BaseBaseAdapter<String> {
 	public SquareImagesAdapter(Context context, String images) {
 		super(context);
