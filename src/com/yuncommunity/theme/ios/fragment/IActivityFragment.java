@@ -25,8 +25,9 @@ public class IActivityFragment extends BaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		InformationItem item = (InformationItem) adapter.getItem(position);
-		startActivity(new Intent(getActivity(), I_ActivityDetail.class)
-				.putExtra("item", item));
+		getActivity().startActivity(
+				new Intent(getActivity(), I_ActivityDetail.class).putExtra(
+						"item", item));
 	}
 
 	@Override

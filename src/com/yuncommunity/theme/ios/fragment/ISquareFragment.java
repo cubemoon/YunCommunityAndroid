@@ -73,7 +73,7 @@ public class ISquareFragment extends BaseListFragment {
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), I_ProductList.class);
 				intent.putExtra("item", headerAdapter.getItem(position));
-				startActivity(intent);
+				getActivity().startActivity(intent);
 			}
 		});
 		return view;
@@ -84,7 +84,7 @@ public class ISquareFragment extends BaseListFragment {
 		SquareItem item = (SquareItem) adapter.getItem(position);
 		Intent intent = new Intent(getActivity(), I_SquareDetail.class);
 		intent.putExtra("squareitem", item);
-		startActivity(intent);
+		getActivity().startActivity(intent);
 	}
 
 	@Override

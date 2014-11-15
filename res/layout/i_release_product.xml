@@ -3,6 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="名称:" />
+
+        <EditText
+            android:id="@+id/i_release_product_name"
+            style="@style/form_right"
+            android:hint="输入商品名称(必填)" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="电话:" />
+
+        <EditText
+            android:id="@+id/i_release_product_phone"
+            style="@style/form_right"
+            android:hint="输入您的联系电话(必填)"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="标签:" />
+
+        <EditText
+            android:id="@+id/i_release_product_tags"
+            style="@style/form_right"
+            android:hint="多个标签用逗号隔开" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/single_view" >
+
+        <TextView
+            style="@style/form_left"
+            android:text="简介:" />
+
+        <EditText
+            android:id="@+id/i_release_product_desc"
+            style="@style/form_right"
+            android:hint="输入商品简介" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/i_release_product_upload_image"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" >
+    </FrameLayout>
 
 </LinearLayout>

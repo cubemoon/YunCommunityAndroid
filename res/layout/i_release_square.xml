@@ -15,10 +15,10 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray" />
 
-    <com.oldfeel.view.HorizontalListView
-        android:id="@+id/i_release_square_image_list"
+    <FrameLayout
+        android:id="@+id/i_release_square_upload_image"
         android:layout_width="match_parent"
         android:layout_height="80dp" >
-    </com.oldfeel.view.HorizontalListView>
+    </FrameLayout>
 
 </LinearLayout>

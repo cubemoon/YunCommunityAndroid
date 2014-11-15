@@ -11,8 +11,8 @@ import android.widget.ImageView;
 
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
+import com.yuncommunity.base.UploadImagesFragment;
 import com.yuncommunity.item.UploadImageItem;
-import com.yuncommunity.theme.ios.I_ReleaseSquare;
 
 /**
  * 
@@ -21,9 +21,12 @@ import com.yuncommunity.theme.ios.I_ReleaseSquare;
  *         Create on: 2014年11月13日
  */
 public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
+	private UploadImagesFragment uploadImagesFragment;
 
-	public UploadImageAdapter(Context context) {
+	public UploadImageAdapter(Context context,
+			UploadImagesFragment uploadImagesFragment) {
 		super(context);
+		this.uploadImagesFragment = uploadImagesFragment;
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
 
 				@Override
 				public void onClick(View v) {
-					((I_ReleaseSquare) context).getImage();
+					uploadImagesFragment.getImage();
 				}
 			});
 		} else {

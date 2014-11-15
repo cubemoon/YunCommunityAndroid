@@ -6,7 +6,6 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
-import com.yuncommunity.R;
 import com.yuncommunity.adapter.PersonAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
@@ -42,10 +41,12 @@ public class IPersonFragment extends ListFragment {
 		if (position == 0) {
 			long userid = LoginInfo.getInstance(getActivity()).getUserId();
 			if (userid == 0) {
-				startActivity(new Intent(getActivity(), I_LoginActivity.class));
+				getActivity().startActivity(
+						new Intent(getActivity(), I_LoginActivity.class));
 			} else {
-				startActivity(new Intent(getActivity(), I_PersonInfo.class)
-						.putExtra("targetid", userid));
+				getActivity().startActivity(
+						new Intent(getActivity(), I_PersonInfo.class).putExtra(
+								"targetid", userid));
 			}
 			return;
 		}
@@ -54,7 +55,7 @@ public class IPersonFragment extends ListFragment {
 			updateName();
 			Intent intent = new Intent(getActivity(), I_LoginActivity.class);
 			intent.putExtra("cancelLogin", true);
-			startActivity(intent);
+			getActivity().startActivity(intent);
 			getActivity().finish();
 		}
 		if (!UpdateUtils.isLogin(getActivity())) {
@@ -62,15 +63,9 @@ public class IPersonFragment extends ListFragment {
 		}
 		FuncItem item = personAdapter.getItem(position);
 		if (item.getTheClass() != null) {
-			startActivity(new Intent(getActivity(), item.getTheClass()));
+			getActivity().startActivity(
+					new Intent(getActivity(), item.getTheClass()));
 		}
-	}
-
-	@Override
-	public void startActivity(Intent intent) {
-		super.startActivity(intent);
-		getActivity().overridePendingTransition(R.anim.slide_in_right,
-				R.anim.slide_out_left);
 	}
 
 	public void updateName() {

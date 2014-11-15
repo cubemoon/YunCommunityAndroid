@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.oldfeel.view.HorizontalListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/upload_image_list"
+    android:layout_width="match_parent"
+    android:layout_height="80dp" >
+
+</com.oldfeel.view.HorizontalListView>

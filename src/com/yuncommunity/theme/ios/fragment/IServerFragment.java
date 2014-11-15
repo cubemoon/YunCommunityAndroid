@@ -36,7 +36,8 @@ public class IServerFragment extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		TagItem item = tagAdapter.getItem(position);
-		startActivity(new Intent(getActivity(), I_ProductList.class).putExtra(
-				"item", item));
+		getActivity().startActivity(
+				new Intent(getActivity(), I_ProductList.class).putExtra("item",
+						item));
 	}
 }
