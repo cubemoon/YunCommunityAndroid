@@ -9,14 +9,14 @@ import com.oldfeel.base.BaseItem;
  * 
  */
 public class TagItem extends BaseItem {
-	public static final long TAGID_PROPERTY = 5; // 物业中心 的标签id
-	public static final long TAGID_REPAIR = 6; // 维修的标签id
-	public static final long TAGID_EXPRESS = 7; // 快递的标签id
-	public static final long TAGID_WASHING = 8; // 洗衣的标签id
-	public static final long TAGID_TAKEOUT = 9; // 外卖
-	public static final long TAGID_LIFE_DISTRIBUTION = 10; // 生活配送
-	public static final long TAGID_FRUITS = 11; // 水果
-	public static final long TAGID_HOUSEKEEPING_SERVICE = 12; // 家政服务
+	public static final long TAGID_PROPERTY = 1; // 物业中心 的标签id
+	public static final long TAGID_REPAIR = 2; // 维修的标签id
+	public static final long TAGID_EXPRESS = 3; // 快递的标签id
+	public static final long TAGID_WASHING = 4; // 洗衣的标签id
+	public static final long TAGID_TAKEOUT = 5; // 外卖
+	public static final long TAGID_LIFE_DISTRIBUTION = 6; // 生活配送
+	public static final long TAGID_FRUITS = 7; // 水果
+	public static final long TAGID_HOUSEKEEPING_SERVICE = 8; // 家政服务
 	private long Userid;
 	private long Informationid;
 	private long Tagid;
