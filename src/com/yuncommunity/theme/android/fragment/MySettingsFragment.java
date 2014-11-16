@@ -1,8 +1,6 @@
 package com.yuncommunity.theme.android.fragment;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -13,13 +11,10 @@ import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
 import com.oldfeel.base.BaseActivity;
-import com.oldfeel.utils.DialogUtil;
-import com.oldfeel.utils.JsonUtil;
-import com.oldfeel.utils.NetUtil;
-import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.VersionUtil;
+import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
-import com.yuncommunity.conf.JsonApi;
+import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.ChangeCommunity;
 import com.yuncommunity.theme.android.SwitchTheme;
@@ -141,42 +136,15 @@ public class MySettingsFragment extends PreferenceFragment {
 	 * 检查版本
 	 */
 	protected void checkVersion() {
-		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.CHECK_VERSION);
-		netUtil.setParams("communityid", LoginInfo.getInstance(getActivity())
-				.getCommunityInfo().getCommunityid());
-		netUtil.postRequest("正在检查版本", new RequestStringListener() {
+		WVersionManager versionManager = new WVersionManager(getActivity());
 
-			@Override
-			public void onComplete(String result) {
-				if (JsonUtil.isSuccess(result)) {
-					if (VersionUtil.isNeedUpdate(getActivity(), result)) {
-						DialogUtil.getInstance().showSimpleDialog(
-								getActivity(),
-								"检测到新版本" + VersionUtil.getNewVersion(result)
-										+ ",是否更新?", new OnClickListener() {
+		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
+		versionManager.setUpdateNowLabel("现在更新");
+		versionManager.setRemindMeLaterLabel("稍后更新");
+		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
+		versionManager.setReminderTimer(1);
 
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										updateVersion();
-									}
-								});
-					} else {
-						DialogUtil.getInstance().showSimpleDialog(
-								getActivity(), "已经是最新版本,不需要更新");
-					}
-				} else {
-					DialogUtil.getInstance().showToast(getActivity(),
-							"检查失败," + JsonUtil.getData(result));
-				}
-			}
-		});
-	}
-
-	/**
-	 * 更新版本
-	 */
-	public void updateVersion() {
+		versionManager.checkVersion();
 
 	}
 

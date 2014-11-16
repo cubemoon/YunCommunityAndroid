@@ -11,9 +11,14 @@ import android.os.Environment;
  */
 public class Constant {
 	/** 接口根目录 */
-	public static final String ROOT_URL = "http://192.168.0.104:8080/v1/client/";// 我的电脑
+	// 我的电脑
+	public static final String ROOT_URL = "http://192.168.0.104:8080/v1/client/";
+	// 服务器
 	// public static final String ROOT_URL =
-	// "http://yuncommunity.com/v1/client/";// 服务器
+	// "http://yuncommunity.com/v1/client/";
+
+	/** 检查更新 */
+	public static final String CHECK_VERSION = ROOT_URL + JsonApi.CHECK_VERSION;
 	/** SharedPreferences用到的应用名称 */
 	public static final String APP_NAME = "yuncommunity";
 	/** 加密解密用到的key */

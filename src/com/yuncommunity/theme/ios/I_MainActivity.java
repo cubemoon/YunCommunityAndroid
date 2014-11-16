@@ -12,6 +12,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import com.oldfeel.base.BasePagerAdapter;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.NetUtil;
+import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -55,6 +56,19 @@ public class I_MainActivity extends I_BaseActivity {
 		} else {
 			setTitle(LoginInfo.getInstance(this).getCommunityInfo().getName());
 		}
+		checkVersion();
+	}
+
+	private void checkVersion() {
+		WVersionManager versionManager = new WVersionManager(this);
+
+		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
+		versionManager.setUpdateNowLabel("现在更新");
+		versionManager.setRemindMeLaterLabel("稍后更新");
+		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
+		versionManager.setReminderTimer(1);
+
+		versionManager.checkVersion();
 	}
 
 	@Override

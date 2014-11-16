@@ -21,6 +21,7 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
+import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.adapter.DrawerListAdapter;
 import com.yuncommunity.conf.Constant;
@@ -91,6 +92,19 @@ public class MainActivity extends BaseActivity {
 		updatePersonInfo();
 
 		initCommunity();
+		checkVersion();
+	}
+
+	private void checkVersion() {
+		WVersionManager versionManager = new WVersionManager(this);
+
+		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
+		versionManager.setUpdateNowLabel("现在更新");
+		versionManager.setRemindMeLaterLabel("稍后更新");
+		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
+		versionManager.setReminderTimer(1);
+
+		versionManager.checkVersion();
 	}
 
 	private void initCommunity() {
