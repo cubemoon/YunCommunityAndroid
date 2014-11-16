@@ -1,6 +1,8 @@
 package com.yuncommunity.base;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.json.JSONObject;
 
@@ -8,9 +10,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +37,6 @@ import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.interfaces.UploadImagesListener;
-import com.yuncommunity.item.UploadImageItem;
 
 /**
  * 上传图片的fragment的基类
@@ -43,6 +46,8 @@ import com.yuncommunity.item.UploadImageItem;
  *         Create on: 2014年11月15日
  */
 public class UploadImagesFragment extends BaseFragment {
+	protected static final int COMP_OK = 1; // 压缩完成
+	protected static final int COMP_FAIL = 2; // 压缩失败
 	private HorizontalListView hlvImages;
 	private UploadImageAdapter imageAdapter;
 	private File protraitFile;
@@ -50,6 +55,8 @@ public class UploadImagesFragment extends BaseFragment {
 	private boolean isDestory;
 	private UploadImagesListener uploadImageListener;
 	private String uploadImages;
+	private Uri origUri;
+	private int degree;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -126,7 +133,7 @@ public class UploadImagesFragment extends BaseFragment {
 		// 裁剪头像的绝对路径
 		String protraitPath = Constant.FILE_SAVEPATH + "/" + cropFileName;
 		protraitFile = new File(protraitPath);
-		Uri origUri = Uri.fromFile(protraitFile);
+		origUri = Uri.fromFile(protraitFile);
 		return origUri;
 	}
 
@@ -182,13 +189,13 @@ public class UploadImagesFragment extends BaseFragment {
 			return;
 		}
 		if (imageAdapter.getCount() > 1) {
-			UploadImageItem item = imageAdapter.getItem(0);
+			File file = imageAdapter.getItem(0);
 			imageAdapter.remove(0);
-			if (item.getFile() == null || item.getFile().length() == 0) {
+			if (file == null || file.length() == 0) {
 				uploadImage(uptoken);
 				return;
 			}
-			uploadManager.put(item.getFile(), item.getKey(), uptoken,
+			uploadManager.put(file, file.getName(), uptoken,
 					new UpCompletionHandler() {
 
 						@Override
@@ -222,32 +229,63 @@ public class UploadImagesFragment extends BaseFragment {
 
 		switch (requestCode) {
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYCAMERA:
-			imageAdapter.add(protraitFile, protraitFile.getName());
+			// 有的相机拍照后图片旋转,计算出旋转角度
+			degree = ImageUtil
+					.readPictureDegree(protraitFile.getAbsolutePath());
+			addImageToAdapter(origUri);
 			break;
 		case ImageUtil.REQUEST_CODE_GETIMAGE_BYSDCARD:
-			Uri uri = data.getData();
-			String path = ImageUtil.getAbsolutePathFromNoStandardUri(uri);
-			if (StringUtil.isEmpty(path)) {
-				path = ImageUtil.getAbsoluteImagePath(getActivity(), uri);
-			}
-			if (StringUtil.isEmpty(path)) {
-				path = ImageUtil.getImagePath(getActivity(), uri);
-			}
+			// 从相册选择的图片不旋转
+			degree = 0;
 			initImageTemp();
-			if (!StringUtil.isEmpty(path)) {
-				File file = new File(path);
-				if (file.length() != 0) {
-					imageAdapter.add(file, protraitFile.getName());
-				} else {
-					showToast("加载图片失败,可能是因为媒体库数据没有更新");
-				}
-			} else {
-				showToast("加载图片失败");
-			}
+			addImageToAdapter(data.getData());
 			break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
+
+	private void addImageToAdapter(final Uri uri) {
+		DialogUtil.getInstance().showPd(getActivity(), "正在压缩图片...");
+		new Thread() {
+			public void run() {
+				try {
+					Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+							getActivity().getContentResolver(), uri);
+					if (degree != 0) {
+						bitmap = ImageUtil.rotaingImageView(degree, bitmap);
+					}
+					ImageUtil.compAndSaveImage(getActivity(),
+							protraitFile.getAbsolutePath(), bitmap);
+					handler.sendEmptyMessage(COMP_OK);
+				} catch (FileNotFoundException e) {
+					handler.sendEmptyMessage(COMP_FAIL);
+					e.printStackTrace();
+				} catch (IOException e) {
+					handler.sendEmptyMessage(COMP_FAIL);
+					e.printStackTrace();
+				}
+			};
+		}.start();
+	}
+
+	/**
+	 * 压缩图片
+	 */
+	Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			DialogUtil.getInstance().cancelPd();
+			switch (msg.what) {
+			case COMP_OK:
+				imageAdapter.add(protraitFile);
+				break;
+			case COMP_FAIL:
+				showToast("压缩失败");
+				break;
+			default:
+				break;
+			}
+		};
+	};
 
 	@Override
 	public void onDestroy() {

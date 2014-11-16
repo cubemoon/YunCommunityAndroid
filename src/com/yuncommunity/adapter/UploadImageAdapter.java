@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.yuncommunity.R;
 import com.yuncommunity.base.UploadImagesFragment;
-import com.yuncommunity.item.UploadImageItem;
 
 /**
  * 
@@ -20,7 +19,7 @@ import com.yuncommunity.item.UploadImageItem;
  * 
  *         Create on: 2014年11月13日
  */
-public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
+public class UploadImageAdapter extends BaseBaseAdapter<File> {
 	private UploadImagesFragment uploadImagesFragment;
 
 	public UploadImageAdapter(Context context,
@@ -51,8 +50,8 @@ public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
 				}
 			});
 		} else {
-			imageLoader.displayImage(Uri.fromFile(getItem(position).getFile())
-					.toString(), ivImage);
+			imageLoader.displayImage(
+					Uri.fromFile(getItem(position)).toString(), ivImage);
 		}
 		return view;
 	}
@@ -60,7 +59,7 @@ public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
 	public String getUploadImages() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < getCount() - 1; i++) {
-			String key = getItem(i).getKey();
+			String key = getItem(i).getName();
 			if (i == 0) {
 				sb.append(key);
 			} else {
@@ -68,13 +67,6 @@ public class UploadImageAdapter extends BaseBaseAdapter<UploadImageItem> {
 			}
 		}
 		return sb.toString();
-	}
-
-	public void add(File file, String name) {
-		UploadImageItem item = new UploadImageItem();
-		item.setFile(file);
-		item.setKey(name);
-		add(item);
 	}
 
 }
