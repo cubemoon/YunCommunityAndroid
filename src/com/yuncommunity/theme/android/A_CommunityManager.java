@@ -25,7 +25,7 @@ import com.yuncommunity.item.CommunityItem;
  * @author oldfeel
  * 
  */
-public class CommunityManager extends BaseActivity {
+public class A_CommunityManager extends BaseActivity {
 	private static final int REQUEST_EDIT = 0;
 	private ImageView ivImage;
 	private TextView tvDesc;
@@ -41,7 +41,7 @@ public class CommunityManager extends BaseActivity {
 	}
 
 	private void getData() {
-		NetUtil netUtil = new NetUtil(CommunityManager.this,
+		NetUtil netUtil = new NetUtil(A_CommunityManager.this,
 				JsonApi.COMMUNITY_INTRODUCTION);
 		netUtil.setParams("communityid",
 				LoginInfo.getInstance(getApplicationContext())
@@ -112,7 +112,7 @@ public class CommunityManager extends BaseActivity {
 					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
-		Intent intent = new Intent(CommunityManager.this, CommunityEdit.class);
+		Intent intent = new Intent(A_CommunityManager.this, A_CommunityEdit.class);
 		intent.putExtra("item", item);
 		startActivityForResult(intent, REQUEST_EDIT);
 	}
@@ -128,9 +128,9 @@ public class CommunityManager extends BaseActivity {
 		}
 		Intent intent = new Intent();
 		if (Utils.isChinese()) {
-			intent.setClass(CommunityManager.this, CommunityBaiduMap.class);
+			intent.setClass(A_CommunityManager.this, A_CommunityBaiduMap.class);
 		} else {
-			intent.setClass(CommunityManager.this, CommunityGoogleMap.class);
+			intent.setClass(A_CommunityManager.this, A_CommunityGoogleMap.class);
 		}
 		intent.putExtra("item", item);
 		startActivity(intent);
@@ -145,8 +145,8 @@ public class CommunityManager extends BaseActivity {
 					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
-		Intent intent = new Intent(CommunityManager.this,
-				PersonHomeActivity.class);
+		Intent intent = new Intent(A_CommunityManager.this,
+				A_PersonHomeActivity.class);
 		intent.putExtra("targetid", this.item.getUserid());
 		startActivity(intent);
 	}

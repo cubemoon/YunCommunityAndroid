@@ -20,7 +20,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class ChangePassword extends BaseActivity implements OnClickListener {
+public class A_ChangePassword extends BaseActivity implements OnClickListener {
 	private EditText etPassword, etPassword1, etPassword2;
 	private Button btnSubmit;
 
@@ -79,7 +79,7 @@ public class ChangePassword extends BaseActivity implements OnClickListener {
 		}
 		LoginInfo.getInstance(getApplicationContext()).saveRealPassword(
 				getString(etPassword1));
-		UpdateUtils.update(ChangePassword.this,
+		UpdateUtils.update(A_ChangePassword.this,
 				String.valueOf(getText(R.string.changing_password)),
 				new RequestStringListener() {
 

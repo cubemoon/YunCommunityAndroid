@@ -34,7 +34,7 @@ import com.yuncommunity.R;
  * @author oldfeel
  * 
  */
-public class SelectAddressBaiduMap extends BaiduMapActivity implements
+public class A_SelectAddressBaiduMap extends BaiduMapActivity implements
 		OnClickListener {
 	private EditText etContent;
 	private Button btnUp, btnDown, btnRight, btnLeft;
@@ -145,7 +145,7 @@ public class SelectAddressBaiduMap extends BaiduMapActivity implements
 	 * 显示帮助
 	 */
 	private void showHelp() {
-		new AlertDialog.Builder(SelectAddressBaiduMap.this)
+		new AlertDialog.Builder(A_SelectAddressBaiduMap.this)
 				.setTitle(String.valueOf(getText(R.string.help)))
 				.setMessage(getText(R.string.map_help_details))
 				.setPositiveButton(getText(R.string.confirm), null).show();

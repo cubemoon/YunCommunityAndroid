@@ -42,9 +42,9 @@ import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.list.InformationListFragment;
-import com.yuncommunity.theme.android.ChatActivity;
-import com.yuncommunity.theme.android.UserList;
-import com.yuncommunity.theme.android.UserReleaseList;
+import com.yuncommunity.theme.android.A_ChatActivity;
+import com.yuncommunity.theme.android.A_UserList;
+import com.yuncommunity.theme.android.A_UserReleaseList;
 import com.yuncommunity.theme.android.fragment.HeaderFragment;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
 import com.yuncommunity.utils.UpdateUtils;
@@ -381,7 +381,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示该用户关注的用户列表
 	 */
 	private void showFollowings() {
-		Intent intent = new Intent(I_PersonInfo.this, UserList.class);
+		Intent intent = new Intent(I_PersonInfo.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
 		startActivity(intent);
@@ -392,7 +392,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 */
 	private void showMessage() {
 		Intent intent = new Intent();
-		intent.setClass(I_PersonInfo.this, ChatActivity.class);
+		intent.setClass(I_PersonInfo.this, A_ChatActivity.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
@@ -401,7 +401,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示关注该用户的用户列表
 	 */
 	private void showFans() {
-		Intent intent = new Intent(I_PersonInfo.this, UserList.class);
+		Intent intent = new Intent(I_PersonInfo.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FANS);
 		startActivity(intent);
@@ -411,7 +411,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示该用户发出的服务
 	 */
 	private void showServer() {
-		Intent intent = new Intent(I_PersonInfo.this, UserReleaseList.class);
+		Intent intent = new Intent(I_PersonInfo.this, A_UserReleaseList.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}

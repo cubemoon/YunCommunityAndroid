@@ -3,12 +3,12 @@ package com.yuncommunity.theme.android;
 import com.oldfeel.base.GoogleMapActivity;
 
 /**
- * 选择地址
+ * 信息地图
  * 
  * @author oldfeel
  * 
  *         Create on: 2014年7月28日
  */
-public class SelectAddressGoogleMap extends GoogleMapActivity {
+public class A_InformationGoogleMap extends GoogleMapActivity {
 
 }

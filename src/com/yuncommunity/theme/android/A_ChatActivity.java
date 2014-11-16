@@ -6,15 +6,16 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.list.InformationListFragment;
+import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.list.ChatListFragment;
 
 /**
- * 用户发布的信息列表
+ * 发送私信/聊天界面
  * 
  * @author oldfeel
  * 
  */
-public class UserReleaseList extends BaseActivity {
+public class A_ChatActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,15 +23,15 @@ public class UserReleaseList extends BaseActivity {
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						InformationListFragment.newInstance(getNetUtil()))
-				.commit();
+						ChatListFragment.newInstance(getNetUtil())).commit();
 	}
 
 	private NetUtil getNetUtil() {
-		long userid = getIntent().getLongExtra("targetid", -1);
-		NetUtil netUtil = new NetUtil(UserReleaseList.this,
-				JsonApi.USER_RELEASE_LIST);
-		netUtil.setParams("userid", userid);
+		long targetid = getIntent().getLongExtra("targetid", -1);
+		NetUtil netUtil = new NetUtil(A_ChatActivity.this, JsonApi.CHAT_HISTORY);
+		netUtil.setParams("userid",
+				LoginInfo.getInstance(getApplicationContext()).getUserId());
+		netUtil.setParams("targetid", targetid);
 		return netUtil;
 	}
 }

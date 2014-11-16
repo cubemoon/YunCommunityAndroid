@@ -12,7 +12,7 @@ import com.yuncommunity.theme.android.fragment.MySettingsFragment;
  * @author oldfeel
  * 
  */
-public class MySettingsActivity extends BaseActivity {
+public class A_MySettingsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

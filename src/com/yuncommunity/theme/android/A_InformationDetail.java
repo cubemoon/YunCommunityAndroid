@@ -50,7 +50,7 @@ import com.yuncommunity.theme.android.fragment.InformationMedia;
  * @author oldfeel
  * 
  */
-public class InformationDetail extends BaseActivity implements OnClickListener {
+public class A_InformationDetail extends BaseActivity implements OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;
 	private ImageButton ibCall, ibMap;
@@ -104,7 +104,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private NetUtil getCommentListNetUtil() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("userid",
@@ -113,7 +113,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void getDetail() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_DETAIL);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -232,14 +232,14 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	 * 产品列表
 	 */
 	private void productList() {
-		Intent intent = new Intent(InformationDetail.this, ProductList.class);
+		Intent intent = new Intent(A_InformationDetail.this, A_ProductList.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
 
 	private void edit() {
-		Intent intent = new Intent(InformationDetail.this,
-				InformationReleaseActivity.class);
+		Intent intent = new Intent(A_InformationDetail.this,
+				A_InformationReleaseActivity.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
@@ -248,15 +248,15 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	 * 查看关注者
 	 */
 	private void seeFollowings() {
-		Intent intent = new Intent(InformationDetail.this, UserList.class);
+		Intent intent = new Intent(A_InformationDetail.this, A_UserList.class);
 		intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
 		intent.putExtra("informationid", item.getInformationid());
 		startActivity(intent);
 	}
 
 	private void seeAuthor() {
-		Intent intent = new Intent(InformationDetail.this,
-				PersonHomeActivity.class);
+		Intent intent = new Intent(A_InformationDetail.this,
+				A_PersonHomeActivity.class);
 		intent.putExtra("targetid", item.getUserid());
 		startActivity(intent);
 	}
@@ -265,7 +265,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 		final EditText etContent = new EditText(getApplicationContext());
 		etContent.setHeight(72);
 		etContent.setHint(getText(R.string.say_something));
-		new AlertDialog.Builder(InformationDetail.this)
+		new AlertDialog.Builder(A_InformationDetail.this)
 				.setTitle(getText(R.string.report))
 				.setView(etContent)
 				.setPositiveButton(getText(R.string.confirm),
@@ -282,7 +282,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	protected void report(String string) {
-		NetUtil netUtil = new NetUtil(InformationDetail.this, JsonApi.REPORT);
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this, JsonApi.REPORT);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
@@ -320,9 +320,9 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	private void showMap() {
 		Intent intent = new Intent();
 		if (Utils.isChinese()) {
-			intent.setClass(InformationDetail.this, InformationBaiduMap.class);
+			intent.setClass(A_InformationDetail.this, A_InformationBaiduMap.class);
 		} else {
-			intent.setClass(InformationDetail.this, InformationGoogleMap.class);
+			intent.setClass(A_InformationDetail.this, A_InformationGoogleMap.class);
 		}
 		intent.putExtra("item", item);
 		startActivity(intent);
@@ -332,7 +332,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	 * 评价/修改评价
 	 */
 	private void evaluation() {
-		View view = LayoutInflater.from(InformationDetail.this).inflate(
+		View view = LayoutInflater.from(A_InformationDetail.this).inflate(
 				R.layout.evaluation_dialog, null);
 		final RatingBar rbEvaluationScore = (RatingBar) view
 				.findViewById(R.id.evaluation_score);
@@ -340,7 +340,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 				.findViewById(R.id.evaluation_content);
 		final EditText etEvaluationTag = (EditText) view
 				.findViewById(R.id.evaluation_tag);
-		Builder builder = new AlertDialog.Builder(InformationDetail.this);
+		Builder builder = new AlertDialog.Builder(A_InformationDetail.this);
 		builder.setView(view);
 		builder.setPositiveButton(getText(R.string.confirm),
 				new DialogInterface.OnClickListener() {
@@ -380,7 +380,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 
 	protected void submitEvaluation(RatingBar rbEvaluationScore,
 			EditText etEvaluationTag, EditText etEvaluationContent) {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_COMMENT);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -405,7 +405,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	protected void deleteEvaluation() {
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -432,7 +432,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 			followerCount--;
 		}
 		supportInvalidateOptionsMenu();
-		NetUtil netUtil = new NetUtil(InformationDetail.this,
+		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_FOLLOWING);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -452,7 +452,7 @@ public class InformationDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void call() {
-		DialogUtil.getInstance().showSimpleDialog(InformationDetail.this,
+		DialogUtil.getInstance().showSimpleDialog(A_InformationDetail.this,
 				getText(R.string.call) + "?\n" + item.getPhone(),
 				new DialogInterface.OnClickListener() {
 

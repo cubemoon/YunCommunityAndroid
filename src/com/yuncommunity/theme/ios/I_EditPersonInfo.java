@@ -16,7 +16,7 @@ import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.PersonHomeActivity;
+import com.yuncommunity.theme.android.A_PersonHomeActivity;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
 import com.yuncommunity.utils.UpdateUtils;
 
@@ -95,7 +95,7 @@ public class I_EditPersonInfo extends I_BaseActivity implements OnClickListener 
 						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.updated_personal_details)));
-							setResult(PersonHomeActivity.EDIT_PERSON_INFO);
+							setResult(A_PersonHomeActivity.EDIT_PERSON_INFO);
 							finish();
 						} else {
 							showToast(getText(R.string.failed_update_personal_details)

@@ -16,8 +16,8 @@ import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.ChangeCommunity;
-import com.yuncommunity.theme.android.SwitchTheme;
+import com.yuncommunity.theme.android.A_ChangeCommunity;
+import com.yuncommunity.theme.android.A_SwitchTheme;
 import com.yuncommunity.utils.UpdateUtils;
 
 /**
@@ -69,7 +69,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						((BaseActivity) getActivity())
-								.openActivity(ChangeCommunity.class);
+								.openActivity(A_ChangeCommunity.class);
 						return false;
 					}
 				});
@@ -88,7 +88,7 @@ public class MySettingsFragment extends PreferenceFragment {
 					@Override
 					public boolean onPreferenceClick(Preference preference) {
 						((BaseActivity) getActivity())
-								.openActivity(SwitchTheme.class);
+								.openActivity(A_SwitchTheme.class);
 						return false;
 					}
 				});

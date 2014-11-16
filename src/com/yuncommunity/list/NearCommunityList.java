@@ -7,7 +7,7 @@ import com.yuncommunity.adapter.NearCommunityAdapter;
 import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
-import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.theme.android.A_MainActivity;
 import com.yuncommunity.utils.UpdateUtils;
 
 /**
@@ -29,7 +29,7 @@ public class NearCommunityList extends CustomBaseListFragment {
 		CommunityItem communityItem = (CommunityItem) adapter.getItem(position);
 		LoginInfo.getInstance(getActivity()).saveCommunityInfo(communityItem);
 		UpdateUtils.update(getActivity());
-		Intent intent = getThemeIntent(MainActivity.class);
+		Intent intent = getThemeIntent(A_MainActivity.class);
 		intent.putExtra("communityitem", communityItem);
 		startActivity(intent);
 		getActivity().finish();

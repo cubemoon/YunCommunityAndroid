@@ -25,7 +25,7 @@ import com.yuncommunity.list.NearCommunityList;
  * 
  *         Create on: 2014年10月22日
  */
-public class ChangeCommunity extends BaseActivity {
+public class A_ChangeCommunity extends BaseActivity {
 	private EditText etKey;
 	private ImageButton ibSearch;
 	private double lat, lon;
@@ -65,8 +65,8 @@ public class ChangeCommunity extends BaseActivity {
 
 			@Override
 			public void location(double lat, double lon) {
-				ChangeCommunity.this.lat = lat;
-				ChangeCommunity.this.lon = lon;
+				A_ChangeCommunity.this.lat = lat;
+				A_ChangeCommunity.this.lon = lon;
 				getNearCommunityList("");
 			}
 		});
@@ -76,7 +76,7 @@ public class ChangeCommunity extends BaseActivity {
 	 * 获取附近小区列表
 	 */
 	protected void getNearCommunityList(String key) {
-		NetUtil netUtil = new NetUtil(ChangeCommunity.this,
+		NetUtil netUtil = new NetUtil(A_ChangeCommunity.this,
 				JsonApi.NEAR_COMMUNITY_LIST);
 		netUtil.setParams("lat", lat);
 		netUtil.setParams("lon", lon);

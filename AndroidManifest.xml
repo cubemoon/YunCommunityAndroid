@@ -60,62 +60,62 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.yuncommunity.theme.android.MainActivity"
+            android:name="com.yuncommunity.theme.android.A_MainActivity"
             android:launchMode="singleTask" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.LoginRegisterActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_LoginRegisterActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.CollapseActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_CollapseActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ForgetPassword" >
+        <activity android:name="com.yuncommunity.theme.android.A_ForgetPassword" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.InformationReleaseActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_InformationReleaseActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.SearchActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_SearchActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.PersonHomeActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_PersonHomeActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.FeedbackActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_FeedbackActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.MySettingsActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_MySettingsActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.InformationDetail" >
+        <activity android:name="com.yuncommunity.theme.android.A_InformationDetail" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ChatActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_ChatActivity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.UserReleaseList" >
+        <activity android:name="com.yuncommunity.theme.android.A_UserReleaseList" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.UserList" >
+        <activity android:name="com.yuncommunity.theme.android.A_UserList" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.EditPersonInfo" >
+        <activity android:name="com.yuncommunity.theme.android.A_EditPersonInfo" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ChangePassword" >
+        <activity android:name="com.yuncommunity.theme.android.A_ChangePassword" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ProductList" >
+        <activity android:name="com.yuncommunity.theme.android.A_ProductList" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.CommunityManager" >
+        <activity android:name="com.yuncommunity.theme.android.A_CommunityManager" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.CommunityBaiduMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_CommunityBaiduMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.CommunityEdit" >
+        <activity android:name="com.yuncommunity.theme.android.A_CommunityEdit" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.SelectAddressBaiduMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_SelectAddressBaiduMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.InformationBaiduMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_InformationBaiduMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ActivityDetail" >
+        <activity android:name="com.yuncommunity.theme.android.A_ActivityDetail" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ActivitySignUps" >
+        <activity android:name="com.yuncommunity.theme.android.A_ActivitySignUps" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.CommunityGoogleMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_CommunityGoogleMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.InformationGoogleMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_InformationGoogleMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.SelectAddressGoogleMap" >
+        <activity android:name="com.yuncommunity.theme.android.A_SelectAddressGoogleMap" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.ChangeCommunity" >
+        <activity android:name="com.yuncommunity.theme.android.A_ChangeCommunity" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.SwitchTheme" >
+        <activity android:name="com.yuncommunity.theme.android.A_SwitchTheme" >
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.I_ActivityDetail" >
         </activity>

@@ -1,23 +1,16 @@
 package com.yuncommunity.conf;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.google.gson.Gson;
 import com.oldfeel.utils.DesUtil;
-import com.oldfeel.utils.NetUtil;
-import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.item.UserItem;
-import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.ios.I_LoginActivity;
+import com.yuncommunity.theme.android.A_MainActivity;
 import com.yuncommunity.theme.ios.I_MainActivity;
 
 /**
@@ -134,11 +127,11 @@ public class LoginInfo {
 	public Class<?> getThemeClass() {
 		String theme = getTheme();
 		if (theme.equals(context.getString(R.string.theme_android))) {
-			return MainActivity.class;
+			return A_MainActivity.class;
 		} else if (theme.equals(context.getString(R.string.theme_ios))) {
 			return I_MainActivity.class;
 		}
-		return I_MainActivity.class;
+		return A_MainActivity.class;
 	}
 
 }

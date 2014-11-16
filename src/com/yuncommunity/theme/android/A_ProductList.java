@@ -28,7 +28,7 @@ import com.yuncommunity.list.ProductListFragment;
  * @author oldfeel
  * 
  */
-public class ProductList extends BaseActivity {
+public class A_ProductList extends BaseActivity {
 	private InformationItem item;
 	private ProductListFragment fragment;
 
@@ -43,7 +43,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	private NetUtil getNetUtil() {
-		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_LIST);
+		NetUtil netUtil = new NetUtil(A_ProductList.this, JsonApi.PRODUCT_LIST);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
@@ -73,7 +73,7 @@ public class ProductList extends BaseActivity {
 	 * 添加产品
 	 */
 	private void addProduct() {
-		View view = LayoutInflater.from(ProductList.this).inflate(
+		View view = LayoutInflater.from(A_ProductList.this).inflate(
 				R.layout.product_add, null);
 		final EditText etName = (EditText) view
 				.findViewById(R.id.product_add_name);
@@ -81,7 +81,7 @@ public class ProductList extends BaseActivity {
 				.findViewById(R.id.product_add_desc);
 		ImageView ivImage = (ImageView) view
 				.findViewById(R.id.product_add_image);
-		new AlertDialog.Builder(ProductList.this)
+		new AlertDialog.Builder(A_ProductList.this)
 				.setView(view)
 				.setTitle(getText(R.string.add_product))
 				.setPositiveButton(getText(R.string.confirm),
@@ -96,7 +96,7 @@ public class ProductList extends BaseActivity {
 	}
 
 	protected void submitAdd(EditText etName, EditText etDesc) {
-		NetUtil netUtil = new NetUtil(ProductList.this, JsonApi.PRODUCT_ADD);
+		NetUtil netUtil = new NetUtil(A_ProductList.this, JsonApi.PRODUCT_ADD);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("name", getString(etName));
 		netUtil.setParams("description", getString(etDesc));

@@ -27,7 +27,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class EditPersonInfo extends BaseActivity implements OnClickListener {
+public class A_EditPersonInfo extends BaseActivity implements OnClickListener {
 	private EditText etName, etIntro, etPhone, etEmail, etHouseNumber;
 	private TextView tvBirthday;
 	private Spinner spPermission;
@@ -94,7 +94,7 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 		loginInfo.getUserInfo().setBirthday(super.getString(tvBirthday));
 		loginInfo.getUserInfo().setPermission(
 				spPermission.getSelectedItemPosition());
-		UpdateUtils.update(EditPersonInfo.this,
+		UpdateUtils.update(A_EditPersonInfo.this,
 				String.valueOf(getText(R.string.updating_personal_details)),
 				new RequestStringListener() {
 
@@ -103,7 +103,7 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 						if (JsonUtil.isSuccess(result)) {
 							showToast(String
 									.valueOf(getText(R.string.updated_personal_details)));
-							setResult(PersonHomeActivity.EDIT_PERSON_INFO);
+							setResult(A_PersonHomeActivity.EDIT_PERSON_INFO);
 							finish();
 						} else {
 							showToast(getText(R.string.failed_update_personal_details)
@@ -148,7 +148,7 @@ public class EditPersonInfo extends BaseActivity implements OnClickListener {
 				tvBirthday.setText(year + "-" + monthOfYear + "-" + dayOfMonth);
 			}
 		};
-		new DatePickerDialog(EditPersonInfo.this, dateSetListener, currentYear,
+		new DatePickerDialog(A_EditPersonInfo.this, dateSetListener, currentYear,
 				currentMonth, currentDay).show();
 	}
 }

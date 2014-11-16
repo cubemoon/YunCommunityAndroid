@@ -9,6 +9,6 @@ import com.oldfeel.base.GoogleMapActivity;
  * 
  *         Create on: 2014年7月28日
  */
-public class CommunityGoogleMap extends GoogleMapActivity {
+public class A_CommunityGoogleMap extends GoogleMapActivity {
 
 }

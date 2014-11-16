@@ -6,19 +6,15 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.item.InformationItem;
-import com.yuncommunity.list.ActivitySignUpList;
+import com.yuncommunity.list.InformationListFragment;
 
 /**
- * 活动报名者列表
+ * 用户发布的信息列表
  * 
  * @author oldfeel
  * 
- *         Create on: 2014年7月27日
  */
-public class ActivitySignUps extends BaseActivity {
-	InformationItem item;
-
+public class A_UserReleaseList extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,14 +22,15 @@ public class ActivitySignUps extends BaseActivity {
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						ActivitySignUpList.newInstance(getNetUtil())).commit();
+						InformationListFragment.newInstance(getNetUtil()))
+				.commit();
 	}
 
 	private NetUtil getNetUtil() {
-		long informationid = getIntent().getLongExtra("informationid", 0);
-		NetUtil netUtil = new NetUtil(this, JsonApi.ACTIVITY_SIGN_UP_LIST);
-		netUtil.setParams("informationid", informationid);
+		long userid = getIntent().getLongExtra("targetid", -1);
+		NetUtil netUtil = new NetUtil(A_UserReleaseList.this,
+				JsonApi.USER_RELEASE_LIST);
+		netUtil.setParams("userid", userid);
 		return netUtil;
 	}
-
 }

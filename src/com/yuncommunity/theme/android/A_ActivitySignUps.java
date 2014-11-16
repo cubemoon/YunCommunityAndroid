@@ -6,16 +6,19 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
-import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.list.ChatListFragment;
+import com.yuncommunity.item.InformationItem;
+import com.yuncommunity.list.ActivitySignUpList;
 
 /**
- * 发送私信/聊天界面
+ * 活动报名者列表
  * 
  * @author oldfeel
  * 
+ *         Create on: 2014年7月27日
  */
-public class ChatActivity extends BaseActivity {
+public class A_ActivitySignUps extends BaseActivity {
+	InformationItem item;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,15 +26,14 @@ public class ChatActivity extends BaseActivity {
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
-						ChatListFragment.newInstance(getNetUtil())).commit();
+						ActivitySignUpList.newInstance(getNetUtil())).commit();
 	}
 
 	private NetUtil getNetUtil() {
-		long targetid = getIntent().getLongExtra("targetid", -1);
-		NetUtil netUtil = new NetUtil(ChatActivity.this, JsonApi.CHAT_HISTORY);
-		netUtil.setParams("userid",
-				LoginInfo.getInstance(getApplicationContext()).getUserId());
-		netUtil.setParams("targetid", targetid);
+		long informationid = getIntent().getLongExtra("informationid", 0);
+		NetUtil netUtil = new NetUtil(this, JsonApi.ACTIVITY_SIGN_UP_LIST);
+		netUtil.setParams("informationid", informationid);
 		return netUtil;
 	}
+
 }

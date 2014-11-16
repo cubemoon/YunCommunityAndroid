@@ -54,7 +54,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class PersonHomeActivity extends BaseActivity implements OnClickListener {
+public class A_PersonHomeActivity extends BaseActivity implements OnClickListener {
 	public static final int EDIT_PERSON_INFO = 11;
 	private final static int CROP = 800;
 	private ImageView ivBg;
@@ -95,12 +95,12 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_edit:
-			Intent intent = new Intent(PersonHomeActivity.this,
-					EditPersonInfo.class);
+			Intent intent = new Intent(A_PersonHomeActivity.this,
+					A_EditPersonInfo.class);
 			startActivityForResult(intent, EDIT_PERSON_INFO);
 			break;
 		case R.id.action_change_password:
-			openActivity(ChangePassword.class);
+			openActivity(A_ChangePassword.class);
 			break;
 		default:
 			break;
@@ -112,7 +112,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 显示提醒
 	 */
 	private void initInformation() {
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this,
 				JsonApi.USER_INFORMATION_LIST);
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
@@ -125,7 +125,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 获取个人信息
 	 */
 	private void getPersonInfo() {
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this,
 				JsonApi.USER_INFO);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -197,13 +197,13 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void userNotExists() {
-		DialogUtil.getInstance().showSimpleDialog(PersonHomeActivity.this,
+		DialogUtil.getInstance().showSimpleDialog(A_PersonHomeActivity.this,
 				String.valueOf(getText(R.string.user_not_exist)),
 				new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						PersonHomeActivity.this.finish();
+						A_PersonHomeActivity.this.finish();
 					}
 				});
 	}
@@ -238,7 +238,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 编辑背景
 	 */
 	private void bgEdit() {
-		new AlertDialog.Builder(PersonHomeActivity.this)
+		new AlertDialog.Builder(A_PersonHomeActivity.this)
 				.setTitle(getText(R.string.upload_background))
 				.setItems(R.array.add_image_type,
 						new DialogInterface.OnClickListener() {
@@ -350,7 +350,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 
 		// 如果是标准Uri
 		if (StringUtil.isEmpty(thePath)) {
-			thePath = ImageUtil.getAbsoluteImagePath(PersonHomeActivity.this,
+			thePath = ImageUtil.getAbsoluteImagePath(A_PersonHomeActivity.this,
 					uri);
 		}
 		String ext = FileUtil.getFileFormat(thePath);
@@ -373,7 +373,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 		if (btnFollowing.getText().equals(getText(R.string.follow))) {
 			isFollowing = true;
 		}
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this,
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this,
 				JsonApi.USER_FOLLOWING);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -392,7 +392,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 显示该用户关注的用户列表
 	 */
 	private void showFollowings() {
-		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
+		Intent intent = new Intent(A_PersonHomeActivity.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
 		startActivity(intent);
@@ -403,7 +403,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 */
 	private void showMessage() {
 		Intent intent = new Intent();
-		intent.setClass(PersonHomeActivity.this, ChatActivity.class);
+		intent.setClass(A_PersonHomeActivity.this, A_ChatActivity.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
@@ -412,7 +412,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 显示关注该用户的用户列表
 	 */
 	private void showFans() {
-		Intent intent = new Intent(PersonHomeActivity.this, UserList.class);
+		Intent intent = new Intent(A_PersonHomeActivity.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FANS);
 		startActivity(intent);
@@ -422,8 +422,8 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 	 * 显示该用户发出的服务
 	 */
 	private void showServer() {
-		Intent intent = new Intent(PersonHomeActivity.this,
-				UserReleaseList.class);
+		Intent intent = new Intent(A_PersonHomeActivity.this,
+				A_UserReleaseList.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
@@ -469,7 +469,7 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 				+ ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(PersonHomeActivity.this, JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this, JsonApi.UPTOKEN);
 		netUtil.postRequest(String.valueOf(getText(R.string.uploading)),
 				new RequestStringListener() {
 
@@ -500,10 +500,10 @@ public class PersonHomeActivity extends BaseActivity implements OnClickListener 
 							JSONObject response) {
 						showToast("上传成功");
 						ivBg.setImageBitmap(protraitBitmap);
-						LoginInfo.getInstance(PersonHomeActivity.this)
+						LoginInfo.getInstance(A_PersonHomeActivity.this)
 								.getUserInfo()
 								.setBackground(protraitFile.getName());
-						UpdateUtils.update(PersonHomeActivity.this);
+						UpdateUtils.update(A_PersonHomeActivity.this);
 					}
 				}, null);
 	}

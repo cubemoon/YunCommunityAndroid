@@ -28,7 +28,7 @@ import com.yuncommunity.theme.ios.I_MainActivity;
  * 
  *         Create on: 2014年10月25日
  */
-public class SwitchTheme extends BaseActivity {
+public class A_SwitchTheme extends BaseActivity {
 	private ViewPager pager;
 	private ThemeFragmentPagerAdapter adapter;
 
@@ -75,7 +75,7 @@ public class SwitchTheme extends BaseActivity {
 
 				@Override
 				public void onClick(View v) {
-					((SwitchTheme) getActivity()).select(getActivity()
+					((A_SwitchTheme) getActivity()).select(getActivity()
 							.getString(nameResId));
 				}
 			});
@@ -83,7 +83,7 @@ public class SwitchTheme extends BaseActivity {
 	}
 
 	class ThemeFragmentPagerAdapter extends FragmentPagerAdapter {
-		ArrayList<ThemeItem> list = new ArrayList<SwitchTheme.ThemeItem>();
+		ArrayList<ThemeItem> list = new ArrayList<A_SwitchTheme.ThemeItem>();
 
 		public ThemeFragmentPagerAdapter(FragmentManager fm) {
 			super(fm);

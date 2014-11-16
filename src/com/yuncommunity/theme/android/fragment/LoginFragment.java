@@ -27,8 +27,8 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.ForgetPassword;
-import com.yuncommunity.theme.android.MainActivity;
+import com.yuncommunity.theme.android.A_ForgetPassword;
+import com.yuncommunity.theme.android.A_MainActivity;
 
 /**
  * 登录
@@ -106,7 +106,7 @@ public class LoginFragment extends BaseFragment {
 	}
 
 	private void forgetPassword() {
-		openActivity(ForgetPassword.class);
+		openActivity(A_ForgetPassword.class);
 	}
 
 	NetUtil netUtil;
@@ -172,7 +172,7 @@ public class LoginFragment extends BaseFragment {
 						LoginInfo.getInstance(getActivity()).saveRealPassword(
 								mPassword);
 						Intent intent = new Intent(getActivity(),
-								MainActivity.class);
+								A_MainActivity.class);
 						intent.putExtra("login", true);
 						startActivity(intent);
 						getActivity().finish();

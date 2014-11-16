@@ -17,7 +17,7 @@ import com.yuncommunity.R;
  * 
  *         Created on: 2014-1-14
  */
-public class CollapseActivity extends BaseActivity {
+public class A_CollapseActivity extends BaseActivity {
 	private Button btnRestart, btnExit;
 
 	@Override
@@ -33,7 +33,7 @@ public class CollapseActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
-						MainActivity.class);
+						A_MainActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
 				finish();

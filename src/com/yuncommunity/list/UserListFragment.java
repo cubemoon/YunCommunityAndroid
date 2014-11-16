@@ -6,7 +6,7 @@ import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.UserListAdapter;
 import com.yuncommunity.base.CustomBaseListFragment;
 import com.yuncommunity.item.UserItem;
-import com.yuncommunity.theme.android.PersonHomeActivity;
+import com.yuncommunity.theme.android.A_PersonHomeActivity;
 
 /**
  * 用户列表
@@ -25,7 +25,7 @@ public class UserListFragment extends CustomBaseListFragment {
 	@Override
 	public void onItemClick(int position) {
 		UserItem item = (UserItem) adapter.getItem(position);
-		Intent intent = new Intent(getActivity(), PersonHomeActivity.class);
+		Intent intent = new Intent(getActivity(), A_PersonHomeActivity.class);
 		intent.putExtra("userid", item.getUserid());
 		startActivity(intent);
 	}

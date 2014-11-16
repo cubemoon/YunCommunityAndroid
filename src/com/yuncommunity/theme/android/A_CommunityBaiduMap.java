@@ -17,7 +17,7 @@ import com.yuncommunity.item.CommunityItem;
  * @author oldfeel
  * 
  */
-public class CommunityBaiduMap extends BaiduMapActivity {
+public class A_CommunityBaiduMap extends BaiduMapActivity {
 	CommunityItem item;
 
 	@Override

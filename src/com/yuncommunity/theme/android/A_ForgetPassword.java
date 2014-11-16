@@ -3,11 +3,11 @@ package com.yuncommunity.theme.android;
 import com.oldfeel.base.BaseActivity;
 
 /**
- * 搜索
+ * 忘记密码
  * 
  * @author oldfeel
  * 
  */
-public class SearchActivity extends BaseActivity {
+public class A_ForgetPassword extends BaseActivity {
 
 }

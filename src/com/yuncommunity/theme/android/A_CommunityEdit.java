@@ -21,7 +21,7 @@ import com.yuncommunity.item.CommunityItem;
  * @author oldfeel
  * 
  */
-public class CommunityEdit extends BaseActivity {
+public class A_CommunityEdit extends BaseActivity {
 	private ImageView ivImage;
 	private EditText etDesc;
 	private CommunityItem item;
@@ -62,7 +62,7 @@ public class CommunityEdit extends BaseActivity {
 	 * 完成编辑
 	 */
 	private void complete() {
-		NetUtil netUtil = new NetUtil(CommunityEdit.this,
+		NetUtil netUtil = new NetUtil(A_CommunityEdit.this,
 				JsonApi.COMMUNITY_EDIT);
 		netUtil.setParams("communityid", item.getCommunityid());
 		netUtil.setParams("description", getString(etDesc));

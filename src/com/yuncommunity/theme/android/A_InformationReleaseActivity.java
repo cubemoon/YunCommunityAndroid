@@ -18,7 +18,7 @@ import com.yuncommunity.theme.android.fragment.InformationRelease;
  * @author oldfeel
  * 
  */
-public class InformationReleaseActivity extends BaseActivity {
+public class A_InformationReleaseActivity extends BaseActivity {
 	public String[] navList;
 	private int currentPosition;
 	private InformationRelease fragment;

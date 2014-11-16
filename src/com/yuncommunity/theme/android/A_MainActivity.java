@@ -38,7 +38,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class MainActivity extends BaseActivity {
+public class A_MainActivity extends BaseActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity {
 	private void initCommunity() {
 		if (LoginInfo.getInstance(getApplicationContext()).getCommunityInfo()
 				.getCommunityid() == 0) {
-			openActivity(ChangeCommunity.class);
+			openActivity(A_ChangeCommunity.class);
 		}
 	}
 
@@ -152,14 +152,14 @@ public class MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!UpdateUtils.isLogin(MainActivity.this)) {
+		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getEmail();
 		String password = LoginInfo.getInstance(getApplicationContext())
 				.getRealPassword();
-		NetUtil netUtil = new NetUtil(MainActivity.this, JsonApi.LOGIN);
+		NetUtil netUtil = new NetUtil(A_MainActivity.this, JsonApi.LOGIN);
 		netUtil.setParams("email", email);
 		netUtil.setParams("password", password);
 		netUtil.postRequest("", new RequestStringListener() {
@@ -185,8 +185,8 @@ public class MainActivity extends BaseActivity {
 	 * 登出
 	 */
 	protected void cancelLogin() {
-		LoginInfo.getInstance(MainActivity.this).cancelLogin();
-		openActivity(LoginRegisterActivity.class);
+		LoginInfo.getInstance(A_MainActivity.this).cancelLogin();
+		openActivity(A_LoginRegisterActivity.class);
 		finish();
 	}
 
@@ -203,7 +203,7 @@ public class MainActivity extends BaseActivity {
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getAvatar(), ivAvatar, options);
-		if (!UpdateUtils.isLogin(MainActivity.this)) {
+		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
@@ -250,21 +250,21 @@ public class MainActivity extends BaseActivity {
 	 * 小区简介
 	 */
 	private void openCommunityManager() {
-		openActivity(CommunityManager.class);
+		openActivity(A_CommunityManager.class);
 	}
 
 	/**
 	 * 设置
 	 */
 	private void openSettings() {
-		openActivity(MySettingsActivity.class);
+		openActivity(A_MySettingsActivity.class);
 	}
 
 	/**
 	 * 建议反馈
 	 */
 	private void openFeedback() {
-		openActivity(FeedbackActivity.class);
+		openActivity(A_FeedbackActivity.class);
 	}
 
 	/**
@@ -353,11 +353,11 @@ public class MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!UpdateUtils.isLogin(MainActivity.this)) {
-			openActivity(LoginRegisterActivity.class);
+		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
+			openActivity(A_LoginRegisterActivity.class);
 			return;
 		}
-		Intent intent = new Intent(MainActivity.this, PersonHomeActivity.class);
+		Intent intent = new Intent(A_MainActivity.this, A_PersonHomeActivity.class);
 		intent.putExtra("targetid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		startActivity(intent);
@@ -376,7 +376,7 @@ public class MainActivity extends BaseActivity {
 		}
 		switch (item.getItemId()) {
 		case R.id.action_search:
-			openActivity(SearchActivity.class);
+			openActivity(A_SearchActivity.class);
 			break;
 		case R.id.action_release:
 			releaseInformation();
@@ -392,7 +392,7 @@ public class MainActivity extends BaseActivity {
 
 	private void releaseInformation() {
 		if (LoginInfo.getInstance(getApplicationContext()).getUserId() == 0) {
-			new AlertDialog.Builder(MainActivity.this)
+			new AlertDialog.Builder(A_MainActivity.this)
 
 			.setTitle(R.string.you_must_login_before)
 					.setPositiveButton(R.string.login_or_register,
@@ -401,15 +401,15 @@ public class MainActivity extends BaseActivity {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							openActivity(LoginRegisterActivity.class);
+							openActivity(A_LoginRegisterActivity.class);
 						}
 
 					}).setNegativeButton(android.R.string.cancel, null).show();
 
 			return;
 		}
-		Intent intent = new Intent(MainActivity.this,
-				InformationReleaseActivity.class);
+		Intent intent = new Intent(A_MainActivity.this,
+				A_InformationReleaseActivity.class);
 		intent.putExtra("infotype", infotype);
 		startActivity(intent);
 	}

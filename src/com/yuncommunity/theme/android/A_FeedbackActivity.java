@@ -26,7 +26,7 @@ import com.yuncommunity.conf.LoginInfo;
  * @author oldfeel
  * 
  */
-public class FeedbackActivity extends BaseActivity {
+public class A_FeedbackActivity extends BaseActivity {
 	private EditText etContent;
 	private TextView tvAnonymous;
 	private CheckBox cbIsAnonymous;
@@ -79,7 +79,7 @@ public class FeedbackActivity extends BaseActivity {
 			etContent.setError(getText(R.string.not_optional));
 			return;
 		}
-		NetUtil netUtil = new NetUtil(FeedbackActivity.this, JsonApi.FEEDBACK);
+		NetUtil netUtil = new NetUtil(A_FeedbackActivity.this, JsonApi.FEEDBACK);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("content", getString(etContent));
@@ -94,7 +94,7 @@ public class FeedbackActivity extends BaseActivity {
 							DialogUtil
 									.getInstance()
 									.showSimpleDialog(
-											FeedbackActivity.this,
+											A_FeedbackActivity.this,
 											String.valueOf(getText(R.string.submitted_feedback)),
 											new OnClickListener() {
 
@@ -102,7 +102,7 @@ public class FeedbackActivity extends BaseActivity {
 												public void onClick(
 														DialogInterface dialog,
 														int which) {
-													FeedbackActivity.this
+													A_FeedbackActivity.this
 															.finish();
 												}
 											});

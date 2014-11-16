@@ -51,7 +51,7 @@ import com.yuncommunity.theme.android.fragment.InformationMedia;
  * 
  *         Create on: 2014年7月27日
  */
-public class ActivityDetail extends BaseActivity implements OnClickListener {
+public class A_ActivityDetail extends BaseActivity implements OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;
 	private ImageButton ibCall, ibMap;
@@ -103,7 +103,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private NetUtil getCommentListNetUtil() {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTLIST);
 		netUtil.setParams("informationid", item.getInformationid());
 		netUtil.setParams("userid",
@@ -112,7 +112,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void getDetail() {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.INFORMATION_DETAIL);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -218,8 +218,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void edit() {
-		Intent intent = new Intent(ActivityDetail.this,
-				InformationReleaseActivity.class);
+		Intent intent = new Intent(A_ActivityDetail.this,
+				A_InformationReleaseActivity.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
@@ -231,9 +231,9 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 		Intent intent = new Intent();
 		if (item.getUserid() == LoginInfo.getInstance(getApplicationContext())
 				.getUserId()) { // 如果当前用户是活动发起者,查看报名者的详细信息
-			intent.setClass(ActivityDetail.this, ActivitySignUps.class);
+			intent.setClass(A_ActivityDetail.this, A_ActivitySignUps.class);
 		} else { // 否则只能看基本信息
-			intent.setClass(ActivityDetail.this, UserList.class);
+			intent.setClass(A_ActivityDetail.this, A_UserList.class);
 			intent.putExtra("api", JsonApi.INFORMATION_FOLLOWERS);
 		}
 		intent.putExtra("informationid", item.getInformationid());
@@ -242,8 +242,8 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void seeAuthor() {
-		Intent intent = new Intent(ActivityDetail.this,
-				PersonHomeActivity.class);
+		Intent intent = new Intent(A_ActivityDetail.this,
+				A_PersonHomeActivity.class);
 		intent.putExtra("targetid", item.getUserid());
 		startActivity(intent);
 	}
@@ -252,7 +252,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 		final EditText etContent = new EditText(getApplicationContext());
 		etContent.setHeight(72);
 		etContent.setHint(R.string.say_something);
-		new AlertDialog.Builder(ActivityDetail.this)
+		new AlertDialog.Builder(A_ActivityDetail.this)
 				.setTitle(R.string.report)
 				.setView(etContent)
 				.setPositiveButton(android.R.string.ok,
@@ -269,7 +269,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	protected void report(String string) {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this, JsonApi.REPORT);
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this, JsonApi.REPORT);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("informationid", item.getInformationid());
@@ -307,9 +307,9 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	private void showMap() {
 		Intent intent = new Intent();
 		if (Utils.isChinese()) {
-			intent.setClass(ActivityDetail.this, InformationBaiduMap.class);
+			intent.setClass(A_ActivityDetail.this, A_InformationBaiduMap.class);
 		} else {
-			intent.setClass(ActivityDetail.this, InformationGoogleMap.class);
+			intent.setClass(A_ActivityDetail.this, A_InformationGoogleMap.class);
 		}
 		intent.putExtra("item", item);
 		startActivity(intent);
@@ -319,7 +319,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	 * 评价/修改评价
 	 */
 	private void evaluation() {
-		View view = LayoutInflater.from(ActivityDetail.this).inflate(
+		View view = LayoutInflater.from(A_ActivityDetail.this).inflate(
 				R.layout.evaluation_dialog, null);
 		final RatingBar rbEvaluationScore = (RatingBar) view
 				.findViewById(R.id.evaluation_score);
@@ -327,7 +327,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 				.findViewById(R.id.evaluation_content);
 		final EditText etEvaluationTag = (EditText) view
 				.findViewById(R.id.evaluation_tag);
-		Builder builder = new AlertDialog.Builder(ActivityDetail.this);
+		Builder builder = new AlertDialog.Builder(A_ActivityDetail.this);
 		builder.setView(view);
 		builder.setPositiveButton(android.R.string.ok,
 				new DialogInterface.OnClickListener() {
@@ -367,7 +367,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 
 	protected void submitEvaluation(RatingBar rbEvaluationScore,
 			EditText etEvaluationTag, EditText etEvaluationContent) {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENT);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -392,7 +392,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	protected void deleteEvaluation() {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.INFORMATION_COMMENTDELETE);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -422,7 +422,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	 * 取消报名
 	 */
 	private void cancelSingUp() {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.ACTIVITY_SIGN_UP_CANCEL);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -448,7 +448,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	 * 报名
 	 */
 	private void signUp() {
-		View view = LayoutInflater.from(ActivityDetail.this).inflate(
+		View view = LayoutInflater.from(A_ActivityDetail.this).inflate(
 				R.layout.activity_sign_up, null);
 		final EditText etName = (EditText) view
 				.findViewById(R.id.activity_sign_up_name);
@@ -466,7 +466,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 		etName.setText(loginInfo.getUserInfo().getName());
 		etPhone.setText(loginInfo.getUserInfo().getPhone());
 		etEmail.setText(loginInfo.getUserInfo().getEmail());
-		new AlertDialog.Builder(ActivityDetail.this)
+		new AlertDialog.Builder(A_ActivityDetail.this)
 				.setTitle(R.string.activity_signup)
 				.setView(view)
 				.setPositiveButton(android.R.string.ok,
@@ -490,7 +490,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 
 	protected void signUp(String name, String phone, String email,
 			String remark, int adult, int child) {
-		NetUtil netUtil = new NetUtil(ActivityDetail.this,
+		NetUtil netUtil = new NetUtil(A_ActivityDetail.this,
 				JsonApi.ACTIVITY_SIGN_UP);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
@@ -520,7 +520,7 @@ public class ActivityDetail extends BaseActivity implements OnClickListener {
 	}
 
 	private void call() {
-		DialogUtil.getInstance().showSimpleDialog(ActivityDetail.this,
+		DialogUtil.getInstance().showSimpleDialog(A_ActivityDetail.this,
 				getString(R.string.activity_call) + item.getPhone(),
 				new DialogInterface.OnClickListener() {
 

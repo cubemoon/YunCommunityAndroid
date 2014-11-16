@@ -15,7 +15,7 @@ import com.yuncommunity.list.UserListFragment;
  * @author oldfeel
  * 
  */
-public class UserList extends BaseActivity {
+public class A_UserList extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class UserList extends BaseActivity {
 
 	private NetUtil getNetUtil() {
 		String api = getIntent().getStringExtra("api");
-		NetUtil netUtil = new NetUtil(UserList.this, api);
+		NetUtil netUtil = new NetUtil(A_UserList.this, api);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		if (api.equals(JsonApi.INFORMATION_FOLLOWERS)) {

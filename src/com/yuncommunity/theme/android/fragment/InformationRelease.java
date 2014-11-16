@@ -36,9 +36,9 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.MainActivity;
-import com.yuncommunity.theme.android.SelectAddressBaiduMap;
-import com.yuncommunity.theme.android.SelectAddressGoogleMap;
+import com.yuncommunity.theme.android.A_MainActivity;
+import com.yuncommunity.theme.android.A_SelectAddressBaiduMap;
+import com.yuncommunity.theme.android.A_SelectAddressGoogleMap;
 import com.yuncommunity.theme.android.dialog.LookBigImage;
 
 /**
@@ -127,7 +127,7 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 				if (JsonUtil.isSuccess(result)) {
 					showToast("发布成功");
 					Intent intent = new Intent(getActivity(),
-							MainActivity.class);
+							A_MainActivity.class);
 					intent.putExtra("infotype", infotype);
 					intent.putExtra("result", true);
 					startActivity(intent);
@@ -354,9 +354,9 @@ public class InformationRelease extends BaseFragment implements OnClickListener 
 	private void selectAddress() {
 		Intent intent = new Intent();
 		if (Utils.isChinese()) {
-			intent.setClass(getActivity(), SelectAddressBaiduMap.class);
+			intent.setClass(getActivity(), A_SelectAddressBaiduMap.class);
 		} else {
-			intent.setClass(getActivity(), SelectAddressGoogleMap.class);
+			intent.setClass(getActivity(), A_SelectAddressGoogleMap.class);
 		}
 		startActivityForResult(intent, REQUEST_SELECT_ADDRESS);
 	}
