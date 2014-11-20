@@ -104,7 +104,7 @@ public class LoginInfo {
 	}
 
 	public String getTheme() {
-		return sp.getString("theme", context.getString(R.string.theme_ios));
+		return sp.getString("theme", context.getString(R.string.theme_android));
 	}
 
 	public void setTheme(String theme) {

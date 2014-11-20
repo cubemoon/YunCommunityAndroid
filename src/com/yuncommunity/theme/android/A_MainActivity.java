@@ -4,10 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +30,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
 import com.yuncommunity.theme.android.fragment.AttentionFragment;
 import com.yuncommunity.theme.android.fragment.InformationFragment;
-import com.yuncommunity.utils.UpdateUtils;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 主界面
@@ -74,17 +74,7 @@ public class A_MainActivity extends BaseActivity {
 			}
 		});
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.app_name, R.string.app_name) {
-			@Override
-			public void onDrawerClosed(View drawerView) {
-				super.onDrawerClosed(drawerView);
-			}
-
-			@Override
-			public void onDrawerOpened(View drawerView) {
-				super.onDrawerOpened(drawerView);
-			}
-		};
+				R.drawable.ic_drawer, R.string.app_name);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		if (savedInstanceState == null) {
 			selectItem(2);
@@ -152,7 +142,7 @@ public class A_MainActivity extends BaseActivity {
 	 * 自动登录
 	 */
 	private void updatePersonInfo() {
-		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
+		if (!Utils.isLogin(A_MainActivity.this, false)) {
 			return;
 		}
 		String email = LoginInfo.getInstance(getApplicationContext())
@@ -186,7 +176,7 @@ public class A_MainActivity extends BaseActivity {
 	 */
 	protected void cancelLogin() {
 		LoginInfo.getInstance(A_MainActivity.this).cancelLogin();
-		openActivity(A_LoginRegisterActivity.class);
+		openActivity(A_LoginActivity.class);
 		finish();
 	}
 
@@ -195,7 +185,6 @@ public class A_MainActivity extends BaseActivity {
 				.inflate(R.layout.menu_header_view, null);
 		ivAvatar = (ImageView) view.findViewById(R.id.avatar);
 		tvName = (TextView) view.findViewById(R.id.text);
-
 		updateHeaderView();
 		return view;
 	}
@@ -203,7 +192,7 @@ public class A_MainActivity extends BaseActivity {
 	private void updateHeaderView() {
 		imageLoader.displayImage(LoginInfo.getInstance(getApplicationContext())
 				.getUserInfo().getAvatar(), ivAvatar, options);
-		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
+		if (!Utils.isLogin(A_MainActivity.this, false)) {
 			tvName.setText(R.string.login_or_register);
 		} else {
 			tvName.setText(LoginInfo.getInstance(getApplicationContext())
@@ -353,11 +342,12 @@ public class A_MainActivity extends BaseActivity {
 	 * 打开个人首页
 	 */
 	private void openPersonHome() {
-		if (!UpdateUtils.isLogin(A_MainActivity.this)) {
-			openActivity(A_LoginRegisterActivity.class);
+		if (!Utils.isLogin(A_MainActivity.this, false)) {
+			openActivity(A_LoginActivity.class);
 			return;
 		}
-		Intent intent = new Intent(A_MainActivity.this, A_PersonHomeActivity.class);
+		Intent intent = new Intent(A_MainActivity.this,
+				A_PersonHomeActivity.class);
 		intent.putExtra("targetid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		startActivity(intent);
@@ -393,15 +383,14 @@ public class A_MainActivity extends BaseActivity {
 	private void releaseInformation() {
 		if (LoginInfo.getInstance(getApplicationContext()).getUserId() == 0) {
 			new AlertDialog.Builder(A_MainActivity.this)
-
-			.setTitle(R.string.you_must_login_before)
+					.setTitle(R.string.you_must_login_before)
 					.setPositiveButton(R.string.login_or_register,
 
 					new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							openActivity(A_LoginRegisterActivity.class);
+							openActivity(A_LoginActivity.class);
 						}
 
 					}).setNegativeButton(android.R.string.cancel, null).show();

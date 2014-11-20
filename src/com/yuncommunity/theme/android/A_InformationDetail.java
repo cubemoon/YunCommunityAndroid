@@ -33,7 +33,6 @@ import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -43,6 +42,7 @@ import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.list.CommentListFragment;
 import com.yuncommunity.theme.android.fragment.InformationMedia;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 活动/商家服务/个人服务详情
@@ -50,7 +50,8 @@ import com.yuncommunity.theme.android.fragment.InformationMedia;
  * @author oldfeel
  * 
  */
-public class A_InformationDetail extends BaseActivity implements OnClickListener {
+public class A_InformationDetail extends BaseActivity implements
+		OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;
 	private ImageButton ibCall, ibMap;
@@ -232,7 +233,8 @@ public class A_InformationDetail extends BaseActivity implements OnClickListener
 	 * 产品列表
 	 */
 	private void productList() {
-		Intent intent = new Intent(A_InformationDetail.this, A_ProductList.class);
+		Intent intent = new Intent(A_InformationDetail.this,
+				A_ProductList.class);
 		intent.putExtra("item", item);
 		startActivity(intent);
 	}
@@ -320,9 +322,11 @@ public class A_InformationDetail extends BaseActivity implements OnClickListener
 	private void showMap() {
 		Intent intent = new Intent();
 		if (Utils.isChinese()) {
-			intent.setClass(A_InformationDetail.this, A_InformationBaiduMap.class);
+			intent.setClass(A_InformationDetail.this,
+					A_InformationBaiduMap.class);
 		} else {
-			intent.setClass(A_InformationDetail.this, A_InformationGoogleMap.class);
+			intent.setClass(A_InformationDetail.this,
+					A_InformationGoogleMap.class);
 		}
 		intent.putExtra("item", item);
 		startActivity(intent);

@@ -13,11 +13,11 @@ import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 小区简介
@@ -112,7 +112,8 @@ public class A_CommunityManager extends BaseActivity {
 					.valueOf(getText(R.string.community_info_loading_failed)));
 			return;
 		}
-		Intent intent = new Intent(A_CommunityManager.this, A_CommunityEdit.class);
+		Intent intent = new Intent(A_CommunityManager.this,
+				A_CommunityEdit.class);
 		intent.putExtra("item", item);
 		startActivityForResult(intent, REQUEST_EDIT);
 	}

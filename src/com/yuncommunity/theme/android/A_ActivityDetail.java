@@ -34,7 +34,6 @@ import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
@@ -43,6 +42,7 @@ import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.list.CommentListFragment;
 import com.yuncommunity.theme.android.fragment.InformationMedia;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 获取详情

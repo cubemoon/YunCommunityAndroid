@@ -28,7 +28,6 @@ import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.oldfeel.utils.StringUtil;
-import com.oldfeel.utils.Utils;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -40,6 +39,7 @@ import com.yuncommunity.theme.android.A_MainActivity;
 import com.yuncommunity.theme.android.A_SelectAddressBaiduMap;
 import com.yuncommunity.theme.android.A_SelectAddressGoogleMap;
 import com.yuncommunity.theme.android.dialog.LookBigImage;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 发布信息

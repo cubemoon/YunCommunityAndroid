@@ -13,11 +13,11 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.oldfeel.interfaces.MyLocationListener;
 import com.oldfeel.utils.NetUtil;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.list.NearCommunityList;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 切换小区

@@ -15,7 +15,7 @@ import com.yuncommunity.theme.android.fragment.RegisterFragment;
  * @author oldfeel
  * 
  */
-public class A_LoginRegisterActivity extends BaseActivity {
+public class A_LoginActivity extends BaseActivity {
 	private ViewPager pager;
 	private BaseTabsAdapter tabsAdapter;
 
@@ -24,7 +24,7 @@ public class A_LoginRegisterActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_view_pager);
 		pager = (ViewPager) findViewById(R.id.pager);
-		tabsAdapter = new BaseTabsAdapter(A_LoginRegisterActivity.this, pager);
+		tabsAdapter = new BaseTabsAdapter(A_LoginActivity.this, pager);
 		tabsAdapter.addTab(String.valueOf(getText(R.string.login)),
 				new LoginFragment());
 		tabsAdapter.addTab(String.valueOf(getText(R.string.register)),

@@ -13,9 +13,9 @@ import com.google.gson.reflect.TypeToken;
 import com.oldfeel.base.BaseBaseAdapter;
 import com.oldfeel.utils.LogUtil;
 import com.oldfeel.utils.StringUtil;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.item.ActivitySignUpItem;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 活动报名者适配器

@@ -13,10 +13,10 @@ import android.widget.TextView.OnEditorActionListener;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.interfaces.MyLocationListener;
 import com.oldfeel.utils.NetUtil;
-import com.oldfeel.utils.Utils;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.list.NearCommunityList;
+import com.yuncommunity.utils.Utils;
 
 /**
  * 改变小区

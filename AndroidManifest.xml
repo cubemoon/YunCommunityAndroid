@@ -63,7 +63,7 @@
             android:name="com.yuncommunity.theme.android.A_MainActivity"
             android:launchMode="singleTask" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.android.A_LoginRegisterActivity" >
+        <activity android:name="com.yuncommunity.theme.android.A_LoginActivity" >
         </activity>
         <activity android:name="com.yuncommunity.theme.android.A_CollapseActivity" >
         </activity>
