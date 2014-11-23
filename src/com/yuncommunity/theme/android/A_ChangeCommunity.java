@@ -10,12 +10,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.interfaces.MyLocationListener;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.list.NearCommunityList;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.utils.Utils;
 
 /**
@@ -25,7 +25,7 @@ import com.yuncommunity.utils.Utils;
  * 
  *         Create on: 2014年10月22日
  */
-public class A_ChangeCommunity extends BaseActivity {
+public class A_ChangeCommunity extends A_BaseActivity {
 	private EditText etKey;
 	private ImageButton ibSearch;
 	private double lat, lon;

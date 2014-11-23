@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -14,6 +13,7 @@ import com.oldfeel.utils.StringUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 编辑小区介绍
@@ -21,7 +21,7 @@ import com.yuncommunity.item.CommunityItem;
  * @author oldfeel
  * 
  */
-public class A_CommunityEdit extends BaseActivity {
+public class A_CommunityEdit extends A_BaseActivity {
 	private ImageView ivImage;
 	private EditText etDesc;
 	private CommunityItem item;

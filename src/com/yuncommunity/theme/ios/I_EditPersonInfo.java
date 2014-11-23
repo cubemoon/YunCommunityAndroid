@@ -12,13 +12,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.oldfeel.utils.JsonUtil;
+import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.A_PersonHomeActivity;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
-import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 
@@ -86,8 +88,11 @@ public class I_EditPersonInfo extends I_BaseActivity implements OnClickListener 
 		loginInfo.getUserInfo().setBirthday(super.getString(tvBirthday));
 		loginInfo.getUserInfo().setPermission(
 				spPermission.getSelectedItemPosition());
-		UpdateUtils.update(I_EditPersonInfo.this,
-				String.valueOf(getText(R.string.updating_personal_details)),
+		NetUtil netUtil = new NetUtil(I_EditPersonInfo.this,
+				JsonApi.EDIT_PERSON_INFO);
+		netUtil.setParams("userinfo",
+				new Gson().toJson(loginInfo.getUserInfo()));
+		netUtil.postRequest(getString(R.string.updating_personal_details),
 				new RequestStringListener() {
 
 					@Override
@@ -96,11 +101,12 @@ public class I_EditPersonInfo extends I_BaseActivity implements OnClickListener 
 							showToast(String
 									.valueOf(getText(R.string.updated_personal_details)));
 							setResult(A_PersonHomeActivity.EDIT_PERSON_INFO);
-							finish();
+							onBackPressed();
 						} else {
 							showToast(getText(R.string.failed_update_personal_details)
 									+ "," + JsonUtil.getData(result));
 						}
+
 					}
 				});
 	}

@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.JsonUtil;
@@ -41,6 +40,7 @@ import com.yuncommunity.item.CommentItem;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.TagItem;
 import com.yuncommunity.list.CommentListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.InformationMedia;
 import com.yuncommunity.utils.Utils;
 
@@ -50,7 +50,7 @@ import com.yuncommunity.utils.Utils;
  * @author oldfeel
  * 
  */
-public class A_InformationDetail extends BaseActivity implements
+public class A_InformationDetail extends A_BaseActivity implements
 		OnClickListener {
 	private LinearLayout llTags;
 	private Button btnFollowing, btnEvaluation;

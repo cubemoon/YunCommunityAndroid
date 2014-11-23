@@ -7,9 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
-import com.oldfeel.base.BaseActivity;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.InformationRelease;
 
 /**
@@ -18,7 +18,7 @@ import com.yuncommunity.theme.android.fragment.InformationRelease;
  * @author oldfeel
  * 
  */
-public class A_InformationReleaseActivity extends BaseActivity {
+public class A_InformationReleaseActivity extends A_BaseActivity {
 	public String[] navList;
 	private int currentPosition;
 	private InformationRelease fragment;

@@ -19,8 +19,6 @@ public class JsonApi {
 	public static final String FEEDBACK = "feedback";
 	/** 检查版本 */
 	public static final String CHECK_VERSION = "check_version";
-	/** 更新用户信息 */
-	public static final String UPDATE_USER_INFO = "update_user_info";
 	/** 评论 */
 	public static final String INFORMATION_COMMENT = "information_comment";
 	/** 删除评论 */
@@ -89,4 +87,16 @@ public class JsonApi {
 	public static final String INFORMATION_COLLECTION = "information_collection";
 	/** 用户发布的商品标签历史记录 */
 	public static final String TAG_HISTORY = "tag_history";
+	/** 编辑个人资料 */
+	public static final String EDIT_PERSON_INFO = "edit_person_info";
+	/** 更新用户所在小区的id */
+	public static final String CHANGE_COMMUNITY = "change_community";
+	/** 修改密码 */
+	public static final String CHANGE_PASSWORD = "change_password";
+	/** 修改个人首页的背景图片 */
+	public static final String CHANGE_PERSON_HOME_BG = "change_person_home_bg";
+	/** 修改头像 */
+	public static final String CHANGE_AVATAR = "change_avatar";
+	/** 修改配置信息 */
+	public static final String CHANGE_SETTING_INFO = "change_setting_info";
 }

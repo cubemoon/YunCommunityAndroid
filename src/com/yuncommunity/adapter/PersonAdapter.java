@@ -10,7 +10,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
 import com.yuncommunity.theme.ios.I_MyAttention;
 import com.yuncommunity.theme.ios.I_MyCollection;
-import com.yuncommunity.theme.ios.I_PersonInfo;
+import com.yuncommunity.theme.ios.I_PersonHomeActivity;
 import com.yuncommunity.theme.ios.I_ReleaseActivity;
 import com.yuncommunity.theme.ios.I_ReleaseProduct;
 import com.yuncommunity.theme.ios.I_Setting;
@@ -26,7 +26,7 @@ public class PersonAdapter extends BaseBaseAdapter<FuncItem> {
 	public PersonAdapter(Context context) {
 		super(context);
 		add(new FuncItem(LoginInfo.getInstance(context).getName(),
-				R.drawable.avatar_default, I_PersonInfo.class));
+				R.drawable.avatar_default, I_PersonHomeActivity.class));
 		add(new FuncItem(context.getString(R.string.release_product),
 				R.drawable.ic_launcher, I_ReleaseProduct.class));
 		add(new FuncItem(context.getString(R.string.release_activity),

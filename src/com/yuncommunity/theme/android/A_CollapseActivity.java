@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.LogUtil;
 import com.yuncommunity.R;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 应用崩溃提示
@@ -17,7 +17,7 @@ import com.yuncommunity.R;
  * 
  *         Created on: 2014-1-14
  */
-public class A_CollapseActivity extends BaseActivity {
+public class A_CollapseActivity extends A_BaseActivity {
 	private Button btnRestart, btnExit;
 
 	@Override

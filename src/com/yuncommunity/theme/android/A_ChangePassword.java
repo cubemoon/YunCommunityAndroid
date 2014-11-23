@@ -6,13 +6,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.JsonUtil;
+import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.utils.UpdateUtils;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 修改密码
@@ -20,7 +21,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class A_ChangePassword extends BaseActivity implements OnClickListener {
+public class A_ChangePassword extends A_BaseActivity implements OnClickListener {
 	private EditText etPassword, etPassword1, etPassword2;
 	private Button btnSubmit;
 
@@ -79,8 +80,13 @@ public class A_ChangePassword extends BaseActivity implements OnClickListener {
 		}
 		LoginInfo.getInstance(getApplicationContext()).saveRealPassword(
 				getString(etPassword1));
-		UpdateUtils.update(A_ChangePassword.this,
-				String.valueOf(getText(R.string.changing_password)),
+		NetUtil netUtil = new NetUtil(A_ChangePassword.this,
+				JsonApi.CHANGE_PASSWORD);
+		netUtil.setParams("userid", LoginInfo
+				.getInstance(A_ChangePassword.this).getUserId());
+		netUtil.setParams("oldpassword", getString(etPassword));
+		netUtil.setParams("newpassword", getString(etPassword1));
+		netUtil.postRequest(getString(R.string.changing_password),
 				new RequestStringListener() {
 
 					@Override

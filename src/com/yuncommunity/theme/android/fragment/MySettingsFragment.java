@@ -10,15 +10,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.webkit.WebView;
 
+import com.google.gson.Gson;
 import com.oldfeel.base.BaseActivity;
+import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.VersionUtil;
 import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
+import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.theme.android.A_ChangeCommunity;
 import com.yuncommunity.theme.android.A_SwitchTheme;
-import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 设置
@@ -245,8 +247,16 @@ public class MySettingsFragment extends PreferenceFragment {
 
 	private void updateMySettings() {
 		if (isUpdate) {
-			UpdateUtils.update(getActivity());
+			changeSettingInfo();
 		}
+	}
+
+	private void changeSettingInfo() {
+		NetUtil netUtil = new NetUtil(getActivity(),
+				JsonApi.CHANGE_SETTING_INFO);
+		netUtil.setParams("userinfo", new Gson().toJson(LoginInfo.getInstance(
+				getActivity()).getUserInfo()));
+		netUtil.postRequest();
 	}
 
 }

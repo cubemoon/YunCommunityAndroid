@@ -2,8 +2,8 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 
-import com.oldfeel.base.BaseActivity;
 import com.yuncommunity.R;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.MySettingsFragment;
 
 /**
@@ -12,7 +12,7 @@ import com.yuncommunity.theme.android.fragment.MySettingsFragment;
  * @author oldfeel
  * 
  */
-public class A_MySettingsActivity extends BaseActivity {
+public class A_MySettingsActivity extends A_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

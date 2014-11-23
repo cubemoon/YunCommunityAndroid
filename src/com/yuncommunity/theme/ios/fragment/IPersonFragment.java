@@ -10,7 +10,7 @@ import com.yuncommunity.adapter.PersonAdapter;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.FuncItem;
 import com.yuncommunity.theme.ios.I_LoginActivity;
-import com.yuncommunity.theme.ios.I_PersonInfo;
+import com.yuncommunity.theme.ios.I_PersonHomeActivity;
 import com.yuncommunity.utils.Utils;
 
 /**
@@ -45,7 +45,7 @@ public class IPersonFragment extends ListFragment {
 						new Intent(getActivity(), I_LoginActivity.class));
 			} else {
 				getActivity().startActivity(
-						new Intent(getActivity(), I_PersonInfo.class).putExtra(
+						new Intent(getActivity(), I_PersonHomeActivity.class).putExtra(
 								"targetid", userid));
 			}
 			return;

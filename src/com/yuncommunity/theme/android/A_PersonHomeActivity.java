@@ -27,7 +27,6 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.FileUtil;
 import com.oldfeel.utils.ImageUtil;
@@ -45,8 +44,8 @@ import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.UserItem;
 import com.yuncommunity.list.InformationListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.HeaderFragment;
-import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 个人首页
@@ -54,7 +53,8 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class A_PersonHomeActivity extends BaseActivity implements OnClickListener {
+public class A_PersonHomeActivity extends A_BaseActivity implements
+		OnClickListener {
 	public static final int EDIT_PERSON_INFO = 11;
 	private final static int CROP = 800;
 	private ImageView ivBg;
@@ -469,7 +469,8 @@ public class A_PersonHomeActivity extends BaseActivity implements OnClickListene
 				+ ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this, JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this,
+				JsonApi.UPTOKEN);
 		netUtil.postRequest(String.valueOf(getText(R.string.uploading)),
 				new RequestStringListener() {
 
@@ -498,14 +499,29 @@ public class A_PersonHomeActivity extends BaseActivity implements OnClickListene
 					@Override
 					public void complete(String key, ResponseInfo info,
 							JSONObject response) {
-						showToast("上传成功");
-						ivBg.setImageBitmap(protraitBitmap);
-						LoginInfo.getInstance(A_PersonHomeActivity.this)
-								.getUserInfo()
-								.setBackground(protraitFile.getName());
-						UpdateUtils.update(A_PersonHomeActivity.this);
+						changePersonHomeBg();
 					}
 				}, null);
+	}
+
+	protected void changePersonHomeBg() {
+		NetUtil netUtil = new NetUtil(A_PersonHomeActivity.this,
+				JsonApi.CHANGE_PERSON_HOME_BG);
+		netUtil.setParams("userid", getUserId());
+		netUtil.setParams("background", protraitFile.getName());
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("上传成功");
+					ivBg.setImageBitmap(protraitBitmap);
+					LoginInfo.getInstance(A_PersonHomeActivity.this)
+							.getUserInfo()
+							.setBackground(protraitFile.getName());
+				}
+			}
+		});
 	}
 
 	private void updateData(Intent data) {

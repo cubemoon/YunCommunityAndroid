@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -28,6 +27,7 @@ import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.AttentionFragment;
 import com.yuncommunity.theme.android.fragment.InformationFragment;
 import com.yuncommunity.utils.Utils;
@@ -38,7 +38,7 @@ import com.yuncommunity.utils.Utils;
  * @author oldfeel
  * 
  */
-public class A_MainActivity extends BaseActivity {
+public class A_MainActivity extends A_BaseActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;

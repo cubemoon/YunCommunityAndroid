@@ -2,12 +2,12 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.list.ActivitySignUpList;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 活动报名者列表
@@ -16,7 +16,7 @@ import com.yuncommunity.list.ActivitySignUpList;
  * 
  *         Create on: 2014年7月27日
  */
-public class A_ActivitySignUps extends BaseActivity {
+public class A_ActivitySignUps extends A_BaseActivity {
 	InformationItem item;
 
 	@Override

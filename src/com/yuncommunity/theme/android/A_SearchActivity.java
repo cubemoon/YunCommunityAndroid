@@ -1,6 +1,6 @@
 package com.yuncommunity.theme.android;
 
-import com.oldfeel.base.BaseActivity;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 搜索
@@ -8,6 +8,6 @@ import com.oldfeel.base.BaseActivity;
  * @author oldfeel
  * 
  */
-public class A_SearchActivity extends BaseActivity {
+public class A_SearchActivity extends A_BaseActivity {
 
 }

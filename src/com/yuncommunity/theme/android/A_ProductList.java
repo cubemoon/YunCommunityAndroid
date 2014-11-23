@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -21,6 +20,7 @@ import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.InformationItem;
 import com.yuncommunity.item.ProductItem;
 import com.yuncommunity.list.ProductListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 产品列表
@@ -28,7 +28,7 @@ import com.yuncommunity.list.ProductListFragment;
  * @author oldfeel
  * 
  */
-public class A_ProductList extends BaseActivity {
+public class A_ProductList extends A_BaseActivity {
 	private InformationItem item;
 	private ProductListFragment fragment;
 

@@ -5,9 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseTabsAdapter;
 import com.yuncommunity.R;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.theme.android.fragment.LoginFragment;
 import com.yuncommunity.theme.android.fragment.RegisterFragment;
 
@@ -17,7 +17,7 @@ import com.yuncommunity.theme.android.fragment.RegisterFragment;
  * @author oldfeel
  * 
  */
-public class A_LoginActivity extends BaseActivity {
+public class A_LoginActivity extends A_BaseActivity {
 	private ViewPager pager;
 	private BaseTabsAdapter tabsAdapter;
 

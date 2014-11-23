@@ -2,11 +2,11 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.list.InformationListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 用户发布的信息列表
@@ -14,7 +14,7 @@ import com.yuncommunity.list.InformationListFragment;
  * @author oldfeel
  * 
  */
-public class A_UserReleaseList extends BaseActivity {
+public class A_UserReleaseList extends A_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

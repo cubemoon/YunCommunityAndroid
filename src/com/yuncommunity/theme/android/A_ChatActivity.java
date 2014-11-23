@@ -2,12 +2,12 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.list.ChatListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 发送私信/聊天界面
@@ -15,7 +15,7 @@ import com.yuncommunity.list.ChatListFragment;
  * @author oldfeel
  * 
  */
-public class A_ChatActivity extends BaseActivity {
+public class A_ChatActivity extends A_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

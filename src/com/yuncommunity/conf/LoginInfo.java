@@ -1,5 +1,7 @@
 package com.yuncommunity.conf;
 
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

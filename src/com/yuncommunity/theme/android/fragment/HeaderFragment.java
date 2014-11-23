@@ -36,7 +36,6 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 我的头像,提供更新图片的功能
@@ -242,13 +241,28 @@ public class HeaderFragment extends BaseFragment {
 					@Override
 					public void complete(String key, ResponseInfo info,
 							JSONObject response) {
-						showToast("上传成功");
-						ivHeader.setImageBitmap(protraitBitmap);
-						LoginInfo.getInstance(getActivity()).getUserInfo()
-								.setAvatar(protraitFile.getName());
-						UpdateUtils.update(getActivity());
+						changeAvatar();
 					}
 				}, null);
+	}
+
+	protected void changeAvatar() {
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.CHANGE_AVATAR);
+		netUtil.setParams("userid", LoginInfo.getInstance(getActivity())
+				.getUserId());
+		netUtil.setParams("avatar", protraitFile.getName());
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("上传成功");
+					ivHeader.setImageBitmap(protraitBitmap);
+					LoginInfo.getInstance(getActivity()).getUserInfo()
+							.setAvatar(protraitFile.getName());
+				}
+			}
+		});
 	}
 
 	@Override

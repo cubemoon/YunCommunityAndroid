@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
@@ -17,6 +16,7 @@ import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.item.CommunityItem;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 import com.yuncommunity.utils.Utils;
 
 /**
@@ -25,7 +25,7 @@ import com.yuncommunity.utils.Utils;
  * @author oldfeel
  * 
  */
-public class A_CommunityManager extends BaseActivity {
+public class A_CommunityManager extends A_BaseActivity {
 	private static final int REQUEST_EDIT = 0;
 	private ImageView ivImage;
 	private TextView tvDesc;

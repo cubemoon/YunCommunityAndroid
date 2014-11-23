@@ -11,7 +11,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.DialogUtil;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
@@ -19,6 +18,7 @@ import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 建议反馈
@@ -26,7 +26,7 @@ import com.yuncommunity.conf.LoginInfo;
  * @author oldfeel
  * 
  */
-public class A_FeedbackActivity extends BaseActivity {
+public class A_FeedbackActivity extends A_BaseActivity {
 	private EditText etContent;
 	private TextView tvAnonymous;
 	private CheckBox cbIsAnonymous;

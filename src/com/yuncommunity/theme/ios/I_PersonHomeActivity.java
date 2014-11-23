@@ -47,7 +47,6 @@ import com.yuncommunity.theme.android.A_UserList;
 import com.yuncommunity.theme.android.A_UserReleaseList;
 import com.yuncommunity.theme.android.fragment.HeaderFragment;
 import com.yuncommunity.theme.ios.base.I_BaseActivity;
-import com.yuncommunity.utils.UpdateUtils;
 
 /**
  * 
@@ -55,7 +54,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * 
  *         Create on: 2014年10月26日
  */
-public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
+public class I_PersonHomeActivity extends I_BaseActivity implements OnClickListener {
 	public static final int EDIT_PERSON_INFO = 11;
 	private final static int CROP = 800;
 	private ImageView ivBg;
@@ -93,7 +92,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(I_PersonInfo.this,
+				Intent intent = new Intent(I_PersonHomeActivity.this,
 						I_EditPersonInfo.class);
 				startActivityForResult(intent, EDIT_PERSON_INFO);
 			}
@@ -104,7 +103,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示提醒
 	 */
 	private void initInformation() {
-		NetUtil netUtil = new NetUtil(I_PersonInfo.this,
+		NetUtil netUtil = new NetUtil(I_PersonHomeActivity.this,
 				JsonApi.USER_INFORMATION_LIST);
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
@@ -117,7 +116,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 获取个人信息
 	 */
 	private void getPersonInfo() {
-		NetUtil netUtil = new NetUtil(I_PersonInfo.this, JsonApi.USER_INFO);
+		NetUtil netUtil = new NetUtil(I_PersonHomeActivity.this, JsonApi.USER_INFO);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("targetid", targetid);
@@ -188,13 +187,13 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	}
 
 	private void userNotExists() {
-		DialogUtil.getInstance().showSimpleDialog(I_PersonInfo.this,
+		DialogUtil.getInstance().showSimpleDialog(I_PersonHomeActivity.this,
 				String.valueOf(getText(R.string.user_not_exist)),
 				new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						I_PersonInfo.this.finish();
+						I_PersonHomeActivity.this.finish();
 					}
 				});
 	}
@@ -229,7 +228,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 编辑背景
 	 */
 	private void bgEdit() {
-		new AlertDialog.Builder(I_PersonInfo.this)
+		new AlertDialog.Builder(I_PersonHomeActivity.this)
 				.setTitle(getText(R.string.upload_background))
 				.setItems(R.array.add_image_type,
 						new DialogInterface.OnClickListener() {
@@ -341,7 +340,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 
 		// 如果是标准Uri
 		if (StringUtil.isEmpty(thePath)) {
-			thePath = ImageUtil.getAbsoluteImagePath(I_PersonInfo.this, uri);
+			thePath = ImageUtil.getAbsoluteImagePath(I_PersonHomeActivity.this, uri);
 		}
 		String ext = FileUtil.getFileFormat(thePath);
 		ext = StringUtil.isEmpty(ext) ? "jpg" : ext;
@@ -363,7 +362,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 		if (btnFollowing.getText().equals(getText(R.string.follow))) {
 			isFollowing = true;
 		}
-		NetUtil netUtil = new NetUtil(I_PersonInfo.this, JsonApi.USER_FOLLOWING);
+		NetUtil netUtil = new NetUtil(I_PersonHomeActivity.this, JsonApi.USER_FOLLOWING);
 		netUtil.setParams("userid",
 				LoginInfo.getInstance(getApplicationContext()).getUserId());
 		netUtil.setParams("targetid", targetid);
@@ -381,7 +380,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示该用户关注的用户列表
 	 */
 	private void showFollowings() {
-		Intent intent = new Intent(I_PersonInfo.this, A_UserList.class);
+		Intent intent = new Intent(I_PersonHomeActivity.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FOLLOWINGS);
 		startActivity(intent);
@@ -392,7 +391,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 */
 	private void showMessage() {
 		Intent intent = new Intent();
-		intent.setClass(I_PersonInfo.this, A_ChatActivity.class);
+		intent.setClass(I_PersonHomeActivity.this, A_ChatActivity.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
@@ -401,7 +400,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示关注该用户的用户列表
 	 */
 	private void showFans() {
-		Intent intent = new Intent(I_PersonInfo.this, A_UserList.class);
+		Intent intent = new Intent(I_PersonHomeActivity.this, A_UserList.class);
 		intent.putExtra("targetid", targetid);
 		intent.putExtra("api", JsonApi.USER_FANS);
 		startActivity(intent);
@@ -411,7 +410,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 	 * 显示该用户发出的服务
 	 */
 	private void showServer() {
-		Intent intent = new Intent(I_PersonInfo.this, A_UserReleaseList.class);
+		Intent intent = new Intent(I_PersonHomeActivity.this, A_UserReleaseList.class);
 		intent.putExtra("targetid", targetid);
 		startActivity(intent);
 	}
@@ -457,7 +456,7 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 				+ ".jpg");
 		protraitFile.renameTo(headerFile);
 		protraitFile = headerFile;
-		NetUtil netUtil = new NetUtil(I_PersonInfo.this, JsonApi.UPTOKEN);
+		NetUtil netUtil = new NetUtil(I_PersonHomeActivity.this, JsonApi.UPTOKEN);
 		netUtil.postRequest(String.valueOf(getText(R.string.uploading)),
 				new RequestStringListener() {
 
@@ -486,13 +485,28 @@ public class I_PersonInfo extends I_BaseActivity implements OnClickListener {
 					@Override
 					public void complete(String key, ResponseInfo info,
 							JSONObject response) {
-						showToast("上传成功");
-						ivBg.setImageBitmap(protraitBitmap);
-						LoginInfo.getInstance(I_PersonInfo.this).getUserInfo()
-								.setBackground(protraitFile.getName());
-						UpdateUtils.update(I_PersonInfo.this);
+						changePersonHomeBg();
 					}
 				}, null);
+	}
+
+	protected void changePersonHomeBg() {
+		NetUtil netUtil = new NetUtil(I_PersonHomeActivity.this,
+				JsonApi.CHANGE_PERSON_HOME_BG);
+		netUtil.setParams("userid", getUserId());
+		netUtil.setParams("background", protraitFile.getName());
+		netUtil.postRequest("", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("上传成功");
+					ivBg.setImageBitmap(protraitBitmap);
+					LoginInfo.getInstance(I_PersonHomeActivity.this).getUserInfo()
+							.setBackground(protraitFile.getName());
+				}
+			}
+		});
 	}
 
 	private void updateData(Intent data) {

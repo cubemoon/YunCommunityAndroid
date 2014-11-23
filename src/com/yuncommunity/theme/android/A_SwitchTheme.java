@@ -15,11 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseFragment;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.ios.I_MainActivity;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 切换主题
@@ -28,7 +27,7 @@ import com.yuncommunity.theme.ios.I_MainActivity;
  * 
  *         Create on: 2014年10月25日
  */
-public class A_SwitchTheme extends BaseActivity {
+public class A_SwitchTheme extends A_BaseActivity {
 	private ViewPager pager;
 	private ThemeFragmentPagerAdapter adapter;
 

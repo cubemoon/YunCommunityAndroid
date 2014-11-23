@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.oldfeel.base.BaseActivity;
+import com.google.gson.Gson;
 import com.oldfeel.utils.JsonUtil;
+import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
+import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.utils.UpdateUtils;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 编辑个人资料
@@ -27,7 +29,7 @@ import com.yuncommunity.utils.UpdateUtils;
  * @author oldfeel
  * 
  */
-public class A_EditPersonInfo extends BaseActivity implements OnClickListener {
+public class A_EditPersonInfo extends A_BaseActivity implements OnClickListener {
 	private EditText etName, etIntro, etPhone, etEmail, etHouseNumber;
 	private TextView tvBirthday;
 	private Spinner spPermission;
@@ -94,8 +96,11 @@ public class A_EditPersonInfo extends BaseActivity implements OnClickListener {
 		loginInfo.getUserInfo().setBirthday(super.getString(tvBirthday));
 		loginInfo.getUserInfo().setPermission(
 				spPermission.getSelectedItemPosition());
-		UpdateUtils.update(A_EditPersonInfo.this,
-				String.valueOf(getText(R.string.updating_personal_details)),
+		NetUtil netUtil = new NetUtil(A_EditPersonInfo.this,
+				JsonApi.EDIT_PERSON_INFO);
+		netUtil.setParams("userinfo",
+				new Gson().toJson(loginInfo.getUserInfo()));
+		netUtil.postRequest(getString(R.string.updating_personal_details),
 				new RequestStringListener() {
 
 					@Override
@@ -104,11 +109,12 @@ public class A_EditPersonInfo extends BaseActivity implements OnClickListener {
 							showToast(String
 									.valueOf(getText(R.string.updated_personal_details)));
 							setResult(A_PersonHomeActivity.EDIT_PERSON_INFO);
-							finish();
+							onBackPressed();
 						} else {
 							showToast(getText(R.string.failed_update_personal_details)
 									+ "," + JsonUtil.getData(result));
 						}
+
 					}
 				});
 	}
@@ -148,7 +154,7 @@ public class A_EditPersonInfo extends BaseActivity implements OnClickListener {
 				tvBirthday.setText(year + "-" + monthOfYear + "-" + dayOfMonth);
 			}
 		};
-		new DatePickerDialog(A_EditPersonInfo.this, dateSetListener, currentYear,
-				currentMonth, currentDay).show();
+		new DatePickerDialog(A_EditPersonInfo.this, dateSetListener,
+				currentYear, currentMonth, currentDay).show();
 	}
 }

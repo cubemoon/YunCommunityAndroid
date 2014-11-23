@@ -127,7 +127,7 @@
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.I_MyCollection" >
         </activity>
-        <activity android:name="com.yuncommunity.theme.ios.I_PersonInfo" >
+        <activity android:name="com.yuncommunity.theme.ios.I_PersonHomeActivity" >
         </activity>
         <activity android:name="com.yuncommunity.theme.ios.I_ProductDetail" >
         </activity>

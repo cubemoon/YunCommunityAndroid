@@ -2,12 +2,12 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 
-import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
 import com.yuncommunity.list.UserListFragment;
+import com.yuncommunity.theme.android.base.A_BaseActivity;
 
 /**
  * 用户列表
@@ -15,7 +15,7 @@ import com.yuncommunity.list.UserListFragment;
  * @author oldfeel
  * 
  */
-public class A_UserList extends BaseActivity {
+public class A_UserList extends A_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
