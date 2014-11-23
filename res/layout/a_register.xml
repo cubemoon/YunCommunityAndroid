@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default" >
+
+    <EditText
+        android:id="@+id/a_register_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入手机号"
+        android:inputType="phone" />
+
+    <LinearLayout style="@style/single_view" >
+
+        <EditText
+            android:id="@+id/a_register_vcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:hint="输入验证码(6位数字)"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/a_register_getvcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取验证码" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/a_register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入密码(6到16位非特殊字符)"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        style="@style/single_view"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center" >
+
+        <CheckBox
+            android:id="@+id/a_register_isagree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true" />
+
+        <TextView
+            android:id="@+id/a_register_useragree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我已同意用户协议" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/a_register_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册" />
+
+</LinearLayout>

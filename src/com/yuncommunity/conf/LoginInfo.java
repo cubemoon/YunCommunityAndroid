@@ -133,5 +133,4 @@ public class LoginInfo {
 		}
 		return A_MainActivity.class;
 	}
-
 }

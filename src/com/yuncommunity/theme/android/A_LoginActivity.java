@@ -2,6 +2,8 @@ package com.yuncommunity.theme.android;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.base.BaseTabsAdapter;
@@ -29,5 +31,29 @@ public class A_LoginActivity extends BaseActivity {
 				new LoginFragment());
 		tabsAdapter.addTab(String.valueOf(getText(R.string.register)),
 				new RegisterFragment());
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.login, menu);
+		return super.onCreateOptionsMenu(menu);
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_forgot_password:
+			forgetPassword();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void forgetPassword() {
+		openActivity(A_ForgetPassword.class);
 	}
 }

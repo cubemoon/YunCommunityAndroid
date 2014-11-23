@@ -1,34 +1,24 @@
 package com.yuncommunity.theme.android.fragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.oldfeel.base.BaseFragment;
+import com.oldfeel.utils.ETUtil;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
-import com.oldfeel.utils.NetUtil.OnNetFailListener;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.JsonApi;
 import com.yuncommunity.conf.LoginInfo;
-import com.yuncommunity.theme.android.A_ForgetPassword;
 import com.yuncommunity.theme.android.A_MainActivity;
 
 /**
@@ -38,218 +28,106 @@ import com.yuncommunity.theme.android.A_MainActivity;
  * 
  */
 public class RegisterFragment extends BaseFragment {
-	// Values for email and password at the time of the login attempt.
-	private String mEmail;
-	private String mPassword;
-
-	// UI references.
-	private EditText mEmailView;
-	private EditText mPasswordView;
-	private View mLoginFormView;
-	private View mLoginStatusView;
-	private TextView mLoginStatusMessageView;
+	private EditText etPhone, etPassword, etVcode;
+	private Button btnGetVcode, btnSubmit;
+	private CheckBox cbIsAgree;
+	private TextView tvUserAgree;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.login_register, null);
-		mEmailView = super.getEditText(view, R.id.email);
-		mPasswordView = super.getEditText(view, R.id.password);
-		mLoginFormView = view.findViewById(R.id.login_form);
-		mLoginStatusView = view.findViewById(R.id.login_status);
-		mLoginStatusMessageView = (TextView) view
-				.findViewById(R.id.login_status_message);
-		((Button) view.findViewById(R.id.sign_in_button)).setText("注册");
-		view.findViewById(R.id.sign_in_button).setOnClickListener(
-				new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						attemptLogin();
-					}
-				});
+		View view = inflater.inflate(R.layout.a_register, container, false);
+		etPhone = getEditText(view, R.id.a_register_phone);
+		etPassword = getEditText(view, R.id.a_register_password);
+		etVcode = getEditText(view, R.id.a_register_vcode);
+		btnGetVcode = getButton(view, R.id.a_register_getvcode);
+		btnSubmit = getButton(view, R.id.a_register_submit);
+		cbIsAgree = (CheckBox) view.findViewById(R.id.a_register_isagree);
+		tvUserAgree = getTextView(view, R.id.a_register_useragree);
 		return view;
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mPasswordView
-				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView textView, int id,
-							KeyEvent keyEvent) {
-						if (id == R.id.login || id == EditorInfo.IME_NULL) {
-							attemptLogin();
-							return true;
-						}
-						return false;
-					}
-				});
+		btnGetVcode.setOnClickListener(clickListener);
+		btnSubmit.setOnClickListener(clickListener);
 	}
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		getActivity().getMenuInflater().inflate(R.menu.login, menu);
-	}
+	private OnClickListener clickListener = new OnClickListener() {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.action_forgot_password:
-			forgetPassword();
-			break;
-
-		default:
-			break;
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.a_register_getvcode:
+				getVcode();
+				break;
+			case R.id.a_register_submit:
+				submit();
+				break;
+			default:
+				break;
+			}
 		}
-		return super.onOptionsItemSelected(item);
-	}
+	};
 
-	private void forgetPassword() {
-		openActivity(A_ForgetPassword.class);
-	}
-
-	NetUtil netUtil;
-
-	protected void attemptLogin() {
-		if (netUtil != null) {
+	protected void getVcode() {
+		if (!ETUtil.isMobileNO(etPhone)) {
+			etPhone.requestFocus();
+			etPhone.setError("格式错误");
 			return;
 		}
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.VCODE_REGISTER);
+		netUtil.setParams("phone", getString(etPhone));
+		netUtil.postRequest("正在发送验证码...", new RequestStringListener() {
 
-		// Reset errors.
-		mEmailView.setError(null);
-		mPasswordView.setError(null);
-
-		// Store values at the time of the login attempt.
-		mEmail = mEmailView.getText().toString();
-		mPassword = mPasswordView.getText().toString();
-
-		boolean cancel = false;
-		View focusView = null;
-
-		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
-			cancel = true;
-		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
-			cancel = true;
-		}
-
-		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail)) {
-			mEmailView.setError(getString(R.string.error_field_required));
-			focusView = mEmailView;
-			cancel = true;
-		} else if (!mEmail.contains("@")) {
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
-			cancel = true;
-		}
-
-		if (cancel) {
-			// There was an error; don't attempt login and focus the first
-			// form field with an error.
-			focusView.requestFocus();
-		} else {
-			// Show a progress spinner, and kick off a background task to
-			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
-			netUtil = new NetUtil(getActivity(), JsonApi.REGISTER);
-			netUtil.setParams("email", mEmail);
-			netUtil.setParams("password", mPassword);
-			netUtil.setParams("communityid",
-					LoginInfo.getInstance(getActivity()).getCommunityInfo()
-							.getCommunityid());
-			netUtil.postRequest("", new RequestStringListener() {
-
-				@Override
-				public void onComplete(String result) {
-					showProgress(false);
-					if (JsonUtil.isSuccess(result)) {
-						LoginInfo.getInstance(getActivity()).saveInfo(
-								JsonUtil.getData(result).toString());
-						LoginInfo.getInstance(getActivity()).saveRealPassword(
-								mPassword);
-						Intent intent = new Intent(getActivity(),
-								A_MainActivity.class);
-						intent.putExtra("login", true);
-						startActivity(intent);
-						getActivity().finish();
-					} else {
-						netUtil = null;
-						mEmailView.setError(JsonUtil.getData(result));
-						mEmailView.requestFocus();
-					}
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("获取验证码成功");
+					etVcode.setText(JsonUtil.getData(result));
 				}
-			});
-			netUtil.setOnNetFailListener(new OnNetFailListener() {
-
-				@Override
-				public void onTimeOut() {
-					netUtil = null;
-					showProgress(false);
-				}
-
-				@Override
-				public void onError() {
-					netUtil = null;
-					showProgress(false);
-				}
-
-				@Override
-				public void cancel() {
-					netUtil = null;
-					showProgress(false);
-				}
-			});
-		}
-
+			}
+		});
 	}
 
-	/**
-	 * Shows the progress UI and hides the login form.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-	private void showProgress(final boolean show) {
-		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-		// for very easy animations. If available, use these APIs to fade-in
-		// the progress spinner.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-			int shortAnimTime = getResources().getInteger(
-					android.R.integer.config_shortAnimTime);
-
-			mLoginStatusView.setVisibility(View.VISIBLE);
-			mLoginStatusView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 1 : 0)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginStatusView.setVisibility(show ? View.VISIBLE
-									: View.GONE);
-						}
-					});
-
-			mLoginFormView.setVisibility(View.VISIBLE);
-			mLoginFormView.animate().setDuration(shortAnimTime)
-					.alpha(show ? 0 : 1)
-					.setListener(new AnimatorListenerAdapter() {
-						@Override
-						public void onAnimationEnd(Animator animation) {
-							mLoginFormView.setVisibility(show ? View.GONE
-									: View.VISIBLE);
-						}
-					});
-		} else {
-			// The ViewPropertyAnimator APIs are not available, so simply show
-			// and hide the relevant UI components.
-			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
-			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+	protected void submit() {
+		if (!cbIsAgree.isChecked()) {
+			showSimpleDialog("只有同意用户协议才能注册");
+			return;
 		}
+		if (ETUtil.isHaveNull(etPhone, etPassword)) {
+			return;
+		}
+		if (getString(etPassword).length() < 6) {
+			etPassword.setError("太短了");
+			etPassword.requestFocus();
+			return;
+		}
+		if (getString(etPassword).length() > 16) {
+			etPassword.setError("太长了");
+			etPassword.requestFocus();
+			return;
+		}
+		NetUtil netUtil = new NetUtil(getActivity(), JsonApi.REGISTER);
+		netUtil.setParams("account", getString(etPhone));
+		netUtil.setParams("vcode", getString(etVcode));
+		netUtil.setParams("password", getString(etPassword));
+		netUtil.postRequest("正在提交注册信息...", new RequestStringListener() {
+
+			@Override
+			public void onComplete(String result) {
+				if (JsonUtil.isSuccess(result)) {
+					showToast("注册成功");
+					LoginInfo.getInstance(getActivity()).saveInfo(
+							JsonUtil.getData(result));
+					Intent intent = new Intent(getActivity(),
+							A_MainActivity.class);
+					intent.putExtra("islogin", true);
+					startActivity(intent);
+					getActivity().onBackPressed();
+				}
+			}
+		});
 	}
 }

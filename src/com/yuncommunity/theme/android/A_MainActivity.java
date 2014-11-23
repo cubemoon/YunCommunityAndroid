@@ -107,7 +107,7 @@ public class A_MainActivity extends BaseActivity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		// 登陆
-		boolean isLogin = intent.getBooleanExtra("login", false);
+		boolean isLogin = intent.getBooleanExtra("islogin", false);
 		if (isLogin) {
 			updateHeaderView();
 		}
@@ -127,13 +127,12 @@ public class A_MainActivity extends BaseActivity {
 				taskFragment.updateList();
 			}
 		}
-		// 小区信息
+		// 切换小区
 		CommunityItem communityItem = (CommunityItem) intent
 				.getSerializableExtra("communityitem");
 		if (communityItem != null) {
 			LoginInfo.getInstance(getApplicationContext()).getUserInfo()
 					.setCommunityInfo(communityItem);
-			onCreate(null);
 		}
 		super.onNewIntent(intent);
 	}
