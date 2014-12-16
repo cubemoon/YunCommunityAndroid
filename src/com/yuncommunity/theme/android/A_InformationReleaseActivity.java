@@ -1,8 +1,8 @@
 package com.yuncommunity.theme.android;
 
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -31,8 +31,8 @@ public class A_InformationReleaseActivity extends A_BaseActivity {
 				String.valueOf(getText(R.string.business_service)),
 				String.valueOf(getText(R.string.personal_service)) };
 		setTitle(getText(R.string.publish));
-		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		getSupportActionBar().setListNavigationCallbacks(
+		getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		getActionBar().setListNavigationCallbacks(
 				new ArrayAdapter<String>(getApplicationContext(),
 						R.layout.single_text_dark, R.id.text, navList),
 				new OnNavigationListener() {
@@ -44,7 +44,7 @@ public class A_InformationReleaseActivity extends A_BaseActivity {
 						return false;
 					}
 				});
-		getSupportActionBar().setSelectedNavigationItem(
+		getActionBar().setSelectedNavigationItem(
 				getIntent().getIntExtra("infotype", 1) - 1);
 	}
 
@@ -63,7 +63,7 @@ public class A_InformationReleaseActivity extends A_BaseActivity {
 		default:
 			break;
 		}
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 	}
 

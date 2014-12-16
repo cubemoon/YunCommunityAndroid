@@ -43,7 +43,7 @@ public class I_SquareDetail extends I_BaseActivity implements OnClickListener {
 				.getSerializableExtra("squareitem");
 		commentList = SquareCommentList.newInstance(getCommentListNetUtil(),
 				squareItem);
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.i_square_detail_frame, commentList).commit();
 		btnAttention = getButton(R.id.i_square_detail_attention);
 		btnCollection = getButton(R.id.i_square_detail_collection);

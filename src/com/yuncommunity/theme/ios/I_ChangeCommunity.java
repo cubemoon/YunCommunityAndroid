@@ -62,7 +62,7 @@ public class I_ChangeCommunity extends I_BaseActivity {
 		netUtil.setParams("lat", lat);
 		netUtil.setParams("lon", lon);
 		netUtil.setParams("key", key);
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.i_change_community_list,
 						NearCommunityList.newInstance(netUtil)).commit();

@@ -197,7 +197,7 @@ public class I_MainActivity extends I_BaseActivity {
 		serverFragment = IServerFragment.newInstance();
 		activityFragment = IActivityFragment.newInstance(getActivityNetUtil());
 		personFragment = IPersonFragment.newInstance();
-		adapter = new BasePagerAdapter(getSupportFragmentManager());
+		adapter = new BasePagerAdapter(getFragmentManager());
 		adapter.add(squareFragment);
 		adapter.add(serverFragment);
 		adapter.add(activityFragment);

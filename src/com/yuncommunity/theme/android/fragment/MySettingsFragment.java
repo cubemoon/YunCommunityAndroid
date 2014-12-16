@@ -1,13 +1,13 @@
 package com.yuncommunity.theme.android.fragment;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.support.v4.app.Fragment;
-import android.support.v4.preference.PreferenceFragment;
+import android.preference.PreferenceFragment;
 import android.webkit.WebView;
 
 import com.google.gson.Gson;

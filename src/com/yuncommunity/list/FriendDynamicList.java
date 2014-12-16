@@ -1,6 +1,6 @@
 package com.yuncommunity.list;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 
 import com.oldfeel.utils.NetUtil;
 import com.yuncommunity.adapter.FriendDynamicListAdapter;

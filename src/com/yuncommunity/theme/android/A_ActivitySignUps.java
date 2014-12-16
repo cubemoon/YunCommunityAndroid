@@ -23,7 +23,7 @@ public class A_ActivitySignUps extends A_BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_frame);
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
 						ActivitySignUpList.newInstance(getNetUtil())).commit();

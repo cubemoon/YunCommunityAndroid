@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/action_edit"
-        android:title="@string/edit"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/edit"/>
     <item
         android:id="@+id/action_product"
-        android:title="@string/product"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/product"/>
     <item
         android:id="@+id/action_followers"
-        android:title="@string/follow"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/follow"/>
     <item
         android:id="@+id/action_author"
-        android:title="@string/check_author"
-        yourapp:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="@string/check_author"/>
     <item
         android:id="@+id/action_report"
-        android:title="@string/report"
-        yourapp:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="@string/report"/>
 
 </menu>

@@ -2,10 +2,10 @@ package com.yuncommunity.theme.android.fragment;
 
 import java.util.ArrayList;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +49,7 @@ public class AttentionFragment extends BaseFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		MyFragmentPageAdapter adapter = new MyFragmentPageAdapter(getActivity()
-				.getSupportFragmentManager());
+				.getFragmentManager());
 		adapter.add(String.valueOf(getText(R.string.friend)),
 				FriendDynamicList.newInstance(getFriendNetUtil()));
 		adapter.add(String.valueOf(getText(R.string.activity)),

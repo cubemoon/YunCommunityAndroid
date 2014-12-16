@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
-        android:title="@string/search"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/search"/>
     <item
         android:id="@+id/action_release"
         android:icon="@drawable/ic_release"
-        android:title="@string/publish"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/publish"/>
     <item
         android:id="@+id/action_cancel"
-        android:title="@string/log_out"
-        yourapp:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="@string/log_out"/>
 
 </menu>

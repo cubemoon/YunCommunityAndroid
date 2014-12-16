@@ -44,7 +44,7 @@ public class TagEdit extends BaseDialogFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setStyle(DialogFragment.STYLE_NO_TITLE,
-				R.style.Theme_AppCompat_Light_DialogWhenLarge);
+				android.R.style.Theme_DeviceDefault_Dialog_NoActionBar_MinWidth);
 	}
 
 	public static TagEdit newInstance(int infoType, String tags,

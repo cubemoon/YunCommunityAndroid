@@ -49,7 +49,7 @@ public class I_ReleaseActivity extends I_BaseActivity {
 						submitRelease();
 					}
 				});
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.i_release_activity_upload_image,
 						uploadImagesFragment).commit();

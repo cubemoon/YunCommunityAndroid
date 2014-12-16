@@ -18,7 +18,7 @@ public class A_MySettingsActivity extends A_BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_frame);
 		setTitle(getText(R.string.setting));
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, MySettingsFragment.newInstance())
 				.commit();
 	}

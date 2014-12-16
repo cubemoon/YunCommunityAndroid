@@ -25,7 +25,7 @@ public class I_ProductList extends I_BaseActivity {
 		tagItem = (TagItem) getIntent().getSerializableExtra("item");
 		setTitle(tagItem.getName());
 		hideRight();
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
 						ProductListFragment.newInstance(getListNetUtil()))

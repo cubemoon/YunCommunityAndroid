@@ -20,7 +20,7 @@ public class A_ChatActivity extends A_BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_frame);
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
 						ChatListFragment.newInstance(getNetUtil())).commit();

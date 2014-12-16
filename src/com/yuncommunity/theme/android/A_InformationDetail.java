@@ -68,7 +68,7 @@ public class A_InformationDetail extends A_BaseActivity implements
 		setContentView(R.layout.information_detail);
 		setTitle(getText(R.string.details));
 		item = (InformationItem) getIntent().getSerializableExtra("item");
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.information_detail_media,
 						InformationMedia.newInstance(item)).commit();
@@ -99,7 +99,7 @@ public class A_InformationDetail extends A_BaseActivity implements
 	private void getCommentList() {
 		CommentListFragment fragment = CommentListFragment
 				.newInstance(getCommentListNetUtil());
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.information_detail_commentlist, fragment)
 				.commit();
 	}
@@ -160,7 +160,7 @@ public class A_InformationDetail extends A_BaseActivity implements
 		btnEvaluation.setText((myComment == null) ? getText(R.string.feedback)
 				: getText(R.string.modify));
 
-		supportInvalidateOptionsMenu();
+		invalidateOptionsMenu();
 	}
 
 	private View getTagView(TagItem tagItem) {
@@ -435,7 +435,7 @@ public class A_InformationDetail extends A_BaseActivity implements
 			btnFollowing.setText(getText(R.string.follow));
 			followerCount--;
 		}
-		supportInvalidateOptionsMenu();
+		invalidateOptionsMenu();
 		NetUtil netUtil = new NetUtil(A_InformationDetail.this,
 				JsonApi.INFORMATION_FOLLOWING);
 		netUtil.setParams("userid",

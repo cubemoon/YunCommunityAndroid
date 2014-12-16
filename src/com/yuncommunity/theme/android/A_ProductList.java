@@ -38,7 +38,7 @@ public class A_ProductList extends A_BaseActivity {
 		setContentView(R.layout.single_frame);
 		item = (InformationItem) getIntent().getSerializableExtra("item");
 		fragment = ProductListFragment.newInstance(getNetUtil());
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 	}
 

@@ -45,7 +45,7 @@ public class I_ReleaseSquare extends I_BaseActivity {
 						submitSpeak();
 					}
 				});
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.i_release_square_upload_image,
 						uploadImagesFragment).commit();

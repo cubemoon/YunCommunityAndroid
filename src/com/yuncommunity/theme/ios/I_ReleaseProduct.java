@@ -64,7 +64,7 @@ public class I_ReleaseProduct extends I_BaseActivity {
 						submitRelease();
 					}
 				});
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.i_release_product_upload_image,
 						uploadImagesFragment).commit();
@@ -89,7 +89,7 @@ public class I_ReleaseProduct extends I_BaseActivity {
 	protected void showTagEdit() {
 		TagEdit tagEdit = TagEdit.newInstance(Constant.TYPE_PERSONAL,
 				getString(etTags), tagEditListener);
-		tagEdit.show(getSupportFragmentManager(), "tagedit");
+		tagEdit.show(getFragmentManager(), "tagedit");
 	}
 
 	private void initTop() {

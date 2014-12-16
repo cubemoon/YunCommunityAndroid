@@ -50,7 +50,7 @@ public class InformationFragment extends BaseFragment {
 	 */
 	public void updateList() {
 		getActivity()
-				.getSupportFragmentManager()
+				.getFragmentManager()
 				.beginTransaction()
 				.replace(R.id.content_frame,
 						InformationListFragment.newInstance(getNetUtil()))

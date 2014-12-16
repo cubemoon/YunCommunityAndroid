@@ -1,13 +1,13 @@
 package com.yuncommunity.theme.android;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,7 +74,7 @@ public class A_MainActivity extends A_BaseActivity {
 			}
 		});
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, R.string.app_name);
+				R.drawable.ic_drawer, R.string.app_name, R.string.app_name);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		if (savedInstanceState == null) {
 			selectItem(2);
@@ -333,7 +333,7 @@ public class A_MainActivity extends A_BaseActivity {
 	}
 
 	private void showFragment(Fragment fragment) {
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.content_frame, fragment).commit();
 	}
 

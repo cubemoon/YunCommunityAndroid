@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/action_complete"
         android:icon="@drawable/ic_complete"
-        android:title="@string/finish"
-        yourapp:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="@string/finish"/>
     <item
         android:id="@+id/action_help"
-        android:title="@string/help"
-        yourapp:showAsAction="never"/>
+        android:showAsAction="never"
+        android:title="@string/help"/>
 
 </menu>

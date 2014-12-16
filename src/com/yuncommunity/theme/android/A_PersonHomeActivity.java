@@ -117,7 +117,7 @@ public class A_PersonHomeActivity extends A_BaseActivity implements
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
 				.newInstance(netUtil);
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.person_home_information, fragment).commit();
 	}
 
@@ -149,7 +149,7 @@ public class A_PersonHomeActivity extends A_BaseActivity implements
 		if (!StringUtil.isEmpty(item.getBackground())) {
 			imageLoader.displayImage(item.getBackground(), ivBg, options);
 		}
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(
 						R.id.person_home_header,

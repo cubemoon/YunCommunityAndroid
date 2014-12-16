@@ -1,8 +1,8 @@
 package com.yuncommunity.theme.ios.fragment;
 
+import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
@@ -45,8 +45,8 @@ public class IPersonFragment extends ListFragment {
 						new Intent(getActivity(), I_LoginActivity.class));
 			} else {
 				getActivity().startActivity(
-						new Intent(getActivity(), I_PersonHomeActivity.class).putExtra(
-								"targetid", userid));
+						new Intent(getActivity(), I_PersonHomeActivity.class)
+								.putExtra("targetid", userid));
 			}
 			return;
 		}

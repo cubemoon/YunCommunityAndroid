@@ -51,7 +51,7 @@ public class I_BaseActivity extends SwipeBackActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.i_base_view);
-		getSupportActionBar().hide();
+		getActionBar().hide();
 		myApplication = (MyApplication) getApplication();
 		myApplication.addActivity(this);
 		int id = R.drawable.ic_launcher;

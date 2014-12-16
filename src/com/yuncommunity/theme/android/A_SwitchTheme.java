@@ -2,10 +2,10 @@ package com.yuncommunity.theme.android;
 
 import java.util.ArrayList;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +36,7 @@ public class A_SwitchTheme extends A_BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.single_view_pager);
 		pager = (ViewPager) findViewById(R.id.pager);
-		adapter = new ThemeFragmentPagerAdapter(getSupportFragmentManager());
+		adapter = new ThemeFragmentPagerAdapter(getFragmentManager());
 		pager.setAdapter(adapter);
 	}
 

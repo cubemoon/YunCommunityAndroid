@@ -108,7 +108,7 @@ public class I_PersonHomeActivity extends I_BaseActivity implements OnClickListe
 		netUtil.setParams("targetid", targetid);
 		InformationListFragment fragment = InformationListFragment
 				.newInstance(netUtil);
-		getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.replace(R.id.person_home_information, fragment).commit();
 	}
 
@@ -139,7 +139,7 @@ public class I_PersonHomeActivity extends I_BaseActivity implements OnClickListe
 		if (!StringUtil.isEmpty(item.getBackground())) {
 			imageLoader.displayImage(item.getBackground(), ivBg, options);
 		}
-		getSupportFragmentManager()
+		getFragmentManager()
 				.beginTransaction()
 				.replace(
 						R.id.person_home_header,
