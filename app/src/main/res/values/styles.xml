@@ -3,19 +3,6 @@
 
     <style name="Theme.Yuncommunity" parent="@android:style/Theme.Holo">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
-    </style>
-
-    <style name="TabPageIndicator">
-        <item name="android:gravity">center</item>
-        <item name="android:paddingLeft">22dip</item>
-        <item name="android:paddingRight">22dip</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="LoginFormContainer">

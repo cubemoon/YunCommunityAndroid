@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import com.oldfeel.base.BaseActivity;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.VersionUtil;
-import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.conf.Constant;
 import com.yuncommunity.conf.JsonApi;
@@ -138,15 +137,15 @@ public class MySettingsFragment extends PreferenceFragment {
 	 * 检查版本
 	 */
 	protected void checkVersion() {
-		WVersionManager versionManager = new WVersionManager(getActivity());
-
-		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
-		versionManager.setUpdateNowLabel("现在更新");
-		versionManager.setRemindMeLaterLabel("稍后更新");
-		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
-		versionManager.setReminderTimer(1);
-
-		versionManager.checkVersion();
+//		WVersionManager versionManager = new WVersionManager(getActivity());
+//
+//		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
+//		versionManager.setUpdateNowLabel("现在更新");
+//		versionManager.setRemindMeLaterLabel("稍后更新");
+//		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
+//		versionManager.setReminderTimer(1);
+//
+//		versionManager.checkVersion();
 
 	}
 

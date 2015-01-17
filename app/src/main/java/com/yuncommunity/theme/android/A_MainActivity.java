@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.oldfeel.utils.JsonUtil;
 import com.oldfeel.utils.NetUtil;
 import com.oldfeel.utils.NetUtil.RequestStringListener;
-import com.winsontan520.wversionmanager.library.WVersionManager;
 import com.yuncommunity.R;
 import com.yuncommunity.adapter.DrawerListAdapter;
 import com.yuncommunity.conf.Constant;
@@ -56,7 +55,6 @@ public class A_MainActivity extends A_BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setSwipeBackEnable(false);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -86,15 +84,15 @@ public class A_MainActivity extends A_BaseActivity {
 	}
 
 	private void checkVersion() {
-		WVersionManager versionManager = new WVersionManager(this);
-
-		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
-		versionManager.setUpdateNowLabel("现在更新");
-		versionManager.setRemindMeLaterLabel("稍后更新");
-		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
-		versionManager.setReminderTimer(1);
-
-		versionManager.checkVersion();
+//		WVersionManager versionManager = new WVersionManager(this);
+//
+//		versionManager.setVersionContentUrl(Constant.CHECK_VERSION);
+//		versionManager.setUpdateNowLabel("现在更新");
+//		versionManager.setRemindMeLaterLabel("稍后更新");
+//		versionManager.setIgnoreThisVersionLabel("忽略当前版本");
+//		versionManager.setReminderTimer(1);
+//
+//		versionManager.checkVersion();
 	}
 
 	private void initCommunity() {
